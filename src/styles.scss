@@ -1,0 +1,113 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.input {
+  @apply focus:shadow-md focus:placeholder-gray-600 text-gray-600 text-gray-600 dark:placeholder-white dark:text-white;
+}
+
+.input-search {
+  @apply rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent
+}
+
+.btn {
+  @apply hover:-translate-y-0.5;
+}
+
+.btn-primary {
+  @apply bg-blue-700 border-0 hover:bg-blue-800;
+}
+
+.input-primary {
+  @apply border-gray-100;
+}
+
+.input-error {
+  @apply border-2;
+}
+
+//Custom Scrollbar [Start]
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 12px;
+  border: 2px solid #d6dee1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+//Custom Scrollbar [End]
+
+// Custom Table [Start]
+
+.th-table {
+  @apply px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal
+}
+
+// Custom Table [End]
+
+// Custom Number Input [Start]
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+// Custom Number Input [End]
+
+// Custom backdrop Class [Start]
+
+.modal-backdrop {
+  background-color: rgba(28, 28, 28, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+// Custom backdrop Class [End]
+
+// Stripe Payment Design [Start]
+
+.payment-input {
+  @apply input w-full placeholder:font-semibold font-semibold placeholder:text-gray-500 text-gray-500
+}
+
+.bg-stripe {
+  background: rgb(21, 101, 192);
+  background: -moz-radial-gradient(circle, rgba(21, 101, 192, 1) 31%, rgba(25, 118, 210, 1) 53%, rgba(30, 136, 229, 1) 69%, rgba(33, 150, 243, 1) 86%);
+  background: -webkit-radial-gradient(circle, rgba(21, 101, 192, 1) 31%, rgba(25, 118, 210, 1) 53%, rgba(30, 136, 229, 1) 69%, rgba(33, 150, 243, 1) 86%);
+  background: radial-gradient(circle, rgba(21, 101, 192, 1) 31%, rgba(25, 118, 210, 1) 53%, rgba(30, 136, 229, 1) 69%, rgba(33, 150, 243, 1) 86%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1565c0", endColorstr="#2196f3", GradientType=1);
+}
+
+iframe {
+  position: relative !important;
+  top: 5px !important;
+}
+
+// Stripe Payment Design [End]

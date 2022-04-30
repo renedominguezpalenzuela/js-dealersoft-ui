@@ -1,0 +1,67 @@
+<div class="py-10 px-10">
+
+  <header class="fixed top-0 w-1/2 flex justify-between items-center pt-8">
+    <p>{{currentDate | date:'d/M/yy hh:mm'}}</p>
+    <p>DealerSoft</p>
+  </header>
+
+  <main class="pt-32">
+
+    <div class="flex justify-between items-center w-full">
+      <h1 class="text-2xl font-bold tracking-widest antialiased">Mein Bestand</h1>
+      <p class="antialiased font-sans font-semibold text-xl">{{month}}, {{year}}</p>
+    </div>
+
+    <table class="table-auto border-collapse border-0.5 border-gray-400 w-full mt-5 text-sm">
+      <tr class="text-left">
+        <th class="border border-gray-400">Fahrzeugname</th>
+        <th class="border border-gray-400">Fahrzeugkennung</th>
+        <th class="border border-gray-400">Erstregistrierung</th>
+        <th class="border border-gray-400">Kilometer</th>
+        <th class="border border-gray-400">Kilowatt</th>
+        <th class="border border-gray-400">Aufbauvariante</th>
+        <th class="border border-gray-400">HSN</th>
+        <th class="border border-gray-400">Farbe</th>
+      </tr>
+      <tr *ngFor="let elm of data">
+        <td class="border border-gray-400">{{elm?.attributes?.name}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.car_identifier}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.first_register_date | date}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.kilometres}} Km</td>
+        <td class="border border-gray-400">{{elm?.attributes?.kilowatt}} Kw</td>
+        <td class="border border-gray-400">{{elm?.attributes?.build_variant}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.hsn}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.color}}</td>
+      </tr>
+    </table>
+
+    <ul class="mt-10 pl-8 w-72 text-sm">
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">Fahrzeugbestand:</span>
+        <span>{{data?.length}}</span>
+      </li>
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">Nettosumme:</span>
+        <span>{{sumNetTotal() || 0 | currency}}</span>
+      </li>
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">a25 Summe:</span>
+        <span>{{suma25Total() || 0 | currency}}</span>
+      </li>
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">Gesamtsumme:</span>
+        <span>{{sumTotal() || 0 | currency}}</span>
+      </li>
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">MwSt. Summe:</span>
+        <span>{{sumIvaTotal() || 0 | currency}}</span>
+      </li>
+    </ul>
+
+  </main>
+
+  <footer class="fixed bottom-0 pb-8 flex w-11/12 justify-between items-center text-xs">
+    <p>{{currentUrl}}</p>
+    <p>{{currentPage}}/{{pageCount}}</p>
+  </footer>
+</div>

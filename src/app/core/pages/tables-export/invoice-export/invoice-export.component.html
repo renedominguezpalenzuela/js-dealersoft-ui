@@ -1,0 +1,96 @@
+<div class="pt-6 pb-3 px-20">
+
+  <header class="w-full flex justify-between items-center pt-5">
+    <h1 class="text-xl font-medium underline">
+      {{user?.username}} - {{user?.street}} {{user?.house_number}} - {{user?.postal_code}} {{user?.city}}
+    </h1>
+    <img [src]="imgPath | saveDom" alt="{{user?.username}} logo" class="rounded-full" width="150px">
+  </header>
+
+  <main class="pt-6">
+    <ul class="mb-10 text-sm">
+      <li>
+        <span>{{invoice?.attributes?.client?.data?.attributes?.title}}</span>
+      </li>
+      <li>
+        <span class="mr-2">{{invoice?.attributes?.client?.data?.attributes?.first_name}}</span>
+        <span>{{invoice?.attributes?.client?.data?.attributes?.last_name}}</span>
+      </li>
+      <li>
+        <span>{{invoice?.attributes?.client?.data?.attributes?.street}}</span>
+      </li>
+      <li>
+        <span>{{invoice?.attributes?.client?.data?.attributes?.aditional_address}}</span>
+      </li>
+      <li>
+        <span class="mr-2">{{invoice?.attributes?.client?.data?.attributes?.postal_code}}</span>
+        <span>{{invoice?.attributes?.client?.data?.attributes?.city}}</span>
+      </li>
+      <li>
+        <span>{{invoice?.attributes?.client?.data?.attributes?.country}}</span>
+      </li>
+    </ul>
+    <div class="border border-black py-4 px-8 flex w-full justify-between mb-5">
+      <h2 class="text-xl font-semibold pl-10">RECHNUNG RECHNUNG Nr. {{invoice?.attributes?.invoice_number}}</h2>
+      <span class="">{{invoice?.attributes?.date | date:'d.M.yyyy'}}</span>
+    </div>
+    <p class="font-sans prose text-sm">Hiermit berechnen wir Ihnen die folgenden Artikel wie vereinbart.</p>
+    <ul class="mt-3">
+      <li class="my-0.5">
+        <span class="font-bold">{{invoice?.attributes?.title}}</span>
+      </li>
+      <li class="my-0.5">
+        <span>{{invoice?.attributes?.description}}</span>
+      </li>
+    </ul>
+    <table class="table-auto w-full mt-5 border-gray-400 mb-24 text-sm">
+      <tr class="text-left">
+        <th class="border-b border-gray-400 w-8/12">Artikel</th>
+        <th class="border-b border-gray-400 w-1/12">Anzahl</th>
+        <th class="border-b border-gray-400 w-1/12">Stückpreis</th>
+        <th class="border-b border-gray-400 w-2/12">Gesamt</th>
+      </tr>
+      <tr *ngFor="let item of invoice?.attributes?.places" class="py-1">
+        <td class="py-0.5 w-8/12">{{item?.article}}</td>
+        <td class="py-0.5 w-1/12">{{item?.quantity}}</td>
+        <td class="py-0.5 w-1/12">{{item?.unit_price || 0 | currency}}</td>
+        <td class="py-0.5 w-2/12">{{((item?.unit_price || 0) * (item?.quantity || 0)) || 0 | currency}}</td>
+      </tr>
+    </table>
+    <div class="flex w-full justify-end mt-2 mb-6 border-t border-gray-400 text-sm">
+      <p class="font-bold font-sans px-6 pt-4 mr-24">
+        <span class="mr-20">Gesamt Summe:</span>
+        <span>{{totalAmount() | currency}}</span>
+      </p>
+    </div>
+    <p class="font-sans prose my-0.5 text-sm">Der Verkauf erfolgt nach §25a</p>
+    <p class="font-sans prose mt-0.5 mb-10 text-sm">Gebrauchtware / Sonderregelung</p>
+    <p class="font-sans prose my-0.5 text-sm mb-40">
+      <span class="font-bold mr-2">Lieferdatum:</span>
+      <span class="">{{invoice?.attributes?.delivery_date | date:'d-MM-yyyy'}}</span>
+    </p>
+    <div class="flex justify-between my-3 text-xs">
+      <div class="w-1/3">
+        <p>{{user?.street}} {{user?.house_number}}, {{user?.postal_code}}</p>
+        <p>Tel: {{user?.phone}}</p>
+        <p>{{user?.email}}</p>
+        <p>
+          <a class="text-green-600" href="https://{{user?.website}}" target="_blank">{{user?.website}}</a>
+        </p>
+      </div>
+      <div class="w-1/3">
+        <p>Steuer-Nr.: {{user?.steuer_nr}}</p>
+        <p>Ust-IdNr.: {{user?.ust_Idnr}}</p>
+        <p>HRB: {{user?.hrb_walsrode}}</p>
+        <p>Geschäftsführer: {{user?.geschaftsfuhrer}}</p>
+      </div>
+      <div class="w-1/3">
+        <p>IBAN: {{user?.iban}}</p>
+        <p>BIC/SWIFT-Code: {{user?.bic_swift_code}}</p>
+        <p>IBAN: {{user?.syke_iban}}</p>
+        <p>BIC/Swift-code: {{user?.bic_swift_code_2}}</p>
+      </div>
+    </div>
+  </main>
+
+</div>

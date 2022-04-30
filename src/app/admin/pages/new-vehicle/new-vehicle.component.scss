@@ -1,0 +1,11 @@
+.divider::before {
+  flex-grow: 0;
+}
+
+.cursor-pointer {
+  ::ng-deep {
+    .mat-icon {
+      @apply text-base p-0 m-0 h-fit w-fit
+    }
+  }
+}

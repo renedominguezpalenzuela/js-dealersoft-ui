@@ -1,0 +1,129 @@
+<div class="card bg-white">
+  <div class="card-body">
+    <form (ngSubmit)="submit()" [formGroup]="carBuyForm">
+      <div class="divider font-bold font-sans">Allgemeine Daten</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Fahrzeugname</mat-label>
+          <mat-select formControlName="car" required>
+            <mat-option *ngFor="let option of carsOptions" [value]="option.id">
+              {{option.attributes.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasRequiredError('car')">
+            <b>Fahrzeugname</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Nachname</mat-label>
+          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
+            <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+              {{option.attributes.first_name}} {{option.attributes.last_name}}
+            </mat-option>
+          </mat-autocomplete>
+          <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
+                  mat-icon-button matSuffix>
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-error *ngIf="hasRequiredError('client')">
+            <b>Kunde</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Sammlung</mat-label>
+          <input formControlName="collection" matInput required>
+          <mat-error *ngIf="hasRequiredError('collection')">
+            <b>Sammlung</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Ankaufsdatum</mat-label>
+          <input [matDatepicker]="pickerBuyDate" formControlName="buy_date" matInput readonly required>
+          <mat-error *ngIf="hasRequiredError('buy_date')">
+            <b>Ankaufsdatum</b> wird benötigt
+          </mat-error>
+          <mat-datepicker-toggle [for]="pickerBuyDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerBuyDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Zahlen</mat-label>
+          <input formControlName="payment" matInput min="0" type="text">
+          <mat-error *ngIf="hasRequiredError('payment')">
+            <b>Zahlen</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <div class="col-span-2 lg:col-span-1 flex items-center justify-start gap-x-3 pl-5">
+          <div class="flex gap-x-3 pb-3">
+            <input #a25 (change)="iva.checked = !a25.checked" checked="checked" class="toggle"
+                   formControlName="a25" id="a25" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="a25">a25</label>
+          </div>
+          <div class="flex gap-x-3 pb-3">
+            <input #iva (change)="a25.checked = !iva.checked" checked="checked" class="toggle"
+                   formControlName="iva" id="iva" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
+          </div>
+        </div>
+      </div>
+      <div class="divider font-bold font-sans">Ankaufpreis</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Netto in €</mat-label>
+          <input formControlName="gross_buy" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('gross_buy')">
+            <b>Netto</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Brutto in €</mat-label>
+          <input formControlName="net_buy" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('net_buy')">
+            <b>Brutto</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Mehrwertsteuer in €</mat-label>
+          <input formControlName="iva_buy" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('iva_buy')">
+            <b>Mehrwertsteuer</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Nettoberichtigung in €</mat-label>
+          <input formControlName="net_buy_adjustment" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('net_buy_adjustment')">
+            <b>Nettoberichtigung</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="divider font-bold font-sans">Sonstige Kosten</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Zinssatz für ein Jahr Finanzierung</mat-label>
+          <input formControlName="year_interest_rate" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('year_interest_rate')">
+            <b>Zinssatz für ein Jahr Finanzierung</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Summe in €</mat-label>
+          <input formControlName="total" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('total')">
+            <b>Summe in €</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="flex w-full justify-center md:justify-end items-center mt-6 space-x-3">
+        <button (click)="generatePdf()" class="btn btn-primary border-2" type="button">
+          <mat-icon>picture_as_pdf</mat-icon>
+          <span class="font-sans pl-3">Kaufvertrag</span>
+        </button>
+        <button class="btn btn-primary w-40" type="submit">
+          <span class="tracking-wide">Speichern</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

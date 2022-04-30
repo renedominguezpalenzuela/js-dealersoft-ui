@@ -1,0 +1,126 @@
+<form (ngSubmit)="submit()" [formGroup]="customerForm">
+  <h1 mat-dialog-title>Neuer Kunde</h1>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content>
+    <div class="grid grid-cols-2 gap-x-3 gap-y-2 mt-2 max-h-96 overflow-y-auto px-2">
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Titel</mat-label>
+          <mat-select [required]="isRequired()" formControlName="title">
+            <mat-option value="Herr">Herr</mat-option>
+            <mat-option value="Frau">Frau</mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasRequiredError('title')">
+            <b>Titel</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Vorname</mat-label>
+          <input [required]="isRequired()" formControlName="first_name" matInput>
+          <mat-error *ngIf="hasRequiredError('first_name')">
+            <b>Vorname</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nachname</mat-label>
+          <input [required]="isRequired()" formControlName="last_name" matInput>
+          <mat-error *ngIf="hasRequiredError('last_name')">
+            <b>Nachname</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Geburtsdatum</mat-label>
+          <input [matDatepicker]="pickerDate" formControlName="birth_date" matInput readonly>
+          <mat-datepicker-toggle [for]="pickerDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Telefonnummer</mat-label>
+          <input [required]="isRequired()" formControlName="phone" matInput>
+          <mat-error *ngIf="hasRequiredError('phone')">
+            <b>Telefonnummer</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Fax</mat-label>
+          <input formControlName="fax" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Steuernummer</mat-label>
+          <input [required]="isRequired()" formControlName="tax_number" matInput>
+          <mat-error *ngIf="hasRequiredError('tax_number')">
+            <b>Steuernummer</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>E-Mail</mat-label>
+          <input formControlName="email" matInput type="email">
+          <mat-error *ngIf="hasEmailError('email')">
+            <b>E-Mail</b> ist ungültig
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Website</mat-label>
+          <input formControlName="website" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Straße</mat-label>
+          <input formControlName="street" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Hausnummer</mat-label>
+          <input formControlName="house_number" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Postleitzahl</mat-label>
+          <input formControlName="postal_code" matInput type="number">
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Stadt</mat-label>
+          <input formControlName="city" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Land</mat-label>
+          <input formControlName="country" matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-span-2">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Adresszusatz</mat-label>
+          <input formControlName="aditional_address" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="flex justify-end gap-x-3" mat-dialog-actions>
+    <button (click)="close()" class="btn btn-error btn-sm" type="button">ABBRECHEN</button>
+    <button class="btn btn-primary btn-sm" type="submit">SPEICHERN</button>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+<p class="text-center font-medium text-2xl">
+  Forgot Password
+</p>
+<form (ngSubmit)="recoverAccount()" [formGroup]="recoveryAccountForm" class="mt-6">
+  <div class="relative mt-3">
+    <input class="input pl-12 w-full {{hasError('email') ? 'input-error' : 'input-primary'}}"
+           formControlName="email" placeholder="Email Address" required type="email">
+    <div class="absolute left-0 top-3 flex items-center">
+      <img alt="user_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/email.png"/>
+    </div>
+    <span *ngIf="hasRequiredError('email')" class="label-text-alt text-red-400 pl-2">
+      <b>Email</b> wird benötigt
+    </span>
+    <span *ngIf="hasEmailError('email')" class="label-text-alt text-red-400 pl-2">
+      <b>Email</b> ist ungültig
+    </span>
+  </div>
+  <div class="flex items-center justify-center mt-8">
+    <button class="btn bg-black" type="submit">
+      Email me a reset link
+    </button>
+  </div>
+</form>

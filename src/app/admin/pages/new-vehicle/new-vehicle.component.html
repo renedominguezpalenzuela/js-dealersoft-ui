@@ -1,0 +1,153 @@
+<div [ngClass]="{'shadow-lg': !car}" class="card bg-white m-0.5 sm:m-5 mb-8">
+  <div class="card-body">
+    <h1 *ngIf="!isUpdating" class="card-title text-2xl">Fahrzeugdaten</h1>
+    <mat-divider *ngIf="!isUpdating"></mat-divider>
+    <form (ngSubmit)="submit()" [formGroup]="vehicleForm">
+      <div class="divider font-bold font-sans">Allgemeine Daten</div>
+      <div class="w-full my-3 flex flex-col 2xl:flex-row">
+        <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-7/12">
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Fahrzeugname</mat-label>
+            <input [required]="isRequired()" formControlName="name" matInput>
+            <mat-error *ngIf="hasRequiredError('name')">
+              <b>Fahrzeugname</b> ist erforderlich
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>FIN</mat-label>
+            <input [required]="isRequired()" formControlName="car_identifier" matInput>
+            <mat-error *ngIf="hasRequiredError('car_identifier')">
+              <b>FIN</b> ist erforderlich
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Aufbauvariante</mat-label>
+            <input [required]="isRequired()" formControlName="build_variant" matInput>
+            <mat-error *ngIf="hasRequiredError('build_variant')">
+              <b>Aufbauvariante</b> ist erforderlich
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Erstzulassung</mat-label>
+            <input [matDatepicker]="picker" [required]="isRequired()" formControlName="first_register_date" matInput
+                   readonly>
+            <mat-error *ngIf="hasRequiredError('first_register_date')">
+              <b>Erstzulassung</b> ist erforderlich
+            </mat-error>
+            <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Kilometer</mat-label>
+            <input formControlName="kilometres" matInput min="0" type="number">
+            <mat-error *ngIf="hasRequiredError('kilometres')">
+              <b>Kilometer</b> ist erforderlich
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Kilowatt</mat-label>
+            <input formControlName="kilowatt" matInput min="0" type="number">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Farbe</mat-label>
+            <input formControlName="color" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>Vorbesitzer</mat-label>
+            <input formControlName="last_owner" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>HSN</mat-label>
+            <input formControlName="hsn" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+            <mat-label>TSN</mat-label>
+            <input formControlName="tsn" matInput>
+          </mat-form-field>
+        </div>
+        <!--        <div class="w-full xl:w-9/12 2xl:w-5/12 md:px-5">-->
+        <!--          <div class="card shadow-md">-->
+        <!--            <div class="card-body flex flex-col md:flex-row">-->
+        <!--              <div class="flex w-full md:w-1/3 mb-3 md:mb-0">-->
+        <!--                <img *ngIf="currentImgSrc" [alt]="currentImgSrc.alt" [src]="currentImgSrc.url | saveDom"-->
+        <!--                     class="mask mask-squircle" width="200">-->
+        <!--                <img *ngIf="!currentImgSrc" alt="" class="mask mask-squircle" height="200"-->
+        <!--                     src="https://via.placeholder.com/200" style="height: 200px; width: 200px" width="200">-->
+        <!--                <div (click)="clearCurrentImg()" *ngIf="currentImgSrc"-->
+        <!--                     class="relative z-20 rounded-full bg-slate-800 py-1 px-2 h-fit shadow-sm cursor-pointer right-8 top-5">-->
+        <!--                  <mat-icon class="text-white">close</mat-icon>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--              <div class="w-full md:w-2/3 md:ml-10">-->
+        <!--                <div class="flex flex-wrap overflow-auto gap-y-2 h-32 border-b-2 shadow-inner rounded-md pl-5 pt-3">-->
+        <!--                  <div *ngFor="let img of imgSrcList; let i = index" class="flex">-->
+        <!--                    <img (click)="previewImg(img)" [alt]="img.alt" [src]="img.url | saveDom"-->
+        <!--                         class="mask mask-squircle cursor-pointer"-->
+        <!--                         height="50" style="height: 50px; width: 50px" width="50">-->
+        <!--                    <div (click)="removeImg(i, img)"-->
+        <!--                         class="relative z-20 rounded-full bg-slate-800 h-fit p-0.5 shadow-sm cursor-pointer right-2">-->
+        <!--                      <img alt="" src="https://img.icons8.com/ios/10/ffffff/delete-sign&#45;&#45;v1.png">-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--                <input (change)="previewImages($event)" class="hidden" id="images" multiple type="file">-->
+        <!--                <label class="btn w-full mt-2" for="images">-->
+        <!--                  Bilder hochladen-->
+        <!--                </label>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+      <div class="divider font-bold font-sans">Ausstattungen oder Bemerkungen</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-8/12">
+        <div class="col-span-2 xl:col-span-1 flex flex-col justify-start">
+          <mat-form-field appearance="outline" class="xl:w-full">
+            <mat-label>Ausstattung #{{comments.length + 1}}</mat-label>
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput>
+            <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button
+                    matSuffix type="button">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-form-field>
+          <span *ngIf="commentsError" class="label-text-alt text-red-500 pl-2 relative -top-4">
+              At least register one <b>comment</b>
+          </span>
+        </div>
+        <div class="col-span-2 xl:col-span-1">
+          <div class="grid grid-cols-1 gap-y-2">
+            <div *ngFor="let comment of comments; let i = index"
+                 class="p-1 flex justify-between items-center rounded-full bg-gray-300 col-span-1">
+              <p class="p-0 pl-3">
+                {{comment}}
+              </p>
+              <button (click)="removeComment(i)" class="btn btn-ghost rounded-full relative top-0.5" type="button">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider font-bold font-sans">Quelle</div>
+      <div class="grid grid-cols-1 w-full xl:w-1/2">
+        <mat-form-field appearance="outline" class="col-span-1">
+          <mat-label>Bitte auswählen...</mat-label>
+          <mat-select [required]="isRequired()" formControlName="source">
+            <mat-option *ngFor="let option of options" [value]="option.value">
+              {{option.label}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasRequiredError('source')">
+            <b>Bitte auswählen</b> ist erforderlich
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="flex w-full justify-center md:justify-end items-center mt-6">
+        <button class="btn btn-primary w-40" type="submit">
+          <span class="tracking-wide">Speichern</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

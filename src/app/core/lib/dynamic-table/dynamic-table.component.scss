@@ -1,0 +1,23 @@
+.table-container {
+  overflow: auto;
+}
+
+.bullet-list {
+  padding: 10px 10px 10px 30px;
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+::ng-deep {
+  .mat-column-op {
+    width: 10% !important;
+  }
+
+  .mat-cell {
+    padding: 0 15px !important;
+  }
+}
+

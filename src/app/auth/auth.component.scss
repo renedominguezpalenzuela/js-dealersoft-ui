@@ -1,0 +1,7 @@
+.auth-link {
+  @apply px-3 py-4 w-1/2 text-center text-white uppercase tracking-widest border-2 border-gray-300 text-gray-500;
+}
+
+.auth-link-active {
+  @apply bg-black text-white;
+}

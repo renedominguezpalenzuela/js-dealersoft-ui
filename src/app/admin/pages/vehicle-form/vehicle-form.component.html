@@ -1,0 +1,17 @@
+<div class="card shadow-lg bg-white m-0.5 sm:m-5 mb-8">
+  <div class="md:card-body">
+    <mat-tab-group (selectedTabChange)="updateQueryParams($event)" [(selectedIndex)]="tabIndex"
+                   animationDuration="750ms" dynamicHeight>
+      <mat-tab label="Fahrzeugdaten">
+        <app-new-vehicle [car]="car"></app-new-vehicle>
+      </mat-tab>
+      <mat-tab label="Ankauf">
+        <app-buy-form [car]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions">
+        </app-buy-form>
+      </mat-tab>
+      <mat-tab label="Verkauf">
+        <app-sell-form [car]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions"></app-sell-form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

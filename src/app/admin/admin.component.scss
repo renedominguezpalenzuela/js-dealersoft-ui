@@ -1,0 +1,11 @@
+.link-active {
+  @apply font-bold
+}
+
+#logout {
+  @apply ml-1
+}
+
+.animate__animated.animate__fadeInLeft {
+  --animate-duration: 350ms;
+}

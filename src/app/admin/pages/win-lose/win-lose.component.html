@@ -1,0 +1,75 @@
+<div class="w-full">
+
+  <div *ngIf="loading && !noShowLoader; else content" class="mt-20">
+    <app-loader></app-loader>
+  </div>
+
+  <ng-template #content>
+
+    <div class="flex flex-col 2xl:flex-row justify-between w-full items-center p-2 xl:pl-4 bg-white shadow rounded-lg">
+      <div
+        class="flex flex-col md:flex-row md:space-x-3 lg:flex-col xl:flex-row justify-start items-center mb-2 2xl:mb-0">
+        <div class="flex flex-col sm:flex-row justify-center sm:space-x-3 w-full">
+          <mat-form-field appearance="outline" class="pb-1 2xl:pb-0">
+            <mat-label>Monat</mat-label>
+            <mat-select [(value)]="month">
+              <mat-option *ngFor="let option of months" [value]="option">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="pb-1 2xl:pb-0">
+            <mat-label>Jahr</mat-label>
+            <mat-select [(value)]="year">
+              <mat-option *ngFor="let option of years" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="flex justify-center space-x-3 w-full mx-2">
+          <button (click)="loadPaginatedData(currentPage)" class="btn btn-ghost border-2 border-gray-400" type="button">
+            <mat-icon>search</mat-icon>
+          </button>
+          <button (click)="generatePdf()" class="btn btn-ghost border-2 border-gray-400" type="button">
+            <mat-icon>picture_as_pdf</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="flex w-full 2xl:w-1/2 space-x-3 justify-end items-center flex-col lg:flex-row">
+        <span *ngIf="!!month && !!year"
+              class="px-3 py-1 font-semibold leading-tight bg-green-200 bg-opacity-50 rounded-full h-fit mb-1 lg:mb-0 mr-3">
+          <span class="text-green-900">{{month?.label}}, {{year}}</span>
+        </span>
+        <div class="flex space-x-1 lg:space-x-3 lg:w-9/12 w-full">
+          <input [(ngModel)]="filterQuery" class="input-search" placeholder="Suchen..." type="search"/>
+          <button (click)="loadPaginatedData(currentPage)" class="btn btn-ghost" type="button">
+            <mat-icon>sync</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <app-dynamic-table (paginationEvent)="loadPaginatedData($event)" [canSticky]="true" [data]="data"
+                         [displayedColumns]="displayedColumns" [endFieldSticky]="'net_profit'"
+                         [filterQuery]="filterQuery"
+                         [pageCount]="pageCount" [showOptions]="false"
+                         [startFieldSticky]="'attributes.buy_date'" class="w-full">
+      </app-dynamic-table>
+    </div>
+
+    <div class="card shadow bg-white p-4 mt-3 rounded-lg">
+      <ul>
+        <li>
+          <span class="font-semibold font-sans mr-3">Netto Gewinn:</span><span>{{sumNetProfit() | currency}}</span>
+        </li>
+        <li>
+          <span class="font-semibold font-sans mr-3">Summe MwSt:</span><span>{{sumNetIva() | currency}}</span>
+        </li>
+      </ul>
+    </div>
+
+  </ng-template>
+
+</div>

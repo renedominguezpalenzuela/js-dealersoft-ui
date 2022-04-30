@@ -1,0 +1,126 @@
+<div class="card shadow-lg bg-white m-0.5 sm:m-5 mb-8">
+  <div class="card-body">
+    <h1 class="card-title text-2xl">Neue Rechnung</h1>
+    <mat-divider></mat-divider>
+    <form (ngSubmit)="submit()" [formGroup]="newInvoiceForm">
+      <div class="divider font-bold font-sans">Allgemeine Daten</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-1 w-full xl:w-9/12 my-3">
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Rechnungs Nr.</mat-label>
+          <input formControlName="invoice_number" matInput min="0" required type="number">
+          <mat-error *ngIf="hasRequiredError('invoice_number')">
+            <b>Rechnungs Nr.</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Rechnungs Titel</mat-label>
+          <input formControlName="title" matInput required>
+          <mat-error *ngIf="hasRequiredError('title')">
+            <b>Rechnungs Titel</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Beschreibung</mat-label>
+          <input formControlName="description" matInput required>
+          <mat-error *ngIf="hasRequiredError('description')">
+            <b>Beschreibung</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Rechnungsdatum</mat-label>
+          <input [matDatepicker]="pickerDate" formControlName="date" matInput readonly required>
+          <mat-error *ngIf="hasRequiredError('date')">
+            <b>Rechnungsdatum</b> wird benötigt
+          </mat-error>
+          <mat-datepicker-toggle [for]="pickerDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Lieferdatum</mat-label>
+          <input [matDatepicker]="pickerDeliveryDate" formControlName="delivery_date" matInput readonly required>
+          <mat-error *ngIf="hasRequiredError('delivery_date')">
+            <b>Lieferdatum</b> wird benötigt
+          </mat-error>
+          <mat-datepicker-toggle [for]="pickerDeliveryDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerDeliveryDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Kunde</mat-label>
+          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
+            <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+              {{option.attributes.first_name}} {{option.attributes.last_name}}
+            </mat-option>
+          </mat-autocomplete>
+          <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
+                  mat-icon-button matSuffix type="button">
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-error *ngIf="hasRequiredError('client')">
+            <b>Kunde</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <div class="col-span-1 flex items-center justify-start gap-x-3 my-1 pl-3">
+          <div class="flex gap-x-3">
+            <input checked="checked" class="toggle" formControlName="a25" id="a25" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="a25">§25a</label>
+          </div>
+          <div class="flex gap-x-3">
+            <input checked="checked" class="toggle" formControlName="iva" id="iva" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="iva">IVA</label>
+          </div>
+        </div>
+      </div>
+      <div class="divider font-bold font-sans">
+        <span class="mr-3">Position hinzufügen</span>
+        <button (click)="addArticle()" class="tooltip tooltip-bottom" data-tip="Add Article" mat-icon-button
+                type="button">
+          <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-y-1 w-full xl:w-9/12 my-3">
+        <ng-container formArrayName="places">
+
+          <ng-container *ngFor="let form of articles.controls; let i = index">
+
+            <div [formGroupName]="i" class="col-span-2 grid grid-cols-5 gap-x-4 gap-y-1">
+
+              <mat-form-field appearance="outline" class="col-span-5 lg:col-span-2">
+                <mat-label>Artikel</mat-label>
+                <input formControlName="article" matInput required type="text">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="col-span-5 lg:col-span-1">
+                <mat-label>Anzahl</mat-label>
+                <input formControlName="quantity" matInput min="1" required type="number">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="col-span-4 lg:col-span-1">
+                <mat-label>Einzelpreis</mat-label>
+                <input formControlName="unit_price" matInput min="0" required type="number">
+              </mat-form-field>
+
+              <div class="col-span-1 flex items-center justify-start">
+                <button class="tooltip tooltip-bottom relative -top-2" data-tip="Remove Article" mat-icon-button
+                        type="button">
+                  <mat-icon (click)="deleteArticle(i)">
+                    delete_forever
+                  </mat-icon>
+                </button>
+              </div>
+
+            </div>
+
+          </ng-container>
+
+        </ng-container>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="flex w-full justify-center md:justify-end items-center mt-6">
+        <button class="btn btn-primary w-40" type="submit">
+          <span class="tracking-wide">Rechnung erstellen</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

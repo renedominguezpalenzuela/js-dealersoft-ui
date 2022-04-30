@@ -1,0 +1,136 @@
+<div class="shadow rounded-t-lg table-container">
+  <table [dataSource]="dataSource" class="table w-full leading-normal rounded-lg" mat-table matSort>
+
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.column"
+                  [stickyEnd]="canBeEndSticky(column.column)" [sticky]="canBeStartSticky(column.column)">
+
+      <th *matHeaderCellDef mat-header-cell mat-sort-header="{{column.column}}">
+        <div [innerHTML]="column.header"></div>
+      </th>
+
+      <td *matCellDef="let element" [style.fontSize.px]="12" mat-cell>
+
+        <ng-container [ngSwitch]="column.type">
+          <ng-container *ngSwitchCase="columnType.Regular">
+            <span>{{element | nestedProperty:column.column}}</span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.Bullets">
+            <ul class="bullet-list">
+              <li *ngFor="let item of element | nestedProperty:column.column" style="list-style: circle">
+                <span class="truncate">{{column.prop ? item[column.prop] : item}}</span>
+              </li>
+            </ul>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.Boolean">
+            <mat-icon [class]="(element | nestedProperty:column.column) ? 'text-green-500' : 'text-red-500'">
+              {{(element | nestedProperty:column.column) ? 'check' : 'block'}}
+            </mat-icon>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.Date">
+            <span>{{(element | nestedProperty:column.column) | date: 'd/MM/yyyy'}}</span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.InnerHTML">
+            <span [innerHTML]="element | nestedProperty:column.column"></span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.SellStatus">
+            <span
+              class="px-3 py-1 font-semibold leading-tight {{(element | nestedProperty:column.column) ? 'bg-green-200' : 'bg-blue-200'}} bg-opacity-50 rounded-full">
+              <span class="{{(element | nestedProperty:column.column) ? 'text-green-900' : 'text-blue-900'}}">
+                {{(element | nestedProperty:column.column) ? 'verkauft' : 'im Verkauf'}}
+              </span>
+            </span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.CallTo">
+            <a class="font-sans font-semibold hover:text-blue-400"
+               href="tel:{{element | nestedProperty:column.column}}">
+              {{element | nestedProperty:column.column}}
+            </a>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.MailTo">
+            <a class="font-sans font-semibold hover:text-blue-400"
+               href="mailto:{{element | nestedProperty:column.column}}">
+              {{element | nestedProperty:column.column}}
+            </a>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.ExternalLink">
+            <a [href]="element | nestedProperty:column.column" class="font-sans font-semibold hover:text-blue-400"
+               target="_blank">
+              {{element | nestedProperty:column.column}}
+            </a>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.Currency">
+            <span>{{(element | nestedProperty:column.column) || 0 | currency}}</span>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="columnType.Extra">
+            <span>{{element | nestedProperty:column.column}} {{column!.prop}}</span>
+          </ng-container>
+
+        </ng-container>
+
+      </td>
+    </ng-container>
+
+    <ng-container *ngIf="showOptions" [stickyEnd]="canBeEndSticky('op')" matColumnDef="op">
+      <th *matHeaderCellDef class="center" mat-header-cell>
+        <span>Optionen</span>
+      </th>
+      <td *matCellDef="let row" class="center" mat-cell>
+        <button [matMenuTriggerFor]="beforeMenu" mat-button>
+          <mat-icon class="text-gray-700">more_vert</mat-icon>
+        </button>
+        <mat-menu #beforeMenu="matMenu" class="bg-transparent mat-elevation-z0" xPosition="before">
+          <ul class="p-2 shadow-md menu dropdown-content bg-base-100 rounded-box w-52" tabindex="0">
+            <li (click)="option(op.event, row)" *ngFor="let op of OptionSettings.options">
+              <a class="flex flex-row justify-start items-center">
+                <mat-icon class="mr-1 text-base">{{op.icon}}</mat-icon>
+                <span class="font-semibold">{{op.literal}}</span>
+              </a>
+            </li>
+          </ul>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <ng-container *ngIf="showExtraOption" matColumnDef="extraOption">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let row" class="center" mat-cell>
+        <button (click)="option(extraOption?.event ?? 'EXTRA_OPTION', row)" mat-icon-button>
+          <mat-icon>{{extraOption?.icon}}</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="columns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: columns;" mat-row></tr>
+
+  </table>
+</div>
+<div class="w-full flex justify-center py-3 rounded-b-lg shadow" style="background-color: hsla(var(--b2)/1)">
+  <div class="btn-group">
+    <button (click)="prevPag()" [disabled]="PaginatorSettings.page === 1"
+            class="btn btn-sm btn-ghost">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <ng-container *ngFor="let pag of PaginatorSettings.pagination">
+      <button (click)="toPage(pag)" *ngIf="pag <= PaginatorSettings.pageCount"
+              [ngClass]="{'bg-gray-200': PaginatorSettings.page === pag}"
+              class="btn btn-sm btn-ghost">
+        {{pag}}
+      </button>
+    </ng-container>
+    <button (click)="nextPag()" [disabled]="PaginatorSettings.pageCount === PaginatorSettings.page"
+            class="btn btn-sm btn-ghost">
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+</div>

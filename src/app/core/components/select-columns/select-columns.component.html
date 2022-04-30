@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Spalten auswählen</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+  <mat-selection-list class="max-h-72" color="primary">
+    <mat-list-option *ngFor="let col of data.columns" [(selected)]="col.show">
+      {{col.header}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+<mat-divider></mat-divider>
+<div class="flex justify-end gap-x-3" mat-dialog-actions>
+  <button (click)="close()" class="btn btn-error btn-sm">Abbrechen</button>
+  <button (click)="updateData()" class="btn btn-primary btn-sm">SPEICHERN</button>
+</div>

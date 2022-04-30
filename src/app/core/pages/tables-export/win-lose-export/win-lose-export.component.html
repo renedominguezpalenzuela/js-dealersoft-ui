@@ -1,0 +1,73 @@
+<div class="py-10 px-10">
+
+  <header class="fixed top-0 w-1/2 flex justify-between items-center pt-8">
+    <p>{{currentDate | date:'d/M/yy hh:mm'}}</p>
+    <p>DealerSoft</p>
+  </header>
+
+  <main class="pt-32">
+
+    <div class="flex justify-between items-center w-full">
+      <h1 class="text-2xl font-bold tracking-widest antialiased">Gewinn- und Verlust</h1>
+      <p class="antialiased font-sans font-semibold text-xl">{{month}}, {{year}}</p>
+    </div>
+
+    <table class="table-auto border-collapse border-0.5 border-gray-400 w-full mt-5 text-sm">
+      <tr class="text-left">
+        <th class="border border-gray-400">Einkaufdatum</th>
+        <th class="border border-gray-400">Fahrzeug</th>
+        <th class="border border-gray-400">NEinakuf Netto</th>
+        <th class="border border-gray-400">Einkauf Brutto</th>
+        <th class="border border-gray-400">a25</th>
+        <th class="border border-gray-400">MwSt.</th>
+        <th class="border border-gray-400">Export</th>
+        <th class="border border-gray-400">Verkaufsdatum</th>
+        <th class="border border-gray-400">Verkauf Netto</th>
+        <th class="border border-gray-400">Verkauf Brutto</th>
+        <th class="border border-gray-400">Netto Gewinn</th>
+      </tr>
+      <tr *ngFor="let elm of data">
+        <td class="border border-gray-400">{{elm?.attributes?.buy_date | date}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.car?.data?.attributes?.name}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.net_buy || 0 | currency}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.gross_buy || 0 | currency}}</td>
+        <td class="border border-gray-400">
+          <mat-icon>
+            {{elm?.attributes?.a25 ? 'check' : 'block'}}
+          </mat-icon>
+        </td>
+        <td class="border border-gray-400">
+          <mat-icon>
+            {{elm?.attributes?.iva ? 'check' : 'block'}}
+          </mat-icon>
+        </td>
+        <td class="border border-gray-400">
+          <mat-icon>
+            {{elm?.attributes?.export ? 'check' : 'block'}}
+          </mat-icon>
+        </td>
+        <td class="border border-gray-400">{{elm?.attributes?.invoice_date | date}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.net_sell || 0 | currency}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.gross_sell || 0 | currency}}</td>
+        <td class="border border-gray-400">{{elm?.attributes?.net_profit || 0 | currency}}</td>
+      </tr>
+    </table>
+
+    <ul class="mt-10 pl-8 w-72 text-sm">
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">Netto Gewinn</span>
+        <span>{{sumNetProfit() || 0 | currency}}</span>
+      </li>
+      <li class="w-full flex justify-between">
+        <span class="font-sans font-semibold">Summe MwSt.:</span>
+        <span>{{sumNetIva() || 0 | currency}}</span>
+      </li>
+    </ul>
+
+  </main>
+
+  <footer class="fixed bottom-0 pb-8 flex w-11/12 justify-between items-center text-xs">
+    <p>{{currentUrl}}</p>
+    <p>{{currentPage}}/{{pageCount}}</p>
+  </footer>
+</div>

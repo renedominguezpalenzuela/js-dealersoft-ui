@@ -1,0 +1,61 @@
+<div class="flex  justify-between items-center pb-4">
+  <h1 mat-dialog-title>
+    Fahrzeug Detail
+  </h1>
+  <button (click)="close()" class="btn btn-ghost btn-sm">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-content style="max-height: 350px">
+  <ul class="my-3 px-1">
+    <li class="font-sans py-1"><b>Name:</b> <br class="sm:hidden"> {{data.attributes.name}}</li>
+    <li class="font-sans py-1"><b>Fahrzeugkennung:</b> <br class="sm:hidden"> {{data.attributes.car_identifier}}</li>
+    <li class="font-sans py-1"><b>Bauvariante:</b> <br class="sm:hidden"> {{data.attributes.build_variant}}</li>
+    <li class="font-sans py-1"><b>Erstes Registrierungsdatum:</b>
+      <br class="sm:hidden"> {{data.attributes.first_register_date | date}}</li>
+    <li class="font-sans py-1"><b>Kilometers:</b> <br class="sm:hidden"> {{data.attributes.kilometres}} Km</li>
+    <li class="font-sans py-1"><b>Kilowatt:</b> <br class="sm:hidden"> {{data.attributes.kilowatt}} Kw</li>
+    <li class="font-sans py-1"><b class="mr-2">Fade:</b> <br class="sm:hidden">
+      <span [style.color]="data.attributes.color" class="font-semibold">{{data.attributes.color}}</span>
+    </li>
+    <li class="font-sans py-1"><b>Letzter Besitzer:</b> <br class="sm:hidden"> {{data.attributes.last_owner}}</li>
+    <li class="font-sans py-1"><b>HSN:</b> <br class="sm:hidden"> {{data.attributes.hsn}}</li>
+    <li class="font-sans py-1"><b>TSN:</b> <br class="sm:hidden"> {{data.attributes.tsn}}</li>
+    <li class="font-sans py-1 flex items-center"><b class="mr-2">Verkauft:</b> <br class="sm:hidden">
+      <span
+        class="px-3 py-1 font-semibold leading-tight {{data.attributes.selled ? 'bg-green-200' : 'bg-blue-200'}} bg-opacity-50 rounded-full">
+        <span class="{{data.attributes.selled ? 'text-green-900' : 'text-blue-900'}}">
+          {{data.attributes.selled ? 'selled' : 'in stock'}}
+        </span>
+      </span>
+    </li>
+  </ul>
+
+  <!--  <div class="w-full px-5 mt-2 mb-4">-->
+  <!--    <div class="card shadow-md">-->
+  <!--      <div class="card-body flex flex-col md:flex-row">-->
+  <!--        <div class="flex w-full md:w-1/3 mb-3 md:mb-0">-->
+  <!--          <img *ngIf="currentImgSrc" [alt]="currentImgSrc.alt" [src]="currentImgSrc.url | saveDom"-->
+  <!--               class="mask mask-squircle" width="120">-->
+  <!--          <img *ngIf="!currentImgSrc" alt="" class="mask mask-squircle" height="120"-->
+  <!--               src="https://via.placeholder.com/120" style="height: 120px; width: 120px" width="120">-->
+  <!--          <div (click)="clearCurrentImg()" *ngIf="currentImgSrc"-->
+  <!--               class="relative z-20 rounded-full bg-slate-800 py-0.5 px-2 h-fit shadow-sm cursor-pointer right-6 top-0">-->
+  <!--            <mat-icon class="text-white">close</mat-icon>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--        <div class="w-full md:w-2/3 md:ml-10">-->
+  <!--          <div class="flex flex-wrap overflow-auto gap-y-2 h-32 border-b-2 shadow-inner rounded-md pl-5 pt-3">-->
+  <!--            <div *ngFor="let img of imgSrcList; let i = index" class="flex mx-1">-->
+  <!--              <img (click)="previewImg(img)" [alt]="img.alt" [src]="img.url | saveDom"-->
+  <!--                   class="mask mask-squircle cursor-pointer" height="50" style="height: 50px; width: 50px" width="50">-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+</div>
+<mat-divider></mat-divider>

@@ -1,0 +1,122 @@
+<div class="card bg-white">
+  <div class="card-body">
+    <form (ngSubmit)="submit()" [formGroup]="carSellForm">
+      <div class="divider font-bold font-sans">Allgemeine Daten</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Fahrzeug</mat-label>
+          <mat-select formControlName="car" required>
+            <mat-option *ngFor="let option of carsOptions" [value]="option.id">
+              {{option.attributes.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasRequiredError('car')">
+            <b>Fahrzeug</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Kunde</mat-label>
+          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
+            <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+              {{option.attributes.first_name}} {{option.attributes.last_name}}
+            </mat-option>
+          </mat-autocomplete>
+          <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
+                  mat-icon-button matSuffix>
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-error *ngIf="hasRequiredError('client')">
+            <b>Kunde</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Rechnungs-Nr.</mat-label>
+          <input formControlName="invoice_number" matInput required>
+          <mat-error *ngIf="hasRequiredError('invoice_number')">
+            <b>Rechnungs-Nr.</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>Rechnungsdatum</mat-label>
+          <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput readonly required>
+          <mat-error *ngIf="hasRequiredError('invoice_date')">
+            <b>Rechnungsdatum</b> wird benötigt
+          </mat-error>
+          <mat-datepicker-toggle [for]="pickerInvoiceDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerInvoiceDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label>KV-Datum</mat-label>
+          <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput readonly required>
+          <mat-error *ngIf="hasRequiredError('kv_date')">
+            <b>KV-Datum</b> wird benötigt
+          </mat-error>
+          <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickerKvDate></mat-datepicker>
+        </mat-form-field>
+        <div class="col-span-2 flex items-start sm:items-center justify-start gap-x-3 pl-5 flex-col sm:flex-row">
+          <div class="flex gap-x-3 pb-3">
+            <input class="toggle" formControlName="a25" id="a25" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="a25">a25</label>
+          </div>
+          <div class="flex gap-x-3 pb-3">
+            <input class="toggle" formControlName="iva" id="iva" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
+          </div>
+          <div class="flex gap-x-3 pb-3">
+            <input class="toggle" formControlName="export" id="export" type="checkbox">
+            <label class="cursor-pointer font-semibold text-gray-500" for="iva">Export</label>
+          </div>
+        </div>
+      </div>
+      <div class="divider font-bold font-sans">Verkaufspreis</div>
+      <div class="flex flex-col xl:flex-row justify-start gap-x-8 w-full xl:w-9/12 my-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Mehrwertsteuer in €</mat-label>
+          <input formControlName="gross_sell" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('gross_sell')">
+            <b>Mehrwertsteuer in €</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Netto in €</mat-label>
+          <input formControlName="net_sell" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('net_sell')">
+            <b>Netto in €</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Brutto in €</mat-label>
+          <input formControlName="iva_sell" matInput min="0" type="number">
+          <mat-error *ngIf="hasRequiredError('iva_sell')">
+            <b>Brutto in €</b> wird benötigt
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="flex flex-col md:flex-row w-full justify-center md:justify-between items-center mt-6 space-x-3">
+        <div class="grid grid-cols-2 w-full md:w-1/3 gap-3">
+          <button (click)="generatePdf(exportType.private)" class="btn btn-primary border-2" type="button">
+            <span class="font-sans">Privat</span>
+          </button>
+          <button (click)="generatePdf(exportType.net_export)" class="btn btn-primary border-2" type="button">
+            <span class="font-sans">Netto Export</span>
+          </button>
+          <button (click)="generatePdf(exportType.business)" class="btn btn-primary border-2" type="button">
+            <span class="font-sans">Gewerbe</span>
+          </button>
+          <button (click)="generatePdf(exportType.net_ue_export)" class="btn btn-primary border-2" type="button">
+            <span class="font-sans">Netto EU-Export</span>
+          </button>
+        </div>
+        <div class="flex justify-start items-center space-x-3 mt-4">
+          <button class="btn btn-primary w-40" type="submit">
+            <span class="tracking-wide">Speichern</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
