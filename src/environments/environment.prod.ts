@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  URL_HOST: 'https://js-dealersoft-backend.herokuapp.com',
-  URL_API: 'https://js-dealersoft-backend.herokuapp.com/api',
+  URL_HOST: 'https://js-dealersoft-server.herokuapp.com',
+  URL_API: 'https://js-dealersoft-server.herokuapp.com/api',
   sourcesOptions: [
     { label: 'Telefonische Ankündigungen', value: 'telefon_ads' },
     { label: 'Organisches Telefon', value: 'telefon_organic' },
