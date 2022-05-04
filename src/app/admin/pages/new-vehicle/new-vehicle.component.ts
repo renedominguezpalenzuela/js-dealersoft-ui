@@ -55,6 +55,8 @@ export class NewVehicleComponent implements OnInit, OnChanges {
     private readonly notificationService: NotificationService,
     private readonly authService: AuthService
   ) {
+
+  
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,10 +80,15 @@ export class NewVehicleComponent implements OnInit, OnChanges {
         })));
         this.currentImgSrc = this.imgSrcList[0];
       }
+
     }
+
+    
   }
 
   ngOnInit(): void {
+
+  
     this.authService.currentUser.subscribe(user => this.vehicleForm.patchValue({ owner: user?.id }));
   }
 

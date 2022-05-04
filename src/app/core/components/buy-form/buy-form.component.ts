@@ -26,8 +26,10 @@ import * as moment from 'moment';
 })
 export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
-  @Input() public car: Car | undefined;
+  @Input() public car_data: Car | undefined;
+
   public carBuyForm = this.formBuilder.group({
+    car_name: [null, [Validators.required]],
     car: [null, [Validators.required]],
     client: [null, [Validators.required]],
     collection: [null, [Validators.required]],
@@ -61,6 +63,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit(): void {
+  
+
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (change) {
         this.carBuyForm.get('iva_buy')!.enable();
@@ -88,18 +92,23 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes?.['car'] && this.car) {
+
+    if (changes?.['car_data'] && this.car_data) {
+   
+       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
+      this.carBuyForm.patchValue({ car_name:this.car_data.attributes.name });
       this.requestService.Get(this.apiHelperService.carsBuyURL, this.requestService.generateQuery({
         populate: ['car', 'client'],
         filters: [{
           field: '[car][id]',
           operator: FilterOperator.$eq,
-          value: <string>this.car?.id,
+          value: <string>this.car_data?.id,
           option: FilterDeepOption.$and
         }]
       })).subscribe((res) => {
         const data = res?.data[0]?.attributes;
-        this.carBuyForm.patchValue({ ...data, car: this.car?.id, client: data?.client?.data?.id });
+        // console.log(data)
+        this.carBuyForm.patchValue({ ...data, car: this.car_data?.id, client: data?.client?.data?.id });
       });
     }
 
@@ -194,7 +203,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   public generatePdf() {
     this.requestService.downloadPDF(this.apiHelperService.pdfURL, {
       type: ExportType.vehicle,
-      id: <string>this.car?.id
+      id: <string>this.car_data?.id
     }).subscribe(res => {
       saveAs(new Blob([res], { type: 'application/pdf' }),
         `Kaufvertrag (${ moment().format('YYYY-MM-DD') }).pdf`);

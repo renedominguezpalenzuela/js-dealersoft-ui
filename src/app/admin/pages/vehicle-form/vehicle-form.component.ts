@@ -30,7 +30,11 @@ export class VehicleFormComponent implements OnInit {
     this.authService.currentUser.subscribe(user => this.currentUserId = user?.id);
     this.activatedRoute.params.subscribe((params: Params) =>
       this.requestService.Get(`${ this.apiHelperService.carsURL }/${ params['id'] }`)
-        .subscribe(res => this.car = res.data)
+        .subscribe((res) =>{ 
+          this.car = res.data
+          // console.log("Respuesta CARRO");
+          // console.log(res.data);
+        })
     );
     this.activatedRoute.queryParams.subscribe((query: Params) => this.tabIndex = +query['tab'] - 1);
     this.requestService.Get(this.apiHelperService.carsURL, this.query()).subscribe(res => this.carsOptions = res.data);

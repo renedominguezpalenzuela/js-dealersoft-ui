@@ -3,8 +3,9 @@
     <form (ngSubmit)="submit()" [formGroup]="carBuyForm">
       <div class="divider font-bold font-sans">Allgemeine Daten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+        
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Fahrzeugname</mat-label>
+          <!-- <mat-label>Fahrzeugname</mat-label>
           <mat-select formControlName="car" required>
             <mat-option *ngFor="let option of carsOptions" [value]="option.id">
               {{option.attributes.name}}
@@ -12,7 +13,14 @@
           </mat-select>
           <mat-error *ngIf="hasRequiredError('car')">
             <b>Fahrzeugname</b> wird benötigt
-          </mat-error>
+          </mat-error> -->
+
+          <mat-label>Fahrzeugname</mat-label>
+          <input formControlName="car_name" matInput readonly="true" >
+          <!-- <mat-error *ngIf="hasRequiredError('name')">
+            <b>Fahrzeugname</b> ist erforderlich
+          </mat-error> -->
+
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Nachname</mat-label>

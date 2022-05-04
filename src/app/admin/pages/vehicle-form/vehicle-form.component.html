@@ -6,11 +6,11 @@
         <app-new-vehicle [car]="car"></app-new-vehicle>
       </mat-tab>
       <mat-tab label="Ankauf">
-        <app-buy-form [car]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions">
+        <app-buy-form [car_data]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions">
         </app-buy-form>
       </mat-tab>
       <mat-tab label="Verkauf">
-        <app-sell-form [car]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions"></app-sell-form>
+        <app-sell-form [car_data]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions"></app-sell-form>
       </mat-tab>
     </mat-tab-group>
   </div>

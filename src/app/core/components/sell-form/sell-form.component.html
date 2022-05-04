@@ -4,7 +4,7 @@
       <div class="divider font-bold font-sans">Allgemeine Daten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Fahrzeug</mat-label>
+          <!-- <mat-label>Fahrzeug</mat-label>
           <mat-select formControlName="car" required>
             <mat-option *ngFor="let option of carsOptions" [value]="option.id">
               {{option.attributes.name}}
@@ -13,7 +13,12 @@
           <mat-error *ngIf="hasRequiredError('car')">
             <b>Fahrzeug</b> wird benötigt
           </mat-error>
-        </mat-form-field>
+         -->
+
+        <mat-label>Fahrzeugname</mat-label>
+        <input formControlName="car_name" matInput readonly="true" >
+      </mat-form-field>
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Kunde</mat-label>
           <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">

@@ -26,8 +26,11 @@ import * as moment from 'moment';
 })
 export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
-  @Input() public car: Car | undefined;
+  // @Input() public car: Car | undefined;
+  @Input() public car_data: Car | undefined;
+
   public carSellForm = this.formBuilder.group({
+    car_name: [null, [Validators.required]],
     car: [null, [Validators.required]],
     client: [null, [Validators.required]],
     invoice_number: [null, [Validators.required, Validators.min(0)]],
@@ -90,18 +93,24 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes?.['car'] && this.car) {
+    if (changes?.['car_data'] && this.car_data) {
+
+        //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
+        this.carSellForm.patchValue({ car_name:this.car_data.attributes.name });
+
       this.requestService.Get(this.apiHelperService.carsSellURL, this.requestService.generateQuery({
         populate: ['car', 'client'],
         filters: [{
           field: '[car][id]',
           operator: FilterOperator.$eq,
-          value: <string>this.car?.id,
+          value: <string>this.car_data?.id,
           option: FilterDeepOption.$and
         }]
       })).subscribe((res) => {
+        
         const data = res?.data[0]?.attributes;
-        this.carSellForm.patchValue({ ...data, car: this.car?.id, client: data.client.data.id });
+        
+        this.carSellForm.patchValue({ ...data, car: this.car_data?.id, client: data?.client.data.id });
       });
     }
     if (changes?.['clientsOptions'] && this.clientsOptions) {
@@ -193,7 +202,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   public generatePdf(type: ExportType) {
     this.requestService.downloadPDF(this.apiHelperService.pdfURL, {
       type: type,
-      id: <string>this.car?.id
+      id: <string>this.car_data?.id
     }).subscribe(res => {
       const name: string = type === ExportType.net_export ? `Rechnung` : `Verkaufsrechnung`
       saveAs(new Blob([res], { type: 'application/pdf' }),
