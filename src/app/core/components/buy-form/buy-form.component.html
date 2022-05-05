@@ -4,6 +4,12 @@
       <div class="divider font-bold font-sans">Allgemeine Daten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
         
+
+           <!-- 
+          **************************************************************************************************************** 
+          **   Fahrzeugname   --- nombre del auto                             
+          **************************************************************************************************************** 
+        -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <!-- <mat-label>Fahrzeugname</mat-label>
           <mat-select formControlName="car" required>
@@ -22,6 +28,11 @@
           </mat-error> -->
 
         </mat-form-field>
+        <!-- 
+          **************************************************************************************************************** 
+          **   Nachname                             
+          **************************************************************************************************************** 
+        -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Nachname</mat-label>
           <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
@@ -38,13 +49,28 @@
             <b>Kunde</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+        <!-- 
+          **************************************************************************************************************** 
+          **   Abholung  (Antes Sammlung)                             
+          **************************************************************************************************************** 
+        -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Sammlung</mat-label>
+          <mat-label>Abholung</mat-label>
           <input formControlName="collection" matInput required>
           <mat-error *ngIf="hasRequiredError('collection')">
-            <b>Sammlung</b> wird benötigt
+            <b>Abholung</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+
+
+
+        <!-- 
+          **************************************************************************************************************** 
+          **   Ankaufsdatum                            
+          **************************************************************************************************************** 
+        -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Ankaufsdatum</mat-label>
           <input [matDatepicker]="pickerBuyDate" formControlName="buy_date" matInput readonly required>
@@ -54,13 +80,27 @@
           <mat-datepicker-toggle [for]="pickerBuyDate" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #pickerBuyDate></mat-datepicker>
         </mat-form-field>
+
+
+        <!-- 
+          **************************************************************************************************************** 
+          **   Zahlunsart  (Antes Zahlen )                            
+          **************************************************************************************************************** 
+        --> 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Zahlen</mat-label>
+          <mat-label>Zahlunsart</mat-label>
           <input formControlName="payment" matInput min="0" type="text">
           <mat-error *ngIf="hasRequiredError('payment')">
-            <b>Zahlen</b> wird benötigt
+            <b>Zahlunsart</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+
+        <!-- 
+          **************************************************************************************************************** 
+          **   Radio buttons  a25, MwSt                            
+          **************************************************************************************************************** 
+        -->    
         <div class="col-span-2 lg:col-span-1 flex items-center justify-start gap-x-3 pl-5">
           <div class="flex gap-x-3 pb-3">
             <input #a25 (change)="iva.checked = !a25.checked" checked="checked" class="toggle"
@@ -73,9 +113,35 @@
             <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
           </div>
         </div>
+
+
+
       </div>
+
+      <!-- 
+          **************************************************************************************************************** 
+          **   Zona inferior     Ankaufpreis                       
+          **************************************************************************************************************** 
+      -->  
+
+
+
       <div class="divider font-bold font-sans">Ankaufpreis</div>
+
+
+      <!-- 
+          **************************************************************************************************************** 
+          **   Netto in €                     
+          **************************************************************************************************************** 
+      -->  
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+
+        <!-- 
+          **************************************************************************************************************** 
+          **   Netto in €                     
+          **************************************************************************************************************** 
+      -->  
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Netto in €</mat-label>
           <input formControlName="gross_buy" matInput min="0" type="number">
@@ -83,6 +149,13 @@
             <b>Netto</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+
+        <!-- 
+          **************************************************************************************************************** 
+          **   Brutto in €                     
+          **************************************************************************************************************** 
+      -->  
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Brutto in €</mat-label>
           <input formControlName="net_buy" matInput min="0" type="number">
@@ -90,6 +163,13 @@
             <b>Brutto</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+
+          <!-- 
+          **************************************************************************************************************** 
+          **   Mehrwertsteuer in €                     
+          **************************************************************************************************************** 
+      -->  
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Mehrwertsteuer in €</mat-label>
           <input formControlName="iva_buy" matInput min="0" type="number">
@@ -97,14 +177,29 @@
             <b>Mehrwertsteuer</b> wird benötigt
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+
+
+                  <!-- 
+          **************************************************************************************************************** 
+          **   Nettoberichtigung in €                     
+          **************************************************************************************************************** 
+      -->  
+        <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Nettoberichtigung in €</mat-label>
           <input formControlName="net_buy_adjustment" matInput min="0" type="number">
           <mat-error *ngIf="hasRequiredError('net_buy_adjustment')">
             <b>Nettoberichtigung</b> wird benötigt
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
+
+
+      
+      <!-- 
+          **************************************************************************************************************** 
+          **   Nettoberichtigung in €                     
+          **************************************************************************************************************** 
+      -->  
       <div class="divider font-bold font-sans">Sonstige Kosten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
