@@ -25,9 +25,25 @@ import * as moment from 'moment';
   styleUrls: ['./buy-form.component.scss']
 })
 export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
-
+  
+  //variable recibida desde el componente padre que contiene los datos provenientes del API
   @Input() public car_data: Car | undefined;
 
+/*
+  campo del formulario car_name
+  en html:
+     <input formControlName="car_name" matInput readonly="true" >
+
+  car_name: [null, [Validators.required]],
+     null --- valor inicial?
+     [Validators.required] --- campo obligatorio
+
+  a25: [true, [Validators.required]],
+  true -- -valor inicial = true
+
+  [Validators.min(0)]  --- valor minimo que acepta el campo
+
+*/
   public carBuyForm = this.formBuilder.group({
     car_name: [null, [Validators.required]],
     car: [null, [Validators.required]],
@@ -37,7 +53,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     net_buy: [null, [Validators.required, Validators.min(0)]],
     iva_buy: [{ value: null, disabled: true }, [Validators.min(0)]],
     gross_buy: [null, [Validators.required, Validators.min(0)]],
-    net_buy_adjustment: [null, [Validators.required, Validators.min(0)]],
+    // net_buy_adjustment: [null, [Validators.required, Validators.min(0)]],
+       net_buy_adjustment: [null, [ Validators.min(0)]],
     year_interest_rate: [null, [Validators.required, Validators.min(0)]],
     total: [null, [Validators.required, Validators.min(0)]],
     buy_date: [null, [Validators.required]],
