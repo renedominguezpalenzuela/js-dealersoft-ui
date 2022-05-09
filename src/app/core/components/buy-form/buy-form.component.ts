@@ -54,12 +54,15 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     iva_buy: [{ value: null, disabled: true }, [Validators.min(0)]],
     gross_buy: [null, [Validators.required, Validators.min(0)]],
     // net_buy_adjustment: [null, [Validators.required, Validators.min(0)]],
-       net_buy_adjustment: [null, [ Validators.min(0)]],
-    year_interest_rate: [null, [Validators.required, Validators.min(0)]],
-    total: [null, [Validators.required, Validators.min(0)]],
+      //  net_buy_adjustment: [null, [ Validators.min(0)]],
+    //year_interest_rate: [null, [Validators.required, Validators.min(0)]],
+    // total: [null, [Validators.required, Validators.min(0)]],
     buy_date: [null, [Validators.required]],
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
+    bemerkunhen: [null],
+    
+
   });
   public factorNet: number = 0.8403;
   public factorIva: number = 0.1597;
@@ -177,6 +180,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   };
 
   public submit() {
+
+    console.log("Submitinh");
     if (this.carBuyForm.valid) {
       this.requestService.Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
         .subscribe(() => {
@@ -185,6 +190,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             data: 'Neuwagenkauf gespeichert'
           });
         });
+    } else {
+      console.log("not valid form");
     }
   }
 

@@ -19,6 +19,7 @@ export interface CarBuy {
     buy_date: Date,
     a25: boolean,
     iva: boolean,
+    bemerkunhen: string,
     createdAt: Date,
   }
 }
