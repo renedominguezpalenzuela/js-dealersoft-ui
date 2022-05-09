@@ -3,9 +3,9 @@
     <form (ngSubmit)="submit()" [formGroup]="carBuyForm">
       <div class="divider font-bold font-sans">Allgemeine Daten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
-        
 
-           <!-- 
+
+        <!-- 
           **************************************************************************************************************** 
           **   Fahrzeugname   --- nombre del auto                             
           **************************************************************************************************************** 
@@ -22,7 +22,7 @@
           </mat-error> -->
 
           <mat-label>Fahrzeugname</mat-label>
-          <input formControlName="car_name" matInput readonly="true" >
+          <input formControlName="car_name" matInput readonly="true">
           <!-- <mat-error *ngIf="hasRequiredError('name')">
             <b>Fahrzeugname</b> ist erforderlich
           </mat-error> -->
@@ -42,7 +42,7 @@
             </mat-option>
           </mat-autocomplete>
           <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
-                  mat-icon-button matSuffix>
+            mat-icon-button matSuffix>
             <mat-icon>add</mat-icon>
           </button>
           <mat-error *ngIf="hasRequiredError('client')">
@@ -86,7 +86,7 @@
           **************************************************************************************************************** 
           **   Zahlunsart  (Antes Zahlen )                            
           **************************************************************************************************************** 
-        --> 
+        -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Zahlunsart</mat-label>
           <input formControlName="payment" matInput min="0" type="text">
@@ -100,16 +100,16 @@
           **************************************************************************************************************** 
           **   Radio buttons  a25, MwSt                            
           **************************************************************************************************************** 
-        -->    
+        -->
         <div class="col-span-2 lg:col-span-1 flex items-center justify-start gap-x-3 pl-5">
           <div class="flex gap-x-3 pb-3">
-            <input #a25 (change)="iva.checked = !a25.checked" checked="checked" class="toggle"
-                   formControlName="a25" id="a25" type="checkbox">
+            <input #a25 (change)="iva.checked = !a25.checked" checked="checked" class="toggle" formControlName="a25"
+              id="a25" type="checkbox">
             <label class="cursor-pointer font-semibold text-gray-500" for="a25">a25</label>
           </div>
           <div class="flex gap-x-3 pb-3">
-            <input #iva (change)="a25.checked = !iva.checked" checked="checked" class="toggle"
-                   formControlName="iva" id="iva" type="checkbox">
+            <input #iva (change)="a25.checked = !iva.checked" checked="checked" class="toggle" formControlName="iva"
+              id="iva" type="checkbox">
             <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
           </div>
         </div>
@@ -122,7 +122,7 @@
           **************************************************************************************************************** 
           **   Zona inferior     Ankaufpreis                       
           **************************************************************************************************************** 
-      -->  
+      -->
 
 
 
@@ -133,14 +133,14 @@
           **************************************************************************************************************** 
           **   Netto in €                     
           **************************************************************************************************************** 
-      -->  
+      -->
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
         <!-- 
           **************************************************************************************************************** 
           **   Netto in €                     
           **************************************************************************************************************** 
-      -->  
+      -->
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Netto in €</mat-label>
@@ -155,7 +155,7 @@
           **************************************************************************************************************** 
           **   Brutto in €                     
           **************************************************************************************************************** 
-      -->  
+      -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Brutto in €</mat-label>
           <input formControlName="net_buy" matInput min="0" type="number">
@@ -165,11 +165,11 @@
         </mat-form-field>
 
 
-          <!-- 
+        <!-- 
           **************************************************************************************************************** 
           **   Mehrwertsteuer in €                     
           **************************************************************************************************************** 
-      -->  
+      -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Mehrwertsteuer in €</mat-label>
           <input formControlName="iva_buy" matInput min="0" type="number">
@@ -179,11 +179,11 @@
         </mat-form-field>
 
 
-                  <!-- 
+        <!-- 
           **************************************************************************************************************** 
           **   Nettoberichtigung in €                     
           **************************************************************************************************************** 
-      -->  
+      -->
         <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Nettoberichtigung in €</mat-label>
           <input formControlName="net_buy_adjustment" matInput min="0" type="number">
@@ -194,15 +194,25 @@
       </div>
 
 
-      
+
       <!-- 
           **************************************************************************************************************** 
-          **   Nettoberichtigung in €                     
+          **  Sonstige Kosten                   
           **************************************************************************************************************** 
-      -->  
+      -->
       <div class="divider font-bold font-sans">Sonstige Kosten</div>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+      <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Bemerkungen</mat-label>
+          <!-- <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="4"></textarea> -->
+
+          <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4" maxlength="240"></textarea>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Zinssatz für ein Jahr Finanzierung</mat-label>
           <input formControlName="year_interest_rate" matInput min="0" type="number">
           <mat-error *ngIf="hasRequiredError('year_interest_rate')">
@@ -215,7 +225,7 @@
           <mat-error *ngIf="hasRequiredError('total')">
             <b>Summe in €</b> wird benötigt
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
       <mat-divider></mat-divider>
       <div class="flex w-full justify-center md:justify-end items-center mt-6 space-x-3">
@@ -223,9 +233,11 @@
           <mat-icon>picture_as_pdf</mat-icon>
           <span class="font-sans pl-3">Kaufvertrag</span>
         </button>
+
         <button class="btn btn-primary w-40" type="submit">
           <span class="tracking-wide">Speichern</span>
         </button>
+
       </div>
     </form>
   </div>
