@@ -181,7 +181,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public submit() {
 
-    console.log("Submitinh");
+    // console.log("Submitinh");
     if (this.carBuyForm.valid) {
       this.requestService.Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
         .subscribe(() => {
