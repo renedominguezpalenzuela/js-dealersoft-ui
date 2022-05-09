@@ -33,7 +33,12 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         }),
         catchError((err: HttpErrorResponse) => {
           const error: ErrorResponse = err.error.error;
-          const errors = this.generateErrorList(error);
+          let errors;
+          if (error) {
+           errors= this.generateErrorList(error);
+          } else {
+            errors = err.message;
+          }
           this.notificationService.riseNotification({ color: 'warning', data: errors });
 
           if (err.status === 403) {
