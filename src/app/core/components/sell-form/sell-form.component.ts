@@ -36,12 +36,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     invoice_number: [null, [Validators.required, Validators.min(0)]],
     invoice_date: [null, [Validators.required]],
     kv_date: [null, [Validators.required, Validators.min(0)]],
+    lieferung: [null, [Validators.required]],
+    zahlunsart: [null, [Validators.required]],
     net_sell: [null, [Validators.required, Validators.min(0)]],
     iva_sell: [{ value: null, disabled: true }, [Validators.min(0)]],
     gross_sell: [null, [Validators.required, Validators.min(0)]],
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
-    export: [false, [Validators.required]]
+    export: [false, [Validators.required]],
+    bemerkunhen: [null]
   });
   public factorNet: number = 0.8403;
   public factorIva: number = 0.1597;

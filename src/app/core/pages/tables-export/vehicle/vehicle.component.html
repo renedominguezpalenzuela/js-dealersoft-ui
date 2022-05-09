@@ -1,13 +1,13 @@
 <div class="pt-6 pb-3 px-20">
 
-  <header class="w-full flex justify-between items-center pt-5">
+  <header class="w-full flex justify-between items-center pt-1">
     <h1 class="text-xl font-medium underline">
       {{me?.username}} - {{me?.street}} {{me?.house_number}} - {{me?.postal_code}} {{me?.city}}
     </h1>
     <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="rounded-full" width="150px">
   </header>
 
-  <main class="pt-5">
+  <main class="pt-2 w-11/12">
     <div class="flex justify-between items-center mb-6 text-sm">
       <div>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
@@ -24,7 +24,7 @@
     <p class="mb-2 text-sm">
       Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die T&R Ihr Autohaus GmbH folgendes Fahrzeug:
     </p>
-    <table class="mb-2 text-sm" style="text-align: left">
+    <table class="mb-2  text-sm " style="text-align: left">
       <tr>
         <th class="pr-2 font-bold">Fahrzeug:</th>
         <td>{{car_info?.attributes?.name}}</td>
@@ -63,9 +63,9 @@
       </tr>
 
 
-      <tr>
-        <th class="pr-4 font-normal">Bemerkungen:</th>
-        <td>{{car_buy_data?.attributes?.bemerkunhen}}</td>
+      <tr class="">
+        <th class="pr-4 font-normal ">Bemerkungen:</th>
+        <td ><p class="break-all w-97  ">{{car_buy_data?.attributes?.bemerkunhen}}</p></td>
       </tr>
     </table>
 
