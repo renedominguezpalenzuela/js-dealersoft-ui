@@ -1,14 +1,14 @@
-<div class="pt-6 pb-3 px-20">
+<div class="pt-4 pb-3 px-20">
 
-  <header class="w-full flex justify-between items-center pt-5">
+  <header class="w-full flex justify-between items-center pt-2">
     <h1 class="text-xl font-medium underline">
       {{me?.username}} - {{me?.street}} {{me?.house_number}} - {{me?.postal_code}} {{me?.city}}
     </h1>
     <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="rounded-full" width="150px">
   </header>
 
-  <main class="pt-6">
-    <div class="flex justify-between items-center mb-10 text-sm">
+  <main class="pt-2 w-11/12">
+    <div class="flex justify-between items-center mb-2 text-sm">
       <div>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.last_name}} {{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}</p>
@@ -17,7 +17,7 @@
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
       </div>
     </div>
-    <div class="flex border-2 border-black justify-between p-5 mt-5 mb-6">
+    <div class="flex border-2 border-black justify-between p-3 mt-1 mb-2">
       <span class="font-bold pl-10">RECHNUNG/INVOICE Nr. {{car_buy_data?.attributes?.invoice_number}}</span>
       <span>{{car_buy_data?.attributes?.invoice_date | date:'d.M.yyyy'}}</span>
     </div>
@@ -49,6 +49,21 @@
         <th class="pr-4">abgelesener KM-Stand:</th>
         <td>{{car_info?.attributes?.kilometres}} km</td>
       </tr>
+
+      <tr>
+        <th class="pr-4">Zahlunsart:</th>
+        <td>{{car_buy_data?.attributes?.zahlunsart}} </td>
+      </tr>
+      <tr>
+        <th class="pr-4">Lieferung:</th>
+        <td>{{car_buy_data?.attributes?.lieferung | date:'d-MM-yyyy'}} </td>
+      </tr>
+      <tr class="">
+        <th class="pr-4">Bemerkungen:</th>
+        <td ><p class="break-all w-80  ">{{car_buy_data?.attributes?.bemerkunhen}}</p></td>
+      </tr>
+
+
     </table>
     <div class="flex justify-start items-start mt-3 mb-10 text-sm">
       <div class="flex justify-start mr-40">
@@ -63,7 +78,7 @@
         </p>
       </div>
     </div>
-    <p class="mb-36 mt-6 text-sm">
+    <p class="mb-6 mt-26 text-sm">
       <span class="font-bold">Lieferdatum:</span> {{car_buy_data?.attributes?.kv_date}}
     </p>
     <div class="flex justify-between my-3 text-xs">
