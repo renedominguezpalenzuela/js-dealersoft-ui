@@ -330,12 +330,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     );
   }
 
-  changeCheckBoxes() {}
+ 
 
   onFocusEvent(event: any) {
-    console.log('On Focus');
-    console.log(event.target.name);
-
     switch (event.target.name) {
       case 'net_buy':
         this.focus_net_buy = true;
