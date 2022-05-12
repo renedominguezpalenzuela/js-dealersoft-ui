@@ -5,3 +5,8 @@ p, th, td {
 span {
   font-size: 14px;
 }
+
+
+.new-page {
+  page-break-before: always;
+}

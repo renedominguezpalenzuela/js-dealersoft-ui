@@ -45,7 +45,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
     export: [false, [Validators.required]],
-    BemerkungenCheck2Page:[false, [Validators.required]],
+    bemerkungencheck2page:[false, [Validators.required]],
     bemerkunhen: [null],
     bemerkunhen2page:[null]
   });

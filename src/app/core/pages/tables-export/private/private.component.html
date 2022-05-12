@@ -11,9 +11,11 @@
     <div class="flex justify-between items-center mb-2 text-sm">
       <div>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
-        <p>{{car_buy_data?.attributes?.client?.data?.attributes?.last_name}} {{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}</p>
+        <p>{{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}
+          {{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}</p>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
-        <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}} {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
+        <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
+          {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
       </div>
     </div>
@@ -61,18 +63,23 @@
         <td>{{car_buy_data?.attributes?.lieferung | date:'d-MM-yyyy'}} </td>
       </tr>
 
-     
+
 
       <tr class="">
         <th class="pr-4">Bemerkungen:</th>
-        <td ><p class="break-all w-80  ">{{car_buy_data?.attributes?.bemerkunhen}}</p></td>
+        <td>
+          <p class="break-all w-80  ">{{car_buy_data?.attributes?.bemerkunhen}}</p>
+        </td>
       </tr>
+
+
+
 
     </table>
 
 
 
-    
+
     <div class="flex border-2 border-black justify-between items-center p-5 mt-3 pr-32 text-sm">
       <div>
         <p class="font-bold">Fahrzeugpreis:</p>
@@ -108,5 +115,42 @@
       </div>
     </div>
   </main>
+
+
+  <div *ngIf="car_buy_data?.attributes?.bemerkungencheck2page" class="new-page">
+
+    <header class="w-full flex justify-between items-center pt-2">
+      <h1 class="text-xl font-medium underline">
+        {{me?.username}} - {{me?.street}} {{me?.house_number}} - {{me?.postal_code}} {{me?.city}}
+      </h1>
+      <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="rounded-full" width="150px">
+    </header>
+
+    <main class="pt-3 w-11/12">
+      <div class="flex justify-between items-center mb-2 text-sm">
+        <div>
+          <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
+          <p>{{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}
+            {{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}</p>
+          <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
+          <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
+            {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
+          <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
+        </div>
+      </div>
+
+      <table class="mt-5 mb-8 text-sm" style="text-align: left">
+        <tr class="">
+          <th class="pr-4">Bemerkungen:</th>
+          <td>
+            <p class="break-all w-80  ">{{car_buy_data?.attributes?.bemerkunhen2page}}</p>
+          </td>
+        </tr>
+      </table>
+
+
+    </main>
+
+  </div>
 
 </div>

@@ -27,6 +27,8 @@ export class PrivateExportComponent implements OnInit {
   public car_buy_data: any;
   public logo: any;
   public me: any;
+
+
   private readonly jwt: string;
   private readonly baseDate: string = `${ moment().year() }-${ moment().month() + 1 > 9 ? moment().month() + 1 : `0${ moment().month() + 1 }` }-`;
   private beginDate: string = this.baseDate + '01';
@@ -46,6 +48,8 @@ export class PrivateExportComponent implements OnInit {
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
     this.loadQueryParams();
     this.loadPaginatedData();
+
+   
   }
 
   get imgPath(): string {
@@ -72,6 +76,10 @@ export class PrivateExportComponent implements OnInit {
       this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
       if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
       this.me = res[3];
+
+
+    
+
     });
   }
 

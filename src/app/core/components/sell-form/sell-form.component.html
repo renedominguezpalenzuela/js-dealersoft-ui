@@ -164,9 +164,9 @@
         </div>
         <div class="grid grid-cols-2 w-full md:w-1/3 gap-3">
           <div class="flex gap-x-3 pb-3">
-            <input #BemerkungenCheck2Page class="toggle" formControlName="BemerkungenCheck2Page"
-              id="BemerkungenCheck2Page" type="checkbox" [checked]="isChecked">
-            <label class="cursor-pointer font-semibold text-gray-500" for="BemerkungenCheck2Page">Bemerkungen für zweite
+            <input #bemerkungencheck2page class="toggle" formControlName="bemerkungencheck2page"
+              id="bemerkungencheck2page" type="checkbox" [checked]="isChecked">
+            <label class="cursor-pointer font-semibold text-gray-500" for="bemerkungencheck2page">Bemerkungen für zweite
               Seite</label>
           </div>
         </div>
@@ -177,7 +177,7 @@
         </div>
       </div>
 
-      <div *ngIf="BemerkungenCheck2Page.checked">
+      <div *ngIf="bemerkungencheck2page.checked">
         <div class="divider font-bold font-sans mt-3">Zweite Seite</div>
         <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
