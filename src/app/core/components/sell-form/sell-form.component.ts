@@ -34,6 +34,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_gross_sell = false;
   focus_iva = false;
 
+  isChecked = false;
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
 
@@ -52,7 +53,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
     export: [false, [Validators.required]],
+
+    BemerkungenCheck2Page:[false, [Validators.required]],
     bemerkunhen: [null],
+    bemerkunhen2page:[null]
+
   });
   // public factorNet: number = 0.8403;
   // public factorIva: number = 0.1597;
