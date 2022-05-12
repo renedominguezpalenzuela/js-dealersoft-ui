@@ -113,22 +113,24 @@
       <div class="flex flex-col xl:flex-row justify-start gap-x-8 w-full xl:w-9/12 my-3">
         <mat-form-field appearance="outline">
           <mat-label>Mehrwertsteuer in €</mat-label>
-          <input formControlName="gross_sell" matInput min="0" type="number">
-          <mat-error *ngIf="hasRequiredError('gross_sell')">
+          <input formControlName="iva_sell" matInput min="0" type="number" name="iva_sell" (focus)="onFocusEvent($event)">
+          <mat-error *ngIf="hasRequiredError('iva_sell')">
             <b>Mehrwertsteuer in €</b> wird benötigt
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Netto in €</mat-label>
-          <input formControlName="net_sell" matInput min="0" type="number">
+          <input formControlName="net_sell" matInput min="0" type="number" name="net_sell" (focus)="onFocusEvent($event)">
           <mat-error *ngIf="hasRequiredError('net_sell')">
             <b>Netto in €</b> wird benötigt
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Brutto in €</mat-label>
-          <input formControlName="iva_sell" matInput min="0" type="number">
-          <mat-error *ngIf="hasRequiredError('iva_sell')">
+    
+
+            <input formControlName="gross_sell" matInput min="0" type="number" name="gross_sell" (focus)="onFocusEvent($event)">
+            <mat-error *ngIf="hasRequiredError('gross_sell')">
             <b>Brutto in €</b> wird benötigt
           </mat-error>
         </mat-form-field>
