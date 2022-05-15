@@ -237,21 +237,97 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     return this.validationsService.hasRequiredError(this.carBuyForm, input);
   };
 
+
+
+  
+  //*************************************************************************************************
+  //  Boton Guardar
+  //*************************************************************************************************
   public submit() {
-    // console.log("Submitinh");
-    if (this.carBuyForm.valid) {
-      this.requestService
-        .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
-        .subscribe(() => {
-          this.notificationService.riseNotification({
-            color: 'success',
-            data: 'Neuwagenkauf gespeichert',
-          });
-        });
-    } else {
-      console.log('not valid form');
+    //Tengo el id del carro en la tabla cars, no es el mismo
+    const id = this.car_data?.id;
+
+    if (!this.carBuyForm.valid) {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Form Data Errors!!!!',
+      });
+
+             console.log('Forms data errors!!!');
+      return;
     }
+
+    //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
+    let query = this.requestService.generateQuery({
+      populate: ['car', 'client'], //Relaciones
+      filters: [
+        {
+          field: '[car][id]', //casmpos a comparar car e id
+          operator: FilterOperator.$eq,
+          value: <string>id,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
+
+   
+  
+    
+    this.requestService
+      .Get(this.apiHelperService.carsBuyURL + '?' + query)
+      .subscribe((res) => {
+        const data = res?.data[0]?.attributes;
+
+        //2 --- si no existe creo uno nuevo si existe lo modifico
+        if (data === undefined) {
+          this.requestService
+            .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
+            .subscribe(() =>
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Neuwagen eingelagert ankauft',
+              })
+            );
+        } else {
+          const id_compra = res?.data[0]?.id;
+          this.requestService
+
+            .Put(
+              this.apiHelperService.carsBuyURL + '/' + id_compra,
+              this.carBuyForm.value
+            )
+            .subscribe(() =>
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Neuwagen eingelagert ankauft',
+              })
+            );
+        }
+
+        // this.carSellForm.patchValue({
+        //   ...data,
+        //   car: this.car_data?.id,
+        //   client: data?.client.data.id,
+        // });
+      });
   }
+
+
+  // public submit() {
+    
+  //   if (this.carBuyForm.valid) {
+  //     this.requestService
+  //       .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
+  //       .subscribe(() => {
+  //         this.notificationService.riseNotification({
+  //           color: 'success',
+  //           data: 'Neuwagenkauf gespeichert',
+  //         });
+  //       });
+  //   } else {
+  //     console.log('not valid form');
+  //   }
+  // }
 
   public addCustomer = ($event: MouseEvent) => {
     $event.preventDefault();
