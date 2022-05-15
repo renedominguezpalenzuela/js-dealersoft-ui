@@ -53,10 +53,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
     export: [false, [Validators.required]],
-    bemerkungencheck2page:[false, [Validators.required]],
+    bemerkungencheck2page: [false, [Validators.required]],
     bemerkunhen: [null],
-    bemerkunhen2page:[null]
-
+    bemerkunhen2page: [null],
   });
   // public factorNet: number = 0.8403;
   // public factorIva: number = 0.1597;
@@ -156,6 +155,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
       this.carSellForm.patchValue({ car_name: this.car_data.attributes.name });
 
+      //Actualizo los datos del carro
       this.requestService
         .Get(
           this.apiHelperService.carsSellURL,
@@ -229,17 +229,78 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return this.validationsService.hasRequiredError(this.carSellForm, input);
   };
 
+  //*************************************************************************************************
+  //  Boton Guardar
+  //*************************************************************************************************
   public submit() {
-    if (this.carSellForm.valid) {
-      this.requestService
-        .Post(this.apiHelperService.carsSellURL, this.carSellForm.value)
-        .subscribe(() =>
-          this.notificationService.riseNotification({
-            color: 'success',
-            data: 'Neuwagen eingelagert verkauft',
-          })
-        );
+    //Tengo el id del carro en la tabla cars, no es el mismo
+    const id = this.car_data?.id;
+
+    if (!this.carSellForm.valid) {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Form Data Errors!!!!',
+      });
+
+      console.log('Forms data errors!!!');
+      return;
     }
+
+    //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
+    let query = this.requestService.generateQuery({
+      populate: ['car', 'client'], //Relaciones
+      filters: [
+        {
+          field: '[car][id]', //casmpos a comparar car e id
+          operator: FilterOperator.$eq,
+          value: <string>id,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
+
+    /*carsSellURL = 
+     get carsSellURL(): string {
+    return `${ this.apiUrl }/cars-sell-data`;
+  }
+    */
+    this.requestService
+      .Get(this.apiHelperService.carsSellURL + '?' + query)
+      .subscribe((res) => {
+        const data = res?.data[0]?.attributes;
+
+        //2 --- si no existe creo uno nuevo si existe lo modifico
+        if (data === undefined) {
+          this.requestService
+            .Post(this.apiHelperService.carsSellURL, this.carSellForm.value)
+            .subscribe(() =>
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Neuwagen eingelagert verkauft',
+              })
+            );
+        } else {
+          const id_venta = res?.data[0]?.id;
+          this.requestService
+
+            .Put(
+              this.apiHelperService.carsSellURL + '/' + id_venta,
+              this.carSellForm.value
+            )
+            .subscribe(() =>
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Neuwagen eingelagert verkauft',
+              })
+            );
+        }
+
+        // this.carSellForm.patchValue({
+        //   ...data,
+        //   car: this.car_data?.id,
+        //   client: data?.client.data.id,
+        // });
+      });
   }
 
   public addCustomer = ($event: MouseEvent) => {
