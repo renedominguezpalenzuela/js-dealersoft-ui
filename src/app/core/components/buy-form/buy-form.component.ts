@@ -34,6 +34,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_gross_buy = false;
   focus_iva = false;
 
+  total_decimales = 2;
+
   //variable recibida desde el componente padre que contiene los datos provenientes del API
   @Input() public car_data: Car | undefined;
 
@@ -122,14 +124,17 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       if (this.focus_net_buy) {
         const value: number = this.carBuyForm.get('net_buy')!.value;
+
+        let vIva = value * this.factorIva;
+        let vGross_buy = value + vIva;
+
         this.carBuyForm.patchValue({
-          iva_buy: value * this.factorIva,
-          gross_buy: value + value * this.factorIva,
+          iva_buy: vIva.toFixed(this.total_decimales),
+          gross_buy: vGross_buy.toFixed(this.total_decimales),
         });
+
         this.carBuyForm.updateValueAndValidity();
       }
-
-      //if (this.isIvaActive) this.updateCosts();
     });
 
     this.carBuyForm.get('gross_buy')!.valueChanges.subscribe(() => {
@@ -137,9 +142,13 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       if (this.focus_gross_buy) {
         const value: number = this.carBuyForm.get('gross_buy')!.value;
         const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+
+        let vNet_buy = value - iva;
+        let vIva = iva;
+       
         this.carBuyForm.patchValue({
-          iva_buy: iva,
-          net_buy: value - iva,
+          iva_buy: vIva.toFixed(this.total_decimales),
+          net_buy: vNet_buy.toFixed(this.total_decimales),
         });
         this.carBuyForm.updateValueAndValidity();
       }
@@ -150,10 +159,15 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       if (this.focus_iva) {
         const value: number = this.carBuyForm.get('iva_buy')!.value;
         const netto: number = value / this.factorIva;
+
+        let vGross_buy = netto + value;
+        let vNetto = netto;
+       
         this.carBuyForm.patchValue({
-          gross_buy: netto + value,
-          net_buy: netto,
+          gross_buy: vGross_buy.toFixed(this.total_decimales),
+          net_buy: vNetto.toFixed(this.total_decimales),
         });
+
         this.carBuyForm.updateValueAndValidity();
       }
     });
@@ -161,7 +175,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.['car_data'] && this.car_data) {
-      //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
+      //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el parent
       this.carBuyForm.patchValue({ car_name: this.car_data.attributes.name });
       this.requestService
         .Get(
@@ -237,9 +251,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     return this.validationsService.hasRequiredError(this.carBuyForm, input);
   };
 
-
-
-  
   //*************************************************************************************************
   //  Boton Guardar
   //*************************************************************************************************
@@ -247,13 +258,28 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     //Tengo el id del carro en la tabla cars, no es el mismo
     const id = this.car_data?.id;
 
+    //Convirtiendo a 2 valores decimales
+    this.focus_net_buy = false;
+    this.focus_gross_buy = false;
+    this.focus_iva = false;
+  
+    this.carBuyForm.patchValue({
+      gross_buy: Number(this.carBuyForm.get('gross_buy')!.value).toFixed(this.total_decimales),
+      net_buy: Number(this.carBuyForm.get('net_buy')!.value).toFixed(this.total_decimales),
+      iva_buy: Number(this.carBuyForm.get('iva_buy')!.value).toFixed(this.total_decimales)
+    });
+
+    this.carBuyForm.updateValueAndValidity();
+
+
+
     if (!this.carBuyForm.valid) {
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'Form Data Errors!!!!',
       });
 
-             console.log('Forms data errors!!!');
+      console.log('Forms data errors!!!');
       return;
     }
 
@@ -270,9 +296,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       ],
     });
 
-   
-  
-    
     this.requestService
       .Get(this.apiHelperService.carsBuyURL + '?' + query)
       .subscribe((res) => {
@@ -291,7 +314,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         } else {
           const id_compra = res?.data[0]?.id;
           this.requestService
-
             .Put(
               this.apiHelperService.carsBuyURL + '/' + id_compra,
               this.carBuyForm.value
@@ -299,7 +321,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             .subscribe(() =>
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Neuwagen eingelagert ankauft',
+                data: 'Fahrzeug eingelagert',
               })
             );
         }
@@ -312,9 +334,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
   }
 
-
   // public submit() {
-    
+
   //   if (this.carBuyForm.valid) {
   //     this.requestService
   //       .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
@@ -385,13 +406,12 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   //Calculo de los valores
   private updateCosts = () => {
-    const value: number = this.carBuyForm.get('net_buy')!.value;
-    this.carBuyForm.patchValue({
-      //gross_buy: value * this.factorNrutto,
-      //iva_buy: value * this.factorIva
-    });
-    this.carBuyForm.updateValueAndValidity();
-
+    //const value: number = this.carBuyForm.get('net_buy')!.value;
+    //this.carBuyForm.patchValue({
+    //gross_buy: value * this.factorNrutto,
+    //iva_buy: value * this.factorIva
+    // });
+    // this.carBuyForm.updateValueAndValidity();
     // console.log("Valor Netto "+this.carBuyForm.get('net_buy')!.value)
   };
 
@@ -405,8 +425,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         option.attributes.email.toLowerCase().includes(filterValue)
     );
   }
-
- 
 
   onFocusEvent(event: any) {
     switch (event.target.name) {
@@ -438,4 +456,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         break;
     }
   }
+
+  
 }

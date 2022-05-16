@@ -144,7 +144,7 @@
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Netto in €</mat-label>
-          <input formControlName="net_buy" matInput min="0" type="number" name="net_buy" (focus)="onFocusEvent($event)">
+          <input formControlName="net_buy" matInput min="0" type="number" name="net_buy" (focus)="onFocusEvent($event)" >
           <mat-error *ngIf="hasRequiredError('net_buy')">
             <b>Netto</b> wird benötigt
           </mat-error>
@@ -159,7 +159,7 @@
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Brutto in €</mat-label>
           <input formControlName="gross_buy" matInput min="0" type="number" name="gross_buy"
-            (focus)="onFocusEvent($event)">
+            (focus)="onFocusEvent($event)" >
           <mat-error *ngIf="hasRequiredError('gross_buy')">
             <b>Brutto</b> wird benötigt
           </mat-error>
@@ -173,7 +173,7 @@
       -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Mehrwertsteuer in €</mat-label>
-          <input formControlName="iva_buy" matInput min="0" type="number" name="iva_buy" (focus)="onFocusEvent($event)">
+          <input formControlName="iva_buy" matInput min="0" type="number" name="iva_buy" (focus)="onFocusEvent($event)" >
           <mat-error *ngIf="hasRequiredError('iva_buy')">
             <b>Mehrwertsteuer</b> wird benötigt
           </mat-error>

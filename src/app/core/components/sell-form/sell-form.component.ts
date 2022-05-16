@@ -34,6 +34,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_gross_sell = false;
   focus_iva = false;
 
+  total_decimales = 2;
+
   isChecked = false;
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
@@ -111,9 +113,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.carSellForm.get('net_sell')!.valueChanges.subscribe(() => {
       if (this.focus_net_sell) {
         const value: number = this.carSellForm.get('net_sell')!.value;
+
+        let vIva = value * this.factorIva;
+        let vGross_sell = value + vIva;
+
         this.carSellForm.patchValue({
-          iva_sell: value * this.factorIva,
-          gross_sell: value + value * this.factorIva,
+          iva_sell: vIva.toFixed(this.total_decimales),
+          gross_sell: vGross_sell.toFixed(this.total_decimales),
         });
         this.carSellForm.updateValueAndValidity();
       }
@@ -124,9 +130,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       if (this.focus_gross_sell) {
         const value: number = this.carSellForm.get('gross_sell')!.value;
         const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+
+        let vNet_sell = value - iva;
+        let vIva = iva;
+
         this.carSellForm.patchValue({
-          iva_sell: iva,
-          net_sell: value - iva,
+          iva_sell: vIva.toFixed(this.total_decimales),
+          net_sell: vNet_sell.toFixed(this.total_decimales),
         });
         this.carSellForm.updateValueAndValidity();
       }
@@ -137,9 +147,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       if (this.focus_iva) {
         const value: number = this.carSellForm.get('iva_sell')!.value;
         const netto: number = value / this.factorIva;
+
+        let vGross_sell = netto + value;
+        let vNetto = netto;
+
         this.carSellForm.patchValue({
-          gross_sell: netto + value,
-          net_sell: netto,
+          gross_sell: vGross_sell.toFixed(this.total_decimales),
+          net_sell: vNetto.toFixed(this.total_decimales),
         });
         this.carSellForm.updateValueAndValidity();
       }
@@ -236,6 +250,24 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     //Tengo el id del carro en la tabla cars, no es el mismo
     const id = this.car_data?.id;
 
+    this.focus_net_sell = false;
+    this.focus_gross_sell = false;
+    this.focus_iva = false;
+
+    let xnet_sell: number = Number(this.carSellForm.get('net_sell')!.value);
+    let xiva_sell: number = Number(this.carSellForm.get('iva_sell')!.value);
+    let xgross_sell: number = Number(this.carSellForm.get('gross_sell')!.value);
+
+    // console.log("gross "+xgross_buy + typeof(xgross_buy));
+
+    this.carSellForm.patchValue({
+      gross_sell: xgross_sell.toFixed(this.total_decimales),
+      net_sell: xnet_sell.toFixed(this.total_decimales),
+      iva_sell: xiva_sell.toFixed(this.total_decimales),
+    });
+
+    this.carSellForm.updateValueAndValidity();
+
     if (!this.carSellForm.valid) {
       this.notificationService.riseNotification({
         color: 'warning',
@@ -290,7 +322,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             .subscribe(() =>
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Neuwagen eingelagert verkauft',
+                data: 'Fahrzeug verkauft',
               })
             );
         }
