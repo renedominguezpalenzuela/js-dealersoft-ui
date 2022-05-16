@@ -7,7 +7,7 @@ import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '',             //home, url sin nada
     pathMatch: 'full',
     redirectTo: 'auth',
   },
