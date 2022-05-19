@@ -1,3 +1,31 @@
+<mat-toolbar class="color-nav">
+  <span>
+    <!-- h-[140px] w-[230px] -->
+    <img (click)="toAdmin()" alt="Dealersoft.de Black brand" class="cursor-pointer pt-3  h-[100px] "
+      src="assets/brand_logo/dealersoft_white.png">
+  </span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <a class="auth-link fuentes-nav-bar px-3" routerLink="login" [routerLinkActive]="['fuentes-nav-bar-seleccionada']">Log
+    in</a>
+  <span class="auth-link px-3 fuentes-nav-bar" [routerLinkActive]="['fuentes-nav-bar-seleccionada']">Kontakt</span>
+  <span class="auth-link px-3 fuentes-nav-bar" [routerLinkActive]="['fuentes-nav-bar-seleccionada']">Über uns</span>
+
+  <span>
+    <!-- h-[140px] w-[230px] -->
+    <img alt="Dealersoft.de" class="cursor-pointer px-5 w-[11]" src="assets/menu.svg">
+  </span>
+
+</mat-toolbar>
+
+
+<div class="h-full w-full flex justify-center items-top">
+<router-outlet></router-outlet>
+</div> 
+
+<!-- 
 <div class="h-screen w-full flex justify-center items-center">
   <div class="rounded mat-elevation-z12 bg-gray-50 p-5 w-full md:w-[35rem] flex flex-col justify-center">
     <div *ngIf="showButtons" class="flex w-full">
@@ -8,4 +36,4 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-</div>
+</div> -->

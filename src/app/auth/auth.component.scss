@@ -1,7 +1,40 @@
-.auth-link {
-  @apply px-3 py-4 w-1/2 text-center text-white uppercase tracking-widest border-2 border-gray-300 text-gray-500;
+// .auth-link {
+//    @apply px-3 py-4 w-1/2 text-center text-white  tracking-widest border-2 border-gray-300 text-gray-500;
+//  }
+
+// .auth-link-active {
+//   @apply bg-black text-white;
+// }
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
 }
 
-.auth-link-active {
-  @apply bg-black text-white;
+.color-nav {
+  background-color: #121a34;
+  padding-top: 2%!important;
+}
+
+.fuentes-nav-bar-seleccionada {
+  font-family: "Monserrat-ExtraBold" !important;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+   line-height: 24px;
+  text-align: center;
+  
+  color: #e5e5e5 !important;
+}
+
+.fuentes-nav-bar {
+  font-family: "Montserrat-Regular" !important;
+  font-style: normal;
+
+  font-size: 20px;
+
+  text-align: center;
+
+  color: #e5e5e5;
 }
