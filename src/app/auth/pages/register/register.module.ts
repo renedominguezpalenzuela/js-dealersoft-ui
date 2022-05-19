@@ -18,7 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     CoreModule,
     MatProgressSpinnerModule
-  ]
+  ],
+  exports: [RegisterComponent]
 })
 export class RegisterModule {
 }

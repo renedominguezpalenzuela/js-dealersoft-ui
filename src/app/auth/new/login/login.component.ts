@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit/**ViewEncapsulation */ } from '@angular/core';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiHelperService, AuthService, NotificationService, 
-  RequestService, ValidationsService } from '@core/services';
+import {
+  ApiHelperService,
+  AuthService,
+  NotificationService,
+  RequestService,
+  ValidationsService,
+} from '@core/services';
+
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
   public showPassword = false;
+
   public loginForm = this.formBuilder.group({
     identifier: [null, [Validators.required]],
     password: [null, [Validators.required, Validators.minLength(8)]],
   });
+
   public rememberMe = false;
 
   constructor(
@@ -42,8 +51,7 @@ export class LoginComponent implements OnInit {
     this._returnURL = value;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   togglePwd = () => (this.showPassword = !this.showPassword);
 
@@ -63,12 +71,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.requestService
         .Post(this.apiHelperService.loginURL, this.loginForm.value, false)
-        .subscribe(
-          () => {
-            this.notificationService.riseNotification({ color: 'success', data: 'Protokollierung erfolgreich' });
-            this.router.navigate([this.returnURL]);
-          }
-        );
+        .subscribe(() => {
+          this.notificationService.riseNotification({
+            color: 'success',
+            data: 'Protokollierung erfolgreich',
+          });
+          this.router.navigate([this.returnURL]);
+        });
     }
   }
 
@@ -77,5 +86,4 @@ export class LoginComponent implements OnInit {
     this.authService.updateRememberMe = true;
     localStorage.setItem('rememberMe', this.rememberMe ? 'TRUE' : 'FALSE');
   };
-
 }

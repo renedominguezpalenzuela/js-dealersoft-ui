@@ -1,3 +1,74 @@
+<!-- <div class=" mt-4  flex flex-col justify-center color_fondo"> -->
+
+
+
+<mat-tab-group animationDuration="0ms" class=" mt-6">
+  <mat-tab label="LOGIN">
+
+
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="mt-5 transition-all ease-in-out">
+      <div class="relative ">
+        <input autocomplete="username"
+          class="input pl-12 w-full {{hasError('identifier') ? 'input-error' : 'input-primary'}}"
+          formControlName="identifier" placeholder="E-MAIL" required type="email">
+        <div class="absolute left-0 top-3 flex items-center">
+          <img alt="user_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/email.png" />
+        </div>
+        <span *ngIf="hasRequiredError('identifier')" class="label-text-alt text-red-400 pl-2">
+          Bitte überprüfen Sie Ihre Eingabe
+        </span>
+      </div>
+      <div class="relative mt-3">
+        <input [type]="showPassword ? 'text' : 'password'" autocomplete="current-password"
+          class="input pl-12 w-full {{hasError('password') ? 'input-error' : 'input-primary'}}"
+          formControlName="password" minlength="8" placeholder="Passwort" required>
+        <div class="absolute left-0 top-3 flex items-center">
+          <img (click)="togglePwd()" *ngIf="showPassword" alt="show_password_img" class="ml-4 cursor-pointer"
+            src="https://img.icons8.com/small/24/000000/show-password.png" />
+          <img (click)="togglePwd()" *ngIf="!showPassword" alt="password_img" class="ml-4 cursor-pointer"
+            src="https://img.icons8.com/material-outlined/24/000000/password.png" />
+        </div>
+        <span *ngIf="hasRequiredError('password')" class="label-text-alt text-red-400 pl-2">
+          Bitte überprüfen Sie Ihre Eingabe
+        </span>
+        <span *ngIf="hasMinLengthError('password')" class="label-text-alt text-red-400 pl-2">
+          Passwort muss mindestens 8 Zeichen lang sein
+        </span>
+      </div>
+      <div class="mt-4 flex items-center justify-between text-gray-500 px-4">
+        <div class="flex justify-start items-center">
+          <input (change)="checkRememberMe()" class="mr-3 rounded focus:ring-0" id="remember" name="remember"
+            type="checkbox">
+          <label class="cursor-pointer font-medium dark:text-white" for="remember">Eingeloggt bleiben</label>
+        </div>
+        <a class="font-medium" routerLink="/auth/recovery-account">Passwort vergessen?</a>
+      </div>
+      <div class="flex items-center justify-center mt-8">
+        <button class="btn bg-black w-40" type="submit">
+          <span class="tracking-wide">EINLOGGEN</span>
+        </button>
+      </div>
+    </form>
+
+
+
+
+  </mat-tab>
+  <mat-tab label="REGISTRIEREN">
+     <!-- <app-register></app-register>  -->
+  </mat-tab>
+
+</mat-tab-group>
+
+
+
+
+
+<!-- 
+
+
+  
 <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="mt-6 transition-all ease-in-out">
   <div class="relative mt-3">
     <input autocomplete="username"
@@ -41,3 +112,4 @@
     </button>
   </div>
 </form>
+ -->

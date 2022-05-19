@@ -1,0 +1,21 @@
+// .mat-tab-label, .mat-tab-label-active .mat-tab-label-content {
+//     color: #ffffff !important;
+// } 
+
+
+// .color-tab {
+//     color: #fbcc24!important;
+// }
+
+
+.mat-tab-label{
+    //background:aqua;
+    color: rgb(255, 255, 255);
+    // width: 60px;
+    // height: 50px;
+    font-size: 1rem;
+  }
+  .mat-tab-group.mat-primary .mat-ink-bar{
+    background: rgb(255, 253, 253);
+    height: 2px;
+  } 

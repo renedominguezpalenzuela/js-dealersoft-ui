@@ -10,6 +10,8 @@ import { AuthInterceptor, HttpRequestInterceptor } from '@core/interceptors';
 import localeEnDe from '@angular/common/locales/en-DE';
 import localeEnDeExtra from '@angular/common/locales/extra/en-DE';
 import { registerLocaleData } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 registerLocaleData(localeEnDe, localeEnDeExtra);
 
@@ -21,7 +23,8 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    MatTabsModule
   ],
   providers: [
     {

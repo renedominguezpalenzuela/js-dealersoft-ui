@@ -3,7 +3,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-html, body {
+html,
+body {
   scroll-behavior: smooth;
 }
 
@@ -18,7 +19,7 @@ body {
 }
 
 .input-search {
-  @apply rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent
+  @apply rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent;
 }
 
 .btn {
@@ -62,20 +63,20 @@ body {
 // Custom Table [Start]
 
 .th-table {
-  @apply px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal
+  @apply px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal;
 }
 
 // Custom Table [End]
 
 // Custom Number Input [Start]
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -94,14 +95,32 @@ input[type=number] {
 // Stripe Payment Design [Start]
 
 .payment-input {
-  @apply input w-full placeholder:font-semibold font-semibold placeholder:text-gray-500 text-gray-500
+  @apply input w-full placeholder:font-semibold font-semibold placeholder:text-gray-500 text-gray-500;
 }
 
 .bg-stripe {
   background: rgb(21, 101, 192);
-  background: -moz-radial-gradient(circle, rgba(21, 101, 192, 1) 31%, rgba(25, 118, 210, 1) 53%, rgba(30, 136, 229, 1) 69%, rgba(33, 150, 243, 1) 86%);
-  background: -webkit-radial-gradient(circle, rgba(21, 101, 192, 1) 31%, rgba(25, 118, 210, 1) 53%, rgba(30, 136, 229, 1) 69%, rgba(33, 150, 243, 1) 86%);
-  background: radial-gradient(circle, rgba(21, 101, 192, 1) 31%, rgba(25, 118, 210, 1) 53%, rgba(30, 136, 229, 1) 69%, rgba(33, 150, 243, 1) 86%);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(21, 101, 192, 1) 31%,
+    rgba(25, 118, 210, 1) 53%,
+    rgba(30, 136, 229, 1) 69%,
+    rgba(33, 150, 243, 1) 86%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(21, 101, 192, 1) 31%,
+    rgba(25, 118, 210, 1) 53%,
+    rgba(30, 136, 229, 1) 69%,
+    rgba(33, 150, 243, 1) 86%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(21, 101, 192, 1) 31%,
+    rgba(25, 118, 210, 1) 53%,
+    rgba(30, 136, 229, 1) 69%,
+    rgba(33, 150, 243, 1) 86%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1565c0", endColorstr="#2196f3", GradientType=1);
 }
 
@@ -111,3 +130,30 @@ iframe {
 }
 
 // Stripe Payment Design [End]
+
+.color_fondo {
+  background-color: #121a34 !important;
+}
+
+
+
+
+
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: local("Montserrat-Regular"), url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-family: "Montserrat-ExtraBold";
+  src: local("Montserrat-ExtraBold"), url("/assets/fonts/Montserrat-ExtraBold.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-family: "HelveticaLTStd-Bold";
+  src: local("HelveticaLTStd-Bold"), url("/assets/fonts/HelveticaLTStd-Bold.otf") format("opentype");
+}
+
