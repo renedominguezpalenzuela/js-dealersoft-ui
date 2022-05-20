@@ -1,5 +1,5 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="mt-5 transition-all ease-in-out">
-  <div class="relative ">
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="transition-all ease-in-out">
+  <div class="relative">
     <input autocomplete="username"
       class="input pl-12 w-full rounded-full bg-[#1E253E] mycolor {{hasError('identifier') ? 'input-error' : 'input-primary'}}"
       formControlName="identifier" placeholder="E-MAIL" required type="email">
