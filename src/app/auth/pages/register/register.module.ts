@@ -8,9 +8,11 @@ import { CoreModule } from '@core/core.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
+
 @NgModule({
   declarations: [
-    RegisterComponent
+    RegisterComponent,
+
   ],
   imports: [
     CommonModule,

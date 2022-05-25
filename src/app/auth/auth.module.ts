@@ -20,6 +20,8 @@ import { MaincarruselimgComponent } from './new/components/maincarruselimg/mainc
 import { MainfooterComponent } from './new/components/mainfooter/mainfooter.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+ import { SaveDom2Pipe } from './../save-dom2.pipe';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainimgComponent,
     MainbuttonComponent,
     MaincarruselimgComponent,
-    MainfooterComponent
+    MainfooterComponent,
+    SaveDom2Pipe
+    
   ],
   imports: [
     CommonModule,
@@ -43,7 +47,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatTabsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   
   ]
 })
