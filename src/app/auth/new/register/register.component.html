@@ -1,8 +1,10 @@
 
 
-<form (ngSubmit)="register()" [formGroup]="registerForm" class="flex flex-col">
-    <div class="h-[550px] overflow-y-auto grid grid-cols-2 gap-x-2 w-full md:w-[32rem]">
-      <div class="col-span-2 flex flex-col justify-start items-center">
+<form (ngSubmit)="register()" [formGroup]="registerForm" class="flex flex-col justify-center items-center">
+    <!-- <div class="h-[550px] overflow-y-auto grid grid-cols-2 gap-x-2 w-full md:w-[32rem]"> -->
+      <div class="grid grid-cols-2 gap-x-2 w-full md:w-[80%]">
+        <!-- Seleccionar imagen -->
+      <div class="col-span-2 flex flex-col justify-center items-center">
         <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file">
         <div class="avatar mt-2">
           <div class="w-24 h-24 mask mask-squircle ring ring-gray">
@@ -18,8 +20,10 @@
           </label>
         </div>
       </div>
+
+
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('first_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('first_name') ? 'input-error' : 'input-primary'}} rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
                formControlName="first_name" placeholder="Vorname" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="name_img" class="ml-4" src="https://img.icons8.com/ios/24/000000/user--v1.png"/>
@@ -28,8 +32,10 @@
         <b>Vorname</b> wird benötigt
       </span>
       </div>
+
+
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('last_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('last_name') ? 'input-error' : 'input-primary'}}  rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
                formControlName="last_name" placeholder="Nachname" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="last_name_img" class="ml-4" src="https://img.icons8.com/ios/24/000000/user--v1.png"/>
@@ -38,9 +44,10 @@
         <b>Nachname</b> wird benötigt
       </span>
       </div>
+      
       <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input autocomplete="username" class="{{hasError('username') ? 'input-error' : 'input-primary'}}
-      input pl-12 w-full" formControlName="username" placeholder="Firma" required type="text">
+      input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="username" placeholder="Firma" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="username_img" class="ml-4" src="https://img.icons8.com/fluency-systems-regular/24/000000/user.png"/>
         </div>
@@ -50,7 +57,7 @@
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input [type]="showPassword ? 'text' : 'password'" autocomplete="new-password"
-               class="{{hasError('password') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+               class="{{hasError('password') ? 'input-error' : 'input-primary'}} rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
                formControlName="password" minlength="8" placeholder="Passwort" required>
         <div class="absolute left-0 top-3 flex items-center">
           <img (click)="togglePwd()" *ngIf="showPassword" alt="show_password_img" class="ml-4 cursor-pointer"
@@ -66,7 +73,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2">
-        <input class="{{hasError('email') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('email') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="email" placeholder="E-Mail" required type="email">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="email_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/email.png"/>
@@ -79,7 +86,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('employees_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('employees_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="employees_number" placeholder="Mitarbeiterzahl" required type="number">
         <div class="absolute left-0 top-3 flex items-center">
           <img class="ml-4"
@@ -90,7 +97,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('street') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('street') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="street" placeholder="Straße" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="crossroad" class="ml-4" src="https://img.icons8.com/ios/24/000000/crossroad.png"/>
@@ -100,7 +107,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('house_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('house_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="house_number" placeholder="Hausnummer" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="house" class="ml-4"
@@ -111,7 +118,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('city') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('city') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="city" placeholder="Stadt" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="city-buildings_img" class="ml-4"
@@ -122,7 +129,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('postal_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('postal_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="postal_code" placeholder="Postleitzahl" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="postcode_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/postcode.png"/>
@@ -132,7 +139,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('phone') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('phone') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="phone" placeholder="Telefon" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="apple-phone" class="ml-4" src="https://img.icons8.com/ios/25/000000/apple-phone.png"/>
@@ -142,7 +149,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('website') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('website') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="website" placeholder="Website" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="domain" class="ml-4" src="https://img.icons8.com/ios/24/000000/domain.png"/>
@@ -152,7 +159,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('steuer_nr') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('steuer_nr') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="steuer_nr" placeholder="Steuer Nr." required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="tax" class="ml-4" src="https://img.icons8.com/ios/24/000000/tax.png"/>
@@ -162,7 +169,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('ust_Idnr') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('ust_Idnr') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="ust_Idnr" placeholder="USt. ID" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="identification-documents" class="ml-4"
@@ -173,7 +180,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('geschaftsfuhrer') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('geschaftsfuhrer') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="geschaftsfuhrer" placeholder="Ansprechpartner" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="manager" class="ml-4" src="https://img.icons8.com/ios/24/000000/manager.png"/>
@@ -183,7 +190,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="iban" placeholder="IBAN" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="cancel-4-digits" class="ml-4" src="https://img.icons8.com/ios/24/000000/cancel-4-digits.png"/>
@@ -193,7 +200,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('bic_swift_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('bic_swift_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="bic_swift_code" placeholder="BIC/SWIFT-Code" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="swift-payment-system" class="ml-4"
@@ -204,7 +211,7 @@
       </span>
       </div>
       <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
+        <input class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
                formControlName="hrb_walsrode" placeholder="HRB Nummer" required type="text">
         <div class="absolute left-0 top-3 flex items-center">
           <img alt="hashtag-2" class="ml-4" src="https://img.icons8.com/ios/24/000000/hashtag-2.png"/>
@@ -215,8 +222,8 @@
       </div>
     </div>
     <div class="col-span-2 flex justify-center items-center mt-6">
-      <button class="btn bg-black w-40" type="submit">
-        <mat-spinner *ngIf="isLoading" class="mr-2" diameter="18"></mat-spinner>
+      <button class="btn w-40 bg-[#3A4157] px-4  rounded-full" type="submit">
+        <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>
         <span class="tracking-wide">ANMELDEN</span>
       </button>
     </div>
