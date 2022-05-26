@@ -13,6 +13,7 @@ import { ChangePasswordComponent } from './new/change-password/change-password.c
 import { RecoveryAccountComponent } from './new/recovery-account/recovery-account.component';
 import { MainPageComponent } from './new/main-page/main-page.component';
 import { LoginRegisterComponent } from './new/login-register/login-register.component';
+import { RegisterLoginComponent } from './new/register-login/register-login.component';
 import { MaintextoComponent } from './new/components/maintexto/maintexto.component';
 import { MainimgComponent } from './new/components/mainimg/mainimg.component';
 import { MainbuttonComponent } from './new/components/mainbutton/mainbutton.component';
@@ -21,7 +22,7 @@ import { MainfooterComponent } from './new/components/mainfooter/mainfooter.comp
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
- import { SaveDom2Pipe } from './../save-dom2.pipe';
+import { SaveDom2Pipe } from './../save-dom2.pipe';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RecoveryAccountComponent,
     MainPageComponent,
     LoginRegisterComponent,
+    RegisterLoginComponent,
     MaintextoComponent,
     MainimgComponent,
     MainbuttonComponent,
