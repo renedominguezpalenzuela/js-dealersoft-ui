@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Car, Customer, FilterDeepOption } from '@core/interfaces';
 import { ApiHelperService, AuthService, RequestService } from '@core/services';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { FilterOperator } from '@core/interfaces/query-params';
 
+
 @Component({
   selector: 'app-vehicle-form',
   templateUrl: './vehicle-form.component.html',
-  styleUrls: ['./vehicle-form.component.scss']
+  styleUrls: ['./vehicle-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class VehicleFormComponent implements OnInit {
   public car!: Car;

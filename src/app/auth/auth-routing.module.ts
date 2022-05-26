@@ -9,6 +9,9 @@ import {LoginComponent} from './new/login/login.component';
 import {MainPageComponent} from './new/main-page/main-page.component';
 
 
+
+
+
 const routes: Routes = [
   {
     path: '',
@@ -23,10 +26,13 @@ const routes: Routes = [
   {
     path:'login',
     component: LoginRegisterComponent
+    // loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+
   },
     {
      path: 'register',
-     component: RegisterLoginComponent
+      component: RegisterLoginComponent
+    // loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
    },
   // {
   //   path: 'login',

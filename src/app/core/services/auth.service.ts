@@ -24,6 +24,8 @@ export class AuthService {
   }
 
   get isAuth(): boolean {
+
+
     return !!this.AuthJWT.getValue() && !!this.AuthUser.getValue();
   }
 

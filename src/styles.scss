@@ -156,3 +156,16 @@ iframe {
   src: local("HelveticaLTStd-Bold"), url("/assets/fonts/HelveticaLTStd-Bold.otf") format("opentype");
 }
 
+
+
+/* Degradado */
+.fondo {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.01) 9.91%
+  );
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.16);
+  border-radius: 32px;
+}
+

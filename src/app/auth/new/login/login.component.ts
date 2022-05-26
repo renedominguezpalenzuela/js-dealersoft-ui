@@ -69,13 +69,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
+
+      
       this.requestService
         .Post(this.apiHelperService.loginURL, this.loginForm.value, false)
         .subscribe(() => {
+
           this.notificationService.riseNotification({
             color: 'success',
             data: 'Protokollierung erfolgreich',
           });
+
+          
+
+        
           this.router.navigate([this.returnURL]);
         });
     }

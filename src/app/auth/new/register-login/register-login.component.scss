@@ -1,11 +1,22 @@
 div.mat-tab-label-content {
-    color: rgb(255, 255, 255);
-    // width: 60px;
-    // height: 50px;
-    font-size: 1rem;  
-  }
-  
-  .mat-tab-group.mat-primary .mat-ink-bar{
-    background: rgb(255, 253, 253);
-    height: 2px;
-  } 
+  color: rgb(255, 255, 255)!important;
+  // width: 60px;
+  // height: 50px;
+  font-size: 1rem;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background: rgb(255, 253, 253);
+  height: 2px;
+}
+
+/* Degradado */
+.fondo {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.01) 9.91%
+  );
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.16);
+  border-radius: 32px;
+}

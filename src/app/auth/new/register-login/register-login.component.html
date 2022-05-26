@@ -1,13 +1,13 @@
-<div class="flex justify-center   ">
-    <mat-tab-group [selectedIndex]="1" animationDuration="100ms" class="mb-20 mt-6 w-[60%] md:w-[50%] ">
-        <mat-tab label="LOGIN" class="color-tab" >
-            <div class="mt-12  w-[90%] md:w-[60%]">
+<div class="fondo w-[100vw] md:w-[60vw] ">
+    <mat-tab-group  mat-align-tabs="center" [selectedIndex]="1" animationDuration="100ms" class="mb-20 mt-12 flex justify-center ">
+        <mat-tab label="LOGIN" class=" ">
+            <div class="mt-12 p-5 ">
                 <app-login></app-login>
             </div>
 
         </mat-tab>
-        <mat-tab label="REGISTRIEREN" class="" >
-            <div class="mt-12 ">
+        <mat-tab label="REGISTRIEREN" class=" " >
+            <div class="mt-12 p-5">
                 <app-register></app-register>
             </div>
         </mat-tab>
@@ -15,3 +15,4 @@
     </mat-tab-group>
 
 </div>
+
