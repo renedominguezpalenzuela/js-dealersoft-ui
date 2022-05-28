@@ -72,7 +72,8 @@ export class RegisterComponent implements OnInit {
   togglePwd = () => (this.showPassword = !this.showPassword);
 
   public register() {
-    if (this.registerForm.valid && this.logoImg instanceof File && !this.isLoading) {
+    if (this.registerForm.valid &&  !this.isLoading) {
+    // if (this.registerForm.valid && this.logoImg instanceof File && !this.isLoading) {
       this.isLoading = true;
       const newUser = { ...this.registerForm.value, active_until: moment().add(30, 'days').format('YYYY-MM-DD') }
       this.requestService
@@ -80,21 +81,37 @@ export class RegisterComponent implements OnInit {
         .subscribe((res) => {
           const form = new FormData();
           form.append('files', <File>this.logoImg);
-          this.requestService.POSTUpload(this.apiHelperService.uploadFilesURL, form).subscribe((events) => {
-            if (events.type === HttpEventType.Response) {
-              const data = { logo: events.body[0].id, user: res.user.id };
-              this.requestService.Post(this.apiHelperService.logosURL, data)
-                .subscribe(() => {
-                  this.isLoading = false;
+
+
+          this.isLoading = false;
                   this.notificationService.riseNotification({
                     color: 'success',
                     data: 'Registrierung & Anmeldung erfolgreich'
                   });
-                  this.router.navigate(['/admin']);
-                });
-            }
-          });
+                  // this.router.navigate(['/admin']);
+          //TODO: Enviar imagen al servidor
+
+          // this.requestService.POSTUpload(this.apiHelperService.uploadFilesURL, form).subscribe((events) => {
+          //   if (events.type === HttpEventType.Response) {
+          //     const data = { logo: events.body[0].id, user: res.user.id };
+          //     this.requestService.Post(this.apiHelperService.logosURL, data)
+          //       .subscribe(() => {
+          //         this.isLoading = false;
+          //         this.notificationService.riseNotification({
+          //           color: 'success',
+          //           data: 'Registrierung & Anmeldung erfolgreich'
+          //         });
+          //         this.router.navigate(['/admin']);
+          //       });
+          //   }
+          // });
         });
+    } else {
+      this.isLoading = false;
+      this.notificationService.riseNotification({
+        color: 'error',
+        data: 'Data Errors!!!'
+      });
     }
   }
 
