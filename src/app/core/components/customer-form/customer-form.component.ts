@@ -4,11 +4,23 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationsService } from '@core/services';
 import { Customer } from '@core/interfaces';
 
+import { User } from '@core/interfaces';
+import {  AuthService  } from '@core/services';
+
+
+
+
 @Component({
   templateUrl: './customer-form.component.html',
   styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnInit {
+
+
+  public authUser: User | null = null;
+  public isAuth: boolean = false;
+
+
 
   public customerForm = this.formBuilder.group({
     title: [null, [Validators.required]],
@@ -26,14 +38,24 @@ export class CustomerFormComponent implements OnInit {
     city: [null, []],
     country: [null, []],
     aditional_address: [null, []],
+    user: [null, [Validators.required]],
   });
 
   constructor(
     private readonly dialogRef: MatDialogRef<CustomerFormComponent>,
     private readonly formBuilder: FormBuilder,
     private readonly validationsService: ValidationsService,
+    private readonly authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: Customer
   ) {
+
+    this.authService.currentUser.subscribe((user) => {
+      this.isAuth = this.authService.isAuth;
+      this.authUser = user;
+});
+
+
+
     if (data) {
       this.customerForm.patchValue(this.data.attributes);
       this.customerForm.get('first_name')!.clearValidators();
@@ -44,6 +66,9 @@ export class CustomerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+this.customerForm.patchValue({ user:      this.authUser?.id });
+
   }
 
   public close = () => this.dialogRef.close(false);
@@ -57,6 +82,7 @@ export class CustomerFormComponent implements OnInit {
   };
 
   public submit() {
+   
     if (this.customerForm.valid) this.dialogRef.close({ body: this.customerForm.value });
   }
 
