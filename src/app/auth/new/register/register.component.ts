@@ -101,7 +101,7 @@ export class RegisterComponent implements OnInit {
           //           color: 'success',
           //           data: 'Registrierung & Anmeldung erfolgreich'
           //         });
-          //         this.router.navigate(['/admin']);
+          //         // this.router.navigate(['/admin']);
           //       });
           //   }
           // });

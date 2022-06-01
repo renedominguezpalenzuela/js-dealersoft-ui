@@ -34,8 +34,7 @@ export class VehicleFormComponent implements OnInit {
       this.requestService.Get(`${ this.apiHelperService.carsURL }/${ params['id'] }`)
         .subscribe((res) =>{ 
           this.car = res.data
-          // console.log("Respuesta CARRO");
-          // console.log(res.data);
+      
         })
     );
     this.activatedRoute.queryParams.subscribe((query: Params) => this.tabIndex = +query['tab'] - 1);

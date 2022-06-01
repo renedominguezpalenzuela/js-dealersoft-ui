@@ -258,7 +258,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     let xiva_sell: number = Number(this.carSellForm.get('iva_sell')!.value);
     let xgross_sell: number = Number(this.carSellForm.get('gross_sell')!.value);
 
-    // console.log("gross "+xgross_buy + typeof(xgross_buy));
+  
 
     this.carSellForm.patchValue({
       gross_sell: xgross_sell.toFixed(this.total_decimales),
@@ -274,7 +274,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         data: 'Form Data Errors!!!!',
       });
 
-      console.log('Forms data errors!!!');
+    
       return;
     }
 

@@ -20,8 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log("JWT "+ this.authService.JWT)
-    console.log("isAUTH "+ this.authService.isAuth)
+
  
     if (this.authService.isAuth) {
       request = request.clone({

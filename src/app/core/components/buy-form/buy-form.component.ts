@@ -194,7 +194,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         )
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
-          // console.log(data)
+     
           this.carBuyForm.patchValue({
             ...data,
             car: this.car_data?.id,
@@ -279,7 +279,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         data: 'Form Data Errors!!!!',
       });
 
-      console.log('Forms data errors!!!');
       return;
     }
 
@@ -346,7 +345,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //         });
   //       });
   //   } else {
-  //     console.log('not valid form');
+  //  
   //   }
   // }
 
@@ -412,7 +411,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     //iva_buy: value * this.factorIva
     // });
     // this.carBuyForm.updateValueAndValidity();
-    // console.log("Valor Netto "+this.carBuyForm.get('net_buy')!.value)
+  
   };
 
   private _filter(value: string): Customer[] {
