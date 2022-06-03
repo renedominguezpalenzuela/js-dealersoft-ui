@@ -30,7 +30,7 @@
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
             <mat-label>Erstzulassung</mat-label>
             <input [matDatepicker]="picker" [required]="isRequired()" formControlName="first_register_date" matInput
-                   readonly>
+                   >
             <mat-error *ngIf="hasRequiredError('first_register_date')">
               <b>Erstzulassung</b> ist erforderlich
             </mat-error>
@@ -53,7 +53,7 @@
             <input formControlName="color" matInput>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Vorbesitzer</mat-label>
+            <mat-label>Anzahl Besitzer</mat-label>
             <input formControlName="last_owner" matInput>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
@@ -128,9 +128,22 @@
           </div>
         </div>
       </div>
-      <div class="divider font-bold font-sans">Quelle</div>
+      <div class="divider font-bold font-sans">Art der Quelle</div>
       <div class="grid grid-cols-1 w-full xl:w-1/2">
-        <mat-form-field appearance="outline" class="col-span-1">
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Art der Quelle</mat-label>
+          <textarea matInput placeholder="Bemerkungen" formControlName="source" rows="4"
+            maxlength="240"></textarea>
+
+            <!-- <mat-error *ngIf="hasRequiredError('source')">
+              <b>Bitte auswählen</b> ist erforderlich
+            </mat-error> -->
+        </mat-form-field>
+
+
+        <!-- <mat-form-field appearance="outline" class="col-span-1">
           <mat-label>Bitte auswählen...</mat-label>
           <mat-select [required]="isRequired()" formControlName="source">
             <mat-option *ngFor="let option of options" [value]="option.value">
@@ -140,7 +153,7 @@
           <mat-error *ngIf="hasRequiredError('source')">
             <b>Bitte auswählen</b> ist erforderlich
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
       <mat-divider></mat-divider>
       <div class="flex w-full justify-center md:justify-end items-center mt-6">

@@ -31,9 +31,9 @@ export class NewVehicleComponent implements OnInit, OnChanges {
     kilowatt: [null, [Validators.min(0)]],
     color: [null, [Validators.nullValidator]],
     last_owner: [null, [Validators.nullValidator]],
-    hsn: [null, [Validators.nullValidator]],
-    tsn: [null, [Validators.nullValidator]],
-    source: [null, [Validators.required]],
+    hsn: ["", [Validators.nullValidator]],
+    tsn: ["", [Validators.nullValidator]],
+    source: [null],
     owner: [null, [Validators.required]],
   });
   public options: { label: string, value: string }[] = environment.sourcesOptions;

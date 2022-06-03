@@ -70,10 +70,10 @@
           **************************************************************************************************************** 
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Lieferung</mat-label>
+          <mat-label>Lieferdatum ändern</mat-label>
           <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput readonly required>
           <mat-error *ngIf="hasRequiredError('lieferung')">
-            <b>Lieferung</b> wird benötigt
+            <b>Lieferdatum ändern</b> wird benötigt
           </mat-error>
           <mat-datepicker-toggle [for]="pickerLieferung" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #pickerLieferung></mat-datepicker>
