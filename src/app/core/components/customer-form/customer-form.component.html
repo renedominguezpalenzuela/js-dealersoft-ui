@@ -36,7 +36,7 @@
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Geburtsdatum</mat-label>
-          <input [matDatepicker]="pickerDate" formControlName="birth_date" matInput readonly>
+          <input [matDatepicker]="pickerDate" formControlName="birth_date" matInput >
           <mat-datepicker-toggle [for]="pickerDate" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #pickerDate></mat-datepicker>
         </mat-form-field>
@@ -59,10 +59,11 @@
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Steuernummer</mat-label>
-          <input [required]="isRequired()" formControlName="tax_number" matInput>
-          <mat-error *ngIf="hasRequiredError('tax_number')">
+          <!-- <input [required]="isRequired()" formControlName="tax_number" matInput> -->
+          <input formControlName="tax_number" matInput> 
+          <!-- <mat-error *ngIf="hasRequiredError('tax_number')">
             <b>Steuernummer</b> wird benötigt
-          </mat-error>
+          </mat-error> -->
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">

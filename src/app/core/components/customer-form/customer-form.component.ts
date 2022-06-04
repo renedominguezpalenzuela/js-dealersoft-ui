@@ -29,7 +29,7 @@ export class CustomerFormComponent implements OnInit {
     birth_date: [null, []],
     phone: [null, [Validators.required]],
     fax: [null, []],
-    tax_number: [null, [Validators.nullValidator]],
+    tax_number: [null, []],
     email: [null, [Validators.email]],
     website: [null, []],
     street: [null, []],

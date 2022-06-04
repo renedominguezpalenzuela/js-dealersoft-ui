@@ -17,11 +17,13 @@
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
           {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
         <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
+        <p>
+        <p>{{car_buy_data?.attributes?.client?.data?.attributes?.tax_number}}</p>
       </div>
     </div>
     <div class="flex border-2 border-black justify-between p-3 mt-1 mb-2">
       <span class="font-bold pl-10">RECHNUNG/INVOICE Nr. {{car_buy_data?.attributes?.invoice_number}}</span>
-      <span>{{car_buy_data?.attributes?.invoice_date | date:'d.M.yyyy'}}</span>
+      <span>{{car_buy_data?.attributes?.invoice_date | date:'dd/MM/yyyy'}}</span>
     </div>
     <p class=" text-center px-8 text-sm">
       Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende,

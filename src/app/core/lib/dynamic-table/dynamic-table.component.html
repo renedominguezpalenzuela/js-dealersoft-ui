@@ -30,7 +30,7 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.Date">
-            <span>{{(element | nestedProperty:column.column) | date: 'd/MM/yyyy'}}</span>
+            <span>{{(element | nestedProperty:column.column) | date: 'dd/MM/yyyy'}}</span>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.InnerHTML">
