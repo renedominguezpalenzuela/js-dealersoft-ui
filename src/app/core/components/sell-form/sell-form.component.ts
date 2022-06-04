@@ -453,4 +453,47 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         break;
     }
   }
+
+
+  
+  focusOutFunction(event: any) {
+    var value = event.target.value!;
+
+    var strvalue = parseFloat(value).toFixed(2);
+
+    switch (event.target.name) {
+      case 'net_sell':
+        this.focus_net_sell = false;
+        this.carSellForm.patchValue({
+          net_sell: strvalue,
+        });
+        break;
+
+      case 'gross_sell':
+        this.focus_gross_sell = false;
+
+        this.carSellForm.patchValue({
+          gross_sell: strvalue,
+        });
+        break;
+
+      case 'iva_sell':
+        this.focus_iva = false;
+
+        this.carSellForm.patchValue({
+          iva_sell: strvalue,
+        });
+        break;
+
+
+      default:
+        this.focus_net_sell = false;
+        this.focus_gross_sell = false;
+        this.focus_iva = false;
+        break;
+    }
+   
+  }
+
+
 }
