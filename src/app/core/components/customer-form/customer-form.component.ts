@@ -5,22 +5,15 @@ import { ValidationsService } from '@core/services';
 import { Customer } from '@core/interfaces';
 
 import { User } from '@core/interfaces';
-import {  AuthService  } from '@core/services';
-
-
-
+import { AuthService } from '@core/services';
 
 @Component({
   templateUrl: './customer-form.component.html',
-  styleUrls: ['./customer-form.component.scss']
+  styleUrls: ['./customer-form.component.scss'],
 })
 export class CustomerFormComponent implements OnInit {
-
-
   public authUser: User | null = null;
   public isAuth: boolean = false;
-
-
 
   public customerForm = this.formBuilder.group({
     title: [null, [Validators.required]],
@@ -28,16 +21,16 @@ export class CustomerFormComponent implements OnInit {
     last_name: [null, [Validators.required]],
     birth_date: [null, []],
     phone: [null, [Validators.required]],
-    fax: [null, []],
-    tax_number: [null, []],
+    fax: ['', []],
+    tax_number: ['', []],
     email: [null, [Validators.email]],
-    website: [null, []],
-    street: [null, []],
-    house_number: [null, []],
-    postal_code: [null, []],
-    city: [null, []],
-    country: [null, []],
-    aditional_address: [null, []],
+    website: ['', []],
+    street: ['', []],
+    house_number: ['', []],
+    postal_code: ['', []],
+    city: ['', []],
+    country: ['', []],
+    aditional_address: ['', []],
     user: [null, [Validators.required]],
   });
 
@@ -48,13 +41,10 @@ export class CustomerFormComponent implements OnInit {
     private readonly authService: AuthService,
     @Inject(MAT_DIALOG_DATA) public data: Customer
   ) {
-
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
-});
-
-
+    });
 
     if (data) {
       this.customerForm.patchValue(this.data.attributes);
@@ -66,9 +56,9 @@ export class CustomerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-this.customerForm.patchValue({ user:      this.authUser?.id });
-
+    console.log("Numero de usuario "+ this.authUser?.id);
+    //  this.customerForm.patchValue({ user: this.authUser?.id });
+    this.customerForm.patchValue({ user: this.authUser });
   }
 
   public close = () => this.dialogRef.close(false);
@@ -82,8 +72,10 @@ this.customerForm.patchValue({ user:      this.authUser?.id });
   };
 
   public submit() {
-   
-    if (this.customerForm.valid) this.dialogRef.close({ body: this.customerForm.value });
+    if (this.customerForm.valid)
+    console.log("Datos Formulario")
+    console.log(this.customerForm.value )
+      this.dialogRef.close({ body: this.customerForm.value });
   }
 
   public isRequired = (): boolean => !this.data;

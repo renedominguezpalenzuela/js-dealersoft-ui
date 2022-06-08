@@ -173,15 +173,16 @@ export class CustomerInformationComponent implements OnInit {
   }
 
   public loadPaginatedData = ($event: number) => {
-
+    console.log(this.authUser?.id);
 
  
-
     this.currentPage = $event;
     this.requestService
       .Get(this.apiHelperService.clientsURL, this.queryClients(this.authUser?.id))
       .subscribe((res) => {
         this.data = res.data;
+
+
         this.pageCount = res.meta.pagination.pageCount;
         this.router.navigate([], {
           relativeTo: this.activatedRoute,
