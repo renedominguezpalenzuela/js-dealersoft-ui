@@ -268,6 +268,7 @@ export class CustomerInformationComponent implements OnInit {
       populate: ['*'],
       filters: [
         {
+          // field: '[user][id]',
           field: '[user][id]',
           value: id,
           operator: FilterOperator.$eq,
