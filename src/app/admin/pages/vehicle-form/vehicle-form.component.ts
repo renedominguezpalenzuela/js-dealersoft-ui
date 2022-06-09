@@ -39,8 +39,35 @@ export class VehicleFormComponent implements OnInit {
     );
     this.activatedRoute.queryParams.subscribe((query: Params) => this.tabIndex = +query['tab'] - 1);
     this.requestService.Get(this.apiHelperService.carsURL, this.query()).subscribe(res => this.carsOptions = res.data);
-    this.requestService.Get(this.apiHelperService.clientsURL).subscribe(res => this.clientsOptions = res.data);
+
+    // this.requestService.Get(this.apiHelperService.clientsURL).subscribe(res => this.clientsOptions = res.data);
+
+    this.requestService
+    .Get(this.apiHelperService.clientsURL, this.queryClients(this.currentUserId))
+     .subscribe((res) => {
+        this.clientsOptions = res.data;   
+        console.log("clientes")       
+        console.log(this.clientsOptions)
+    });
+
+
   }
+
+  private queryClients = (id: any) =>
+    this.requestService.generateQuery({
+      populate: ['*'],
+      filters: [
+        {
+         
+          field: '[user][id]',
+          value: id,
+          operator: FilterOperator.$eq,
+          option: FilterDeepOption.$and,
+        },
+      ],
+      
+    });
+
 
   public updateQueryParams = ($event: MatTabChangeEvent) => {
     this.router.navigate([], {
