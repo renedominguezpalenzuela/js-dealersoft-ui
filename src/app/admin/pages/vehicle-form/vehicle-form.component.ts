@@ -46,8 +46,6 @@ export class VehicleFormComponent implements OnInit {
     .Get(this.apiHelperService.clientsURL, this.queryClients(this.currentUserId))
      .subscribe((res) => {
         this.clientsOptions = res.data;   
-        console.log("clientes")       
-        console.log(this.clientsOptions)
     });
 
 

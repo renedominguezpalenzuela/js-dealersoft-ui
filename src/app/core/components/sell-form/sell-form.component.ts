@@ -36,6 +36,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   total_decimales = 2;
 
+ last_invoice_number=0;
+
   isChecked = false;
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
@@ -162,6 +164,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     // this.carSellForm.get('gross_sell')!.valueChanges.subscribe(() => {
     //   if (this.isIvaActive) this.updateCosts();
     // });
+
+
+   this.last_invoice_number=1;
+
+   //Buscs
+
+   this.carSellForm.patchValue({
+    invoice_number:  this.last_invoice_number
+  });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

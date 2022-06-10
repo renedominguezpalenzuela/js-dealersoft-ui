@@ -173,7 +173,7 @@ export class CustomerInformationComponent implements OnInit {
   }
 
   public loadPaginatedData = ($event: number) => {
-    console.log(this.authUser?.id);
+ 
 
  
     this.currentPage = $event;

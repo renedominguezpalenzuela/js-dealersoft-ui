@@ -56,7 +56,7 @@ export class CustomerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Numero de usuario "+ this.authUser?.id);
+  
     //  this.customerForm.patchValue({ user: this.authUser?.id });
     this.customerForm.patchValue({ user: this.authUser });
   }
@@ -73,8 +73,7 @@ export class CustomerFormComponent implements OnInit {
 
   public submit() {
     if (this.customerForm.valid)
-    console.log("Datos Formulario")
-    console.log(this.customerForm.value )
+ 
       this.dialogRef.close({ body: this.customerForm.value });
   }
 

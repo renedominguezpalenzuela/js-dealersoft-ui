@@ -38,7 +38,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Rechnungs-Nr.</mat-label>
-          <input formControlName="invoice_number" matInput required>
+          <input formControlName="invoice_number" matInput required readonly>
           <mat-error *ngIf="hasRequiredError('invoice_number')">
             <b>Rechnungs-Nr.</b> wird benötigt
           </mat-error>
