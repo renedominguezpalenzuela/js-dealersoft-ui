@@ -15,6 +15,7 @@ import {
   NotificationService,
   RequestService,
   ValidationsService,
+  AuthService
 } from '@core/services';
 import { CustomerFormComponent } from '@core/components/customer-form/customer-form.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +24,7 @@ import { FilterOperator } from '@core/interfaces/query-params';
 import { ExportType } from '@core/services/request.service';
 import * as saveAs from 'file-saver';
 import * as moment from 'moment';
+import { User } from '@core/interfaces';
 
 @Component({
   selector: 'app-sell-form',
@@ -30,13 +32,17 @@ import * as moment from 'moment';
   styleUrls: ['./sell-form.component.scss'],
 })
 export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
+  public authUser: User | null = null;
+  public isAuth: boolean = false;
+
+
   focus_net_sell = false;
   focus_gross_sell = false;
   focus_iva = false;
 
   total_decimales = 2;
 
- last_invoice_number=0;
+  last_invoice_number: number = 0;
 
   isChecked = false;
   // @Input() public car: Car | undefined;
@@ -81,10 +87,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly requestService: RequestService,
     private readonly notificationService: NotificationService,
     private readonly apiHelperService: ApiHelperService,
-    private readonly matDialog: MatDialog
-  ) {}
+    private readonly matDialog: MatDialog,
+    private readonly authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+
+    this.authService.currentUser.subscribe((user) => {
+      this.isAuth = this.authService.isAuth;
+      this.authUser = user;
+    });
+
+
     this.carSellForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (change) {
         this.carSellForm.patchValue({ export: false, a25: false });
@@ -165,15 +179,66 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     //   if (this.isIvaActive) this.updateCosts();
     // });
 
+    //buscar todas las ventas del usuario
 
-   this.last_invoice_number=1;
+    let valorFormularioInvoice_Number = this.carSellForm.get('invoice_number');
+    console.log(valorFormularioInvoice_Number)
 
-   //Buscs
+    if (valorFormularioInvoice_Number==undefined){
+    this.requestService
+      .Get(this.apiHelperService.carsSellURL, this.querySelledCars(this.authUser?.id))
+      .subscribe((res) => {
 
-   this.carSellForm.patchValue({
-    invoice_number:  this.last_invoice_number
-  });
+        let datos = res.data;
+
+        datos.map(
+          (unDato: any) => {
+            if (Number(unDato.attributes.invoice_number) > this.last_invoice_number){
+              this.last_invoice_number = Number(unDato.attributes.invoice_number);
+            }
+            console.log("Last invoice number")
+            console.log(this.last_invoice_number)
+
+          }
+        )
+
+        console.log("Last invoice number")
+        this.last_invoice_number =  this.last_invoice_number +1;
+        console.log(this.last_invoice_number)
+
+        this.carSellForm.patchValue({
+          invoice_number: String(this.last_invoice_number)
+        });
+  
+      });
+
+
+    }
+     
+ 
+
+    //Buscs
+
+   
   }
+
+  private querySelledCars = (id: any) =>
+    this.requestService.generateQuery({
+      populate: ['*'],
+      filters: [
+        {
+
+          field: '[car][owner][id]',
+          value: id,
+          operator: FilterOperator.$eq,
+          option: FilterDeepOption.$and,
+        },
+      ],
+
+    });
+
+
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.['car_data'] && this.car_data) {
@@ -269,7 +334,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     let xiva_sell: number = Number(this.carSellForm.get('iva_sell')!.value);
     let xgross_sell: number = Number(this.carSellForm.get('gross_sell')!.value);
 
-  
+
 
     this.carSellForm.patchValue({
       gross_sell: xgross_sell.toFixed(this.total_decimales),
@@ -285,7 +350,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         data: 'Form Data Errors!!!!',
       });
 
-    
+
       return;
     }
 
@@ -397,8 +462,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           type === ExportType.net_export ? `Rechnung` : `Verkaufsrechnung`;
         saveAs(
           new Blob([res], { type: 'application/pdf' }),
-          `${name} no.${
-            this.carSellForm.controls['invoice_number'].value
+          `${name} no.${this.carSellForm.controls['invoice_number'].value
           } (${moment().format('MM.DD.YYYY')}).pdf`
         );
       });
@@ -466,7 +530,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
 
-  
+
   focusOutFunction(event: any) {
     var value = event.target.value!;
 
@@ -503,7 +567,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.focus_iva = false;
         break;
     }
-   
+
   }
 
 
