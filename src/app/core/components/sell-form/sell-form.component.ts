@@ -65,6 +65,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     bemerkungencheck2page: [false, [Validators.required]],
     bemerkunhen: [null],
     bemerkunhen2page: [null],
+    selled: [true],
   });
   // public factorNet: number = 0.8403;
   // public factorIva: number = 0.1597;
@@ -177,9 +178,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     // });
 
     //buscar todas las ventas del usuario
-   //si no existe el invoice_number, se genera uno nuevo
-    let valorFormularioInvoice_Number = this.carSellForm.get('invoice_number')!.value;
-
+    //si no existe el invoice_number, se genera uno nuevo
+    let valorFormularioInvoice_Number =
+      this.carSellForm.get('invoice_number')!.value;
 
     if (valorFormularioInvoice_Number == null) {
       this.requestService
@@ -199,18 +200,14 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 unDato.attributes.invoice_number
               );
             }
-           
           });
 
-        
           this.last_invoice_number = this.last_invoice_number + 1;
-         
 
           this.carSellForm.patchValue({
             invoice_number: String(this.last_invoice_number),
           });
         });
-    
     }
     //Buscs
   }
@@ -357,6 +354,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return `${ this.apiUrl }/cars-sell-data`;
   }
     */
+
+
+
     this.requestService
       .Get(this.apiHelperService.carsSellURL + '?' + query)
       .subscribe((res) => {
@@ -367,26 +367,34 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           this.requestService
             .Post(this.apiHelperService.carsSellURL, this.carSellForm.value)
             .subscribe(() =>
+             //Actualizar el carro -- campo selled = true
+              {this.actualizarCarSelled( this.carSellForm.value.car)
               this.notificationService.riseNotification({
                 color: 'success',
                 data: 'Neuwagen eingelagert verkauft',
-              })
+              })}
             );
         } else {
-          const id_venta = res?.data[0]?.id;
+          const id_venta = res?.data[0]?.id;       
           this.requestService
-
             .Put(
               this.apiHelperService.carsSellURL + '/' + id_venta,
               this.carSellForm.value
             )
-            .subscribe(() =>
+            .subscribe(() =>{
+             //Actualizar el carro -- campo selled = true
+              this.actualizarCarSelled( this.carSellForm.value.car)
+
+           
               this.notificationService.riseNotification({
                 color: 'success',
                 data: 'Fahrzeug verkauft',
               })
+            }
             );
         }
+
+       
 
         // this.carSellForm.patchValue({
         //   ...data,
@@ -394,6 +402,20 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         //   client: data?.client.data.id,
         // });
       });
+  }
+
+  public actualizarCarSelled(carID:any) {
+    this.requestService
+    .Put(
+      this.apiHelperService.carsURL + '/' + carID,
+      {"selled": true}
+    )
+    .subscribe(() =>
+    this.notificationService.riseNotification({
+      color: 'success',
+      data: 'Selled Car',
+    })
+    );
   }
 
   public addCustomer = ($event: MouseEvent) => {

@@ -188,6 +188,9 @@ export class MyStockComponent implements OnInit {
     this.currentPage = $event;
     this.requestService.Get(this.apiHelperService.carsURL, this.query())
       .subscribe(res => {
+        
+       
+        
         this.data = res.data2.map((elm: any) => ({
           ...elm,
           net_profit: elm.attributes.sell?.net_sell - elm.attributes.buy?.net_buy,
