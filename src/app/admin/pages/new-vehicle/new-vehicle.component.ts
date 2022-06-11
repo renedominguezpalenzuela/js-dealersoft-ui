@@ -22,6 +22,9 @@ declare interface ImgSrc {
   styleUrls: ['./new-vehicle.component.scss']
 })
 export class NewVehicleComponent implements OnInit, OnChanges {
+
+  totalAusstattung = 4;
+
   public vehicleForm = this.formBuilder.group({
     name: [null, [Validators.required]],
     car_identifier: [null, [Validators.required]],
@@ -161,11 +164,17 @@ export class NewVehicleComponent implements OnInit, OnChanges {
   }
 
   public addComment = () => {
+
+
+
+    if (this.totalAusstattung>0) {
     if (this.currentComment) {
       this.comments.push(this.currentComment);
       this.currentComment = '';
       this.commentsError = false;
+      this.totalAusstattung=this.totalAusstattung-1;
     }
+   }
   };
 
   public removeComment = (i: number) => this.comments.splice(i, 1);
