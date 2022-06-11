@@ -30,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvoiceInfoComponent } from './components/invoice-info/invoice-info.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { InvoiceInfoComponent } from './components/invoice-info/invoice-info.com
     MatDatepickerModule,
     MatMenuModule,
     MatAutocompleteModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
   ],
   exports: [
     DynamicTableComponent,

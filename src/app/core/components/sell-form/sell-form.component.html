@@ -36,32 +36,7 @@
             <b>Kunde</b> wird benötigt
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Rechnungs-Nr.</mat-label>
-          <input formControlName="invoice_number" matInput required readonly>
-          <mat-error *ngIf="hasRequiredError('invoice_number')">
-            <b>Rechnungs-Nr.</b> wird benötigt
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Rechnungsdatum</mat-label>
-          <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput  required>
-          <mat-error *ngIf="hasRequiredError('invoice_date')">
-            <b>Rechnungsdatum</b> wird benötigt
-          </mat-error>
-          <mat-datepicker-toggle [for]="pickerInvoiceDate" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #pickerInvoiceDate></mat-datepicker>
-        </mat-form-field>
 
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>KV-Datum</mat-label>
-          <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput  required>
-          <mat-error *ngIf="hasRequiredError('kv_date')">
-            <b>KV-Datum</b> wird benötigt
-          </mat-error>
-          <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #pickerKvDate></mat-datepicker>
-        </mat-form-field>
 
 
         <!-- 
@@ -71,7 +46,7 @@
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Lieferdatum ändern</mat-label>
-          <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput  required>
+          <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput required>
           <mat-error *ngIf="hasRequiredError('lieferung')">
             <b>Lieferdatum ändern</b> wird benötigt
           </mat-error>
@@ -109,29 +84,32 @@
           </div>
         </div>
       </div>
-      
+
       <div class="divider font-bold font-sans">Verkaufspreis</div>
       <div class="flex flex-col xl:flex-row justify-start gap-x-8 w-full xl:w-9/12 my-3">
         <mat-form-field appearance="outline">
           <mat-label>Mehrwertsteuer in €</mat-label>
-          <input  formControlName="iva_sell" matInput min="0" type="number" name="iva_sell" (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
+          <input formControlName="iva_sell" matInput min="0" type="number" name="iva_sell"
+            (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
           <mat-error *ngIf="hasRequiredError('iva_sell')">
             <b>Mehrwertsteuer in €</b> wird benötigt
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Netto in €</mat-label>
-          <input formControlName="net_sell" matInput min="0" type="number" name="net_sell" (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
+          <input formControlName="net_sell" matInput min="0" type="number" name="net_sell"
+            (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
           <mat-error *ngIf="hasRequiredError('net_sell')">
             <b>Netto in €</b> wird benötigt
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Brutto in €</mat-label>
-    
 
-            <input formControlName="gross_sell" matInput min="0" type="number" name="gross_sell" (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
-            <mat-error *ngIf="hasRequiredError('gross_sell')">
+
+          <input formControlName="gross_sell" matInput min="0" type="number" name="gross_sell"
+            (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
+          <mat-error *ngIf="hasRequiredError('gross_sell')">
             <b>Brutto in €</b> wird benötigt
           </mat-error>
         </mat-form-field>
@@ -139,63 +117,111 @@
 
 
       <div class="divider font-bold font-sans">Sonstige Kosten</div>
-      <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Bemerkungen</mat-label>
-          <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
-            maxlength="240"></textarea>
-        </mat-form-field>
 
-      </div>
+      <mat-tab-group animationDuration="750ms" dynamicHeight [color]="'red'">
+        <mat-tab label="Rechnung">
+          <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+              <mat-label>Rechnungs-Nr.</mat-label>
+              <input formControlName="invoice_number" matInput required readonly>
+              <mat-error *ngIf="hasRequiredError('invoice_number')">
+                <b>Rechnungs-Nr.</b> wird benötigt
+              </mat-error>
+            </mat-form-field>
 
-      <mat-divider></mat-divider>
-      <div class="flex flex-col md:flex-row w-full justify-center md:justify-between items-center mt-6 space-x-3">
-        <div class="grid grid-cols-2 w-full md:w-1/3 gap-3">
-          <button (click)="generatePdf(exportType.private)" class="btn btn-primary border-2" type="button">
-            <span class="font-sans">Privat</span>
-          </button>
-          <button (click)="generatePdf(exportType.net_export)" class="btn btn-primary border-2" type="button">
-            <span class="font-sans">Netto Export</span>
-          </button>
-          <button (click)="generatePdf(exportType.business)" class="btn btn-primary border-2" type="button">
-            <span class="font-sans">Gewerbe</span>
-          </button>
-          <button (click)="generatePdf(exportType.net_ue_export)" class="btn btn-primary border-2" type="button">
-            <span class="font-sans">Netto EU-Export</span>
-          </button>
-        </div>
-        <div class="grid grid-cols-2 w-full md:w-1/3 gap-3">
-          <div class="flex gap-x-3 pb-3">
-            <input #bemerkungencheck2page class="toggle" formControlName="bemerkungencheck2page"
-              id="bemerkungencheck2page" type="checkbox" [checked]="isChecked">
-            <label class="cursor-pointer font-semibold text-gray-500" for="bemerkungencheck2page">Bemerkungen für zweite
-              Seite</label>
+            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+              <mat-label>Rechnungsdatum</mat-label>
+              <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput required>
+              <mat-error *ngIf="hasRequiredError('invoice_date')">
+                <b>Rechnungsdatum</b> wird benötigt
+              </mat-error>
+              <mat-datepicker-toggle [for]="pickerInvoiceDate" matSuffix></mat-datepicker-toggle>
+              <mat-datepicker #pickerInvoiceDate></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
+              <mat-label>Bemerkungen</mat-label>
+              <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
+                maxlength="240"></textarea>
+            </mat-form-field>
           </div>
-        </div>
-        <div class="flex justify-start items-center space-x-3 mt-4">
-          <button class="btn btn-primary w-40" type="submit">
-            <span class="tracking-wide">Speichern</span>
-          </button>
-        </div>
+        </mat-tab>
+        <mat-tab label="Kaufvertrag" class="color-mat-tab">
+          <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+
+            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+              <mat-label>KV-Datum</mat-label>
+              <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput required>
+              <mat-error *ngIf="hasRequiredError('kv_date')">
+                <b>KV-Datum</b> wird benötigt
+              </mat-error>
+              <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
+              <mat-datepicker #pickerKvDate></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
+              <mat-label>Bemerkungen</mat-label>
+              <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"
+                maxlength="240"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+
+
+
+
+  <mat-divider></mat-divider>
+  <div class="flex flex-col md:flex-row w-full justify-center md:justify-between items-center mt-6 space-x-3">
+    <div class="grid grid-cols-2 w-full md:w-1/3 gap-3">
+      <button (click)="generatePdf(exportType.private)" class="btn btn-primary border-2" type="button">
+        <span class="font-sans">Privat</span>
+      </button>
+      <button (click)="generatePdf(exportType.net_export)" class="btn btn-primary border-2" type="button">
+        <span class="font-sans">Netto Export</span>
+      </button>
+      <button (click)="generatePdf(exportType.business)" class="btn btn-primary border-2" type="button">
+        <span class="font-sans">Gewerbe</span>
+      </button>
+      <button (click)="generatePdf(exportType.net_ue_export)" class="btn btn-primary border-2" type="button">
+        <span class="font-sans">Netto EU-Export</span>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 w-full md:w-1/3 gap-3">
+      <div class="flex gap-x-3 pb-3">
+        <input #bemerkungencheck2page class="toggle" formControlName="bemerkungencheck2page" id="bemerkungencheck2page"
+          type="checkbox" [checked]="isChecked">
+        <label class="cursor-pointer font-semibold text-gray-500" for="bemerkungencheck2page">Bemerkungen für zweite
+          Seite</label>
       </div>
+    </div>
 
-      <div *ngIf="bemerkungencheck2page.checked">
-        <div class="divider font-bold font-sans mt-3">Zweite Seite</div>
-        <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+    <div class="flex justify-start items-center space-x-3 mt-4">
+      <button class="btn btn-primary w-40" type="submit">
+        <span class="tracking-wide">Speichern</span>
+      </button>
+    </div>
+  </div>
 
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Bemerkungen für zweite Seite</mat-label>
-            <textarea matInput placeholder="Bemerkungen für zweite Seite" formControlName="bemerkunhen2page" rows="5">
+  <div *ngIf="bemerkungencheck2page.checked">
+    <div class="divider font-bold font-sans mt-3">Zweite Seite</div>
+    <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Bemerkungen für zweite Seite</mat-label>
+        <textarea matInput placeholder="Bemerkungen für zweite Seite" formControlName="bemerkunhen2page" rows="5">
 
             </textarea>
-          </mat-form-field>
+      </mat-form-field>
 
-        </div>
+    </div>
 
-      </div>
-
-
-    </form>
   </div>
+
+
+  </form>
+</div>
 </div>

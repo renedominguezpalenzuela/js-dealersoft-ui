@@ -26,6 +26,7 @@ import * as saveAs from 'file-saver';
 import * as moment from 'moment';
 import { User } from '@core/interfaces';
 
+
 @Component({
   selector: 'app-sell-form',
   templateUrl: './sell-form.component.html',
@@ -70,6 +71,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     bemerkungencheck2page: [false, [Validators.required]],
     bemerkunhen: [null],
+    bemerkunhen2: [null],
     bemerkunhen2page: [null],
     selled: [true],
   });
