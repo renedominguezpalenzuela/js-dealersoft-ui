@@ -62,16 +62,20 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     client: [null, [Validators.required]],
     collection: [null, [Validators.required]],
     payment: [null, [Validators.required, Validators.min(0)]],
-    gross_buy: [null, [Validators.required, Validators.min(0)]],
+
     iva_buy: [{ value: null, disabled: true }, [Validators.min(0)]],
     net_buy: [null, [Validators.required, Validators.min(0)]],
+    gross_buy: [
+      { value: null, disabled: true },
+      [Validators.required, Validators.min(0)],
+    ],
     // net_buy_adjustment: [null, [Validators.required, Validators.min(0)]],
     //  net_buy_adjustment: [null, [ Validators.min(0)]],
     //year_interest_rate: [null, [Validators.required, Validators.min(0)]],
     // total: [null, [Validators.required, Validators.min(0)]],
     buy_date: [null, [Validators.required]],
-    a25: [true, [Validators.required]],
-    iva: [false, [Validators.required]],
+    a25: [true, [Validators.required]], //Check Box
+    iva: [false, [Validators.required]], //Check Box
     bemerkunhen: [null],
   });
   // public factorNrutto: number = 0.8403;
@@ -96,30 +100,77 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly matDialog: MatDialog
   ) {}
 
+  public calcularIVA() {
+    
+    const vNet_buy: number = this.carBuyForm.get('net_buy')!.value;
+
+    let vIva: number = Number(vNet_buy * this.factorIva);
+    let vGross_buy: number =0;
+    vGross_buy =  Number(vNet_buy) + vIva;
+
+  
+    if (!this.isIvaActive) {
+      vIva = 0;
+      vGross_buy = 0;
+    }
+
+    this.carBuyForm.patchValue({
+      iva_buy: vIva.toFixed(this.total_decimales),
+      gross_buy: vGross_buy.toFixed(this.total_decimales),
+    });
+
+    this.carBuyForm.updateValueAndValidity();
+  }
+
+  public activarIVA() {
+    this.carBuyForm.get('iva_buy')!.enable();
+    this.carBuyForm.get('iva_buy')!.addValidators(Validators.required);
+    this.carBuyForm.get('gross_buy')!.enable();
+    this.carBuyForm.get('gross_buy')!.addValidators(Validators.required);
+    // this.carBuyForm.updateValueAndValidity();
+    this.isIvaActive = true;
+    this.calcularIVA();
+
+    // if (this.carBuyForm.get('net_buy')!.value) this.updateCosts();
+  }
+
+  public desactivarIVA() {
+    this.carBuyForm.get('iva_buy')!.setValue(null);
+    this.carBuyForm.get('iva_buy')!.markAsUntouched();
+    this.carBuyForm.get('iva_buy')!.markAsPristine();
+    this.carBuyForm.get('iva_buy')!.removeValidators(Validators.required);
+    this.carBuyForm.get('iva_buy')!.disable();
+
+    this.carBuyForm.get('gross_buy')!.setValue(null);
+    this.carBuyForm.get('gross_buy')!.markAsUntouched();
+    this.carBuyForm.get('gross_buy')!.markAsPristine();
+    this.carBuyForm.get('gross_buy')!.removeValidators(Validators.required);
+    this.carBuyForm.get('gross_buy')!.disable();
+
+    this.carBuyForm.patchValue({ gross_buy: null, iva_buy: null });
+    // this.carBuyForm.updateValueAndValidity();
+    this.isIvaActive = false;
+  }
+
   ngOnInit(): void {
     //Cambios en el valor del checkbox a25
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (change) {
-        this.carBuyForm.get('iva_buy')!.enable();
-        this.carBuyForm.get('iva_buy')!.addValidators(Validators.required);
-        this.carBuyForm.updateValueAndValidity();
-        this.isIvaActive = true;
-        if (this.carBuyForm.get('net_buy')!.value) this.updateCosts();
+        this.activarIVA();
+      } else {
+        this.desactivarIVA();
       }
     });
 
     this.carBuyForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
       if (change) {
-        this.carBuyForm.get('iva_buy')!.setValue(null);
-        this.carBuyForm.get('iva_buy')!.markAsUntouched();
-        this.carBuyForm.get('iva_buy')!.markAsPristine();
-        this.carBuyForm.get('iva_buy')!.removeValidators(Validators.required);
-        this.carBuyForm.get('iva_buy')!.disable();
-        this.carBuyForm.patchValue({ gross_buy: null, iva_buy: null });
-        this.carBuyForm.updateValueAndValidity();
-        this.isIvaActive = false;
+        this.desactivarIVA();
+      } else {
+        this.activarIVA();
       }
     });
+
+
     // valueChanges
     this.carBuyForm.get('net_buy')!.valueChanges.subscribe(() => {
       // if (this.isIvaActive) && (this.focus_net_buy) {
@@ -129,6 +180,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         let vIva = value * this.factorIva;
         let vGross_buy = value + vIva;
+
+        if (!this.isIvaActive) {
+          vIva = 0;
+          vGross_buy = 0;
+        }
 
         this.carBuyForm.patchValue({
           iva_buy: vIva.toFixed(this.total_decimales),
@@ -141,12 +197,19 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.carBuyForm.get('gross_buy')!.valueChanges.subscribe(() => {
       // if (!this.isIvaActive) {
+
       if (this.focus_gross_buy) {
         const value: number = this.carBuyForm.get('gross_buy')!.value;
         const iva: number = (value * this.factorIva) / (1 + this.factorIva);
 
         let vNet_buy = value - iva;
         let vIva = iva;
+
+        if (!this.isIvaActive) {
+          vNet_buy = this.carBuyForm.get('net_buy')!.value;
+          vIva = 0;
+          // gross_buy=0;
+        }
 
         this.carBuyForm.patchValue({
           iva_buy: vIva.toFixed(this.total_decimales),
@@ -158,12 +221,18 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.carBuyForm.get('iva_buy')!.valueChanges.subscribe(() => {
       // if (!this.isIvaActive) {
+
       if (this.focus_iva) {
-        const value: number = this.carBuyForm.get('iva_buy')!.value;
-        const netto: number = value / this.factorIva;
+        const value: number = this.carBuyForm.get('iva_buy')?.value;
+        let netto: number = value / this.factorIva;
 
         let vGross_buy = netto + value;
         let vNetto = netto;
+
+        if (!this.isIvaActive) {
+          netto = this.carBuyForm.get('net_buy')?.value;
+          vGross_buy = 0;
+        }
 
         this.carBuyForm.patchValue({
           gross_buy: vGross_buy.toFixed(this.total_decimales),
@@ -490,13 +559,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         });
         break;
 
-
       default:
         this.focus_net_buy = false;
         this.focus_gross_buy = false;
         this.focus_iva = false;
         break;
     }
-   
   }
 }

@@ -44,6 +44,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   last_invoice_number: number = 220000;
 
   isChecked = false;
+
+  actualizando_radio_buttons = false;
+  
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
 
@@ -56,12 +59,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     kv_date: [null, [Validators.required, Validators.min(0)]],
     lieferung: [null, [Validators.required]],
     zahlunsart: [null, [Validators.required]],
+
     net_sell: [null, [Validators.required, Validators.min(0)]],
     iva_sell: [{ value: null, disabled: true }, [Validators.min(0)]],
-    gross_sell: [null, [Validators.required, Validators.min(0)]],
+    gross_sell: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)]],
+
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
     export: [false, [Validators.required]],
+
     bemerkungencheck2page: [false, [Validators.required]],
     bemerkunhen: [null],
     bemerkunhen2page: [null],
@@ -91,37 +97,118 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly authService: AuthService
   ) {}
 
+
+  
+  public calcularIVA() {
+    console.log('Calculando');
+
+    const vNet_sell: number = this.carSellForm.get('net_sell')!.value;
+
+    let vIva: number = Number(vNet_sell * this.factorIva);
+    let vGross_sell: number =0;
+    vGross_sell =  Number(vNet_sell) + vIva;
+
+    this.carSellForm.patchValue({
+      iva_sell: vIva.toFixed(this.total_decimales),
+      gross_sell: vGross_sell.toFixed(this.total_decimales),
+    });
+    this.carSellForm.updateValueAndValidity();
+   
+  }
+
+  public activarIVA() {
+    this.carSellForm.get('iva_sell')!.enable();
+    this.carSellForm.get('iva_sell')!.addValidators(Validators.required);
+    this.carSellForm.get('gross_sell')!.enable();
+    this.carSellForm.get('gross_sell')!.addValidators(Validators.required);
+   
+    // this.carSellForm.updateValueAndValidity();
+    this.isIvaActive = true;
+    this.calcularIVA();
+
+  }
+
+  public desactivarIVA() {
+    this.carSellForm.get('iva_sell')!.setValue(null);
+    this.carSellForm.get('iva_sell')!.markAsUntouched();
+    this.carSellForm.get('iva_sell')!.markAsPristine();
+    this.carSellForm.get('iva_sell')!.removeValidators(Validators.required);
+    this.carSellForm.get('iva_sell')!.disable();
+
+    this.carSellForm.get('gross_sell')!.setValue(null);
+    this.carSellForm.get('gross_sell')!.markAsUntouched();
+    this.carSellForm.get('gross_sell')!.markAsPristine();
+    this.carSellForm.get('gross_sell')!.removeValidators(Validators.required);
+    this.carSellForm.get('gross_sell')!.disable();
+
+    this.carSellForm.patchValue({ gross_buy: null, iva_buy: null });
+    // this.carSellForm.updateValueAndValidity();
+
+
+
+    this.isIvaActive = false;
+  }
+
+
+
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
     });
 
-    this.carSellForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
-      if (change) {
-        this.carSellForm.patchValue({ export: false, a25: false });
-        this.carSellForm.get('iva_sell')!.enable();
-        this.carSellForm.get('iva_sell')!.addValidators(Validators.required);
-        this.carSellForm.updateValueAndValidity();
-        this.isIvaActive = true;
-        if (this.carSellForm.get('gross_sell')!.value) this.updateCosts();
-      } else {
-        this.clearIvaSell();
-      }
-    });
+    
+    
     this.carSellForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
+      if (this.actualizando_radio_buttons) return;
       if (change) {
-        this.carSellForm.patchValue({ iva: false, export: false });
-        this.clearIvaSell();
+        this.actualizando_radio_buttons=true;
+        this.carSellForm.patchValue({ iva: false, export: false , a25: true});
+        this.desactivarIVA();
+        
+      } else {
+        this.actualizando_radio_buttons=true;
+        this.carSellForm.patchValue({ export: false, iva: true, a25: false });
+       this.activarIVA();
+
+
       }
+      this.actualizando_radio_buttons=false;
     });
-    this.carSellForm
-      .get('export')!
-      .valueChanges.subscribe((change: boolean) => {
+
+
+
+    this.carSellForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
+      if (this.actualizando_radio_buttons) return;
+
+      if (change) {
+        this.actualizando_radio_buttons=true;
+        this.carSellForm.patchValue({ export: false, a25: false , iva: true});
+        this.activarIVA() ;
+      } else {
+        this.actualizando_radio_buttons=true;
+        this.carSellForm.patchValue({ export: false, a25: true, iva: false });
+        this.desactivarIVA();
+      }
+      this.actualizando_radio_buttons=false;
+    });
+
+
+
+    this.carSellForm.get('export')!.valueChanges.subscribe((change: boolean) => {
+        if (this.actualizando_radio_buttons) return;
         if (change) {
+          this.actualizando_radio_buttons=true;
           this.carSellForm.patchValue({ a25: false, iva: false });
-          this.clearIvaSell();
+          this.activarIVA();
+         
+        } else {
+          this.actualizando_radio_buttons=true;
+           this.carSellForm.patchValue({ a25: false, iva: true });
+           this.activarIVA();
         }
+
+        this.actualizando_radio_buttons=false;
       });
 
     this.carSellForm.get('net_sell')!.valueChanges.subscribe(() => {
@@ -130,6 +217,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         let vIva = value * this.factorIva;
         let vGross_sell = value + vIva;
+
+        
+        if (!this.isIvaActive) {
+          vIva = 0;
+          vGross_sell = 0;
+        }
 
         this.carSellForm.patchValue({
           iva_sell: vIva.toFixed(this.total_decimales),
@@ -148,6 +241,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         let vNet_sell = value - iva;
         let vIva = iva;
 
+        
+        if (!this.isIvaActive) {
+          vNet_sell = this.carSellForm.get('net_sell')!.value;
+          vIva = 0;
+          // gross_buy=0;
+        }
+
         this.carSellForm.patchValue({
           iva_sell: vIva.toFixed(this.total_decimales),
           net_sell: vNet_sell.toFixed(this.total_decimales),
@@ -160,10 +260,17 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       // if (!this.isIvaActive) {
       if (this.focus_iva) {
         const value: number = this.carSellForm.get('iva_sell')!.value;
-        const netto: number = value / this.factorIva;
+        let netto: number = value / this.factorIva;
 
         let vGross_sell = netto + value;
         let vNetto = netto;
+
+        
+        if (!this.isIvaActive) {
+          netto = this.carSellForm.get('net_sell')?.value;
+          vGross_sell = 0;
+        }
+
 
         this.carSellForm.patchValue({
           gross_sell: vGross_sell.toFixed(this.total_decimales),
@@ -413,7 +520,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     .subscribe(() =>
     this.notificationService.riseNotification({
       color: 'success',
-      data: 'Selled Car',
+      data: 'Car eliminated from stock',
     })
     );
   }
