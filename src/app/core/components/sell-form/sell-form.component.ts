@@ -41,7 +41,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   total_decimales = 2;
 
-  last_invoice_number: number = 0;
+  last_invoice_number: number = 220000;
 
   isChecked = false;
   // @Input() public car: Car | undefined;
