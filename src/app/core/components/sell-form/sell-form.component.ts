@@ -8,6 +8,10 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+
+import { Router, ActivatedRoute } from '@angular/router';
+
+
 import { Car, Customer, FilterDeepOption } from '@core/interfaces';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
@@ -25,6 +29,7 @@ import { ExportType } from '@core/services/request.service';
 import * as saveAs from 'file-saver';
 import * as moment from 'moment';
 import { User } from '@core/interfaces';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -47,9 +52,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   isChecked = false;
 
   actualizando_radio_buttons = false;
+
+  car_id=0;
   
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
+
+ public existeCompraConA25: boolean = false;
 
   public carSellForm = this.formBuilder.group({
     car_name: [null, [Validators.required]],
@@ -84,6 +93,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = [];
   public isIvaActive: boolean = false;
+  
   public exportType = ExportType;
   @ViewChild('autoComplete') private autoComplete:
     | ElementRef<HTMLInputElement>
@@ -96,13 +106,32 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly notificationService: NotificationService,
     private readonly apiHelperService: ApiHelperService,
     private readonly matDialog: MatDialog,
-    private readonly authService: AuthService
-  ) {}
+    private readonly authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    location: Location
+  ) {
+    this.route = route;
+    this.route.params.subscribe(params => {
+
+     this.existeCompraConA25 = Boolean(JSON.parse(params['existeCompraConA25']));
+
+     this.actualizando_radio_buttons=true;
+     if (this.existeCompraConA25 ) {
+      
+      this.carSellForm.patchValue({ iva: false, export: false , a25: true});
+     } else {      
+      this.carSellForm.patchValue({ iva: true, export: false , a25: false});
+     }
+     
+     this.actualizando_radio_buttons=false;
+  });
+  }
 
 
   
   public calcularIVA() {
-    console.log('Calculando');
+   
 
     const vNet_sell: number = this.carSellForm.get('net_sell')!.value;
 
@@ -152,6 +181,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
 
+  
+  
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => {
@@ -318,9 +349,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           });
         });
     }
-    //Buscs
+    //Buscar si existe el contrato de compra del carro
+    //si existe y es A25 entonces setear a A25 el contrato de venta
+
+
+    // this.existeCompraconA25 = this.route.snapshot.paramMap.get('existeCompraconA25');
+    
+   
+
   }
 
+
+ 
   private querySelledCars = (id: any) =>
     this.requestService.generateQuery({
       populate: ['*'],
@@ -334,10 +374,19 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       ],
     });
 
+     
+ 
+
   ngOnChanges(changes: SimpleChanges): void {
+
+
+
+
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
       this.carSellForm.patchValue({ car_name: this.car_data.attributes.name });
+
+    
 
       //Actualizo los datos del carro
       this.requestService
@@ -371,6 +420,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    
+  
+
+
     fromEvent(this.autoComplete!.nativeElement, 'input')
       .pipe(distinctUntilChanged(), debounceTime(150))
       .subscribe(($event: any) => {

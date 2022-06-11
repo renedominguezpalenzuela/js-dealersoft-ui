@@ -40,6 +40,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   //variable recibida desde el componente padre que contiene los datos provenientes del API
   @Input() public car_data: Car | undefined;
+  actualizando_radio_buttons = false;
 
   /*
   campo del formulario car_name
@@ -155,19 +156,31 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit(): void {
     //Cambios en el valor del checkbox a25
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
+      if (this.actualizando_radio_buttons) return;
       if (change) {
+        this.actualizando_radio_buttons=true;
         this.activarIVA();
+        this.carBuyForm.patchValue({ iva: true, a25: false});
       } else {
+        this.actualizando_radio_buttons=true;
         this.desactivarIVA();
+        this.carBuyForm.patchValue({ iva: false, a25: true});
       }
+      this.actualizando_radio_buttons=false;
     });
 
     this.carBuyForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
+      if (this.actualizando_radio_buttons) return;
       if (change) {
+        this.actualizando_radio_buttons=true;
         this.desactivarIVA();
+        this.carBuyForm.patchValue({ iva: false, a25: true});
       } else {
+        this.actualizando_radio_buttons=true;
         this.activarIVA();
+        this.carBuyForm.patchValue({ iva: true, a25: false});
       }
+      this.actualizando_radio_buttons=false;
     });
 
 
@@ -370,10 +383,14 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       ],
     });
 
+    console.log(this.carBuyForm.value);
+
     this.requestService
       .Get(this.apiHelperService.carsBuyURL + '?' + query)
       .subscribe((res) => {
         const data = res?.data[0]?.attributes;
+
+      
 
         //2 --- si no existe creo uno nuevo si existe lo modifico
         if (data === undefined) {

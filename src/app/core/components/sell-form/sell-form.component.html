@@ -151,7 +151,7 @@
           <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
             <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-              <mat-label>KV-Datum</mat-label>
+              <mat-label>KV-Datum or Abholtermin?</mat-label>
               <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput required>
               <mat-error *ngIf="hasRequiredError('kv_date')">
                 <b>KV-Datum</b> wird benötigt
