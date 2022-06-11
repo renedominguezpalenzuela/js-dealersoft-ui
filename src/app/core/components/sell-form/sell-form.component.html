@@ -45,7 +45,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Rechnungsdatum</mat-label>
-          <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput readonly required>
+          <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput  required>
           <mat-error *ngIf="hasRequiredError('invoice_date')">
             <b>Rechnungsdatum</b> wird benötigt
           </mat-error>
@@ -55,7 +55,7 @@
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>KV-Datum</mat-label>
-          <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput readonly required>
+          <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput  required>
           <mat-error *ngIf="hasRequiredError('kv_date')">
             <b>KV-Datum</b> wird benötigt
           </mat-error>
@@ -71,7 +71,7 @@
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Lieferdatum ändern</mat-label>
-          <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput readonly required>
+          <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput  required>
           <mat-error *ngIf="hasRequiredError('lieferung')">
             <b>Lieferdatum ändern</b> wird benötigt
           </mat-error>
