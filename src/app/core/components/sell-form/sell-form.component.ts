@@ -121,8 +121,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.actualizando_radio_buttons = true;
       if (this.existeCompraConA25) {
         this.carSellForm.patchValue({ iva: false, export: false, a25: true });
+        this.activarA25();
       } else {
         this.carSellForm.patchValue({ iva: true, export: false, a25: false });
+        this.activarIVA();
       }
 
       this.actualizando_radio_buttons = false;
