@@ -25,7 +25,7 @@
         class="{{hasError('first_name') ? 'input-error' : 'input-primary'}} rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
         formControlName="first_name" placeholder="Vorname" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="name_img" class="ml-4" src="https://img.icons8.com/ios/24/000000/user--v1.png" />
+        <img alt="name_img" class="ml-4" src="assets/user--v1.png" />
       </div>
       <span *ngIf="hasRequiredError('first_name')" class="label-text-alt text-red-400 pl-2">
         <b>Vorname</b> wird benötigt
@@ -38,7 +38,7 @@
         class="{{hasError('last_name') ? 'input-error' : 'input-primary'}}  rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
         formControlName="last_name" placeholder="Nachname" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="last_name_img" class="ml-4" src="https://img.icons8.com/ios/24/000000/user--v1.png" />
+        <img alt="last_name_img" class="ml-4" src="assets/user--v1.png" />
       </div>
       <span *ngIf="hasRequiredError('last_name')" class="label-text-alt text-red-400 pl-2">
         <b>Nachname</b> wird benötigt
@@ -50,7 +50,7 @@
       input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="username" placeholder="Firma" required
         type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="username_img" class="ml-4" src="https://img.icons8.com/fluency-systems-regular/24/000000/user.png" />
+        <img alt="username_img" class="ml-4" src="assets/user.png" />
       </div>
       <span *ngIf="hasRequiredError('username')" class="label-text-alt text-red-400 pl-2">
         <b>Firma</b> wird benötigt
@@ -62,9 +62,9 @@
         formControlName="password" minlength="8" placeholder="Passwort" required>
       <div class="absolute left-0 top-3 flex items-center">
         <img (click)="togglePwd()" *ngIf="showPassword" alt="show_password_img" class="ml-4 cursor-pointer"
-          src="https://img.icons8.com/small/24/000000/show-password.png" />
+          src="assets/show-password.png" />
         <img (click)="togglePwd()" *ngIf="!showPassword" alt="password_img" class="ml-4 cursor-pointer"
-          src="https://img.icons8.com/material-outlined/24/000000/password.png" />
+          src="assets/password.png" />
       </div>
       <span *ngIf="hasRequiredError('password')" class="label-text-alt text-red-400 pl-2">
         <b>Passwort</b> wird benötigt
@@ -78,7 +78,7 @@
         class="{{hasError('email') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="email" placeholder="E-Mail" required type="email">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="email_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/email.png" />
+        <img alt="email_img" class="ml-4" src="assets/email.png" />
       </div>
       <span *ngIf="hasRequiredError('email')" class="label-text-alt text-red-400 pl-2">
         <b>E-Mail</b> wird benötigt
@@ -93,7 +93,7 @@
         formControlName="employees_number" placeholder="Mitarbeiterzahl" required type="number">
       <div class="absolute left-0 top-3 flex items-center">
         <img class="ml-4"
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABNElEQVRIic3Vuy4FURTG8R9OojFCokCp0hGqo+MpiEqL8CYeQaKSeARq1KIg0UgkblG5RONWzCo4GWfvY07hn6xk1rf2nm/PrNl7+Eds4j5io9s3n8YZRiLOMJUzsTfTYBKHeIg4Cq1rjOMKi1iK67FuGsAsdiNmcif1ZY4bxTIm0I8BnOMlNTGnBws4waDy3R9hKLT5zAX+yjju0Ix8NUJotxK9SD3BOrZxHPlwhNB2sFbHoImDNvV9zNUxKHDTpn6t7M2vNBIGrbx2OL5jg61ODXKPij+TMrjEHlYqaitRu6y7iAVcVOgXUatNodxQrdwpj4za9OCpQn+OWltymvyJDz+/uAbeolbbgHK1xbd8MLQkuQaPLQZFaElyN9ojTvEeeZ/yf5Ak2aSgqFjMm+rm/+AL/VY3RaS19vkAAAAASUVORK5CYII=">
+          src="assets/person.png">
       </div>
       <span *ngIf="hasRequiredError('employees_number')" class="label-text-alt text-red-400 pl-2">
         <b>Mitarbeiterzahl</b> wird benötigt
@@ -104,7 +104,7 @@
         class="{{hasError('street') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="street" placeholder="Straße" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="crossroad" class="ml-4" src="https://img.icons8.com/ios/24/000000/crossroad.png" />
+        <img alt="crossroad" class="ml-4" src="assets/crossroad.png" />
       </div>
       <span *ngIf="hasRequiredError('street')" class="label-text-alt text-red-400 pl-2">
         <b>Straße</b> wird benötigt
@@ -116,7 +116,7 @@
         formControlName="house_number" placeholder="Hausnummer" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="house" class="ml-4"
-          src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/24/000000/external-house-ui-dreamstale-lineal-dreamstale.png" />
+          src="assets/external-house-ui-dreamstale-lineal-dreamstale.png" />
       </div>
       <span *ngIf="hasRequiredError('house_number')" class="label-text-alt text-red-400 pl-2">
         <b>Hausnummer</b> wird benötigt
@@ -128,7 +128,7 @@
         formControlName="city" placeholder="Stadt" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="city-buildings_img" class="ml-4"
-          src="https://img.icons8.com/material-outlined/24/000000/city-buildings.png" />
+          src="assets/city-buildings.png" />
       </div>
       <span *ngIf="hasRequiredError('city')" class="label-text-alt text-red-400 pl-2">
         <b>Stadt</b> wird benötigt
@@ -139,7 +139,7 @@
         class="{{hasError('postal_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="postal_code" placeholder="Postleitzahl" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="postcode_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/postcode.png" />
+        <img alt="postcode_img" class="ml-4" src="assets/postcode.png" />
       </div>
       <span *ngIf="hasRequiredError('postal_code')" class="label-text-alt text-red-400 pl-2">
         <b>Postleitzahl</b> wird benötigt
@@ -150,7 +150,7 @@
         class="{{hasError('phone') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="phone" placeholder="Telefon" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="apple-phone" class="ml-4" src="https://img.icons8.com/ios/25/000000/apple-phone.png" />
+        <img alt="apple-phone" class="ml-4" src="assets/apple-phone.png" />
       </div>
       <span *ngIf="hasRequiredError('phone')" class="label-text-alt text-red-400 pl-2">
         <b>Telefon</b> wird benötigt
@@ -161,7 +161,7 @@
         class="{{hasError('website') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="website" placeholder="Website" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="domain" class="ml-4" src="https://img.icons8.com/ios/24/000000/domain.png" />
+        <img alt="domain" class="ml-4" src="assets/domain.png" />
       </div>
       <span *ngIf="hasRequiredError('website')" class="label-text-alt text-red-400 pl-2">
         <b>Website</b> wird benötigt
@@ -172,7 +172,7 @@
         class="{{hasError('steuer_nr') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="steuer_nr" placeholder="Steuer Nr." required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="tax" class="ml-4" src="https://img.icons8.com/ios/24/000000/tax.png" />
+        <img alt="tax" class="ml-4" src="assets/tax.png" />
       </div>
       <span *ngIf="hasRequiredError('steuer_nr')" class="label-text-alt text-red-400 pl-2">
         <b>Steuer Nr.</b> wird benötigt
@@ -184,7 +184,7 @@
         formControlName="ust_Idnr" placeholder="USt. ID" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="identification-documents" class="ml-4"
-          src="https://img.icons8.com/ios/24/000000/identification-documents.png" />
+          src="assets/identification-documents.png" />
       </div>
       <span *ngIf="hasRequiredError('ust_Idnr')" class="label-text-alt text-red-400 pl-2">
         <b>USt. ID</b> wird benötigt
@@ -195,7 +195,7 @@
         class="{{hasError('geschaftsfuhrer') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="geschaftsfuhrer" placeholder="Ansprechpartner" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="manager" class="ml-4" src="https://img.icons8.com/ios/24/000000/manager.png" />
+        <img alt="manager" class="ml-4" src="assets/manager.png" />
       </div>
       <span *ngIf="hasRequiredError('geschaftsfuhrer')" class="label-text-alt text-red-400 pl-2">
         <b>Ansprechpartner</b> wird benötigt
@@ -206,7 +206,7 @@
         class="{{hasError('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="iban" placeholder="IBAN" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="cancel-4-digits" class="ml-4" src="https://img.icons8.com/ios/24/000000/cancel-4-digits.png" />
+        <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
       </div>
       <span *ngIf="hasRequiredError('iban')" class="label-text-alt text-red-400 pl-2">
         <b>IBAN</b> wird benötigt
@@ -218,7 +218,7 @@
         formControlName="bic_swift_code" placeholder="BIC/SWIFT-Code" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="swift-payment-system" class="ml-4"
-          src="https://img.icons8.com/ios/24/000000/swift-payment-system.png" />
+          src="assets/swift-payment-system.png" />
       </div>
       <span *ngIf="hasRequiredError('bic_swift_code')" class="label-text-alt text-red-400 pl-2">
         <b>BIC/SWIFT-Code</b> wird benötigt
@@ -229,7 +229,7 @@
         class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="hrb_walsrode" placeholder="HRB Nummer" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="hashtag-2" class="ml-4" src="https://img.icons8.com/ios/24/000000/hashtag-2.png" />
+        <img alt="hashtag-2" class="ml-4" src="assets/hashtag-2.png" />
       </div>
       <span *ngIf="hasRequiredError('hrb_walsrode')" class="label-text-alt text-red-400 pl-2">
         <b>HRB Nummer</b> wird benötigt

@@ -6,7 +6,7 @@
         <div class="w-24 h-24 mask mask-squircle ring ring-gray">
           <img *ngIf="showLogo else defaultImg" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom">
           <ng-template #defaultImg>
-            <img alt="user-profile-picture" src="https://img.icons8.com/ios/100/000000/user-male-circle.png"/>
+            <img alt="user-profile-picture" src="assets/user-male-circle.png"/>
           </ng-template>
         </div>
       </div>
@@ -20,7 +20,7 @@
       <input class="{{hasError('first_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
              formControlName="first_name" placeholder="Vorname" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="name_img" class="ml-4" src="https://img.icons8.com/ios/24/000000/user--v1.png"/>
+        <img alt="name_img" class="ml-4" src="assets/user--v1.png"/>
       </div>
       <span *ngIf="hasRequiredError('first_name')" class="label-text-alt text-red-400 pl-2">
       <b>Vorname</b> wird benötigt
@@ -30,7 +30,7 @@
       <input class="{{hasError('last_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full"
              formControlName="last_name" placeholder="Nachname" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="last_name_img" class="ml-4" src="https://img.icons8.com/ios/24/000000/user--v1.png"/>
+        <img alt="last_name_img" class="ml-4" src="assets/user--v1.png"/>
       </div>
       <span *ngIf="hasRequiredError('last_name')" class="label-text-alt text-red-400 pl-2">
       <b>Nachname</b> wird benötigt
@@ -40,7 +40,7 @@
       <input autocomplete="username" class="{{hasError('username') ? 'input-error' : 'input-primary'}}
     input pl-12 w-full" formControlName="username" placeholder="Firma" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="username_img" class="ml-4" src="https://img.icons8.com/fluency-systems-regular/24/000000/user.png"/>
+        <img alt="username_img" class="ml-4" src="assets/user.png"/>
       </div>
       <span *ngIf="hasRequiredError('username')" class="label-text-alt text-red-400 pl-2">
       <b>Firma</b> wird benötigt
