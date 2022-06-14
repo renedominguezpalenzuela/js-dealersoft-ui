@@ -617,7 +617,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe(() =>
         this.notificationService.riseNotification({
           color: 'success',
-          data: 'Car eliminated from stock',
+          data: 'Fahrzeug aus Lagerbestand entfernt',
         })
       );
   }
