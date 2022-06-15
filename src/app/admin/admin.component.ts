@@ -4,6 +4,7 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  isDevMode 
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { delay, filter } from 'rxjs';
@@ -154,7 +155,16 @@ export class AdminComponent implements OnInit {
 
   get imgPath(): string {
 
-    return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+    console.log("URL")
+    console.log(this.logo?.attributes.logo.data.attributes.url)
+
+    if (isDevMode()) {
+      console.log("DEV Mode")
+       return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+    } else {      
+      console.log("PROD Mode")
+     return `${this.logo?.attributes.logo.data.attributes.url}`;
+    }
   }
 
   ngOnInit(): void {
