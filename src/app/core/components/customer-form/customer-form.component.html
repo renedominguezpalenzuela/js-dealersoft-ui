@@ -33,6 +33,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Geburtsdatum</mat-label>
@@ -41,6 +42,14 @@
           <mat-datepicker #pickerDate></mat-datepicker>
         </mat-form-field>
       </div>
+
+      <div class="col-span-2">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Firmenname </mat-label>
+          <input formControlName="company_name" matInput>
+        </mat-form-field>
+      </div>
+
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Telefonnummer</mat-label>
@@ -111,6 +120,7 @@
           <input formControlName="country" matInput>
         </mat-form-field>
       </div>
+
       <div class="col-span-2">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Adresszusatz</mat-label>

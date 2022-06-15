@@ -32,6 +32,7 @@ export class CustomerFormComponent implements OnInit {
     country: ['', []],
     aditional_address: ['', []],
     user: [null, [Validators.required]],
+    company_name: ['', []]
   });
 
   constructor(

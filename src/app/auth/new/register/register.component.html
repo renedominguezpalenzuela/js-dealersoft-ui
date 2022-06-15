@@ -193,7 +193,7 @@
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('geschaftsfuhrer') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
-        formControlName="geschaftsfuhrer" placeholder="Ansprechpartner" required type="text">
+        formControlName="geschaftsfuhrer" placeholder="Geschäftsführer" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="manager" class="ml-4" src="assets/manager.png" />
       </div>
@@ -201,6 +201,8 @@
         <b>Ansprechpartner</b> wird benötigt
       </span>
     </div>
+
+
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
@@ -212,6 +214,19 @@
         <b>IBAN</b> wird benötigt
       </span>
     </div>
+
+    <div class="relative mt-3 col-span-2 sm:col-span-1">
+      <input
+        class="{{hasError('bank_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
+        formControlName="bank_name" placeholder="Name der Bank:" required type="text">
+      <div class="absolute left-0 top-3 flex items-center">
+        <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
+      </div>
+      <span *ngIf="hasRequiredError('bank_name')" class="label-text-alt text-red-400 pl-2">
+        <b>Name der Bank</b> wird benötigt
+      </span>
+    </div>
+
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('bic_swift_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
@@ -224,6 +239,11 @@
         <b>BIC/SWIFT-Code</b> wird benötigt
       </span>
     </div>
+
+     
+    
+
+
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
@@ -236,6 +256,7 @@
       </span>
     </div>
   </div>
+
   <div class="col-span-2 flex justify-center items-center mt-6">
     <button class="btn w-40 bg-[#3A4157] px-4  rounded-full" type="submit">
       <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>

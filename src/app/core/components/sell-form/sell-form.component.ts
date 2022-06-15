@@ -64,7 +64,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     client: [null, [Validators.required]],
     invoice_number: [null, [Validators.required, Validators.min(0)]],
     invoice_date: [null, [Validators.required]],
-    kv_date: [null, [Validators.required, Validators.min(0)]],
+    kv_date: [null, [ Validators.min(0)]],
     lieferung: [null, [Validators.required]],
     zahlunsart: [null, [Validators.required]],
 

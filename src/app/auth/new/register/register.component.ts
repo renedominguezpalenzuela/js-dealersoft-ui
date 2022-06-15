@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
     iban: [null, [Validators.required]],
     bic_swift_code: [null, [Validators.required]],
     hrb_walsrode: [null, [Validators.required]],
+    bank_name:[null, [Validators.required]]
   });
   public logoImg: File | undefined;
   public showLogo: boolean = false;
