@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   public registerForm = this.formBuilder.group({
     first_name: [null, [Validators.required]],
     last_name: [null, [Validators.required]],
-    username: [null, [Validators.required]],
+    company_name: [null, [Validators.required]],
     password: [null, [Validators.required, Validators.minLength(8)]],
     email: [null, [Validators.required, Validators.email]],
     employees_number: [null, [Validators.required]],
@@ -39,7 +39,8 @@ export class RegisterComponent implements OnInit {
     iban: [null, [Validators.required]],
     bic_swift_code: [null, [Validators.required]],
     hrb_walsrode: [null, [Validators.required]],
-    bank_name:[null, [Validators.required]]
+    bank_name:[null, [Validators.required]],
+    username:[null, [Validators.required]]
   });
   public logoImg: File | undefined;
   public showLogo: boolean = false;

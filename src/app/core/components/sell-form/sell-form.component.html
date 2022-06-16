@@ -170,6 +170,19 @@
               <mat-datepicker #pickerKvDate></mat-datepicker>
             </mat-form-field>
 
+
+            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+              <mat-label>KV-Datum</mat-label>
+              <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput >
+              <!-- <mat-error *ngIf="hasRequiredError('kv_date')">
+                <b>KV-Datum</b> wird benötigt
+              </mat-error> -->
+              <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
+              <mat-datepicker #pickerKvDate></mat-datepicker>
+            </mat-form-field>
+
+            
+
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
               <mat-label>Bemerkungen</mat-label>
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"

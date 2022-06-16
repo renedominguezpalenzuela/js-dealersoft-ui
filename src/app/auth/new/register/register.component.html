@@ -45,17 +45,32 @@
       </span>
     </div>
 
-    <div class="relative mt-3 col-span-2 sm:col-span-1">
-      <input autocomplete="username" class="{{hasError('username') ? 'input-error' : 'input-primary'}}
-      input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="username" placeholder="Firma" required
+    <div class="relative mt-3 col-span-2 ">
+      <input autocomplete="company_name" class="{{hasError('company_name') ? 'input-error' : 'input-primary'}}
+      input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="company_name" placeholder="Firma" required
         type="text">
       <div class="absolute left-0 top-3 flex items-center">
-        <img alt="username_img" class="ml-4" src="assets/user.png" />
+        <img alt="company_name_img" class="ml-4" src="assets/company.png" />
       </div>
-      <span *ngIf="hasRequiredError('username')" class="label-text-alt text-red-400 pl-2">
+      <span *ngIf="hasRequiredError('company_name')" class="label-text-alt text-red-400 pl-2">
         <b>Firma</b> wird benötigt
       </span>
     </div>
+
+
+    
+    <div class="relative mt-3 col-span-2 sm:col-span-1">
+      <input
+        class="{{hasError('username') ? 'input-error' : 'input-primary'}} input  pl-12 w-full rounded-full bg-[#1E253E] mycolor"
+        formControlName="username" placeholder="Nutzername" required type="text">
+      <div class="absolute left-0 top-3 flex items-center">
+        <img class="ml-4"  src="assets/user.png">
+      </div>
+      <span *ngIf="hasRequiredError('username')" class="label-text-alt text-red-400 pl-2">
+        <b>Nutzername</b> wird benötigt
+      </span>
+    </div>
+
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input [type]="showPassword ? 'text' : 'password'" autocomplete="new-password"
         class="{{hasError('password') ? 'input-error' : 'input-primary'}} rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
@@ -73,7 +88,10 @@
         <b>Passwort</b> muss mindestens 8 Zeichen lang sein
       </span>
     </div>
-    <div class="relative mt-3 col-span-2">
+
+
+
+    <div class="relative mt-3 col-span-2 ">
       <input
         class="{{hasError('email') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
         formControlName="email" placeholder="E-Mail" required type="email">
@@ -87,6 +105,10 @@
         <b>E-Mail</b> ist ungültig
       </span>
     </div>
+
+   
+
+
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('employees_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
@@ -99,6 +121,8 @@
         <b>Mitarbeiterzahl</b> wird benötigt
       </span>
     </div>
+
+
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('street') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
@@ -218,7 +242,7 @@
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input
         class="{{hasError('bank_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full bg-[#1E253E] mycolor"
-        formControlName="bank_name" placeholder="Name der Bank:" required type="text">
+        formControlName="bank_name" placeholder="Name der Bank" required type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
       </div>

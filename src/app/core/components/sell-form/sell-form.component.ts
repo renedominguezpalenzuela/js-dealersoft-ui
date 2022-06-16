@@ -64,7 +64,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     client: [null, [Validators.required]],
     invoice_number: [null, [Validators.required, Validators.min(0)]],
     invoice_date: [null, [Validators.required]],
-    kv_date: [null, [ Validators.min(0)]],
+    kv_date: [null, [Validators.min(0)]],
     lieferung: [null, [Validators.required]],
     zahlunsart: [null, [Validators.required]],
 
@@ -136,8 +136,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     let vGross_sell: number = this.carSellForm.get('gross_sell')!.value;
     let vIva: number = this.carSellForm.get('iva')!.value;
 
-    
-    if (vNet_sell != null && vNet_sell!=0) {
+    if (vNet_sell != null && vNet_sell != 0) {
       vIva = Number(vNet_sell * this.factorIva);
       vGross_sell = Number(vNet_sell) + vIva;
       this.carSellForm.patchValue({
@@ -145,9 +144,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         gross_sell: vGross_sell.toFixed(this.total_decimales),
       });
     } else {
-     
-      if (vGross_sell != null && vGross_sell != 0) {       
-        vNet_sell = vGross_sell /(1 + this.factorIva) ; 
+      if (vGross_sell != null && vGross_sell != 0) {
+        vNet_sell = vGross_sell / (1 + this.factorIva);
         vIva = vGross_sell - vNet_sell;
         this.carSellForm.patchValue({
           iva_sell: vIva.toFixed(this.total_decimales),
@@ -578,7 +576,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             .subscribe(() =>
               //Actualizar el carro -- campo selled = true
               {
-                this.actualizarCarSelled(this.carSellForm.value.car);
+                this.actualizarCarSelled(this.carSellForm.value.car, true);
                 this.notificationService.riseNotification({
                   color: 'success',
                   data: 'Neuwagen eingelagert verkauft',
@@ -594,7 +592,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             )
             .subscribe(() => {
               //Actualizar el carro -- campo selled = true
-              this.actualizarCarSelled(this.carSellForm.value.car);
+              this.actualizarCarSelled(this.carSellForm.value.car, false);
 
               this.notificationService.riseNotification({
                 color: 'success',
@@ -611,15 +609,17 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
   }
 
-  public actualizarCarSelled(carID: any) {
+  public actualizarCarSelled(carID: any, showMessage: boolean) {
     this.requestService
       .Put(this.apiHelperService.carsURL + '/' + carID, { selled: true })
-      .subscribe(() =>
-        this.notificationService.riseNotification({
-          color: 'success',
-          data: 'Fahrzeug aus Lagerbestand entfernt',
-        })
-      );
+      .subscribe(() => {
+        if (showMessage) {
+          this.notificationService.riseNotification({
+            color: 'success',
+            data: 'Fahrzeug aus Lagerbestand entfernt',
+          });
+        }
+      });
   }
 
   public addCustomer = ($event: MouseEvent) => {
