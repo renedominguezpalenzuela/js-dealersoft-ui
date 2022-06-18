@@ -1,0 +1,23 @@
+
+    <div class="flex justify-between my-3 text-xs">
+        <div class="w-1/3">
+          <p>{{me?.street}} {{me?.house_number}}, {{me?.postal_code}}</p>
+          <p>Tel: {{me?.phone}}</p>
+          <p>{{me?.email}}</p>
+          <p>
+            <a class="text-green-600" href="https://{{me?.website}}" target="_blank">{{me?.website}}</a>
+          </p>
+        </div>
+        <div class="w-1/3">
+          <p>Steuer-Nr.: {{me?.steuer_nr}}</p>
+          <p>Ust-IdNr.: {{me?.ust_Idnr}}</p>
+          <p>HRB: {{me?.hrb_walsrode}}</p>
+          <p>Geschäftsführer: {{me?.geschaftsfuhrer}}</p>
+        </div>
+        <div class="w-1/3">
+          <p>IBAN: {{me?.iban}}</p>
+          <p>BIC/SWIFT-Code: {{me?.bic_swift_code}}</p>
+          <p>IBAN: {{me?.syke_iban}}</p>
+          <p>BIC/Swift-code: {{me?.bic_swift_code_2}}</p>
+        </div>
+      </div>

@@ -31,6 +31,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvoiceInfoComponent } from './components/invoice-info/invoice-info.component';
 import { MatTabsModule } from '@angular/material/tabs';
+// import { FooterPrivadoComponent } from './pages/reportes/componentes/footer-privado/footer-privado.component';
+// import { FooterEmpresaComponent } from './pages/reportes/componentes/footer-empresa/footer-empresa.component';
+
 
 
 @NgModule({
@@ -76,7 +79,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     BuyFormComponent,
     SellFormComponent,
     SaveDomPipe,
-    InvoiceInfoComponent
+    InvoiceInfoComponent,
+   
+    // FooterEmpresaComponent,
+
   ]
 })
 export class CoreModule {

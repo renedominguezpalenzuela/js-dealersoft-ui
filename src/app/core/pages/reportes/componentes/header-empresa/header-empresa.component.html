@@ -1,0 +1,37 @@
+<header class="w-full grid grid-cols-2  ">
+
+    <div class="col-span-2 row-start-1  underline header-user-data pt-4">
+        
+            {{me?.company_name}} - {{me?.street}} {{me?.house_number}} - {{me?.postal_code}} {{me?.city}}
+        
+    </div>
+
+
+    <div class="col-start-1 row-start-2  flex justify-between items-center  header-client-data ">
+        <div>
+            <div>Firma</div>
+            <div>{{car_buy_data?.attributes?.client?.data?.attributes?.company_name}}</div>
+            <div><span> {{car_buy_data?.attributes?.client?.data?.attributes?.street}} </span>
+                <span>{{car_buy_data?.attributes?.client?.data?.attributes?.house_number}}</span></div>
+            <div><span> {{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}} </span>
+                <span>{{car_buy_data?.attributes?.client?.data?.attributes?.city}}</span></div>
+            <div>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</div>
+
+
+
+            <!-- <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
+            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
+            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
+                {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
+            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
+            <p>
+            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.tax_number}}</p> -->
+        </div>
+    </div>
+
+    
+    <div class="col-start-2 row-start-2   flex justify-end">
+        <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="header-logo">
+    </div>
+
+</header>

@@ -131,32 +131,38 @@ iframe {
 
 // Stripe Payment Design [End]
 
-
-
 .main-color {
-  background-color: #121a34!important;
-  
+  background-color: #121a34 !important;
 }
-
 
 @font-face {
   font-family: "Montserrat-Regular";
-  src: local("Montserrat-Regular"), url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  src: local("Montserrat-Regular"),
+    url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
 }
-
 
 @font-face {
   font-family: "Montserrat-ExtraBold";
-  src: local("Montserrat-ExtraBold"), url("/assets/fonts/Montserrat-ExtraBold.ttf") format("truetype");
+  src: local("Montserrat-ExtraBold"),
+    url("/assets/fonts/Montserrat-ExtraBold.ttf") format("truetype");
 }
-
 
 @font-face {
   font-family: "HelveticaLTStd-Bold";
-  src: local("HelveticaLTStd-Bold"), url("/assets/fonts/HelveticaLTStd-Bold.otf") format("opentype");
+  src: local("HelveticaLTStd-Bold"),
+    url("/assets/fonts/HelveticaLTStd-Bold.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"), url("/assets/fonts/Helvetica.ttf") format("truetype");
+}
 
+@font-face {
+  font-family: "Helvetica-Bold";
+  src: local("Helvetica-Bold"),
+    url("/assets/fonts/Helvetica-Bold.ttf") format("truetype");
+}
 
 /* Degradado */
 .fondo {
@@ -169,7 +175,38 @@ iframe {
   border-radius: 32px;
 }
 
-
 .preserve-line-break {
   white-space: pre-wrap;
-  }
+}
+
+.header-client-data {
+  font-size: 0.8rem;
+  font-family: "Helvetica" !important;
+  line-height: 0.95rem;
+}
+
+.header-user-data {
+  font-size: 0.9rem;
+  font-family: "Helvetica" !important;
+
+  line-height: 1.3rem;
+}
+
+.header-logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+.box01 {
+  font-size: 1.2rem!important;
+  font-family: "Helvetica" !important;
+
+
+}
+
+.text-sm-nospace {
+  font-size: 0.7rem!important; /* 14px */
+  line-height: 0.9rem!important; 
+}

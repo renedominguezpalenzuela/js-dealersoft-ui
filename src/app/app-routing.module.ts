@@ -59,6 +59,11 @@ const routes: Routes = [
     path: 'export/private/:jwt',
     loadChildren: () => import('./core/pages/tables-export/private/private.module').then(m => m.PrivateExportModule)
   },
+   // Rutas de Reportes nuevos
+  {
+    path: 'export/gewerbe',
+    loadChildren: () => import('./core/pages/reportes/main/main.module').then(m => m.MainModule)
+  },
   {
     path: 'stripe-payment',
     loadChildren: () => import('./core/pages/stripe-payment/stripe-payment.module').then(m => m.StripePaymentModule),

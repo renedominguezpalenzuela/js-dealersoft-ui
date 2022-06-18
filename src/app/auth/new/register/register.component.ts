@@ -185,7 +185,7 @@ export class RegisterComponent implements OnInit {
 
           form.append('files', <File>this.logoImg);
 
-          console.log(this.logoImg);
+          
 
           this.requestService
             .POSTUpload(this.apiHelperService.uploadFilesURL, form)

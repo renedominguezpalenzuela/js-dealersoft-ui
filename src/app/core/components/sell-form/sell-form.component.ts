@@ -9,6 +9,8 @@ import {
   ViewChild,
 } from '@angular/core';
 
+import { MatTabChangeEvent } from '@angular/material/tabs';
+
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Car, Customer, FilterDeepOption } from '@core/interfaces';
@@ -53,6 +55,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   car_id = 0;
 
+  selected_tab = 0;
+  selected_option_a25 = false;
+  selected_option_MnSt = false;
+  selected_option_Export = false;
+
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
 
@@ -84,6 +91,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     bemerkunhen2: [null],
     bemerkunhen2page: [null],
     selled: [true],
+    abholtermin: [null, [Validators.min(0)]],
   });
   // public factorNet: number = 0.8403;
   // public factorIva: number = 0.1597;
@@ -114,9 +122,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   ) {
     this.route = route;
     this.route.params.subscribe((params) => {
-      this.existeCompraConA25 = Boolean(
-        JSON.parse(params['existeCompraConA25'])
-      );
+      if (params['existeCompraConA25'] != null) {
+        this.existeCompraConA25 = Boolean(
+          JSON.parse(params['existeCompraConA25'])
+        );
+      }
 
       this.actualizando_radio_buttons = true;
       if (this.existeCompraConA25) {
@@ -178,6 +188,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     // this.carSellForm.updateValueAndValidity();
     this.isIvaActive = true;
     this.calcularIVA();
+
+    this.selected_option_a25 = false;
+    this.selected_option_Export = false;
+    this.selected_option_MnSt = true;
   }
 
   public activarExport() {
@@ -202,6 +216,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     // this.carSellForm.updateValueAndValidity();
     this.isIvaActive = false;
     // this.calcularIVA();
+
+    this.selected_option_a25 = false;
+    this.selected_option_Export = true;
+    this.selected_option_MnSt = false;
   }
 
   public desactivarIVA() {
@@ -217,7 +235,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.carSellForm.get('gross_sell')!.removeValidators(Validators.required);
     this.carSellForm.get('gross_sell')!.disable();
 
-    this.carSellForm.patchValue({ gross_buy: null, iva_buy: null });
+    this.carSellForm.patchValue({ gross_sell: null, iva_sell: null });
     // this.carSellForm.updateValueAndValidity();
 
     this.isIvaActive = false;
@@ -242,10 +260,14 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.carSellForm.get('gross_sell')!.addValidators(Validators.required);
     this.carSellForm.get('gross_sell')!.enable();
 
-    this.carSellForm.patchValue({ gross_buy: null, iva_buy: null });
+    this.carSellForm.patchValue({ net_sell: null, iva_sell: null });
     // this.carSellForm.updateValueAndValidity();
 
     this.isIvaActive = false;
+
+    this.selected_option_a25 = true;
+    this.selected_option_Export = false;
+    this.selected_option_MnSt = false;
   }
 
   ngOnInit(): void {
@@ -265,7 +287,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.carSellForm.patchValue({ export: false, iva: true });
         this.activarIVA();
       }
+
       this.actualizando_radio_buttons = false;
+
+      this.printOptions();
     });
 
     this.carSellForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
@@ -280,7 +305,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.carSellForm.patchValue({ export: true, a25: false });
         this.activarExport();
       }
+
       this.actualizando_radio_buttons = false;
+
+      this.printOptions();
     });
 
     this.carSellForm
@@ -298,6 +326,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.actualizando_radio_buttons = false;
+
+        this.printOptions();
       });
 
     this.carSellForm.get('net_sell')!.valueChanges.subscribe(() => {
@@ -470,7 +500,19 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  printOptions() {
+    // console.log('a25:    ' + this.selected_option_a25);
+    // console.log('iva:    ' + this.selected_option_MnSt);
+    // console.log('export: ' + this.selected_option_Export);
+  }
+
   ngAfterViewInit(): void {
+    this.selected_option_a25 = this.carSellForm.get('a25')!.value;
+    this.selected_option_MnSt = this.carSellForm.get('iva')!.value;
+    this.selected_option_Export = this.carSellForm.get('export')!.value;
+
+    this.printOptions();
+
     fromEvent(this.autoComplete!.nativeElement, 'input')
       .pipe(distinctUntilChanged(), debounceTime(150))
       .subscribe(($event: any) => {
@@ -663,9 +705,33 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   };
 
   public generatePdf(type: ExportType) {
+
+  
+
+    let tipo = '';
+
+    switch (type) {
+      case 'privado':
+        break;
+
+      case 'gewerbe':
+        tipo = 'gewerbe/a25';
+
+        break;
+
+      case 'export':
+        break;
+
+      case 'ue-export':
+        break;
+
+      default:
+        break;
+    }
+
     this.requestService
       .downloadPDF(this.apiHelperService.pdfURL, {
-        type: type,
+        type: tipo,
         id: <string>this.car_data?.id,
       })
       .subscribe((res) => {
@@ -776,5 +842,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.focus_iva = false;
         break;
     }
+  }
+
+  //determinar que tab fue seleccionado
+  onTabChange(event: MatTabChangeEvent) {
+    this.selected_tab = event.index;
   }
 }
