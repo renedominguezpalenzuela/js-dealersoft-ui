@@ -56,6 +56,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   car_id = 0;
 
   selected_tab = 0;
+
   selected_option_a25 = false;
   selected_option_MnSt = false;
   selected_option_Export = false;
@@ -512,6 +513,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.selected_option_Export = this.carSellForm.get('export')!.value;
 
     this.printOptions();
+
 
     fromEvent(this.autoComplete!.nativeElement, 'input')
       .pipe(distinctUntilChanged(), debounceTime(150))
