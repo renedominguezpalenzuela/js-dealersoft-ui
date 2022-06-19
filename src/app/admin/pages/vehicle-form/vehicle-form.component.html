@@ -1,7 +1,8 @@
 <div class="card shadow-lg bg-white m-0.5 sm:m-5 mb-8">
   <div class="md:card-body">
+    
     <mat-tab-group (selectedTabChange)="updateQueryParams($event)" [(selectedIndex)]="tabIndex"
-                   animationDuration="750ms" dynamicHeight [color]="'red'">
+                   animationDuration="250ms" >
       <mat-tab label="Fahrzeugdaten">
         <app-new-vehicle [car]="car"></app-new-vehicle>
       </mat-tab>

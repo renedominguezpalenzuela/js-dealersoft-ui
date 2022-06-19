@@ -1,4 +1,4 @@
-<div class="pt-4 pb-6 px-20 mt-8">
+<div class="pt-4 px-20 mt-8">
 
 
 
@@ -14,14 +14,14 @@
       Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:
     </p>
 
-   <!-- CAR Details -->
+    <!-- CAR Details -->
 
-   <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info" ></app-car-details>
+    <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
 
 
 
-<!-- Precio neto -->
-<app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
+    <!-- Precio neto -->
+    <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
 
 
     <div class="text-sm-nospace flex justify-center mt-4">
@@ -34,10 +34,10 @@
       Gerichtsstand ist {{me?.city}}.
     </div>
 
-   <!-- Firma -->
-   <app-firma></app-firma>
+    <!-- Firma -->
+    <app-firma></app-firma>
 
-   <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me" ></app-footer-empresa>
+    <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
 
   </main>
 
