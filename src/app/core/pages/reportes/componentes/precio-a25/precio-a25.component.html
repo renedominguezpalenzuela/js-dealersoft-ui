@@ -1,0 +1,11 @@
+
+    <div class="flex border-2 border-black justify-between items-center p-4 mt-3 text-sm-nospace ">
+        <div>
+          <p class="font-bold">Fahrzeugpreis:</p>
+          <p>Der Verkauf erfolgt nach §25a UStG</p>
+          <p>Gebrauchtgegenstände/Sonderregelung</p>
+        </div>
+  
+        <p class="font-bold">Gesamt: </p>
+        <p class="font-bold mr-10">{{car_buy_data?.attributes?.gross_sell || 0 | currency}}</p>
+      </div>

@@ -501,9 +501,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   printOptions() {
-    // console.log('a25:    ' + this.selected_option_a25);
-    // console.log('iva:    ' + this.selected_option_MnSt);
-    // console.log('export: ' + this.selected_option_Export);
+    console.log('a25:    ' + this.selected_option_a25);
+    console.log('iva:    ' + this.selected_option_MnSt);
+    console.log('export: ' + this.selected_option_Export);
   }
 
   ngAfterViewInit(): void {
@@ -704,18 +704,41 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return '';
   };
 
+  // selected_tab = 0; Rechnung
+  // selected_tab = 1; Kaufvertrag
+  // selected_option_a25 = false;
+  // selected_option_MnSt = false;
+  // selected_option_Export = false;
+
   public generatePdf(type: ExportType) {
-
-  
-
-    let tipo = '';
+    let tipo = '/';
 
     switch (type) {
       case 'privado':
+        if (this.selected_tab == 0) {
+          if (this.selected_option_a25) {
+            tipo = 'reports/rechnung/a25';
+          }
+
+          if (this.selected_option_MnSt) {
+            tipo = 'reports/rechnung/iva';
+          }
+        }
+
+        if (this.selected_tab == 1) {
+          if (this.selected_option_a25) {
+            tipo = 'reports/kaufvertrag/a25';
+          }
+
+          if (this.selected_option_MnSt) {
+            tipo = 'reports/kaufvertrag/iva';
+          }
+        }
+
         break;
 
       case 'gewerbe':
-        tipo = 'gewerbe/a25';
+        tipo = 'reports/gewerbe/a25';
 
         break;
 
@@ -727,6 +750,14 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       default:
         break;
+    }
+
+    if (tipo == '/') {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Report not defined yet',
+      });
+      return;
     }
 
     this.requestService
@@ -847,5 +878,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //determinar que tab fue seleccionado
   onTabChange(event: MatTabChangeEvent) {
     this.selected_tab = event.index;
+    console.log('Selected tab');
+    console.log(this.selected_tab);
   }
 }

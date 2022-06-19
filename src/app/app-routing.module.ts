@@ -61,7 +61,7 @@ const routes: Routes = [
   },
    // Rutas de Reportes nuevos
   {
-    path: 'export/gewerbe',
+    path: 'export/reports',
     loadChildren: () => import('./core/pages/reportes/main/main.module').then(m => m.MainModule)
   },
   {

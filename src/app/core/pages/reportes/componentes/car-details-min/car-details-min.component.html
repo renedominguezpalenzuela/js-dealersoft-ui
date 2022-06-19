@@ -1,0 +1,26 @@
+<table class="mt-1 mb-8 text-sm" style="text-align: left">
+
+    <tr class="text-car-details">
+        <th class="pr-4 font-bold ">Fahrzeugtyp: </th>
+        <td>{{car_info?.attributes?.name}}</td>
+    </tr>
+    <tr class="text-car-details">
+        <th class="pr-4 font-bold">FahrgesteII-Nr: </th>
+        <td>{{car_info?.attributes?.car_identifier}}</td>
+    </tr>
+    <tr class="text-car-details">
+        <th class="pr-4 font-bold">Erstzulassung:</th>
+        <td>{{car_info?.attributes?.first_register_date | date:'dd.MM.yyyy'}}</td>
+    </tr>
+
+
+
+    <tr class="text-car-details">
+        <th class="pr-4 font-bold"> abgelesener KM-Stand: </th>
+        <td>{{car_info?.attributes?.kilometres}} km </td>
+    </tr>
+
+
+
+
+</table>

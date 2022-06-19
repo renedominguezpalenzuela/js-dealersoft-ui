@@ -31,8 +31,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvoiceInfoComponent } from './components/invoice-info/invoice-info.component';
 import { MatTabsModule } from '@angular/material/tabs';
-// import { FooterPrivadoComponent } from './pages/reportes/componentes/footer-privado/footer-privado.component';
-// import { FooterEmpresaComponent } from './pages/reportes/componentes/footer-empresa/footer-empresa.component';
+import { FirmaComponent } from './pages/reportes/componentes/firma/firma.component';
+import { InvoiceFechaComponent } from './pages/reportes/componentes/invoice-fecha/invoice-fecha.component';
+import { CarDetailsMinComponent } from './pages/reportes/componentes/car-details-min/car-details-min.component';
+import { PrecioA25Component } from './pages/reportes/componentes/precio-a25/precio-a25.component';
+
 
 
 
@@ -64,7 +67,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     NestedPropertyPipe,
     BuyFormComponent,
     SellFormComponent,
-    SaveDomPipe
+    SaveDomPipe,
+    FirmaComponent,
+    CarDetailsMinComponent,
+    PrecioA25Component
   ],
   declarations: [
     DynamicTableComponent,
@@ -80,6 +86,12 @@ import { MatTabsModule } from '@angular/material/tabs';
     SellFormComponent,
     SaveDomPipe,
     InvoiceInfoComponent,
+    FirmaComponent,
+    InvoiceFechaComponent,
+    CarDetailsMinComponent,
+    PrecioA25Component,
+
+    
    
     // FooterEmpresaComponent,
 

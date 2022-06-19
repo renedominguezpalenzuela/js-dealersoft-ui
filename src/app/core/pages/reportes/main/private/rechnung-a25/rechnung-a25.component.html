@@ -1,0 +1,59 @@
+<div class="pt-4 pb-6 px-20 mt-8">
+
+
+
+    <!-- <app-header-empresa [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-empresa> -->
+
+    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+    <main class="pt-3 ">
+
+        <!-- Contrato fecha -->
+        <app-contrato-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha>
+
+        <p class="flex text-center mt-4 text-sm-nospace mx-2">
+            Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende,
+            gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Ausschluß jeglicher Gewährleistung im Hinblick auf
+            sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen.
+        </p>
+
+        <p class="flex text-center mt-4 text-sm-nospace font-bold mx-4">
+            Es handelt sich hierbei um ein Geschäft unter Voll-Kaufleuten und fällt somit nicht unter das EU-
+            Gewährleistungsgesetz!
+        </p>
+
+
+        <div class="mt-8 ">
+            <app-car-details-min [car_info]="car_info"></app-car-details-min>
+
+
+        </div>
+
+
+        <!-- Precio neto -->
+        <div class="mt-8 ">
+            <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
+
+
+
+        </div>
+
+        <div class="mt-28 ">
+            
+            <table class="mt-1 mb-8 text-sm" style="text-align: left">
+
+                <tr class="text-car-details">
+                    <th class="pr-4 font-bold ">Lieferdatum: </th>
+                    <td>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</td>
+                </tr>
+                </table>
+
+        </div>
+
+        <div class="mt-56 ">
+        <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me" ></app-footer-empresa>
+        </div>
+
+
+    </main>
+
+</div>
