@@ -35,6 +35,8 @@ import { FirmaComponent } from './pages/reportes/componentes/firma/firma.compone
 import { InvoiceFechaComponent } from './pages/reportes/componentes/invoice-fecha/invoice-fecha.component';
 import { CarDetailsMinComponent } from './pages/reportes/componentes/car-details-min/car-details-min.component';
 import { PrecioA25Component } from './pages/reportes/componentes/precio-a25/precio-a25.component';
+import { PrecioIvaComponent } from './pages/reportes/componentes/precio-iva/precio-iva.component';
+import { Contrato2FechaComponent } from './pages/reportes/componentes/contrato2-fecha/contrato2-fecha.component';
 
 
 
@@ -71,7 +73,9 @@ import { PrecioA25Component } from './pages/reportes/componentes/precio-a25/prec
     FirmaComponent,
     CarDetailsMinComponent,
     PrecioA25Component,
-    InvoiceFechaComponent
+    InvoiceFechaComponent,
+    PrecioIvaComponent,
+    Contrato2FechaComponent
   ],
   declarations: [
     DynamicTableComponent,
@@ -91,6 +95,8 @@ import { PrecioA25Component } from './pages/reportes/componentes/precio-a25/prec
     InvoiceFechaComponent,
     CarDetailsMinComponent,
     PrecioA25Component,
+    PrecioIvaComponent,
+    Contrato2FechaComponent,
 
     
    

@@ -1,1 +1,47 @@
-<p>kaufvertrag-iva works!</p>
+<div class="pt-4 px-20 mt-8">
+
+    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+
+    
+    <main class="pt-3 ">
+
+        <!-- Contrato fecha -->
+        <app-contrato2-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato2-fecha>
+
+        <p class="flex  mt-4 text-sm-nospace mx-2">
+            Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{me?.company_name}} folgendes Fahrzeug: 
+        </p>
+
+      
+
+        <div class="mt-8 ">
+            <app-car-details [car_info]="car_info"></app-car-details>
+        </div>
+
+
+        <!-- Precio neto -->
+        <div class="mt-8 ">
+            <app-precio-iva [car_buy_data]="car_buy_data"></app-precio-iva>
+        </div>
+
+       
+        <p class="flex  mt-4 text-sm-nospace mx-2">
+            Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren.
+        </p>
+        <p class="text-sm-nospace mx-2">
+            Gerichtsstand ist {{me?.city}}
+        </p>
+
+        <div class="">
+        <app-firma></app-firma>
+        </div>
+
+
+        <div class="mt-20 ">
+            <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+        </div>
+
+
+    </main>
+
+</div>
