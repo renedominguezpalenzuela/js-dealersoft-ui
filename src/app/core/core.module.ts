@@ -70,7 +70,8 @@ import { PrecioA25Component } from './pages/reportes/componentes/precio-a25/prec
     SaveDomPipe,
     FirmaComponent,
     CarDetailsMinComponent,
-    PrecioA25Component
+    PrecioA25Component,
+    InvoiceFechaComponent
   ],
   declarations: [
     DynamicTableComponent,

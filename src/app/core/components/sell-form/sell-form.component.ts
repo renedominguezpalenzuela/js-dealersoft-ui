@@ -742,13 +742,25 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         break;
 
-      case 'export':
+      case 'netto':
+        if (this.selected_tab == 0) {
+          tipo = 'reports/netto/rechnung/export';
+        } else {
+          tipo = 'reports/netto/kaufvertrag/export';
+        }
         break;
 
-      case 'ue-export':
+      case 'netto-eu':
+        if (this.selected_tab == 0) {
+          tipo = 'reports/netto-eu/rechnung/export';
+        } else {
+          tipo = 'reports/netto-eu/kaufvertrag/export';
+        }
+
         break;
 
       default:
+        tipo = '/';
         break;
     }
 

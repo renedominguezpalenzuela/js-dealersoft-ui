@@ -68,7 +68,7 @@ export enum ExportType {
   invoice = 'invoice',
   bot_gewerbe = 'gewerbe',
   bot_privado = 'privado',
-  bot_export = 'export',
-  bot_ue_export = 'ue-export',
+  bot_netto = 'netto',
+  bot_netto_eu = 'netto-eu',
 
 }

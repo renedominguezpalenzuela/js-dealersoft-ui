@@ -16,6 +16,18 @@ import { CoreModule } from '@core/core.module';
  import {FooterPrivadoComponent} from '../componentes/footer-privado/footer-privado.component';
  import { CarDetailsComponent } from '../componentes/car-details/car-details.component';
  import { ContratoFechaComponent } from '../componentes/contrato-fecha/contrato-fecha.component';
+
+
+
+import { NettoKaufvertragExportComponent } from './netto/netto-kaufvertrag-export/netto-kaufvertrag-export.component';
+import { NettoRechnungExportComponent } from './netto/netto-rechnung-export/netto-rechnung-export.component';
+
+
+import {  NettoEuRechnungExportComponent} from './netto-eu/netto-eu-rechnung-export/netto-eu-rechnung-export.component';
+import { NettoEuKaufvertragExportComponent } from './netto-eu/netto-eu-kaufvertrag-export/netto-eu-kaufvertrag-export.component';
+
+
+ 
 // import { IvaComponent } from './private/rechnung/iva/iva.component';
 // import { HeaderEmpresaComponent } from './pages/reportes/componentes/header-empresa/header-empresa.component';
 // import { HeaderPrivadoComponent } from './pages/reportes/componentes/header-privado/header-privado.component';
@@ -25,10 +37,21 @@ import { CoreModule } from '@core/core.module';
 
 const routes: Routes = [
   { path: 'gewerbe/a25/:jwt', component: A25Component },
+
+  //Private 
   { path: 'kaufvertrag/a25/:jwt', component: KaufvertragA25Component },
   { path: 'kaufvertrag/iva/:jwt', component: KaufvertragIvaComponent },
   { path: 'rechnung/a25/:jwt', component: RechnungA25Component },
-  { path: 'rechnung/iva/:jwt', component: RechnungIvaComponent }
+  { path: 'rechnung/iva/:jwt', component: RechnungIvaComponent },
+
+  //netto
+   { path: 'netto/rechnung/export/:jwt', component: NettoRechnungExportComponent },
+   { path: 'netto/kaufvertrag/export/:jwt', component: NettoKaufvertragExportComponent },
+
+   //netto
+   { path: 'netto-eu/rechnung/export/:jwt', component: NettoEuRechnungExportComponent },
+   { path: 'netto-eu/kaufvertrag/export/:jwt', component: NettoEuKaufvertragExportComponent },
+
 ];
 
   // const routes: Routes = [{ path: 'a25', component: A25Component }];
@@ -47,7 +70,8 @@ const routes: Routes = [
     KaufvertragA25Component,
     KaufvertragIvaComponent,
     RechnungA25Component,
-    RechnungIvaComponent
+    RechnungIvaComponent,
+ 
 
 
     
