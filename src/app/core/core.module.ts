@@ -37,6 +37,10 @@ import { CarDetailsMinComponent } from './pages/reportes/componentes/car-details
 import { PrecioA25Component } from './pages/reportes/componentes/precio-a25/precio-a25.component';
 import { PrecioIvaComponent } from './pages/reportes/componentes/precio-iva/precio-iva.component';
 import { Contrato2FechaComponent } from './pages/reportes/componentes/contrato2-fecha/contrato2-fecha.component';
+import { PrecioNettoComponent } from './pages/reportes/componentes/precio-netto/precio-netto.component';
+import { PrecioNettoEuComponent } from './pages/reportes/componentes/precio-netto-eu/precio-netto-eu.component';
+import { PrecioNetto2Component } from './pages/reportes/componentes/precio-netto2/precio-netto2.component';
+import { PrecioNettoEu2Component } from './pages/reportes/componentes/precio-netto-eu2/precio-netto-eu2.component';
 
 
 
@@ -75,7 +79,11 @@ import { Contrato2FechaComponent } from './pages/reportes/componentes/contrato2-
     PrecioA25Component,
     InvoiceFechaComponent,
     PrecioIvaComponent,
-    Contrato2FechaComponent
+    Contrato2FechaComponent,
+    PrecioNettoComponent,
+    PrecioNettoEuComponent,
+    PrecioNetto2Component,
+    PrecioNettoEu2Component
   ],
   declarations: [
     DynamicTableComponent,
@@ -97,6 +105,10 @@ import { Contrato2FechaComponent } from './pages/reportes/componentes/contrato2-
     PrecioA25Component,
     PrecioIvaComponent,
     Contrato2FechaComponent,
+    PrecioNettoComponent,
+    PrecioNettoEuComponent,
+    PrecioNetto2Component,
+    PrecioNettoEu2Component,
 
     
    

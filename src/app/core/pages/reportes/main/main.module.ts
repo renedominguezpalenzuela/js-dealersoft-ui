@@ -71,6 +71,10 @@ const routes: Routes = [
     KaufvertragIvaComponent,
     RechnungA25Component,
     RechnungIvaComponent,
+    NettoKaufvertragExportComponent,
+    NettoRechnungExportComponent,
+    NettoEuRechnungExportComponent,
+    NettoEuKaufvertragExportComponent
  
 
 

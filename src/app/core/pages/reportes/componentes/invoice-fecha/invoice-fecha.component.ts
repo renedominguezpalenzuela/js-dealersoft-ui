@@ -12,6 +12,8 @@ export class InvoiceFechaComponent implements OnInit {
   @Input() car_buy_data: any;
   @Input() me: any;
   ngOnInit(): void {
+
+    
   }
 
 }
