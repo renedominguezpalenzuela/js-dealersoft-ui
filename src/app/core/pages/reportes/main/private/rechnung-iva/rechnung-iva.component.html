@@ -6,12 +6,16 @@
         <!-- Contrato fecha -->
         <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
 
-        <p class="flex text-center mt-4 text-sm-nospace mx-2">
-            Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Ausschluß jeglicher Gewährleistung im Hinblick auf sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen.
+        <p class=" text-center mt-4 text-details mx-2">            
+            Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt und Probe gefahren. Er erkennt an, dass der Kaufgegenstand am Lieferungstag keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist. 
         </p>
 
-        <p class="flex text-center mt-4 text-sm-nospace font-bold mx-4">
-            Es handelt sich hierbei um ein Geschäft unter Voll-Kaufleuten und fällt somit nicht unter das EU Gewährleistungsgesetz!
+        <p class=" text-center mt-4 text-sm-nospace text-details-bold mx-12">
+            -Verschleiß unterliegt nicht der Gewährleistungspflicht-
+        </p>
+
+        <p class=" text-center mt-2 text-sm-nospace text-details mx-4">
+            Gerichtsstand ist {{me?.city}}
         </p>
 
 
@@ -27,10 +31,10 @@
 
         <div class="mt-28 ">
 
-            <table class="mt-1 mb-8 text-sm" style="text-align: left">
+            <table class="mt-1 mb-8" style="text-align: left">
 
                 <tr class="text-car-details">
-                    <th class="pr-4 font-bold ">Lieferdatum: </th>
+                    <th class="pr-4 text-car-bold ">Lieferdatum: </th>
                     <td>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</td>
                 </tr>
             </table>

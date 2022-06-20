@@ -11,7 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SaveDomPipe } from '@core/pipes';
 import { CoreModule } from '@core/core.module';
 
- import {FooterEmpresaComponent} from '../componentes/footer-empresa/footer-empresa.component';
+ 
  import {FooterPrivadoComponent} from '../componentes/footer-privado/footer-privado.component';
 
  import { ContratoFechaComponent } from '../componentes/contrato-fecha/contrato-fecha.component';
@@ -61,7 +61,6 @@ const routes: Routes = [
   declarations: [
     A25Component,
   
-    FooterEmpresaComponent,
     FooterPrivadoComponent,
 
     ContratoFechaComponent,

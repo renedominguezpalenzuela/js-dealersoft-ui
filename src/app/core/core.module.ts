@@ -45,6 +45,8 @@ import { SecondPageComponent } from './pages/reportes/componentes/second-page/se
 import { HeaderEmpresaComponent } from './pages/reportes/componentes/header-empresa/header-empresa.component';
 import { HeaderPrivadoComponent } from './pages/reportes/componentes/header-privado/header-privado.component';
 import { CarDetailsComponent } from './pages/reportes/componentes/car-details/car-details.component';
+import {FooterEmpresaComponent} from './pages/reportes/componentes/footer-empresa/footer-empresa.component';
+
 
 @NgModule({
   imports: [
@@ -67,6 +69,7 @@ import { CarDetailsComponent } from './pages/reportes/componentes/car-details/ca
     MatAutocompleteModule,
     MatNativeDateModule,
     MatTabsModule,
+    
   ],
   exports: [
     DynamicTableComponent,
@@ -89,6 +92,7 @@ import { CarDetailsComponent } from './pages/reportes/componentes/car-details/ca
     HeaderEmpresaComponent,
     HeaderPrivadoComponent,
     CarDetailsComponent,
+    FooterEmpresaComponent
   ],
   declarations: [
     DynamicTableComponent,
@@ -118,6 +122,7 @@ import { CarDetailsComponent } from './pages/reportes/componentes/car-details/ca
     HeaderEmpresaComponent,
     HeaderPrivadoComponent,
     CarDetailsComponent,
+    FooterEmpresaComponent
 
     // FooterEmpresaComponent,
   ],
