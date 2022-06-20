@@ -1,50 +1,57 @@
-<div class="pt-4 px-20 mt-8">
-
-    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+<app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
 
 
-    <main class="pt-3 ">
+<div class="pt-3 px-20">
 
-        <!-- Contrato fecha -->
-        <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
-
-        
-
-        <p class="flex text-center mt-4 text-sm-nospace mx-2">
-            Der Käufer kauft in Übereinstimmung mit den bereits vereinbarten Lieferbedingungen (AGB`s) das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Auschluss jeglicher Gewährleistung im Hinblick auf sichtbare und unsichtbare Mängel. Desweiteren können Nachlackierungen nicht ausgeschlossen werden! 
-        </p>
-
-        <p class="flex text-center mt-4 text-sm-nospace mx-2">
-        Der Unterzeichnende bestätigt, dass sich hierbei um ein Geschäft unter Voll-Kaufleuten handelt und somit nicht unter das EU-Gewährleistungsgesetz fällt!
-        </p>
+    <!-- Contrato fecha -->
+    <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
 
 
 
+    <p class="flex text-center mt-4 text-sm-nospace mx-2">
+        Der Käufer kauft in Übereinstimmung mit den bereits vereinbarten Lieferbedingungen (AGB`s) das nachstehende,
+        gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Auschluss jeglicher Gewährleistung im Hinblick auf
+        sichtbare und unsichtbare Mängel. Desweiteren können Nachlackierungen nicht ausgeschlossen werden!
+    </p>
 
-        <div class="mt-8 ">
-            <app-car-details-min [car_info]="car_info"></app-car-details-min>
-        </div>
-
-
-        <!-- Precio neto -->
-        <div class="mt-8 ">
-            <app-precio-netto-eu2 [car_buy_data]="car_buy_data"></app-precio-netto-eu2>
-        </div>
-
-
-        <div class="mt-32">
-            <span class="pr-4 font-bold ">Lieferdatum: </span>
-            <span>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</span>
-        </div>
+    <p class="flex text-center mt-4 text-sm-nospace mx-2">
+        Der Unterzeichnende bestätigt, dass sich hierbei um ein Geschäft unter Voll-Kaufleuten handelt und somit nicht
+        unter das EU-Gewährleistungsgesetz fällt!
+    </p>
 
 
 
 
-        <div class="mt-48 ">
-            <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
-        </div>
+    <div class="mt-8 ">
+        <app-car-details-min [car_info]="car_info"></app-car-details-min>
+    </div>
 
 
-    </main>
+    <!-- Precio neto -->
+    <div class="mt-8 ">
+        <app-precio-netto-eu2 [car_buy_data]="car_buy_data"></app-precio-netto-eu2>
+    </div>
+
+
+    <div class="mt-32">
+        <span class="pr-4 font-bold ">Lieferdatum: </span>
+        <span>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</span>
+    </div>
+
+
+
+
+
+
+
+
 
 </div>
+
+
+<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+
+
+
+<app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath">
+</app-second-page>

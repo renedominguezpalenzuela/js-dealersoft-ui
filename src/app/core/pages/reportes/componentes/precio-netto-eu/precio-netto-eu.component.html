@@ -1,12 +1,12 @@
 
-    <div class="flex border-2 border-black justify-between items-center p-4 mt-3 text-sm-nospace ">
+    <div class="flex border-2 border-black justify-between items-center p-4 mt-3 text-price ">
         <div>
-          <p class="font-bold">Fahrzeugpreis:</p>
+          <p class="text-price-bold">Fahrzeugpreis:</p>
           <p>Es handelt sich um eine innergemeinschaftliche Lieferung </p>
           <p>gem. §4 Nr. 1b i.V.m. §6a Abs. 1</p>
           <p>(tax free intra-community delivery)</p>
         </div>
   
-        <p class="font-bold">Netto EU-Export:   </p>
-        <p class="font-bold mr-10">{{car_buy_data?.attributes?.net_sell || 0 | currency}}</p>
+        <p class="text-price-bold">Netto EU-Export:   </p>
+        <p class="text-price-bold mr-10">{{car_buy_data?.attributes?.net_sell || 0 | currency}}</p>
       </div>

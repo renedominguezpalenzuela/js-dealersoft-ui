@@ -1,41 +1,28 @@
-<div class="pt-4 px-20 mt-8">
+<app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
 
 
-
-    <!-- <app-header-empresa [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-empresa> -->
-
-    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
-    <main class="pt-3 ">
+<div class="pt-3 px-20 ">
 
         <!-- Contrato fecha -->
         <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
 
         <p class="flex text-center mt-4 text-sm-nospace mx-2">
-            Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende,
-            gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Ausschluß jeglicher Gewährleistung im Hinblick auf
-            sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen.
+            Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Ausschluß jeglicher Gewährleistung im Hinblick auf sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen.
         </p>
 
         <p class="flex text-center mt-4 text-sm-nospace font-bold mx-4">
-            Es handelt sich hierbei um ein Geschäft unter Voll-Kaufleuten und fällt somit nicht unter das EU-
-            Gewährleistungsgesetz!
+            Es handelt sich hierbei um ein Geschäft unter Voll-Kaufleuten und fällt somit nicht unter das EU Gewährleistungsgesetz!
         </p>
 
 
         <div class="mt-8 ">
             <app-car-details-min [car_info]="car_info"></app-car-details-min>
-
-
         </div>
 
 
         <!-- Precio neto -->
         <div class="mt-8 ">
-            
             <app-precio-iva [car_buy_data]="car_buy_data"></app-precio-iva>
-
-
-
         </div>
 
         <div class="mt-28 ">
@@ -50,11 +37,14 @@
 
         </div>
 
-        <div class="mt-52 ">
-            <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
-        </div>
+      
 
-
-    </main>
 
 </div>
+
+
+<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+
+<app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath">
+</app-second-page>
+

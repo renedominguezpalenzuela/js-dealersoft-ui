@@ -41,9 +41,10 @@ import { PrecioNettoComponent } from './pages/reportes/componentes/precio-netto/
 import { PrecioNettoEuComponent } from './pages/reportes/componentes/precio-netto-eu/precio-netto-eu.component';
 import { PrecioNetto2Component } from './pages/reportes/componentes/precio-netto2/precio-netto2.component';
 import { PrecioNettoEu2Component } from './pages/reportes/componentes/precio-netto-eu2/precio-netto-eu2.component';
-
-
-
+import { SecondPageComponent } from './pages/reportes/componentes/second-page/second-page.component';
+import { HeaderEmpresaComponent } from './pages/reportes/componentes/header-empresa/header-empresa.component';
+import { HeaderPrivadoComponent } from './pages/reportes/componentes/header-privado/header-privado.component';
+import { CarDetailsComponent } from './pages/reportes/componentes/car-details/car-details.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,7 @@ import { PrecioNettoEu2Component } from './pages/reportes/componentes/precio-net
     MatMenuModule,
     MatAutocompleteModule,
     MatNativeDateModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   exports: [
     DynamicTableComponent,
@@ -83,7 +84,11 @@ import { PrecioNettoEu2Component } from './pages/reportes/componentes/precio-net
     PrecioNettoComponent,
     PrecioNettoEuComponent,
     PrecioNetto2Component,
-    PrecioNettoEu2Component
+    PrecioNettoEu2Component,
+    SecondPageComponent,
+    HeaderEmpresaComponent,
+    HeaderPrivadoComponent,
+    CarDetailsComponent,
   ],
   declarations: [
     DynamicTableComponent,
@@ -109,12 +114,12 @@ import { PrecioNettoEu2Component } from './pages/reportes/componentes/precio-net
     PrecioNettoEuComponent,
     PrecioNetto2Component,
     PrecioNettoEu2Component,
+    SecondPageComponent,
+    HeaderEmpresaComponent,
+    HeaderPrivadoComponent,
+    CarDetailsComponent,
 
-    
-   
     // FooterEmpresaComponent,
-
-  ]
+  ],
 })
-export class CoreModule {
-}
+export class CoreModule {}

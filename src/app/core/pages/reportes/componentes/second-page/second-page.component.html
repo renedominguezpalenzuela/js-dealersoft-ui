@@ -1,0 +1,39 @@
+<div *ngIf="car_buy_data?.attributes?.bemerkungencheck2page" class="new-page">
+
+
+    <!-- <div *ngIf="empresa" >
+            <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+        </div>  -->
+
+
+    <div *ngIf="empresa; else particular">
+        <app-header-empresa [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-empresa>
+    </div>
+
+
+
+    <ng-template #particular>
+        <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+    </ng-template>
+
+    
+    <main class="pt-4  mt-8 px-20 ">
+
+
+
+
+
+
+
+        <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
+
+        <table class="mt-5 mb-8 text-details" style="text-align: left">
+            <tr class="">
+                <th class="pr-4 text-details-bold  flex 	item-start">Bemerkungen:</th>
+                <td>
+                    <p class="break-all preserve-line-break w-97  ">{{car_buy_data?.attributes?.bemerkunhen2page}}</p>
+                </td>
+            </tr>
+        </table>
+    </main>
+</div>

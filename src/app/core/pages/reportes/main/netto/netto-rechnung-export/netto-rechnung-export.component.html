@@ -1,9 +1,9 @@
-<div class="pt-4 px-20 mt-8">
+
 
     <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
 
 
-    <main class="pt-3 ">
+    <div class="pt-3 px-20">
 
         <!-- Contrato fecha -->
         <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
@@ -39,6 +39,15 @@
         </div>
 
 
-    </main>
+    </div>
 
-</div>
+
+    
+
+<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+
+
+
+<app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath">
+</app-second-page>
+

@@ -199,11 +199,15 @@ iframe {
 }
 
 
-.box01 {
+.text-contract-big {
   font-size: 1.2rem!important;
   font-family: "Helvetica" !important;
+}
 
-
+.text-contract {
+  font-size: 0.875rem!important; /* 14px */
+  line-height: 0.9rem!important; 
+  font-family: "Helvetica" !important;
 }
 
 .text-sm-nospace {
@@ -215,15 +219,64 @@ iframe {
 
 
 .text-footer {
-  font-size: 0.7rem!important; /* 14px */
+  font-size: 0.65rem!important; /* 14px */
+  line-height: 0.7rem!important; 
+  font-family: "Helvetica" !important;
+}
+
+
+
+// Salto de linea
+.new-page {
+  page-break-before: always;
+}
+
+.text-details {
+  font-size: 0.8rem!important; /* 14px */
   line-height: 0.9rem!important; 
   font-family: "Helvetica" !important;
 }
 
+
+.text-details-bold {
+  font-size: 0.8rem!important; /* 14px */
+  line-height: 0.9rem!important; 
+  font-family: "Helvetica-Bold" !important;
+}
+
+
 .text-car-details {
-  font-size: 1rem!important; /* 14px */
+  font-size: 0.85rem!important; /* 14px */
   line-height: 1.2rem!important; 
   font-family: "Helvetica" !important;
 }
 
+.text-car-details-bold {
+  font-size: 0.85rem!important; /* 14px */
+  line-height: 1.2rem!important; 
+  font-family: "Helvetica-Bold" !important;
+  // font-weight: 600;
+}
+
+
+.text-price {
+  font-size: 0.8rem!important; /* 14px */
+  line-height: 1.1rem!important; 
+  font-family: "Helvetica" !important;
+
+}
+
+
+.text-price-bold {
+  font-size: 0.8rem!important; /* 14px */
+  line-height: 1.1rem!important; 
+  font-family: "Helvetica-Bold" !important
+  
+}
+
+.myfooter{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
 

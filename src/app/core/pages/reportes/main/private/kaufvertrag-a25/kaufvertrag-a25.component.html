@@ -1,88 +1,30 @@
-<div class="pt-4 px-20 mt-8">
+<app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+
+<div class="pt-3 px-20">
+
+    <!-- Contrato fecha -->
+    <app-contrato-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha>
+
+    <p class="flex justify-start mt-4 text-sm">
+        Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:
+    </p>
+
+    <!-- CAR Details -->
+    <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
+
+    <!-- Precio neto -->
+    <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
 
 
-
-    <!-- <app-header-empresa [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-empresa> -->
-    <app-header-empresa [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-empresa>
-    <main class="pt-3 ">
-
-
-        <!-- Contrato fecha -->
-        <app-contrato-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha>
-
-        <p class="flex justify-start mt-4 text-sm">
-            Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:
-        </p>
-
-        <!-- CAR Details -->
-
-        <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
-
-
-
-        <!-- Precio neto -->
-        <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
-
-
-        <div class="text-sm-nospace flex justify-center mt-4 mx-2">
-            Der Verkäufer weist auf die anhängenden allgemeinen Geschäftsbedingungen hin. Der Käufer hat von ihrem
-            Inhalt
-            enntnis genommen und ist mit ihrer Geltung einverstanden. Das Fahrzeug wurde vom Käufer ausgiebig besichtigt
-            und
-            obe gefahren und er erkennt an, dass der Kaufgegenstand am Liefertag keine Mängel aufweist und in einem
-            technisch
-            nd optisch einwandfreiem Zustand geliefert worden ist. Das Fahrzeug wird unter Ausschluss jeglicher
-            Gewährleistung
-            verkauft. Gerichtsstand ist {{me?.city}}.
-
-        </div>
-
-
-
-        <!-- Firma -->
-        <app-firma></app-firma>
-
-        <div class="mt-4">
-        <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+    <div class="text-sm-nospace flex justify-center mt-4 mx-2">
+        Der Verkäufer weist auf die anhängenden allgemeinen Geschäftsbedingungen hin. Der Käufer hat von ihrem Inhalt enntnis genommen und ist mit ihrer Geltung einverstanden. Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und obe gefahren und er erkennt an, dass der Kaufgegenstand am Liefertag keine Mängel aufweist und in einem technisch nd optisch einwandfreiem Zustand geliefert worden ist. Das Fahrzeug wird unter Ausschluss jeglicher Gewährleistung verkauft. Gerichtsstand ist {{me?.city}}.
     </div>
 
-    </main>
-
-
-    <div *ngIf="car_buy_data?.attributes?.bemerkungencheck2page" class="new-page">
-
-        <header class="w-full flex justify-between items-center pt-2">
-            <h1 class="text-xl font-medium underline">
-                {{me?.username}} - {{me?.street}} {{me?.house_number}} - {{me?.postal_code}} {{me?.city}}
-            </h1>
-            <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="rounded-full" width="150px">
-        </header>
-
-        <main class="pt-3 w-11/12">
-            <div class="flex justify-between items-center mb-2 text-sm">
-                <div>
-                    <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
-                    <p>{{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}
-                        {{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}</p>
-                    <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
-                    <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
-                        {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
-                    <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
-                </div>
-            </div>
-
-            <table class="mt-5 mb-8 text-sm" style="text-align: left">
-                <tr class="">
-                    <th class="pr-4">Bemerkungen:</th>
-                    <td>
-                        <p class="break-all w-80  ">{{car_buy_data?.attributes?.bemerkunhen2page}}</p>
-                    </td>
-                </tr>
-            </table>
-
-
-        </main>
-
-    </div>
+    <!-- Firma -->
+    <app-firma></app-firma>
 
 </div>
+
+<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+
+<app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath"></app-second-page>
