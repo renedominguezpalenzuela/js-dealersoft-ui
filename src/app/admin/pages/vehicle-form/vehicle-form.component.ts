@@ -47,6 +47,7 @@ export class VehicleFormComponent implements OnInit {
         .Get(`${this.apiHelperService.carsURL}/${params['id']}`)
         .subscribe((res) => {
           this.car = res.data;
+         
         })
     );
     this.activatedRoute.queryParams.subscribe(
@@ -54,7 +55,11 @@ export class VehicleFormComponent implements OnInit {
     );
     this.requestService
       .Get(this.apiHelperService.carsURL, this.query())
-      .subscribe((res) => (this.carsOptions = res.data));
+      .subscribe((res) => {
+            this.carsOptions = res.data
+          
+      });
+
 
     // this.requestService.Get(this.apiHelperService.clientsURL).subscribe(res => this.clientsOptions = res.data);
 
@@ -65,6 +70,7 @@ export class VehicleFormComponent implements OnInit {
       )
       .subscribe((res) => {
         this.clientsOptions = res.data;
+        
       });
   }
 

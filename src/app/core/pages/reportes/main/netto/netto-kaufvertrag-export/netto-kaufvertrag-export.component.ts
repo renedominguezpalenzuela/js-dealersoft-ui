@@ -83,8 +83,6 @@ export class NettoKaufvertragExportComponent implements OnInit {
       if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
       this.me = res[3];
 
-      console.log(this.me)
-      console.log( this.car_buy_data)
 
 
  

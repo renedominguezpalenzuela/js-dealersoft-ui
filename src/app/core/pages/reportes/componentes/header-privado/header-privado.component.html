@@ -12,7 +12,9 @@
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}
                 {{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}</p>
-            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
+            <p><span>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</span>
+                <span class="pl-1">{{car_buy_data?.attributes?.client?.data?.attributes?.house_number}}</span>
+            </p>
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
                 {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>

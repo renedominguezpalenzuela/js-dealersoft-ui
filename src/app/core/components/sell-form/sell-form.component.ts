@@ -103,6 +103,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = [];
   public isIvaActive: boolean = false;
+  private existenDatosGuardadosenBD: boolean = false;
+  private primeraVez: boolean = true;
 
   public exportType = ExportType;
   @ViewChild('autoComplete') private autoComplete:
@@ -121,13 +123,26 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     private route: ActivatedRoute,
     location: Location
   ) {
+
+
+
     this.route = route;
+
+
     this.route.params.subscribe((params) => {
+
+
+      
       if (params['existeCompraConA25'] != null) {
         this.existeCompraConA25 = Boolean(
           JSON.parse(params['existeCompraConA25'])
         );
       }
+
+
+
+
+   
 
       this.actualizando_radio_buttons = true;
       if (this.existeCompraConA25) {
@@ -277,8 +292,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.authUser = user;
     });
 
+
+ 
+
+    
+    
+
     this.carSellForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
       if (this.actualizando_radio_buttons) return;
+      if (this.primeraVez) return;
       if (change) {
         this.actualizando_radio_buttons = true;
         this.carSellForm.patchValue({ iva: false, export: false });
@@ -291,11 +313,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.actualizando_radio_buttons = false;
 
-      this.printOptions();
+      this.printOptions("a25 on change");
     });
 
     this.carSellForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (this.actualizando_radio_buttons) return;
+      if (this.primeraVez) return;
 
       if (change) {
         this.actualizando_radio_buttons = true;
@@ -309,13 +332,14 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.actualizando_radio_buttons = false;
 
-      this.printOptions();
+      this.printOptions("iva on change");
     });
 
     this.carSellForm
       .get('export')!
       .valueChanges.subscribe((change: boolean) => {
         if (this.actualizando_radio_buttons) return;
+        if (this.primeraVez) return;
         if (change) {
           this.actualizando_radio_buttons = true;
           this.carSellForm.patchValue({ a25: false, iva: false });
@@ -328,7 +352,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.actualizando_radio_buttons = false;
 
-        this.printOptions();
+        this.printOptions("export on change");
       });
 
     this.carSellForm.get('net_sell')!.valueChanges.subscribe(() => {
@@ -396,6 +420,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       }
     });
 
+   
+
     // this.carSellForm.get('gross_sell')!.valueChanges.subscribe(() => {
     //   if (this.isIvaActive) this.updateCosts();
     // });
@@ -404,6 +430,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     //si existe y es A25 entonces setear a A25 el contrato de venta
 
     // this.existeCompraconA25 = this.route.snapshot.paramMap.get('existeCompraconA25');
+    this.primeraVez = false;
   }
 
   public generateInvoice_Number() {
@@ -465,7 +492,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       ],
     });
 
+
+    //Se actualiza el formulario con los datos de la BD
   ngOnChanges(changes: SimpleChanges): void {
+
+   
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
       this.carSellForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -489,11 +520,37 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
 
+          if (data!=null) {
+            this.existenDatosGuardadosenBD = true;
+            
+          }
+          this.actualizando_radio_buttons=true; 
+
           this.carSellForm.patchValue({
             ...data,
             car: this.car_data?.id,
             client: data?.client.data.id,
           });
+
+
+          
+          if ( this.carSellForm.get('iva')!.value) {
+            this.activarIVA();
+          }
+
+          if ( this.carSellForm.get('a25')!.value) {
+            this.activarA25();
+          }
+
+          if ( this.carSellForm.get('export')!.value) {
+            this.activarExport();
+          }
+
+
+
+
+
+          this.actualizando_radio_buttons =false;
         });
     }
     if (changes?.['clientsOptions'] && this.clientsOptions) {
@@ -501,18 +558,23 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  printOptions() {
-    console.log('a25:    ' + this.selected_option_a25);
-    console.log('iva:    ' + this.selected_option_MnSt);
-    console.log('export: ' + this.selected_option_Export);
+  printOptions(lugar:any) {
+    // console.log(lugar)
+    // console.log('a25:    ' + this.selected_option_a25);
+    // console.log('iva:    ' + this.selected_option_MnSt);
+    // console.log('export: ' + this.selected_option_Export);
+    // console.log("datos guardados "+this.existenDatosGuardadosenBD)
+    // console.log("Primera ves "+this.primeraVez)
   }
 
   ngAfterViewInit(): void {
+
+   
     this.selected_option_a25 = this.carSellForm.get('a25')!.value;
     this.selected_option_MnSt = this.carSellForm.get('iva')!.value;
     this.selected_option_Export = this.carSellForm.get('export')!.value;
 
-    this.printOptions();
+    this.printOptions("AfterViewInit");
 
 
     fromEvent(this.autoComplete!.nativeElement, 'input')
@@ -551,6 +613,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             });
         }
       });
+
+
+
+   
   }
 
   public hasRequiredError = (input: string): boolean => {
@@ -892,7 +958,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //determinar que tab fue seleccionado
   onTabChange(event: MatTabChangeEvent) {
     this.selected_tab = event.index;
-    console.log('Selected tab');
-    console.log(this.selected_tab);
+   
   }
 }

@@ -383,7 +383,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       ],
     });
 
-    console.log(this.carBuyForm.value);
+    
 
     this.requestService
       .Get(this.apiHelperService.carsBuyURL + '?' + query)
