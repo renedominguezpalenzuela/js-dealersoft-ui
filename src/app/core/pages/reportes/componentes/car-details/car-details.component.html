@@ -11,43 +11,43 @@
     <td>{{car_info?.attributes?.car_identifier}}</td>
   </tr>
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4">Erstzulassung:</th>
     <td>{{car_info?.attributes?.first_register_date | date:'dd.MM.yyyy'}}</td>
   </tr>
 
 
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4"> Leistung KW: </th>
     <td>{{car_info?.attributes?.kilowatt}} </td>
   </tr>
 
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4">Kilometerstand:</th>
     <td>{{car_info?.attributes?.kilometres}} </td>
   </tr>
 
 
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4">Aufbau:</th>
     <td>{{car_info?.attributes?.build_variant}} </td>
   </tr>
 
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4">Farbe:</th>
     <td>{{car_info?.attributes?.color}} </td>
   </tr>
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4 ">Vorbesitzer:</th>
     <td>{{car_info?.attributes?.last_owner }} </td>
   </tr>
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4  flex 	item-start">Ausstattung:</th>
 
     <td class=""> {{car_info?.attributes?.comments[0] }} </td>
@@ -55,7 +55,7 @@
 
   </tr>
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4  flex 	item-start"></th>
 
     <td class=""> {{car_info?.attributes?.comments[2] }} </td>
@@ -67,7 +67,7 @@
 
 
 
-  <tr class="">
+  <tr class="text-car-details">
     <th class="pr-4 flex 	item-start">Bemerkungen:</th>
     <td>
 
@@ -94,12 +94,12 @@
 
 
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4 ">Abholtermin:</th>
     <td>{{car_buy_data?.attributes?.abholtermin | date:'dd.MM.yyyy' }} </td>
   </tr>
 
-  <tr>
+  <tr class="text-car-details">
     <th class="pr-4">Zahlung:</th>
     <td>{{car_buy_data?.attributes?.zahlunsart }} </td>
   </tr>

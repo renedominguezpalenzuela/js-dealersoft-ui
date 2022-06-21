@@ -1,17 +1,17 @@
 <header class="w-full grid grid-cols-2 pt-4 px-20 mt-4 ">
 
-    <div class="col-span-2 row-start-1  underline header-user-data pt-4">
+    <div class="col-span-2 row-start-1  underline header-user-data pt-4 ">
         
             {{me?.company_name}} - {{me?.street}} {{me?.house_number}} - {{me?.postal_code}} {{me?.city}}
         
     </div>
 
 
-    <div class="col-start-1 row-start-2  flex justify-between items-center header-client-data ">
+    <div class="col-start-1 row-start-2  flex justify-between items-center header-client-data pt-1 ">
         <div>
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
-            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}
-                {{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}</p>
+            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}
+                {{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}</p>
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</p>
             <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
                 {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
@@ -24,8 +24,8 @@
     </div>
 
     
-    <div class="col-start-2 row-start-2   flex justify-end">
-        <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="header-logo">
+    <div class="col-start-2 row-start-2   flex justify-end items-start">
+        <img [src]="imgPath | saveDom" alt="{{me?.username}} logo" class="header-logo ">
     </div>
 
 </header>
