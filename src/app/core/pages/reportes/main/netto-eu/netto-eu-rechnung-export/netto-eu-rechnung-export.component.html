@@ -8,15 +8,14 @@
 
 
 
-    <p class="flex text-center mt-4 text-sm-nospace mx-2">
+    <p class="flex text-center mt-4 text-details mx-2">
         Der Käufer kauft in Übereinstimmung mit den bereits vereinbarten Lieferbedingungen (AGB`s) das nachstehende,
         gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Auschluss jeglicher Gewährleistung im Hinblick auf
         sichtbare und unsichtbare Mängel. Desweiteren können Nachlackierungen nicht ausgeschlossen werden!
     </p>
 
-    <p class="flex text-center mt-4 text-sm-nospace mx-2">
-        Der Unterzeichnende bestätigt, dass sich hierbei um ein Geschäft unter Voll-Kaufleuten handelt und somit nicht
-        unter das EU-Gewährleistungsgesetz fällt!
+    <p class="flex text-center mt-4 text-details-bold mx-2">
+        Der Unterzeichnende bestätigt, dass sich hierbei um ein Geschäft unter Voll-Kaufleuten handelt und somit nicht unter das EU-Gewährleistungsgesetz fällt!
     </p>
 
 
@@ -34,8 +33,8 @@
 
 
     <div class="mt-32">
-        <span class="pr-4 font-bold ">Lieferdatum: </span>
-        <span>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</span>
+        <span class="pr-4 text-details-bold">Lieferdatum: </span>
+        <span class="text-details">{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</span>
     </div>
 
 

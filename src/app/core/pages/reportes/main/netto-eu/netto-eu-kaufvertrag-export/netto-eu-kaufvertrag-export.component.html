@@ -6,14 +6,14 @@
     <!-- Contrato fecha -->
     <app-contrato-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha>
 
-    <p class="flex  mt-4 text-sm-nospace mx-2">
+    <p class="flex  mt-4 text-details mx-2">
         Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{me?.company_name}} folgendes Fahrzeug:
     </p>
 
 
 
-    <div class="mt-8 ">
-        <app-car-details [car_info]="car_info"></app-car-details>
+    <div class="mt-2 ">
+        <app-car-details   [kaufvertrag]="true" [car_info]="car_info"  [car_buy_data]="car_buy_data"></app-car-details>
     </div>
 
 
@@ -23,7 +23,7 @@
     </div>
 
 
-    <p class="flex text-center mt-4 text-sm-nospace mx-2">
+    <p class="flex text-center mt-4 text-details mx-2">
         Der Verkäufer weist auf die anhängenden allgemeinen Geschäftsbedingungen hin. Der Käufer hat von ihrem Inhalt Kenntnis genommen und ist mit ihrer Geltung einverstanden. Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren und er erkennt an, dass der Kaufgegenstand am Liefertag keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist. Das Fahrzeug wird unter Ausschluss jeglicher Gewährleistung verkauft. Gerichtsstand ist {{me?.city}}
     </p>
 

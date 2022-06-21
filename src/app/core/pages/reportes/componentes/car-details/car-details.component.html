@@ -1,82 +1,106 @@
-<table class="mt-1 mb-8 text-sm" style="text-align: left">
-  
-      
+<table class="mt-1 mb-8  text-car-details" style="text-align: left">
+
+
   <tr class="text-car-details-bold">
-    <th class="pr-4">Fahrzeug:</th>
+    <th class="pr-4 ">Fahrzeug:</th>
     <td>{{car_info?.attributes?.name}}</td>
   </tr>
+
   <tr class="text-car-details-bold">
     <th class="pr-4">FIN:</th>
     <td>{{car_info?.attributes?.car_identifier}}</td>
   </tr>
+
   <tr>
-    <th class="pr-4 text-car-details">Erstzulassung:</th>
+    <th class="pr-4">Erstzulassung:</th>
     <td>{{car_info?.attributes?.first_register_date | date:'dd.MM.yyyy'}}</td>
   </tr>
 
 
 
   <tr>
-    <th class="pr-4 text-car-details"> Leistung KW: </th>
+    <th class="pr-4"> Leistung KW: </th>
     <td>{{car_info?.attributes?.kilowatt}} </td>
   </tr>
 
 
   <tr>
-    <th class="pr-4 text-car-details">Kilometerstand:</th>
+    <th class="pr-4">Kilometerstand:</th>
     <td>{{car_info?.attributes?.kilometres}} </td>
   </tr>
 
 
 
   <tr>
-    <th class="pr-4 text-car-details">Aufbau:</th>
+    <th class="pr-4">Aufbau:</th>
     <td>{{car_info?.attributes?.build_variant}} </td>
   </tr>
 
 
   <tr>
-    <th class="pr-4 text-car-details">Farbe:</th>
+    <th class="pr-4">Farbe:</th>
     <td>{{car_info?.attributes?.color}} </td>
   </tr>
 
   <tr>
-    <th class="pr-4 text-car-details">Vorbesitzer:</th>
+    <th class="pr-4 ">Vorbesitzer:</th>
     <td>{{car_info?.attributes?.last_owner }} </td>
   </tr>
 
   <tr>
-    <th class="pr-4 text-car-details  flex 	item-start">Ausstattung:</th>
+    <th class="pr-4  flex 	item-start">Ausstattung:</th>
 
-    <td class="text-car-details "> {{car_info?.attributes?.comments[0] }} </td>
-    <td class="text-car-details "> {{car_info?.attributes?.comments[1] }} </td>
+    <td class=""> {{car_info?.attributes?.comments[0] }} </td>
+    <td class=""> {{car_info?.attributes?.comments[1] }} </td>
 
   </tr>
 
   <tr>
-    <th class="pr-4 text-car-details  flex 	item-start"></th>
+    <th class="pr-4  flex 	item-start"></th>
 
-    <td class="text-car-details "> {{car_info?.attributes?.comments[2] }} </td>
-    <td class="text-car-details "> {{car_info?.attributes?.comments[3] }} </td>
+    <td class=""> {{car_info?.attributes?.comments[2] }} </td>
+    <td class=""> {{car_info?.attributes?.comments[3] }} </td>
 
   </tr>
 
 
+
+
+
   <tr class="">
-    <th class="pr-4 text-car-details  flex 	item-start">Bemerkungen:</th>
+    <th class="pr-4 flex 	item-start">Bemerkungen:</th>
     <td>
-      <p class="break-all preserve-line-break w-97  ">{{car_buy_data?.attributes?.bemerkunhen}}</p>
+
+      <div *ngIf="kaufvertrag; else rechnung">
+        <p class="break-all preserve-line-break w-97  ">{{car_buy_data?.attributes?.bemerkunhen2}}</p>
+      </div>
+
+
+
+      <ng-template #rechnung>
+        <p class="break-all preserve-line-break w-97  ">{{car_buy_data?.attributes?.bemerkunhen}}</p>
+
+      </ng-template>
+
+
+
     </td>
   </tr>
 
 
+
+
+
+
+
+
   <tr>
-    <th class="pr-4 text-car-details">Abholtermin:</th>
+    <th class="pr-4 ">Abholtermin:</th>
     <td>{{car_buy_data?.attributes?.abholtermin | date:'dd.MM.yyyy' }} </td>
   </tr>
 
   <tr>
-    <th class="pr-4 text-car-details">Zahlung:</th>
+    <th class="pr-4">Zahlung:</th>
     <td>{{car_buy_data?.attributes?.zahlunsart }} </td>
   </tr>
 
@@ -84,4 +108,4 @@
 
 
 
-  </table>
+</table>
