@@ -11,6 +11,8 @@ export class PrecioA25Component implements OnInit {
 
   @Input() car_buy_data: any;
   ngOnInit(): void {
+
+   
   }
 
 }

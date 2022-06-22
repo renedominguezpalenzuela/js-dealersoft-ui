@@ -10,6 +10,7 @@ export class CarDetailsComponent implements OnInit {
   @Input() car_info:any; 
   @Input() car_buy_data: any;
   @Input() kaufvertrag: any;
+
    constructor() { }
 
   ngOnInit(): void {

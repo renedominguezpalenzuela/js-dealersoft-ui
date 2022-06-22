@@ -1,0 +1,119 @@
+<div class="grid  grid-cols-[15%_85%]  gap-y-0 gap-x-4 mt-1 mb-8 w-full text-car-details">
+
+  <div class="text-car-details-bold col-start-1 row-start-1  ">
+    Fahrzeug:
+  </div>
+
+  <div class="text-car-details-bold col-start-2 row-start-1 ">
+    {{car_info?.attributes?.name}}
+  </div>
+
+  <div class="text-car-details-bold col-start-1 row-start-2  ">
+    FIN:
+  </div>
+
+  <div class="text-car-details-bold col-start-2 row-start-2 ">
+    {{car_info?.attributes?.car_identifier}}
+  </div>
+
+
+
+  <div class=" col-start-1 row-start-3  text-car-details">
+    Erstzulassung:
+  </div>
+
+  <div class=" col-start-2 row-start-3  text-car-details">
+    {{car_info?.attributes?.first_register_date | date:'dd.MM.yyyy'}}
+  </div>
+
+
+  <div class=" col-start-1 row-start-4  text-car-details">
+    Leistung KW:
+  </div>
+
+  <div class=" col-start-2 row-start-4  text-car-details">
+    {{car_info?.attributes?.kilowatt}}
+  </div>
+
+
+
+  <div class=" col-start-1 row-start-5  text-car-details">
+    Kilometerstand:
+  </div>
+
+  <div class=" col-start-2 row-start-5  text-car-details">
+    {{car_info?.attributes?.kilometres}}
+  </div>
+
+
+  <div class=" col-start-1 row-start-6  text-car-details">
+    Aufbau:
+  </div>
+
+  <div class=" col-start-2 row-start-6  text-car-details">
+    {{car_info?.attributes?.build_variant}}
+  </div>
+
+
+  <div class=" col-start-1 row-start-7  text-car-details">
+    Farbe:
+  </div>
+
+  <div class=" col-start-2 row-start-7  text-car-details">
+    {{car_info?.attributes?.color}}
+  </div>
+
+
+  <div class=" col-start-1 row-start-8  text-car-details">
+    Vorbesitzer:
+  </div>
+
+  <div class=" col-start-2 row-start-8  text-car-details">
+    {{car_info?.attributes?.last_owner }}
+  </div>
+
+
+  <div class=" col-start-1 row-start-8  text-car-details">
+    Ausstattung:
+  </div>
+
+  <div class=" col-start-2 row-start-8 flex ">
+    <span class="w-2/5  text-car-details"> {{car_info?.attributes?.comments[0] }} </span>
+    <span class="w-2/5  text-car-details "> {{car_info?.attributes?.comments[1] }} </span>
+  </div>
+
+
+  <div class=" col-start-2 row-start-9 flex ">
+    <span class="w-2/5  text-car-details "> {{car_info?.attributes?.comments[2] }} </span>
+    <span class="w-2/5   text-car-details"> {{car_info?.attributes?.comments[3] }} </span>
+  </div>
+
+
+
+
+  <div class=" col-start-1 row-start-10  text-car-details">
+    Bemerkungen:
+  </div>
+
+
+
+
+
+
+  <div class=" col-start-2 row-start-10 ">
+
+    <p class="break-all preserve-line-break w-97  text-car-details ">{{car_buy_data?.attributes?.bemerkunhen}}</p>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>

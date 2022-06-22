@@ -25,6 +25,8 @@ import { NettoRechnungExportComponent } from './netto/netto-rechnung-export/nett
 import {  NettoEuRechnungExportComponent} from './netto-eu/netto-eu-rechnung-export/netto-eu-rechnung-export.component';
 import { NettoEuKaufvertragExportComponent } from './netto-eu/netto-eu-kaufvertrag-export/netto-eu-kaufvertrag-export.component';
 
+import { BuyCarA25Component } from './buy-car-a25/buy-car-a25.component';
+
 
  
 // import { IvaComponent } from './private/rechnung/iva/iva.component';
@@ -51,6 +53,11 @@ const routes: Routes = [
    { path: 'netto-eu/rechnung/export/:jwt', component: NettoEuRechnungExportComponent },
    { path: 'netto-eu/kaufvertrag/export/:jwt', component: NettoEuKaufvertragExportComponent },
 
+
+   //buy car
+   { path: 'buy-car/a25/:jwt', component: BuyCarA25Component },
+    // { path: 'buy-car', component: BuyCarComponent },
+
 ];
 
   // const routes: Routes = [{ path: 'a25', component: A25Component }];
@@ -71,7 +78,9 @@ const routes: Routes = [
     NettoKaufvertragExportComponent,
     NettoRechnungExportComponent,
     NettoEuRechnungExportComponent,
-    NettoEuKaufvertragExportComponent
+    NettoEuKaufvertragExportComponent,
+    
+    BuyCarA25Component
  
 
 

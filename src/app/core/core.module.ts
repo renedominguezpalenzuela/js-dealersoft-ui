@@ -46,6 +46,8 @@ import { HeaderEmpresaComponent } from './pages/reportes/componentes/header-empr
 import { HeaderPrivadoComponent } from './pages/reportes/componentes/header-privado/header-privado.component';
 import { CarDetailsComponent } from './pages/reportes/componentes/car-details/car-details.component';
 import {FooterEmpresaComponent} from './pages/reportes/componentes/footer-empresa/footer-empresa.component';
+import { CarDetailsCompraComponent } from './pages/reportes/componentes/car-details-compra/car-details-compra.component';
+import { PrecioCompraComponent } from './pages/reportes/componentes/precio-compra/precio-compra.component';
 
 
 @NgModule({
@@ -92,7 +94,9 @@ import {FooterEmpresaComponent} from './pages/reportes/componentes/footer-empres
     HeaderEmpresaComponent,
     HeaderPrivadoComponent,
     CarDetailsComponent,
-    FooterEmpresaComponent
+    FooterEmpresaComponent,
+    CarDetailsCompraComponent,
+    PrecioCompraComponent
   ],
   declarations: [
     DynamicTableComponent,
@@ -122,7 +126,9 @@ import {FooterEmpresaComponent} from './pages/reportes/componentes/footer-empres
     HeaderEmpresaComponent,
     HeaderPrivadoComponent,
     CarDetailsComponent,
-    FooterEmpresaComponent
+    FooterEmpresaComponent,
+    CarDetailsCompraComponent,
+    PrecioCompraComponent
 
     // FooterEmpresaComponent,
   ],

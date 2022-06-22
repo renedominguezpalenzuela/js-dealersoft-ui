@@ -70,5 +70,6 @@ export enum ExportType {
   bot_privado = 'privado',
   bot_netto = 'netto',
   bot_netto_eu = 'netto-eu',
+  
 
 }
