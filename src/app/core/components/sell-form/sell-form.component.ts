@@ -535,9 +535,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
           this.carSellForm.patchValue({
-            gross_sell: data.gross_sell.toFixed(this.total_decimales),
-            net_sell: data.net_sell.toFixed(this.total_decimales),
-            iva_sell: data.iva_sell.toFixed(this.total_decimales)
+            gross_sell: data?.gross_sell?.toFixed(this.total_decimales),
+            net_sell: data?.net_sell?.toFixed(this.total_decimales),
+            iva_sell: data?.iva_sell?.toFixed(this.total_decimales)
             
           });
           
@@ -553,6 +553,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             this.activarExport();
           }
 
+
+          this.carSellForm.updateValueAndValidity();
 
 
 

@@ -37,7 +37,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   total_decimales = 2;
 
   vGross_buy: number = 0.0;
-  a25_activo = false;
+  a25_activo = true;
 
   //variable recibida desde el componente padre que contiene los datos provenientes del API
   @Input() public car_data: Car | undefined;
@@ -340,15 +340,20 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           });
 
 
-          console.log("sss")
-          console.log(data)
-
-          this.carBuyForm.patchValue({
-            gross_buy: data.gross_buy.toFixed(this.total_decimales),
-            net_buy: data.net_buy.toFixed(this.total_decimales),
-            iva_buy: data.iva_buy.toFixed(this.total_decimales)
+           this.carBuyForm.patchValue({
+            gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
+            net_buy: data?.net_buy?.toFixed(this.total_decimales),
+            iva_buy: data?.iva_buy?.toFixed(this.total_decimales)
             
           });
+
+
+
+          this.carBuyForm.updateValueAndValidity();
+
+          this.a25_activo =  this.carBuyForm.get('a25')?.value;
+
+       
 
           // this.carBuyForm.patchValue({
           //   iva_buy: data.iva_buy.toFixed(this.total_decimales),
