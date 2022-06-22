@@ -48,6 +48,8 @@ import { CarDetailsComponent } from './pages/reportes/componentes/car-details/ca
 import {FooterEmpresaComponent} from './pages/reportes/componentes/footer-empresa/footer-empresa.component';
 import { CarDetailsCompraComponent } from './pages/reportes/componentes/car-details-compra/car-details-compra.component';
 import { PrecioCompraComponent } from './pages/reportes/componentes/precio-compra/precio-compra.component';
+import { ContratoFechaCompraComponent } from './pages/reportes/componentes/contrato-fecha-compra/contrato-fecha-compra.component';
+import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-compra-iva/precio-compra-iva.component';
 
 
 @NgModule({
@@ -96,7 +98,9 @@ import { PrecioCompraComponent } from './pages/reportes/componentes/precio-compr
     CarDetailsComponent,
     FooterEmpresaComponent,
     CarDetailsCompraComponent,
-    PrecioCompraComponent
+    PrecioCompraComponent,
+    ContratoFechaCompraComponent,
+    PrecioCompraIvaComponent
   ],
   declarations: [
     DynamicTableComponent,
@@ -128,7 +132,9 @@ import { PrecioCompraComponent } from './pages/reportes/componentes/precio-compr
     CarDetailsComponent,
     FooterEmpresaComponent,
     CarDetailsCompraComponent,
-    PrecioCompraComponent
+    PrecioCompraComponent,
+    ContratoFechaCompraComponent,
+    PrecioCompraIvaComponent
 
     // FooterEmpresaComponent,
   ],
