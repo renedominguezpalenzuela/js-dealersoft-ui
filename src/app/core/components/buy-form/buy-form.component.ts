@@ -252,7 +252,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.carBuyForm.patchValue({
           iva_buy: vIva.toFixed(this.total_decimales),
-          gross_buy: vGross_buy.toFixed(this.total_decimales),
+          gross_buy: vGross_buy.toFixed(this.total_decimales),          
         });
 
         this.carBuyForm.updateValueAndValidity();
@@ -277,7 +277,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.carBuyForm.patchValue({
           iva_buy: vIva.toFixed(this.total_decimales),
-          net_buy: vNet_buy.toFixed(this.total_decimales),
+          net_buy: vNet_buy.toFixed(this.total_decimales),          
         });
         this.carBuyForm.updateValueAndValidity();
       }
@@ -300,7 +300,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.carBuyForm.patchValue({
           gross_buy: vGross_buy.toFixed(this.total_decimales),
-          net_buy: vNetto.toFixed(this.total_decimales),
+          net_buy: vNetto.toFixed(this.total_decimales),                   
         });
 
         this.carBuyForm.updateValueAndValidity();
@@ -338,6 +338,25 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             car: this.car_data?.id,
             client: data?.client?.data?.id,
           });
+
+
+          console.log("sss")
+          console.log(data)
+
+          this.carBuyForm.patchValue({
+            gross_buy: data.gross_buy.toFixed(this.total_decimales),
+            net_buy: data.net_buy.toFixed(this.total_decimales),
+            iva_buy: data.iva_buy.toFixed(this.total_decimales)
+            
+          });
+
+          // this.carBuyForm.patchValue({
+          //   iva_buy: data.iva_buy.toFixed(this.total_decimales),
+          //   gross_buy: vGross_buy.toFixed(this.total_decimales),
+          //   net_buy: vNetto.toFixed(this.total_decimales),
+          // });
+
+
         });
     }
 
