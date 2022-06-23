@@ -56,6 +56,7 @@ export class RequestService {
 }
 
 export enum ExportType {
+  none = 'none',
   stock = 'my-stock',
   buy_sell = 'buy-sell',
   win_lose = 'win-lose',

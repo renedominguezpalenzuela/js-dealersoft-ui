@@ -417,90 +417,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //  Boton Guardar
   //*************************************************************************************************
   public submit() {
-    //Tengo el id del carro en la tabla cars, no es el mismo
-    const id = this.car_data?.id;
-
-    //Convirtiendo a 2 valores decimales
-    this.focus_net_buy = false;
-    this.focus_gross_buy = false;
-    this.focus_iva = false;
-
-    this.carBuyForm.patchValue({
-      gross_buy: Number(this.carBuyForm.get('gross_buy')!.value).toFixed(
-        this.total_decimales
-      ),
-      net_buy: Number(this.carBuyForm.get('net_buy')!.value).toFixed(
-        this.total_decimales
-      ),
-      iva_buy: Number(this.carBuyForm.get('iva_buy')!.value).toFixed(
-        this.total_decimales
-      ),
-    });
-
-    this.carBuyForm.updateValueAndValidity();
-
-    if (!this.carBuyForm.valid) {
-      this.notificationService.riseNotification({
-        color: 'warning',
-        data: 'Form Data Errors!!!!',
-      });
-
-      return;
-    }
-
-    //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
-    let query = this.requestService.generateQuery({
-      populate: ['car', 'client'], //Relaciones
-      filters: [
-        {
-          field: '[car][id]', //casmpos a comparar car e id
-          operator: FilterOperator.$eq,
-          value: <string>id,
-          option: FilterDeepOption.$and,
-        },
-      ],
-    });
-
-    
-
-    this.requestService
-      .Get(this.apiHelperService.carsBuyURL + '?' + query)
-      .subscribe((res) => {
-        const data = res?.data[0]?.attributes;
-
-      
-
-        //2 --- si no existe creo uno nuevo si existe lo modifico
-        if (data === undefined) {
-          this.requestService
-            .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
-            .subscribe(() =>
-              this.notificationService.riseNotification({
-                color: 'success',
-                data: 'Neuwagen eingelagert ankauft',
-              })
-            );
-        } else {
-          const id_compra = res?.data[0]?.id;
-          this.requestService
-            .Put(
-              this.apiHelperService.carsBuyURL + '/' + id_compra,
-              this.carBuyForm.value
-            )
-            .subscribe(() =>
-              this.notificationService.riseNotification({
-                color: 'success',
-                data: 'Fahrzeug eingelagert',
-              })
-            );
-        }
-
-        // this.carSellForm.patchValue({
-        //   ...data,
-        //   car: this.car_data?.id,
-        //   client: data?.client.data.id,
-        // });
-      });
+    this.salvarEImprimir(false);
   }
 
   // public submit() {
@@ -559,11 +476,119 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     return '';
   };
 
+
+private salvarEImprimir(imprimir: any){
+  
+    //Tengo el id del carro en la tabla cars, no es el mismo
+    const id = this.car_data?.id;
+
+    //Convirtiendo a 2 valores decimales
+    this.focus_net_buy = false;
+    this.focus_gross_buy = false;
+    this.focus_iva = false;
+
+    this.carBuyForm.patchValue({
+      gross_buy: Number(this.carBuyForm.get('gross_buy')!.value).toFixed(
+        this.total_decimales
+      ),
+      net_buy: Number(this.carBuyForm.get('net_buy')!.value).toFixed(
+        this.total_decimales
+      ),
+      iva_buy: Number(this.carBuyForm.get('iva_buy')!.value).toFixed(
+        this.total_decimales
+      ),
+    });
+
+    this.carBuyForm.updateValueAndValidity();
+
+    if (!this.carBuyForm.valid) {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Form Data Errors!!!!',
+      });
+
+      return;
+    }
+
+    //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
+    let query = this.requestService.generateQuery({
+      populate: ['car', 'client'], //Relaciones
+      filters: [
+        {
+          field: '[car][id]', //casmpos a comparar car e id
+          operator: FilterOperator.$eq,
+          value: <string>id,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
+
+    
+
+    this.requestService
+      .Get(this.apiHelperService.carsBuyURL + '?' + query)
+      .subscribe((res) => {
+        const data = res?.data[0]?.attributes;
+
+      
+
+        //2 --- si no existe creo uno nuevo si existe lo modifico
+        if (data === undefined) {
+          this.requestService
+            .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
+            .subscribe(() => {
+
+              if (imprimir) {
+              this.imprimir();
+              }
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Neuwagen eingelagert ankauft',
+              })
+        });
+        } else {
+          const id_compra = res?.data[0]?.id;
+          this.requestService
+            .Put(
+              this.apiHelperService.carsBuyURL + '/' + id_compra,
+              this.carBuyForm.value
+            )
+            .subscribe(() =>{
+
+              if (imprimir) {
+                this.imprimir();
+                }
+
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Fahrzeug eingelagert',
+              })
+
+        });
+        }
+
+        // this.carSellForm.patchValue({
+        //   ...data,
+        //   car: this.car_data?.id,
+        //   client: data?.client.data.id,
+        // });
+      });
+
+}
   public generatePdf() {
+
+    this.salvarEImprimir(true);
+
+
+
 
  
     
-    // console.log("car datasss")
+   
+  }
+
+  private imprimir = ()=> {
+     // console.log("car datasss")
     // console.log(this.car_data)
 
     // /export/reports/buy-car
