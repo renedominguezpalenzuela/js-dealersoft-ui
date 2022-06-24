@@ -50,6 +50,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     this.authService.currentUser.subscribe(
       (user) => (this.currentUserId = user?.id)
     );
+    
     this.activatedRoute.params.subscribe((params: Params) =>
       this.requestService
         .Get(`${this.apiHelperService.carsURL}/${params['id']}`)

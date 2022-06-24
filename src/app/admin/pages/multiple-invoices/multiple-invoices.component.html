@@ -9,7 +9,7 @@
     <div class="flex flex-col sm:flex-row justify-between w-full items-center p-2 sm:pl-4 bg-white shadow rounded-lg">
       <a class="btn btn-ghost border-2 border-gray-400 mb-2 sm:mb-0" routerLink="/admin/new-invoice">
         <mat-icon class="mr-2">add</mat-icon>
-        Neue Rechnung
+        Neue Rechnung 
       </a>
       <div class="flex w-full sm:w-1/2 space-x-3 justify-end items-center flex-row">
         <input [(ngModel)]="filterQuery" class="input-search" placeholder="Suchen..." type="search"/>
@@ -23,7 +23,8 @@
       <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"
                          [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
                          [displayedColumns]="displayedColumns" [endFieldSticky]="'op'" [filterQuery]="filterQuery"
-                         [pageCount]="pageCount" [startFieldSticky]="'attributes.invoice_number'" class="w-full">
+                         [pageCount]="pageCount" [startFieldSticky]="'attributes.invoice_number'" class="w-full"
+                         [extraOption]="extraOption"  [showExtraOption]="true" >
       </app-dynamic-table>
     </div>
 

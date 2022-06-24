@@ -75,6 +75,7 @@ export class MultipleInvoicesComponent implements OnInit {
   public noShowLoader = true;
   public pageCount: number = 100;
   public currentPage: number = 1;
+  public extraOption: { event: string, icon: string } = { event: 'Detail', icon: 'chevron_right' };
 
   constructor(
     private readonly apiHelperService: ApiHelperService,
@@ -129,17 +130,21 @@ export class MultipleInvoicesComponent implements OnInit {
         });
         break;
       case 'Detail':
-        this.requestService.Get(
-          `${ this.apiHelperService.invoicesURL }/${ $event.value.id }`,
-          this.queryInvoice()
-        ).subscribe(res => {
-          this.matDialog.open(InvoiceInfoComponent, {
-            width: '580px',
-            height: '480px',
-            data: <Invoice>res.data,
-            backdropClass: 'modal-backdrop'
-          });
-        });
+        // this.requestService.Get(
+        //   `${ this.apiHelperService.invoicesURL }/${ $event.value.id }`,
+        //   this.queryInvoice()
+        // ).subscribe(res => {
+        //   this.matDialog.open(InvoiceInfoComponent, {
+        //     width: '580px',
+        //     height: '480px',
+        //     data: <Invoice>res.data,
+        //     backdropClass: 'modal-backdrop'
+        //   });
+        // });
+        // this.router.navigate(['/admin/new-invoice', $event.value.id] );
+        // this.router.navigate(['/admin/new-invoice/${event.value.id}'] );
+
+        this.router.navigate(['/admin/new-invoice/', $event.value.id])
         break;
       default:
         break;

@@ -39,6 +39,11 @@ const routes: Routes = [
     path: 'new-invoice',
     loadChildren: () => import('./pages/new-bill/new-bill.module').then(m => m.NewBillModule)
   },
+
+  {
+    path: 'new-invoice/:id',
+    loadChildren: () => import('./pages/new-bill/new-bill.module').then(m => m.NewBillModule)
+  },
   {
     path: 'list-invoices',
     loadChildren: () => import('./pages/multiple-invoices/multiple-invoices.module').then(m => m.MultipleInvoicesModule)

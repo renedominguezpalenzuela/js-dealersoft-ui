@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { ApiHelperService, NotificationService, RequestService, ValidationsService } from '@core/services';
+import { ApiHelperService, NotificationService, RequestService, ValidationsService , AuthService} from '@core/services';
 import { Router } from '@angular/router';
 import { Customer, FilterDeepOption } from '@core/interfaces';
 import { CustomerFormComponent } from '@core/components/customer-form/customer-form.component';
@@ -27,7 +27,11 @@ export class NewBillComponent implements OnInit, AfterViewInit {
     places: this.formBuilder.array([], [Validators.required, Validators.minLength(1)])
   });
   public clientsOptions: Customer[] = [];
-  public filteredOptions: Customer[] = [];
+  public filteredOptions: Customer[] = [];  //lista de clientes del Usuario
+
+
+  private currentUserId: number | undefined;
+
   @ViewChild('autoComplete') private autoComplete: ElementRef<HTMLInputElement> | undefined;
 
   constructor(
@@ -37,7 +41,8 @@ export class NewBillComponent implements OnInit, AfterViewInit {
     private readonly router: Router,
     private readonly validationsService: ValidationsService,
     private readonly notificationService: NotificationService,
-    private readonly matDialog: MatDialog
+    private readonly matDialog: MatDialog,
+    private readonly authService: AuthService
   ) {
   }
 
@@ -46,13 +51,24 @@ export class NewBillComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.authService.currentUser.subscribe(
+      (user) => (this.currentUserId = user?.id)
+    );
+
+    //OLD CODE:
+
+      //Adicionando nuevo articulo
     this.addArticle();
-    this.requestService.Get(this.apiHelperService.clientsURL)
+
+
+
+    this.requestService.Get(this.apiHelperService.clientsURL, this.queryClients(this.currentUserId))
       .subscribe(res => this.filteredOptions = this.clientsOptions = res.data);
 
     this.newInvoiceForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       this.newInvoiceForm.patchValue({ a25: !change }, { emitEvent: false, onlySelf: true });
     });
+
     this.newInvoiceForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
       this.newInvoiceForm.patchValue({ iva: !change }, { emitEvent: false, onlySelf: true });
     });
@@ -71,6 +87,19 @@ export class NewBillComponent implements OnInit, AfterViewInit {
         });
     }
   }
+
+  private queryClients = (id: any) =>
+  this.requestService.generateQuery({
+    populate: ['*'],
+    filters: [
+      {
+        field: '[user][id]',
+        value: id,
+        operator: FilterOperator.$eq,
+        option: FilterDeepOption.$and,
+      },
+    ],
+  });
 
   public addCustomer = ($event: MouseEvent) => {
     $event.preventDefault();
@@ -138,6 +167,7 @@ export class NewBillComponent implements OnInit, AfterViewInit {
       })
   }
 
+  //Adicionando nuevo articulo
   public addArticle = () => {
     const articleForm = this.formBuilder.group({
       article: [null, Validators.required],
