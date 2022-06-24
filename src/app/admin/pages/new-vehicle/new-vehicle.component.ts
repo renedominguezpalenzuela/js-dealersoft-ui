@@ -59,6 +59,8 @@ export class NewVehicleComponent implements OnInit, OnChanges {
     private readonly authService: AuthService
   ) {
 
+   
+
   
   }
 
@@ -93,6 +95,8 @@ export class NewVehicleComponent implements OnInit, OnChanges {
 
   
     this.authService.currentUser.subscribe(user => this.vehicleForm.patchValue({ owner: user?.id }));
+
+    
   }
 
   public submit() {
@@ -165,14 +169,13 @@ export class NewVehicleComponent implements OnInit, OnChanges {
 
   public addComment = () => {
 
-
-
-    if (this.totalAusstattung>0) {
+    
+    if (this.comments.length<4) {
     if (this.currentComment) {
       this.comments.push(this.currentComment);
       this.currentComment = '';
       this.commentsError = false;
-      this.totalAusstattung=this.totalAusstattung-1;
+      // this.totalAusstattung=this.totalAusstattung-1;
     }
    }
   };
@@ -211,4 +214,6 @@ export class NewVehicleComponent implements OnInit, OnChanges {
   public previewImg = (img: ImgSrc) => this.currentImgSrc = img;
 
   private notValue = (value: any) => _.isNil(value) || value === '';
+
+
 }

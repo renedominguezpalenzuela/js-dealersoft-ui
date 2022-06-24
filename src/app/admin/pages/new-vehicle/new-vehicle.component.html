@@ -103,7 +103,17 @@
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-8/12 mb-4">
         <div class="col-span-2 xl:col-span-1 flex flex-col justify-start">
           <mat-form-field appearance="outline" class="xl:w-full">
-            <mat-label>Ausstattung #{{comments.length + 1}}</mat-label>
+
+
+            <div *ngIf="comments.length<4; else nomorecomments">
+              <mat-label>Ausstattung #{{comments.length + 1}}</mat-label>
+            </div>
+
+            <ng-template #nomorecomments>
+              <mat-label>keine weiteren Ausstattungen möglich</mat-label>
+            </ng-template>
+
+
             <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput>
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button
                     matSuffix type="button">
