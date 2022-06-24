@@ -66,12 +66,12 @@ export class AdminComponent implements OnInit {
       url: '/admin/win-lose',
       type: 'link',
     },
-    {
-      icon: 'insert_chart_outlined',
-      label: 'Fahrzeugauswertung',
-      url: '/admin/vehicle-evaluation',
-      type: 'link',
-    },
+    // {
+    //   icon: 'insert_chart_outlined',
+    //   label: 'Fahrzeugauswertung',
+    //   url: '/admin/vehicle-evaluation',
+    //   type: 'link',
+    // },
     {
       icon: 'receipt',
       label: 'Neue Rechnung',
