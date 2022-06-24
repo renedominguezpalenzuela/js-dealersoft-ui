@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   ViewEncapsulation,
   ViewChild,
   Renderer2,
@@ -18,7 +19,7 @@ import { timer } from 'rxjs';
   styleUrls: ['./vehicle-form.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VehicleFormComponent implements OnInit {
+export class VehicleFormComponent implements OnInit, OnDestroy {
   public car!: Car;
   public tabIndex: number = 0;
   public carsOptions: Car[] = [];
@@ -38,6 +39,11 @@ export class VehicleFormComponent implements OnInit {
     private renderer: Renderer2
   ) {
     // console.log(this.router.getCurrentNavigation()?.extras.state);
+  }
+
+
+  ngOnDestroy(): void {
+    localStorage.removeItem('firstTime') 
   }
 
   ngOnInit(): void {
@@ -115,9 +121,9 @@ export class VehicleFormComponent implements OnInit {
           console.log('Change tabs');
           window.location.reload();
         });
-       TODO: al destruor
       
-       localStorage.removeItem('firstTime') 
+      
+      
       }
 
       
