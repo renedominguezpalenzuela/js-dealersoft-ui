@@ -306,11 +306,24 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.carBuyForm.updateValueAndValidity();
       }
     });
+
+
+    //inicialmente si no hay datos
+
+
+    this.actualizando_radio_buttons=true;
+    this.a25_activo = true;
+
+    this.desactivarIVA();
+    this.actualizando_radio_buttons=false;
+
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
- 
+   
 
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el parent
@@ -364,6 +377,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         });
     }
+
+
 
     if (changes?.['clientsOptions'] && this.clientsOptions) {
       this.filteredOptions = this.clientsOptions;

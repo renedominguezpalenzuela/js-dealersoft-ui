@@ -65,39 +65,7 @@
             <input formControlName="tsn" matInput>
           </mat-form-field>
         </div>
-        <!--        <div class="w-full xl:w-9/12 2xl:w-5/12 md:px-5">-->
-        <!--          <div class="card shadow-md">-->
-        <!--            <div class="card-body flex flex-col md:flex-row">-->
-        <!--              <div class="flex w-full md:w-1/3 mb-3 md:mb-0">-->
-        <!--                <img *ngIf="currentImgSrc" [alt]="currentImgSrc.alt" [src]="currentImgSrc.url | saveDom"-->
-        <!--                     class="mask mask-squircle" width="200">-->
-        <!--                <img *ngIf="!currentImgSrc" alt="" class="mask mask-squircle" height="200"-->
-        <!--                     src="https://via.placeholder.com/200" style="height: 200px; width: 200px" width="200">-->
-        <!--                <div (click)="clearCurrentImg()" *ngIf="currentImgSrc"-->
-        <!--                     class="relative z-20 rounded-full bg-slate-800 py-1 px-2 h-fit shadow-sm cursor-pointer right-8 top-5">-->
-        <!--                  <mat-icon class="text-white">close</mat-icon>-->
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--              <div class="w-full md:w-2/3 md:ml-10">-->
-        <!--                <div class="flex flex-wrap overflow-auto gap-y-2 h-32 border-b-2 shadow-inner rounded-md pl-5 pt-3">-->
-        <!--                  <div *ngFor="let img of imgSrcList; let i = index" class="flex">-->
-        <!--                    <img (click)="previewImg(img)" [alt]="img.alt" [src]="img.url | saveDom"-->
-        <!--                         class="mask mask-squircle cursor-pointer"-->
-        <!--                         height="50" style="height: 50px; width: 50px" width="50">-->
-        <!--                    <div (click)="removeImg(i, img)"-->
-        <!--                         class="relative z-20 rounded-full bg-slate-800 h-fit p-0.5 shadow-sm cursor-pointer right-2">-->
-        <!--                      <img alt="" src="https://img.icons8.com/ios/10/ffffff/delete-sign&#45;&#45;v1.png">-->
-        <!--                    </div>-->
-        <!--                  </div>-->
-        <!--                </div>-->
-        <!--                <input (change)="previewImages($event)" class="hidden" id="images" multiple type="file">-->
-        <!--                <label class="btn w-full mt-2" for="images">-->
-        <!--                  Bilder hochladen-->
-        <!--                </label>-->
-        <!--              </div>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
+       
       </div>
       <div class="divider font-bold font-sans">Ausstattungen oder Bemerkungen</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-8/12 mb-4">
@@ -138,22 +106,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="divider font-bold font-sans">Fahrzeug-Quelle</div>
-      <div class="grid grid-cols-1 w-full xl:w-1/2">
 
-
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Fahrzeug-Quelle</mat-label>
-          <textarea matInput placeholder="Bemerkungen" formControlName="source" rows="4"
-            maxlength="240"></textarea>
-
-            <mat-error *ngIf="hasRequiredError('source')">
-              <b>Bitte auswählen</b> ist erforderlich
-            </mat-error>
-        </mat-form-field>
-
-
-      </div> -->
       <mat-divider></mat-divider>
       <div class="flex w-full justify-center md:justify-end items-center mt-6">
         <button class="btn btn-primary w-40" type="submit">
