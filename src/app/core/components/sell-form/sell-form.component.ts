@@ -657,7 +657,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
      if (!this.carSellForm.valid) {
        this.notificationService.riseNotification({
          color: 'warning',
-         data: 'Form Data Errors!!!!',
+         data: 'fehlende Angaben!!!!',
        });
  
        return;

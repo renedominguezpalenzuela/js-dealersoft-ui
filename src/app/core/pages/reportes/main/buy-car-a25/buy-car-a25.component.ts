@@ -54,6 +54,9 @@ export class BuyCarA25Component implements OnInit {
     this.loadQueryParams();
     this.loadPaginatedData();
 
+    console.log("Cars buy a25 report")
+    console.log(this.car_buy_data)
+
 
    
   }
@@ -86,6 +89,10 @@ export class BuyCarA25Component implements OnInit {
       this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
       if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
       this.me = res[3];
+
+
+          
+  
 
       
 

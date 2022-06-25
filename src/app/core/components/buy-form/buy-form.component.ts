@@ -290,6 +290,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.desactivarIVA();
     this.actualizando_radio_buttons = false;
+
+
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -451,6 +454,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   private salvarEImprimir(imprimir: any) {
     //Tengo el id del carro en la tabla cars, no es el mismo
+
+
     const id = this.car_data?.id;
 
     //Convirtiendo a 2 valores decimales
@@ -475,7 +480,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     if (!this.carBuyForm.valid) {
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'Form Data Errors!!!!',
+        data: 'fehlende Angaben!!!!',
       });
 
       return;
@@ -521,7 +526,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             )
             .subscribe(() => {
               if (imprimir) {
-                console.log("imprimir modificar")
+              
                 this.imprimir();
               }
 
@@ -540,6 +545,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
   }
   public generatePdf() {
+
+
+
+
     this.salvarEImprimir(true);
   }
 
@@ -548,6 +557,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     // console.log(this.car_data)
 
     // /export/reports/buy-car
+
+
+
+
 
     let tipo = '/';
     if (this.a25_activo) {
