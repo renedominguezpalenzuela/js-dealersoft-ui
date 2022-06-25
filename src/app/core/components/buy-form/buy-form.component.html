@@ -159,10 +159,11 @@
           **   Brutto in €                     
           **************************************************************************************************************** 
       -->
+       <!-- ng-model='vGross_buy' -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Brutto in €</mat-label>
           <input formControlName="gross_buy" matInput min="0" type="number" name="gross_buy"
-          ng-model='vGross_buy'
+         
             (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" >
           <mat-error *ngIf="hasRequiredError('gross_buy')">
             <b>Brutto</b> wird benötigt
@@ -207,11 +208,12 @@
       -->
       <div class="divider font-bold font-sans">Sonstige Kosten</div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
-
+<!-- cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" -->
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Bemerkungen</mat-label>
           <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
-            maxlength="240"></textarea>
+           
+            maxlength="240" (keydown)="keydown($event)"></textarea>
         </mat-form-field>
 
         <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
