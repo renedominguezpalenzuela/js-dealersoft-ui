@@ -13,15 +13,21 @@
     </p>
 
 
-    <div class="mt-8 ">
+    <div class="mt-20 ">
         <app-car-details-min [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-min>
     </div>
 
 
     <!-- Precio neto -->
-    <div class="mt-8 ">
+    <div class="mt-16 ">
         <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
     </div>
+
+    <div class="mt-16 ">
+    <app-comentarios [car_buy_data]="car_buy_data"></app-comentarios>
+    </div>
+ 
+
 
     <div class="mt-28 ">
         <table class="mt-1 mb-8 text-sm" style="text-align: left">

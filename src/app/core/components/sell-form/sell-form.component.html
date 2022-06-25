@@ -153,8 +153,9 @@
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2 lg:row-start-3">
               <mat-label>Bemerkungen</mat-label>
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
-                maxlength="240"></textarea>
+                maxlength="240" (keydown)="keydown($event)"></textarea>
             </mat-form-field>
+            
           </div>
         </mat-tab>
         <mat-tab label="Kaufvertrag" class="color-mat-tab">

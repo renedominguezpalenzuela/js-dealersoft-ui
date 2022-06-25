@@ -5,14 +5,14 @@
                   [stickyEnd]="canBeEndSticky(column.column)" [sticky]="canBeStartSticky(column.column)">
 
       <th *matHeaderCellDef mat-header-cell mat-sort-header="{{column.column}}">
-        <div [innerHTML]="column.header"></div>
+        <div class="pl-2 pr-5 " [innerHTML]="column.header"></div>
       </th>
 
-      <td *matCellDef="let element" [style.fontSize.px]="12" mat-cell>
+      <td *matCellDef="let element" [style.fontSize.px]="12" class="pl-2 pr-5 ">
 
         <ng-container [ngSwitch]="column.type">
           <ng-container *ngSwitchCase="columnType.Regular">
-            <span>{{element | nestedProperty:column.column}}</span>
+            <span >{{element | nestedProperty:column.column}}</span>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.Bullets">

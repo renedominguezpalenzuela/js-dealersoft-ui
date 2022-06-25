@@ -3,45 +3,52 @@
 
 <div class="pt-3 px-20 ">
 
-        <!-- Contrato fecha -->
-        <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
+    <!-- Contrato fecha -->
+    <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
 
-        <p class=" text-center mt-4 text-details mx-2">            
-            Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt und Probe gefahren. Er erkennt an, dass der Kaufgegenstand am Lieferungstag keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist. 
-        </p>
+    <p class=" text-center mt-4 text-details mx-2">
+        Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte
+        Fahrzeug, wie ausgiebig besichtigt und Probe gefahren. Er erkennt an, dass der Kaufgegenstand am Lieferungstag
+        keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist.
+    </p>
 
-        <p class=" text-center mt-4 text-sm-nospace text-details-bold mx-12">
-            -Verschleiß unterliegt nicht der Gewährleistungspflicht-
-        </p>
+    <p class=" text-center mt-4 text-sm-nospace text-details-bold mx-12">
+        -Verschleiß unterliegt nicht der Gewährleistungspflicht-
+    </p>
 
-        <p class=" text-center mt-2 text-sm-nospace text-details mx-4">
-            Gerichtsstand ist {{me?.city}}
-        </p>
-
-
-        <div class="mt-8 ">
-            <app-car-details-min [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-min>
-        </div>
+    <p class=" text-center mt-2 text-sm-nospace text-details mx-4">
+        Gerichtsstand ist {{me?.city}}
+    </p>
 
 
-        <!-- Precio neto -->
-        <div class="mt-8 ">
-            <app-precio-iva [car_buy_data]="car_buy_data"></app-precio-iva>
-        </div>
+    <div class="mt-20 ">
+        <app-car-details-min [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-min>
+    </div>
 
-        <div class="mt-28 ">
 
-            <table class="mt-1 mb-8" style="text-align: left">
+    <!-- Precio neto -->
+    <div class="mt-16 ">
+        <app-precio-iva [car_buy_data]="car_buy_data"></app-precio-iva>
+    </div>
 
-                <tr class="text-car-details">
-                    <th class="pr-4 text-car-bold ">Lieferdatum: </th>
-                    <td>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</td>
-                </tr>
-            </table>
+    <div class="mt-16 ">
+        <app-comentarios [car_buy_data]="car_buy_data"></app-comentarios>
+    </div>
 
-        </div>
 
-      
+    <div class="mt-28 ">
+
+        <table class="mt-1 mb-8" style="text-align: left">
+
+            <tr class="text-car-details">
+                <th class="pr-4 text-car-bold ">Lieferdatum: </th>
+                <td>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+
 
 
 </div>
@@ -51,4 +58,3 @@
 
 <app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath">
 </app-second-page>
-

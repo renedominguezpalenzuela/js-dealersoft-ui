@@ -521,6 +521,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             )
             .subscribe(() => {
               if (imprimir) {
+                console.log("imprimir modificar")
                 this.imprimir();
               }
 
@@ -658,21 +659,15 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  // public onKeypressEvent(event: any){
+ 
 
-  total_lineas = 0;
+
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
-    this.total_lineas = lineas;
-
-    //  if (event.keyCode == 13) {
-    // console.log("ENTER")
-
-    console.log('total de lineas ' + this.total_lineas);
-    // }
-
-    if (this.total_lineas >= 4 && event.keyCode == 13) {
+    
+  
+    if (lineas >= 4 && event.keyCode == 13) {
       event.preventDefault();
       return false;
     } else {

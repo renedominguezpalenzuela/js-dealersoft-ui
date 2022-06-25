@@ -15,18 +15,23 @@
 
 
 
-        <div class="mt-4 ">
+        <div class="mt-20 ">
             <app-car-details-min [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details-min>
         </div>
 
 
         <!-- Precio neto -->
-        <div class="mt-8 ">
+        <div class="mt-16 ">
             <app-precio-netto2 [car_buy_data]="car_buy_data"></app-precio-netto2>
         </div>
 
+        <div class="mt-16 ">
+            <app-comentarios [car_buy_data]="car_buy_data"></app-comentarios>
+            </div>
+         
 
-        <div class="mt-32">
+
+        <div class="mt-28">
             <span class="pr-4 text-details-bold ">Lieferdatum: </span>
             <span class="text-details">{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</span>
         </div>

@@ -50,6 +50,7 @@ import { CarDetailsCompraComponent } from './pages/reportes/componentes/car-deta
 import { PrecioCompraComponent } from './pages/reportes/componentes/precio-compra/precio-compra.component';
 import { ContratoFechaCompraComponent } from './pages/reportes/componentes/contrato-fecha-compra/contrato-fecha-compra.component';
 import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-compra-iva/precio-compra-iva.component';
+import { ComentariosComponent } from './pages/reportes/componentes/comentarios/comentarios.component';
 
 
 @NgModule({
@@ -72,7 +73,7 @@ import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-co
     MatMenuModule,
     MatAutocompleteModule,
     MatNativeDateModule,
-    MatTabsModule,
+    MatTabsModule
     
   ],
   exports: [
@@ -100,7 +101,8 @@ import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-co
     CarDetailsCompraComponent,
     PrecioCompraComponent,
     ContratoFechaCompraComponent,
-    PrecioCompraIvaComponent
+    PrecioCompraIvaComponent,
+    ComentariosComponent
   ],
   declarations: [
     DynamicTableComponent,
@@ -134,7 +136,8 @@ import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-co
     CarDetailsCompraComponent,
     PrecioCompraComponent,
     ContratoFechaCompraComponent,
-    PrecioCompraIvaComponent
+    PrecioCompraIvaComponent,
+    ComentariosComponent
 
     // FooterEmpresaComponent,
   ],
