@@ -989,6 +989,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //determinar que tab fue seleccionado
   onTabChange(event: MatTabChangeEvent) {
     this.selected_tab = event.index;
+
+    if (this.selected_tab == 0) {
+        this.isChecked = false;
+      
+        
+    }
+
+    this.carSellForm.patchValue({ bemerkungencheck2page: false})
+    
    
   }
 
@@ -1005,6 +1014,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       return true;
     }
+  }
+
+    public onNativeChange(e:any){
+       this.isChecked = e.target.checked;
   }
 
 
