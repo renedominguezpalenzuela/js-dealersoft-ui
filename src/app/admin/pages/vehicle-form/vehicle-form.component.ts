@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   ViewChild,
   Renderer2,
+  Input
 } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Car, Customer, FilterDeepOption } from '@core/interfaces';
@@ -30,6 +31,8 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
 
   public existeCompraconA25: boolean = false;
 
+
+
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
@@ -50,7 +53,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     this.authService.currentUser.subscribe(
       (user) => (this.currentUserId = user?.id)
     );
-    
+
     this.activatedRoute.params.subscribe((params: Params) =>
       this.requestService
         .Get(`${this.apiHelperService.carsURL}/${params['id']}`)
@@ -58,6 +61,8 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
           this.car = res.data;
         })
     );
+
+    
     this.activatedRoute.queryParams.subscribe(
       (query: Params) => (this.tabIndex = +query['tab'] - 1)
     );
