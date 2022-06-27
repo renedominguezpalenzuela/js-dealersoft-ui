@@ -104,14 +104,14 @@
       <div class="divider font-bold font-sans">Sonstige Kosten</div>
 
 
-      <mat-tab-group mat-align-tabs="start" [selectedIndex]="0" animationDuration="250ms"
-        (selectedTabChange)="onTabChange($event)">
+      <mat-tab-group #tab_invoice mat-align-tabs="start" [(selectedIndex)]="selected_tab" animationDuration="250ms"
+        (selectedTabChange)="onTabChange($event)" >
         <mat-tab label="Rechnung">
           <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
             <mat-form-field appearance="outline" class="col-span-1 lg:row-start-1 ">
               <mat-label>Rechnungs-Nr.</mat-label>
-              <input formControlName="invoice_number" matInput required readonly>
+              <input formControlName="invoice_number" matInput  readonly>
               <mat-error *ngIf="hasRequiredError('invoice_number')">
                 <b>Rechnungs-Nr.</b> wird benötigt
               </mat-error>
@@ -126,7 +126,7 @@
 
             <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1 lg:row-start-2 ">
               <mat-label>Rechnungsdatum</mat-label>
-              <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput required>
+              <input [matDatepicker]="pickerInvoiceDate" formControlName="invoice_date" matInput >
               <mat-error *ngIf="hasRequiredError('invoice_date')">
                 <b>Rechnungsdatum</b> wird benötigt
               </mat-error>
@@ -142,7 +142,7 @@
         -->
             <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1 lg:row-start-2 ">
               <mat-label>Lieferdatum ändern</mat-label>
-              <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput required>
+              <input [matDatepicker]="pickerLieferung" formControlName="lieferung" matInput >
               <mat-error *ngIf="hasRequiredError('lieferung')">
                 <b>Lieferdatum ändern</b> wird benötigt
               </mat-error>
@@ -165,22 +165,14 @@
             <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
               <mat-label>KV-Datum</mat-label>
               <input [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput>
-              <!-- <mat-error *ngIf="hasRequiredError('kv_date')">
-                <b>KV-Datum</b> wird benötigt
-              </mat-error> -->
               <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
               <mat-datepicker #pickerKvDate></mat-datepicker>
             </mat-form-field>
 
 
             <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-              <mat-label>Abholtermin</mat-label>
-              <input [matDatepicker]="pickerAbholtermin" formControlName="abholtermin" matInput>
-              <!-- <mat-error *ngIf="hasRequiredError('kv_date')">
-                <b>KV-Datum</b> wird benötigt
-              </mat-error> -->
-              <mat-datepicker-toggle [for]="pickerAbholtermin" matSuffix></mat-datepicker-toggle>
-              <mat-datepicker #pickerAbholtermin></mat-datepicker>
+              <mat-label>Abholung</mat-label>
+              <input  formControlName="abholtermin" matInput>                            
             </mat-form-field>
 
 
@@ -188,13 +180,12 @@
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
               <mat-label>Bemerkungen</mat-label>
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"
-                maxlength="240"></textarea>
+                maxlength="240" (keydown)="keydown($event)"> </textarea>
             </mat-form-field>
           </div>
         </mat-tab>
 
       </mat-tab-group>
-
 
 
 
@@ -241,16 +232,16 @@
 
         </div>
 
-        
+
         <div class="grid grid-cols-2 w-full md:w-1/3 gap-3" *ngIf="selected_tab==1">
           <div class="flex gap-x-3 pb-3">
             <input #bemerkungencheck2page class="toggle" formControlName="bemerkungencheck2page"
-              id="bemerkungencheck2page" type="checkbox" [checked]="isChecked" (change)="onNativeChange($event)">
+              id="bemerkungencheck2page" type="checkbox"  [checked]="isChecked" (change)="onNativeChange($event)">
             <label class="cursor-pointer font-semibold text-gray-500" for="bemerkungencheck2page">Bemerkungen für zweite
               Seite</label>
           </div>
         </div>
-        
+
 
         <div class="flex justify-start items-center space-x-3 mt-4">
           <button class="btn btn-primary w-40" type="submit">
@@ -260,13 +251,15 @@
       </div>
 
       <!-- <div *ngIf="selected_tab==1"> -->
-      <div *ngIf="isChecked && selected_tab==1" >
+      <div *ngIf="isChecked && selected_tab==1">
         <div class="divider font-bold font-sans mt-3">Zweite Seite</div>
         <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Bemerkungen für zweite Seite</mat-label>
-            <textarea matInput placeholder="Bemerkungen für zweite Seite" formControlName="bemerkunhen2page" rows="5">
+            <textarea matInput placeholder="Bemerkungen für zweite Seite" formControlName="bemerkunhen2page"
+             rows="4" (keydown)="keydown2($event)"   maxlength="2400"   cdkTextareaAutosize cdkAutosizeMinRows="1"
+             cdkAutosizeMaxRows="20">
 
             </textarea>
           </mat-form-field>

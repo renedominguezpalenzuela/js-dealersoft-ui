@@ -19,13 +19,13 @@
 
     <main class="pt-4  mt-8 px-20 ">
 
-        <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
+        <app-car-details-supermin  [car_info]="car_info"></app-car-details-supermin>
 
         <table class="mt-5 mb-8 text-details" style="text-align: left">
             <tr class="">
                 <th class="pr-4 text-details-bold  flex 	item-start">Bemerkungen:</th>
                 <td>
-                    <p class="break-all preserve-line-break w-97  ">{{car_buy_data?.attributes?.bemerkunhen2page}}</p>
+                    <p class="break-all preserve-line-break w-97  text-details ">{{car_buy_data?.attributes?.bemerkunhen2page}}</p>
                 </td>
             </tr>
         </table>

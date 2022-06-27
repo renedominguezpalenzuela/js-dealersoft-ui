@@ -1,16 +1,22 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ViewChild,
+  Renderer2,
+} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Car, Customer, FilterDeepOption } from '@core/interfaces';
 import { ApiHelperService, AuthService, RequestService } from '@core/services';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { FilterOperator } from '@core/interfaces/query-params';
-
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-vehicle-form',
   templateUrl: './vehicle-form.component.html',
   styleUrls: ['./vehicle-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class VehicleFormComponent implements OnInit {
   public car!: Car;
@@ -18,6 +24,8 @@ export class VehicleFormComponent implements OnInit {
   public carsOptions: Car[] = [];
   public clientsOptions: Customer[] = [];
   private currentUserId: number | undefined;
+
+
 
   public existeCompraconA25: boolean = false;
 
@@ -27,18 +35,12 @@ export class VehicleFormComponent implements OnInit {
     private readonly requestService: RequestService,
     private readonly apiHelperService: ApiHelperService,
     private readonly authService: AuthService,
-    
-  
+    private renderer: Renderer2
   ) {
-
-
     // console.log(this.router.getCurrentNavigation()?.extras.state);
   }
 
   ngOnInit(): void {
-
-    
-
     this.authService.currentUser.subscribe(
       (user) => (this.currentUserId = user?.id)
     );
@@ -47,8 +49,6 @@ export class VehicleFormComponent implements OnInit {
         .Get(`${this.apiHelperService.carsURL}/${params['id']}`)
         .subscribe((res) => {
           this.car = res.data;
-        
-         
         })
     );
     this.activatedRoute.queryParams.subscribe(
@@ -57,11 +57,8 @@ export class VehicleFormComponent implements OnInit {
     this.requestService
       .Get(this.apiHelperService.carsURL, this.query())
       .subscribe((res) => {
-            this.carsOptions = res.data
-
-          
+        this.carsOptions = res.data;
       });
-
 
     // this.requestService.Get(this.apiHelperService.clientsURL).subscribe(res => this.clientsOptions = res.data);
 
@@ -72,7 +69,6 @@ export class VehicleFormComponent implements OnInit {
       )
       .subscribe((res) => {
         this.clientsOptions = res.data;
-        
       });
   }
 
@@ -102,46 +98,59 @@ export class VehicleFormComponent implements OnInit {
       ],
     });
 
+  // @ViewChild('tabs_invoice_contract') tabGroup!: MatTabGroup;
+
+  // @ViewChild("tab_invoice", { static: true }) tabGroup!: MatTabGroup;
+
   public updateQueryParams = ($event: MatTabChangeEvent) => {
- 
+    //Activar el ink-bar del tab de invoice_number y contrato
 
     if ($event.index == 2) {
       this.existeCompraconA25 = false;
 
+      if (!localStorage.getItem('firstTime')) { 
+        localStorage.setItem('firstTime', 'no reload') 
+        let reloj = timer(550);
+        reloj.subscribe((t) => {
+          console.log('Change tabs');
+          window.location.reload();
+        });
+       TODO: al destruor
+      
+       localStorage.removeItem('firstTime') 
+      }
+
+      
+
+
       this.requestService
-        .Get(
-          this.apiHelperService.carsBuyURL,
-          this.queryBuyedCars(this.car.id)
-        )
+        .Get(this.apiHelperService.carsBuyURL, this.queryBuyedCars(this.car.id))
         .subscribe((res) => {
           let datos = res.data;
 
+          console.log(datos);
 
-          if (datos[0].attributes.a25)   this.existeCompraconA25 = true;
+          if (datos[0]?.attributes.a25) this.existeCompraconA25 = true;
 
-        
-
-     
-          this.router.navigate([{existeCompraConA25: this.existeCompraconA25}], {
-            relativeTo: this.activatedRoute,
-            queryParams: { tab: $event.index + 1 },
-            queryParamsHandling: 'merge'
-          });
+          this.router.navigate(
+            [{ existeCompraConA25: this.existeCompraconA25 }],
+            {
+              relativeTo: this.activatedRoute,
+              queryParams: { tab: $event.index + 1 },
+              queryParamsHandling: 'merge',
+            }
+          );
 
          
 
         });
-
-    
     } else {
-    
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: { tab: $event.index + 1 },
-      queryParamsHandling: 'merge'
-      
-    });
-  }
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        queryParams: { tab: $event.index + 1 },
+        queryParamsHandling: 'merge',
+      });
+    }
   };
 
   private query = () =>

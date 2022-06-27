@@ -20,4 +20,6 @@ export class SecondPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
 }

@@ -42,14 +42,14 @@ const routes: Routes = [
   //   path: 'register',
   //   loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
   // },
-  // {
-  //   path: 'recovery-account',
-  //   loadChildren: () => import('./pages/recovery-account/recovery-account.module').then((m) => m.RecoveryAccountModule)
-  // },
-  // {
-  //   path: 'reset-password',
-  //   loadChildren: () => import('./pages/change-password/change-password.module').then((m) => m.ChangePasswordModule)
-  // }
+  {
+    path: 'recovery-account',
+    loadChildren: () => import('./pages/recovery-account/recovery-account.module').then((m) => m.RecoveryAccountModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./pages/change-password/change-password.module').then((m) => m.ChangePasswordModule)
+  }
 ];
 
 @NgModule({
