@@ -54,8 +54,6 @@ export class BuyCarA25Component implements OnInit {
     this.loadQueryParams();
     this.loadPaginatedData();
 
-    console.log("Cars buy a25 report")
-    console.log(this.car_buy_data)
 
 
    

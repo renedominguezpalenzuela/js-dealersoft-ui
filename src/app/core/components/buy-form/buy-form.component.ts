@@ -553,10 +553,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private imprimir = () => {
-    // console.log("car datasss")
-    // console.log(this.car_data)
 
-    // /export/reports/buy-car
 
 
 

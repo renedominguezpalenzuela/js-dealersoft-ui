@@ -82,18 +82,20 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
     //Pidiendo datos del invoice recibido como parametro
     this.activatedRoute.params.subscribe((params: Params) => {
-      console.log(params);
+     
+      if (params['id']) {
       this.requestService
         .Get(`${this.apiHelperService.invoicesURL}/${params['id']}`)
         .subscribe((res) => {
           this.invoice_data = res.data.attributes;
 
-          console.log(this.invoice_data);
+       
           this.newInvoiceForm.patchValue({
             ...this.invoice_data,
           });
           this.newInvoiceForm.updateValueAndValidity();
         });
+      }
     });
 
     //OLD CODE:
@@ -285,7 +287,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     // )
     // .subscribe((res) => {
     //   const data = res?.data[0]?.attributes;
-    //   console.log(data)
+
     //   // this.newInvoiceForm.patchValue({
     //   //   ...data,
     //   //   car: this.car_data?.id,
@@ -300,7 +302,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     // });
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('SSS');
+ 
 
     // if (changes?.['invoice_data'] && this.invoice_data) {
 
@@ -322,7 +324,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     //     .subscribe((res) => {
     //       const data = res?.data[0]?.attributes;
 
-    //       console.log(data)
+    //    
 
     //       // this.newInvoiceForm.patchValue({
     //       //   ...data,
@@ -346,8 +348,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     let numero = this.createInvoice
       .generateInvoice_Number()
       .subscribe((datos: any) => {
-        console.log('DS');
-        console.log(datos);
+     
         this.newInvoiceForm.patchValue({
           invoice_number: datos,
         });

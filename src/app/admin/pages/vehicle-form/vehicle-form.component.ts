@@ -41,7 +41,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     private readonly authService: AuthService,
     private renderer: Renderer2
   ) {
-    // console.log(this.router.getCurrentNavigation()?.extras.state);
+    
   }
 
 
@@ -124,7 +124,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
         localStorage.setItem('firstTime', 'no reload') 
         let reloj = timer(550);
         reloj.subscribe((t) => {
-          console.log('Change tabs');
+          
           window.location.reload();
         });
       
@@ -140,7 +140,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
         .subscribe((res) => {
           let datos = res.data;
 
-          console.log(datos);
+          
 
           if (datos[0]?.attributes.a25) this.existeCompraconA25 = true;
 

@@ -80,14 +80,12 @@ export class CreateInvoiceService {
 
           this.last_invoice_number = this.last_invoice_number + 1;
 
-          console.log('MAYOR', this.last_invoice_number);
-          // observable execution
-          // return String(this.last_invoice_number);
+        
 
           observer.next(String(this.last_invoice_number));
           observer.complete();
         });
-        
+
       });
 
       //buscar todas las ventas del usuario

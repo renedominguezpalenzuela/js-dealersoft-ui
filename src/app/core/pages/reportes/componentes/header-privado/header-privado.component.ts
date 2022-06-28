@@ -12,7 +12,6 @@ export class HeaderPrivadoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('Header privad');
-    console.log(this.car_buy_data);
+
   }
 }
