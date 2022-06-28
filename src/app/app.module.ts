@@ -11,6 +11,7 @@ import localeEnDe from '@angular/common/locales/en-DE';
 import localeEnDeExtra from '@angular/common/locales/extra/en-DE';
 import { registerLocaleData } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import {CreateInvoiceService} from './servicios/create-invoice.service';
 
 
 // import { SaveDom2Pipe } from './save-dom2.pipe';
@@ -32,6 +33,7 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     MatTabsModule
   ],
   providers: [
+    CreateInvoiceService, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

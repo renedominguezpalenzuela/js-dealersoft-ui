@@ -5,13 +5,23 @@
     <form (ngSubmit)="submit()" [formGroup]="newInvoiceForm">
       <div class="divider font-bold font-sans">Allgemeine Daten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-1 w-full xl:w-9/12 my-3">
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+
+        <mat-form-field appearance="outline" class="col-start-1 col-span-2 lg:col-span-1">
           <mat-label>Rechnungs Nr.</mat-label>
           <input formControlName="invoice_number" matInput min="0" required type="number">
           <mat-error *ngIf="hasRequiredError('invoice_number')">
             <b>Rechnungs Nr.</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+        <div class="col-span-1 col-start-2 pt-2">
+          <mat-label class="btn btn-ghost text-gray-5000 drawer-button 	 " (click)="generateInvoice_Number()">
+            <mat-icon class="text-black">gavel</mat-icon>
+
+          </mat-label>
+        </div>
+
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Rechnungs Titel</mat-label>
           <input formControlName="title" matInput required>
