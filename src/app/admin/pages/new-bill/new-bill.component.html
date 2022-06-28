@@ -54,6 +54,8 @@
           <mat-datepicker-toggle [for]="pickerDeliveryDate" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #pickerDeliveryDate></mat-datepicker>
         </mat-form-field>
+
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Kunde</mat-label>
           <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
@@ -70,6 +72,8 @@
             <b>Kunde</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
+        
         <div class="col-span-1 flex items-center justify-start gap-x-3 my-1 pl-3">
           <div class="flex gap-x-3">
             <input checked="checked" class="toggle" formControlName="a25" id="a25" type="checkbox">
@@ -127,7 +131,7 @@
       </div>
       <mat-divider></mat-divider>
       <div class="flex w-full justify-center md:justify-end items-center mt-6">
-        <button class="btn btn-primary w-40" type="submit">
+        <button class="btn btn-primary w-40" type="submit"   [disabled]="boton_disabled">
           <span class="tracking-wide">Rechnung erstellen</span>
         </button>
       </div>

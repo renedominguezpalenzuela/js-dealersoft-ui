@@ -46,10 +46,15 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     ),
   });
 
+
+  total_decimales = 2;
+
   public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = []; //lista de clientes del Usuario
 
-  @Input() public invoice_data: Invoice | undefined;
+  public boton_disabled: boolean = false;
+
+  @Input() public invoice_data: any | undefined;
 
   private currentUserId: number | undefined;
   private invoice_id: number | undefined;
@@ -75,6 +80,19 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     return this.newInvoiceForm.controls['places'] as FormArray;
   }
 
+  private queryClients = (id: any) =>
+  this.requestService.generateQuery({
+    populate: ['*'],
+    filters: [
+      {
+        field: '[client][id]',
+        value: id,
+        operator: FilterOperator.$eq,
+        option: FilterDeepOption.$and,
+      },
+    ],
+  });
+
   ngOnInit(): void {
     this.authService.currentUser.subscribe(
       (user) => (this.currentUserId = user?.id)
@@ -82,37 +100,54 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
     //Pidiendo datos del invoice recibido como parametro
     this.activatedRoute.params.subscribe((params: Params) => {
-     
       if (params['id']) {
-      this.requestService
-        .Get(`${this.apiHelperService.invoicesURL}/${params['id']}`)
-        .subscribe((res) => {
-          this.invoice_data = res.data.attributes;
+        //Deshabilitar boton de salvar
+        this.boton_disabled = true;
 
-       
-          this.newInvoiceForm.patchValue({
-            ...this.invoice_data,
+        this.requestService
+          .Get(
+            `${this.apiHelperService.invoicesURL}/${params['id']}`,
+            this.queryClients(params['id'])
+          )
+          .subscribe((res) => {
+            this.invoice_data = res.data.attributes;
+
+            console.log(res.data.attributes);
+
+            this.newInvoiceForm.patchValue({
+              ...this.invoice_data,
+            });
+
+            //Adicionando nuevos articulo
+
+            this.invoice_data.places.map((unDato: any) => {
+              this.addArticlesWidtData(unDato);
+            });
+
+            this.newInvoiceForm.updateValueAndValidity();
           });
-          this.newInvoiceForm.updateValueAndValidity();
-        });
+      } else {
+        //Habilitar boton de salvar
+        this.boton_disabled = false;
+
+        //Adicionando nuevo articulo vacio
+        this.addArticle();
       }
     });
 
     //OLD CODE:
 
-    //Adicionando nuevo articulo
-    this.addArticle();
-
     //Pidiendo lista de clientes
     this.requestService
       .Get(
         this.apiHelperService.clientsURL,
-        this.queryClients(this.currentUserId)
+        this.queryUsers(this.currentUserId)
       )
       .subscribe(
         (res) => (this.filteredOptions = this.clientsOptions = res.data)
       );
 
+    //seteando eventos para botones iva y a25
     this.newInvoiceForm
       .get('iva')!
       .valueChanges.subscribe((change: boolean) => {
@@ -150,7 +185,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  private queryClients = (id: any) =>
+  private queryUsers = (id: any) =>
     this.requestService.generateQuery({
       populate: ['*'],
       filters: [
@@ -254,6 +289,20 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     this.articles.push(articleForm);
   };
 
+  public addArticlesWidtData = (datos: any) => {
+    const articleForm = this.formBuilder.group({
+      article: [null, Validators.required],
+      quantity: [null, Validators.required],
+      unit_price: [null, Validators.required],
+    });
+
+    this.articles.push(articleForm);
+
+    if (datos) {
+      articleForm.patchValue({ ...datos });
+    }
+  };
+
   public deleteArticle = (index: number) => {
     this.articles.removeAt(index);
   };
@@ -270,91 +319,76 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private ActualizarDatos(invoice_id: any) {
-    // this.requestService
-    // .Get(
-    //   this.apiHelperService.invoicesURL,
-    //   this.requestService.generateQuery({
-    //     // populate: ['car', 'client'],
-    //     filters: [
-    //       {
-    //         field: '[id]',
-    //         operator: FilterOperator.$eq,
-    //         value: <string>invoice_id,
-    //         option: FilterDeepOption.$and,
-    //       },
-    //     ],
-    //   })
-    // )
-    // .subscribe((res) => {
-    //   const data = res?.data[0]?.attributes;
-
-    //   // this.newInvoiceForm.patchValue({
-    //   //   ...data,
-    //   //   car: this.car_data?.id,
-    //   //   client: data?.client?.data?.id,
-    //   // });
-    //   // this.newInvoiceForm.patchValue({
-    //   //   gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
-    //   //   net_buy: data?.net_buy?.toFixed(this.total_decimales),
-    //   //   iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
-    //   // });
-    //   this.newInvoiceForm.updateValueAndValidity();
-    // });
+    this.requestService
+    .Get(
+      this.apiHelperService.invoicesURL,
+      this.requestService.generateQuery({
+        // populate: ['car', 'client'],
+        filters: [
+          {
+            field: '[id]',
+            operator: FilterOperator.$eq,
+            value: <string>invoice_id,
+            option: FilterDeepOption.$and,
+          },
+        ],
+      })
+    )
+    .subscribe((res) => {
+      const data = res?.data[0]?.attributes;
+      this.newInvoiceForm.patchValue({
+        ...data,
+        client: data?.client?.data?.id,
+      });
+      this.newInvoiceForm.patchValue({
+        gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
+        net_buy: data?.net_buy?.toFixed(this.total_decimales),
+        iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
+      });
+      this.newInvoiceForm.updateValueAndValidity();
+    });
   }
   ngOnChanges(changes: SimpleChanges): void {
- 
-
-    // if (changes?.['invoice_data'] && this.invoice_data) {
-
-    //   this.requestService
-    //     .Get(
-    //       this.apiHelperService.invoicesURL,
-    //       this.requestService.generateQuery({
-    //         populate: ['car', 'client'],
-    //         filters: [
-    //           {
-    //             field: '[car][id]',
-    //             operator: FilterOperator.$eq,
-    //             value: <string>this.invoice_data?.id,
-    //             option: FilterDeepOption.$and,
-    //           },
-    //         ],
-    //       })
-    //     )
-    //     .subscribe((res) => {
-    //       const data = res?.data[0]?.attributes;
-
-    //    
-
-    //       // this.newInvoiceForm.patchValue({
-    //       //   ...data,
-    //       //   car: this.car_data?.id,
-    //       //   client: data?.client?.data?.id,
-    //       // });
-
-    //       // this.newInvoiceForm.patchValue({
-    //       //   gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
-    //       //   net_buy: data?.net_buy?.toFixed(this.total_decimales),
-    //       //   iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
-    //       // });
-
-    //       this.newInvoiceForm.updateValueAndValidity();
-
-    //     });
-    // }
+    if (changes?.['invoice_data'] && this.invoice_data) {
+      this.requestService
+        .Get(
+          this.apiHelperService.invoicesURL,
+          this.requestService.generateQuery({
+            populate: ['*'],
+            filters: [
+              {
+                field: '[id]',
+                operator: FilterOperator.$eq,
+                value: <string>this.invoice_data?.id,
+                option: FilterDeepOption.$and,
+              },
+            ],
+          })
+        )
+        .subscribe((res) => {
+          const data = res?.data[0]?.attributes;
+    
+          this.newInvoiceForm.patchValue({
+            ...data,
+            client: data?.client?.data?.id,
+          });
+          // this.newInvoiceForm.patchValue({
+          //   gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
+          //   net_buy: data?.net_buy?.toFixed(this.total_decimales),
+          //   iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
+          // });
+          this.newInvoiceForm.updateValueAndValidity();
+        });
+    }
   }
 
   public generateInvoice_Number() {
     let numero = this.createInvoice
       .generateInvoice_Number()
       .subscribe((datos: any) => {
-     
         this.newInvoiceForm.patchValue({
           invoice_number: datos,
         });
       });
-
-
-    
   }
 }
