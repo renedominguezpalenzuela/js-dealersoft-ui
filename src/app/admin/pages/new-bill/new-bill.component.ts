@@ -126,13 +126,13 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           .subscribe((res) => {
             this.invoice_data = res.data.attributes;
 
-            console.log(res.data.attributes);
-            console.log(res.data.attributes.client.data.id);
-
+            
             this.newInvoiceForm.patchValue({
               ...this.invoice_data,
               client: res.data.attributes.client.data.id,
             });
+
+            
 
             //Adicionando nuevos articulo
 
@@ -186,11 +186,11 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
             color: 'success',
             data: 'Neue Rechnung gespeichert',
           });
-          // this.router.navigate(['/admin/list-invoices']);
+           this.router.navigate(['/admin/list-invoices']);
         });
     } else {
       let errores = this.findInvalidControls();
-      console.log(errores);
+      
 
       this.notificationService.riseNotification({
         color: 'warning',
@@ -264,7 +264,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   //mostrando lista de clientes en combobox
   ngAfterViewInit(): void {
-    this.ActualizarDatos(this.invoice_id);
+    
+// this.ActualizarDatos(this.invoice_id);
     fromEvent(this.autoComplete!.nativeElement, 'input')
       .pipe(distinctUntilChanged(), debounceTime(150))
       .subscribe(($event: any) => {
@@ -344,14 +345,16 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private ActualizarDatos(invoice_id: any) {
+
+    
     this.requestService
       .Get(
         this.apiHelperService.invoicesURL,
         this.requestService.generateQuery({
-          // populate: ['car', 'client'],
+          populate: ['car', 'client'],
           filters: [
             {
-              field: '[id]',
+              field: '[client][id]',
               operator: FilterOperator.$eq,
               value: <string>invoice_id,
               option: FilterDeepOption.$and,
@@ -361,6 +364,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       )
       .subscribe((res) => {
         const data = res?.data[0]?.attributes;
+
+        
         this.newInvoiceForm.patchValue({
           ...data,
           client: data?.client?.data?.id,
@@ -407,6 +412,19 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public generateInvoice_Number() {
+
+    
+    let valorFormularioInvoice_Number = this.newInvoiceForm.get('invoice_number')!.value;
+
+    if (valorFormularioInvoice_Number != null) {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Rechnungsnummer wurde bereits generiert, es kann keine neue erstellt werden',
+      });
+
+      return;
+    }
+
     let numero = this.createInvoice
       .generateInvoice_Number()
       .subscribe((datos: any) => {

@@ -426,6 +426,29 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public generateInvoice_Number() {
+    let valorFormularioInvoice_Number =
+      this.carSellForm.get('invoice_number')!.value;
+
+    if (valorFormularioInvoice_Number != null) {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Rechnungsnummer wurde bereits generiert, es kann keine neue erstellt werden',
+      });
+
+      return;
+    }
+
+    let fechaLieferdatum = this.carSellForm.get('lieferung')!.value;
+
+    if (fechaLieferdatum == null) {
+      this.carSellForm.get('lieferung')!.markAsTouched();
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Lieferdatum ändern wird benötigt',
+      });
+      return;
+    }
+
     let numero = this.createInvoice
       .generateInvoice_Number()
       .subscribe((datos: any) => {
@@ -435,52 +458,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         });
       });
   }
-
-  // public generateInvoice_NumberOLD() {
-  //   //buscar todas las ventas del usuario
-  //   //si no existe el invoice_number, se genera uno nuevo
-  //   let valorFormularioInvoice_Number =
-  //     this.carSellForm.get('invoice_number')!.value;
-
-  //   let fechaLieferdatum = this.carSellForm.get('lieferung')!.value;
-
-  //   if (fechaLieferdatum == null) {
-  //     this.carSellForm.get('lieferung')!.markAsTouched();
-  //     this.notificationService.riseNotification({
-  //       color: 'warning',
-  //       data: 'Lieferdatum ändern wird benötigt',
-  //     });
-  //     return;
-  //   }
-
-  //   if (valorFormularioInvoice_Number == null) {
-  //     this.requestService
-  //       .Get(
-  //         this.apiHelperService.carsSellURL,
-  //         this.querySelledCars(this.authUser?.id)
-  //       )
-  //       .subscribe((res) => {
-  //         let datos = res.data;
-
-  //         datos.map((unDato: any) => {
-  //           if (
-  //             Number(unDato.attributes.invoice_number) >
-  //             this.last_invoice_number
-  //           ) {
-  //             this.last_invoice_number = Number(
-  //               unDato.attributes.invoice_number
-  //             );
-  //           }
-  //         });
-
-  //         this.last_invoice_number = this.last_invoice_number + 1;
-
-  //         this.carSellForm.patchValue({
-  //           invoice_number: String(this.last_invoice_number),
-  //         });
-  //       });
-  //   }
-  // }
 
   private querySelledCars = (id: any) =>
     this.requestService.generateQuery({
@@ -690,31 +667,31 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 precio = this.carSellForm.get('net_sell')!.value;
               }
 
-              console.log(this.car_data);
-
               let datosInvoice = {
                 invoice_number: this.carSellForm.get('invoice_number')!.value,
                 title:
                   this.car_data?.attributes.name +
-                  ' FIN: ' +
+                  ', FIN: ' +
                   this.car_data?.attributes.car_identifier,
                 description: this.carSellForm.get('bemerkunhen')!.value,
                 date: this.carSellForm.get('kv_date')!.value,
                 delivery_date: this.carSellForm.get('lieferung')!.value,
-                client: { data: this.carSellForm.get('client')!.value },
+                // client: { data: this.carSellForm.get('client')!.value },
+                client: this.carSellForm.get('client')!.value,
+                owner:  this.authUser?.id,
                 a25: this.carSellForm.get('a25')!.value,
                 iva: this.carSellForm.get('iva')!.value,
-                places: {
+                places: [{
                   article:
                     this.car_data?.attributes.name +
                     ', FIN: ' +
                     this.car_data?.attributes.car_identifier,
                   quantity: 1,
                   unit_price: precio,
-                },
+                }],
               };
 
-              console.log(datosInvoice);
+            
 
               this.createInvoice
                 .guardarInvoiceFromSellCar(datosInvoice)

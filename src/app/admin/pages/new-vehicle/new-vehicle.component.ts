@@ -161,8 +161,7 @@ export class NewVehicleComponent implements OnInit, OnChanges {
             }
           });
         } else { //Salvando nuevo carro
-          console.log("CARRO")
-          console.log(formValue)
+       
           this.requestService.Post(this.apiHelperService.carsURL, formValue).subscribe(subscription);
         }
       }
