@@ -44,8 +44,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       [],
       [Validators.required, Validators.minLength(1)]
     ),
+    owner: [null, [Validators.required]],
   });
-
 
   total_decimales = 2;
 
@@ -80,23 +80,37 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     return this.newInvoiceForm.controls['places'] as FormArray;
   }
 
-  private queryClients = (id: any) =>
-  this.requestService.generateQuery({
-    populate: ['*'],
-    filters: [
-      {
-        field: '[client][id]',
-        value: id,
-        operator: FilterOperator.$eq,
-        option: FilterDeepOption.$and,
-      },
-    ],
-  });
+  private queryInvoices = (id: any) =>
+    this.requestService.generateQuery({
+      populate: ['*'],
+      filters: [
+        {
+          field: '[client][id]',
+          value: id,
+          operator: FilterOperator.$eq,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe(
-      (user) => (this.currentUserId = user?.id)
-    );
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUserId = user?.id;
+
+      this.newInvoiceForm.patchValue({
+        owner: user?.id,
+      });
+
+      //Pidiendo lista de clientes del usuario logueado
+      this.requestService
+        .Get(
+          this.apiHelperService.clientsURL,
+          this.queryClients(this.currentUserId)
+        )
+        .subscribe(
+          (res) => (this.filteredOptions = this.clientsOptions = res.data)
+        );
+    });
 
     //Pidiendo datos del invoice recibido como parametro
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -107,15 +121,17 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         this.requestService
           .Get(
             `${this.apiHelperService.invoicesURL}/${params['id']}`,
-            this.queryClients(params['id'])
+            this.queryInvoices(params['id'])
           )
           .subscribe((res) => {
             this.invoice_data = res.data.attributes;
 
             console.log(res.data.attributes);
+            console.log(res.data.attributes.client.data.id);
 
             this.newInvoiceForm.patchValue({
               ...this.invoice_data,
+              client: res.data.attributes.client.data.id,
             });
 
             //Adicionando nuevos articulo
@@ -136,16 +152,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     });
 
     //OLD CODE:
-
-    //Pidiendo lista de clientes
-    this.requestService
-      .Get(
-        this.apiHelperService.clientsURL,
-        this.queryUsers(this.currentUserId)
-      )
-      .subscribe(
-        (res) => (this.filteredOptions = this.clientsOptions = res.data)
-      );
 
     //seteando eventos para botones iva y a25
     this.newInvoiceForm
@@ -172,6 +178,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   };
 
   public submit() {
+    console.log('INVOICE');
+    console.log(this.newInvoiceForm.value);
+
     if (this.newInvoiceForm.valid) {
       this.requestService
         .Post(this.apiHelperService.invoicesURL, this.newInvoiceForm.value)
@@ -180,12 +189,31 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
             color: 'success',
             data: 'Neue Rechnung gespeichert',
           });
-          this.router.navigate(['/admin/list-invoices']);
+          // this.router.navigate(['/admin/list-invoices']);
         });
+    } else {
+      let errores = this.findInvalidControls();
+      console.log(errores);
+
+      this.notificationService.riseNotification({
+        color: 'success',
+        data: 'Neue Rechnung gespeichert',
+      });
     }
   }
 
-  private queryUsers = (id: any) =>
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.newInvoiceForm.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name + ', ' + controls[name].value);
+      }
+    }
+    return invalid;
+  }
+
+  private queryClients = (id: any) =>
     this.requestService.generateQuery({
       populate: ['*'],
       filters: [
@@ -320,33 +348,33 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   private ActualizarDatos(invoice_id: any) {
     this.requestService
-    .Get(
-      this.apiHelperService.invoicesURL,
-      this.requestService.generateQuery({
-        // populate: ['car', 'client'],
-        filters: [
-          {
-            field: '[id]',
-            operator: FilterOperator.$eq,
-            value: <string>invoice_id,
-            option: FilterDeepOption.$and,
-          },
-        ],
-      })
-    )
-    .subscribe((res) => {
-      const data = res?.data[0]?.attributes;
-      this.newInvoiceForm.patchValue({
-        ...data,
-        client: data?.client?.data?.id,
+      .Get(
+        this.apiHelperService.invoicesURL,
+        this.requestService.generateQuery({
+          // populate: ['car', 'client'],
+          filters: [
+            {
+              field: '[id]',
+              operator: FilterOperator.$eq,
+              value: <string>invoice_id,
+              option: FilterDeepOption.$and,
+            },
+          ],
+        })
+      )
+      .subscribe((res) => {
+        const data = res?.data[0]?.attributes;
+        this.newInvoiceForm.patchValue({
+          ...data,
+          client: data?.client?.data?.id,
+        });
+        this.newInvoiceForm.patchValue({
+          gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
+          net_buy: data?.net_buy?.toFixed(this.total_decimales),
+          iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
+        });
+        this.newInvoiceForm.updateValueAndValidity();
       });
-      this.newInvoiceForm.patchValue({
-        gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
-        net_buy: data?.net_buy?.toFixed(this.total_decimales),
-        iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
-      });
-      this.newInvoiceForm.updateValueAndValidity();
-    });
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.['invoice_data'] && this.invoice_data) {
@@ -367,10 +395,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         )
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
-    
+
           this.newInvoiceForm.patchValue({
             ...data,
-            client: data?.client?.data?.id,
           });
           // this.newInvoiceForm.patchValue({
           //   gross_buy: data?.gross_buy?.toFixed(this.total_decimales),

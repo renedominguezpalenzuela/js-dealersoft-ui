@@ -160,7 +160,9 @@ export class NewVehicleComponent implements OnInit, OnChanges {
               this.requestService.Post(this.apiHelperService.carsURL, data).subscribe(() => subscription);
             }
           });
-        } else {
+        } else { //Salvando nuevo carro
+          console.log("CARRO")
+          console.log(formValue)
           this.requestService.Post(this.apiHelperService.carsURL, formValue).subscribe(subscription);
         }
       }

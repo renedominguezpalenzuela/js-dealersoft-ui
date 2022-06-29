@@ -21,7 +21,6 @@
           </mat-label>
         </div>
 
-
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Rechnungs Titel</mat-label>
           <input formControlName="title" matInput required>
@@ -29,6 +28,7 @@
             <b>Rechnungs Titel</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Beschreibung</mat-label>
           <input formControlName="description" matInput required>
@@ -36,6 +36,7 @@
             <b>Beschreibung</b> wird benötigt
           </mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Rechnungsdatum</mat-label>
           <input [matDatepicker]="pickerDate" formControlName="date" matInput  required>
@@ -45,6 +46,7 @@
           <mat-datepicker-toggle [for]="pickerDate" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #pickerDate></mat-datepicker>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Lieferdatum</mat-label>
           <input [matDatepicker]="pickerDeliveryDate" formControlName="delivery_date" matInput  required>
@@ -55,7 +57,7 @@
           <mat-datepicker #pickerDeliveryDate></mat-datepicker>
         </mat-form-field>
 
-
+        <!-- Clientes -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
           <mat-label>Kunde</mat-label>
           <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
@@ -64,6 +66,7 @@
               {{option.attributes.first_name}} {{option.attributes.last_name}}
             </mat-option>
           </mat-autocomplete>
+
           <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
                   mat-icon-button matSuffix type="button">
             <mat-icon>add</mat-icon>
@@ -85,6 +88,7 @@
           </div>
         </div>
       </div>
+
       <div class="divider font-bold font-sans">
         <span class="mr-3">Position hinzufügen</span>
         <button (click)="addArticle()" class="tooltip tooltip-bottom" data-tip="Add Article" mat-icon-button
@@ -92,6 +96,7 @@
           <mat-icon class="add-course-btn">add</mat-icon>
         </button>
       </div>
+
       <div class="grid grid-cols-2 gap-y-1 w-full xl:w-9/12 my-3">
         <ng-container formArrayName="places">
 

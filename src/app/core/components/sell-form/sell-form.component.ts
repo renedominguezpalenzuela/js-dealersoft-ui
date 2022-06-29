@@ -9,9 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-
-
-import { MatTabChangeEvent  } from '@angular/material/tabs';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -34,6 +32,8 @@ import * as moment from 'moment';
 import { User } from '@core/interfaces';
 import { Location } from '@angular/common';
 
+import { CreateInvoiceService } from '../../../servicios/create-invoice.service';
+
 @Component({
   selector: 'app-sell-form',
   templateUrl: './sell-form.component.html',
@@ -49,7 +49,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   total_decimales = 2;
 
-  last_invoice_number: number = 220000;
+  // last_invoice_number: number = 220000;
 
   isChecked = false;
 
@@ -57,7 +57,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   car_id = 0;
 
-  public selected_tab:number = 0;
+  public selected_tab: number = 0;
 
   selected_option_a25 = false;
   selected_option_MnSt = false;
@@ -72,7 +72,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     car_name: [null, [Validators.required]],
     car: [null, [Validators.required]],
     client: [null, [Validators.required]],
-    invoice_number: [null, [ Validators.min(0)]],
+    invoice_number: [null, [Validators.min(0)]],
     invoice_date: [null, []],
     kv_date: [null, [Validators.min(0)]],
     lieferung: [null, []],
@@ -80,7 +80,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     net_sell: [null, [Validators.required, Validators.min(0)]],
     iva_sell: [{ value: null, disabled: true }, [Validators.min(0)]],
-    gross_sell: [  { value: null, disabled: true },   [Validators.required, Validators.min(0)],
+    gross_sell: [
+      { value: null, disabled: true },
+      [Validators.required, Validators.min(0)],
     ],
 
     a25: [true, [Validators.required]],
@@ -121,12 +123,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    location: Location
+    location: Location,
+    private readonly createInvoice: CreateInvoiceService
   ) {
-
-
-
-    this.route = route;    
+    this.route = route;
 
     this.route.params.subscribe((params) => {
       if (params['existeCompraConA25'] != null) {
@@ -148,7 +148,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     // this.tabGroup.realignInkBar();
- 
   }
 
   public calcularIVA() {
@@ -280,12 +279,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.selected_option_MnSt = false;
   }
 
-
-
   ngOnInit(): void {
-
-
-
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
@@ -423,59 +417,70 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     // this.existeCompraconA25 = this.route.snapshot.paramMap.get('existeCompraconA25');
     this.primeraVez = false;
 
-    // if (!localStorage.getItem('foo')) { 
-    //   localStorage.setItem('foo', 'no reload') 
-    //   location.reload() 
+    // if (!localStorage.getItem('foo')) {
+    //   localStorage.setItem('foo', 'no reload')
+    //   location.reload()
     // } else {
-    //   localStorage.removeItem('foo') 
+    //   localStorage.removeItem('foo')
     // }
   }
 
   public generateInvoice_Number() {
-    //buscar todas las ventas del usuario
-    //si no existe el invoice_number, se genera uno nuevo
-    let valorFormularioInvoice_Number =
-      this.carSellForm.get('invoice_number')!.value;
-
-    let fechaLieferdatum = this.carSellForm.get('lieferung')!.value;
-
-    if (fechaLieferdatum == null) {
-      this.carSellForm.get('lieferung')!.markAsTouched();
-      this.notificationService.riseNotification({
-        color: 'warning',
-        data: 'Lieferdatum ändern wird benötigt',
-      });
-      return;
-    }
-
-    if (valorFormularioInvoice_Number == null) {
-      this.requestService
-        .Get(
-          this.apiHelperService.carsSellURL,
-          this.querySelledCars(this.authUser?.id)
-        )
-        .subscribe((res) => {
-          let datos = res.data;
-
-          datos.map((unDato: any) => {
-            if (
-              Number(unDato.attributes.invoice_number) >
-              this.last_invoice_number
-            ) {
-              this.last_invoice_number = Number(
-                unDato.attributes.invoice_number
-              );
-            }
-          });
-
-          this.last_invoice_number = this.last_invoice_number + 1;
-
-          this.carSellForm.patchValue({
-            invoice_number: String(this.last_invoice_number),
-          });
+    let numero = this.createInvoice
+      .generateInvoice_Number()
+      .subscribe((datos: any) => {
+        // this.last_invoice_number = datos;
+        this.carSellForm.patchValue({
+          invoice_number: datos,
         });
-    }
+      });
   }
+
+  // public generateInvoice_NumberOLD() {
+  //   //buscar todas las ventas del usuario
+  //   //si no existe el invoice_number, se genera uno nuevo
+  //   let valorFormularioInvoice_Number =
+  //     this.carSellForm.get('invoice_number')!.value;
+
+  //   let fechaLieferdatum = this.carSellForm.get('lieferung')!.value;
+
+  //   if (fechaLieferdatum == null) {
+  //     this.carSellForm.get('lieferung')!.markAsTouched();
+  //     this.notificationService.riseNotification({
+  //       color: 'warning',
+  //       data: 'Lieferdatum ändern wird benötigt',
+  //     });
+  //     return;
+  //   }
+
+  //   if (valorFormularioInvoice_Number == null) {
+  //     this.requestService
+  //       .Get(
+  //         this.apiHelperService.carsSellURL,
+  //         this.querySelledCars(this.authUser?.id)
+  //       )
+  //       .subscribe((res) => {
+  //         let datos = res.data;
+
+  //         datos.map((unDato: any) => {
+  //           if (
+  //             Number(unDato.attributes.invoice_number) >
+  //             this.last_invoice_number
+  //           ) {
+  //             this.last_invoice_number = Number(
+  //               unDato.attributes.invoice_number
+  //             );
+  //           }
+  //         });
+
+  //         this.last_invoice_number = this.last_invoice_number + 1;
+
+  //         this.carSellForm.patchValue({
+  //           invoice_number: String(this.last_invoice_number),
+  //         });
+  //       });
+  //   }
+  // }
 
   private querySelledCars = (id: any) =>
     this.requestService.generateQuery({
@@ -606,8 +611,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             });
         }
       });
-
-
   }
 
   public hasRequiredError = (input: string): boolean => {
@@ -671,30 +674,76 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         if (data === undefined) {
           this.requestService
             .Post(this.apiHelperService.carsSellURL, this.carSellForm.value)
-            .subscribe(() =>
-              //Actualizar el carro -- campo selled = true
-              {
-                //Solo se elimina el carro cuando se crea el invoice number
-                if (this.selected_tab==0) {
-                   this.actualizarCarSelled(this.carSellForm.value.car, true);
-                }
+            .subscribe(() => {
+              //Solo se elimina el carro cuando se crea el invoice number
 
-                if (imprimir) {
-                  this.imprimir(type);
-                }
-
-                let texto_mensaje=""
-                if (this.selected_tab==0) {
-                  texto_mensaje='Neuwagen eingelagert verkauft';
-                } else {
-                  texto_mensaje='Kaufvertrag erstellt';
-                }
-                this.notificationService.riseNotification({
-                  color: 'success',
-                  data: texto_mensaje,
-                });
+              let precio = 0;
+              if (this.carSellForm.get('a25')!.value) {
+                precio = this.carSellForm.get('gross_sell')!.value;
               }
-            );
+
+              if (this.carSellForm.get('iva')!.value) {
+                precio = this.carSellForm.get('gross_sell')!.value;
+              }
+
+              if (this.carSellForm.get('export')!.value) {
+                precio = this.carSellForm.get('net_sell')!.value;
+              }
+
+              console.log(this.car_data);
+
+              let datosInvoice = {
+                invoice_number: this.carSellForm.get('invoice_number')!.value,
+                title:
+                  this.car_data?.attributes.name +
+                  ' FIN: ' +
+                  this.car_data?.attributes.car_identifier,
+                description: this.carSellForm.get('bemerkunhen')!.value,
+                date: this.carSellForm.get('kv_date')!.value,
+                delivery_date: this.carSellForm.get('lieferung')!.value,
+                client: { data: this.carSellForm.get('client')!.value },
+                a25: this.carSellForm.get('a25')!.value,
+                iva: this.carSellForm.get('iva')!.value,
+                places: {
+                  article:
+                    this.car_data?.attributes.name +
+                    ', FIN: ' +
+                    this.car_data?.attributes.car_identifier,
+                  quantity: 1,
+                  unit_price: precio,
+                },
+              };
+
+              console.log(datosInvoice);
+
+              this.createInvoice
+                .guardarInvoiceFromSellCar(datosInvoice)
+                .subscribe(() => {
+                  if (this.selected_tab == 0) {
+                    this.actualizarCarSelled(this.carSellForm.value.car, true);
+                  }
+
+                  if (imprimir) {
+                    this.imprimir(type);
+                  }
+
+                  let texto_mensaje = '';
+                  if (this.selected_tab == 0) {
+                    texto_mensaje = 'Neuwagen eingelagert verkauft';
+                  } else {
+                    texto_mensaje = 'Kaufvertrag erstellt';
+                  }
+                  this.notificationService.riseNotification({
+                    color: 'success',
+                    data: texto_mensaje,
+                  });
+
+                  this.notificationService.riseNotification({
+                    color: 'success',
+                    data: 'Neue Rechnung gespeichert',
+                  });
+                });
+            });
         } else {
           const id_venta = res?.data[0]?.id;
           this.requestService
@@ -710,12 +759,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 this.imprimir(type);
               }
 
-              let texto_mensaje=""
-                if (this.selected_tab==0) {
-                  texto_mensaje='Fahrzeug verkauft';
-                } else {
-                  texto_mensaje='Kaufvertrag erstellt';
-                }
+              let texto_mensaje = '';
+              if (this.selected_tab == 0) {
+                texto_mensaje = 'Fahrzeug verkauft';
+              } else {
+                texto_mensaje = 'Kaufvertrag erstellt';
+              }
 
               this.notificationService.riseNotification({
                 color: 'success',
@@ -743,14 +792,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       .Put(this.apiHelperService.carsURL + '/' + carID, { selled: true })
       .subscribe(() => {
         if (showMessage) {
-
-          let texto_mensaje=""
-          if (this.selected_tab==0) {
-            texto_mensaje='Fahrzeug aus Lagerbestand entfernt';
+          let texto_mensaje = '';
+          if (this.selected_tab == 0) {
+            texto_mensaje = 'Fahrzeug aus Lagerbestand entfernt';
           } else {
-            texto_mensaje='Kaufvertrag erstellt';
+            texto_mensaje = 'Kaufvertrag erstellt';
           }
-
 
           this.notificationService.riseNotification({
             color: 'success',
@@ -987,8 +1034,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  
-
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -1001,7 +1046,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  
   public keydown2(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -1032,28 +1076,17 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   onTabChange(event: MatTabChangeEvent) {
     this.selected_tab = event.index;
 
-
-   
-    
     if (this.selected_tab == 0) {
-
-      
-   
-
-
       this.isChecked = false;
-      this.carSellForm.get('invoice_number')!.addValidators(Validators.required);
+      this.carSellForm
+        .get('invoice_number')!
+        .addValidators(Validators.required);
     } else {
-      this.carSellForm.get('invoice_number')!.removeValidators(Validators.required);
+      this.carSellForm
+        .get('invoice_number')!
+        .removeValidators(Validators.required);
     }
 
     this.carSellForm.patchValue({ bemerkungencheck2page: false });
-
-    
-
-    
   }
-
-  
-
 }

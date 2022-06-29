@@ -43,13 +43,7 @@ export class CreateInvoiceService {
       ],
     });
 
-  public devolverAsyncrono(): Observable<any> {
-    return new Observable((observer) => {
-      // observable execution
-      observer.next('bla bla bla');
-      observer.complete();
-    });
-  }
+ 
 
   public generateInvoice_Number(): Observable<any> {
     this.last_invoice_number = 220000;
@@ -95,15 +89,16 @@ export class CreateInvoiceService {
     });
   }
 
-  guardarInvoice(DatosInvoice: any) {
-    this.requestService
+  guardarInvoiceFromSellCar(DatosInvoice: any): Observable<any> {
+    return this.requestService
       .Post(this.apiHelperService.invoicesURL, DatosInvoice)
-      .subscribe(() => {
-        this.notificationService.riseNotification({
-          color: 'success',
-          data: 'Neue Rechnung gespeichert',
-        });
-        // this.router.navigate(['/admin/list-invoices']);
-      });
+      // .subscribe(() => {
+      //   this.notificationService.riseNotification({
+      //     color: 'success',
+      //     data: 'Neue Rechnung gespeichert',
+      //   });
+      
+      //   // this.router.navigate(['/admin/list-invoices']);
+      // });
   }
 }
