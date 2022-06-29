@@ -178,9 +178,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   };
 
   public submit() {
-    console.log('INVOICE');
-    console.log(this.newInvoiceForm.value);
-
     if (this.newInvoiceForm.valid) {
       this.requestService
         .Post(this.apiHelperService.invoicesURL, this.newInvoiceForm.value)
@@ -196,8 +193,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       console.log(errores);
 
       this.notificationService.riseNotification({
-        color: 'success',
-        data: 'Neue Rechnung gespeichert',
+        color: 'warning',
+        data: 'fehlende Angaben',
       });
     }
   }
