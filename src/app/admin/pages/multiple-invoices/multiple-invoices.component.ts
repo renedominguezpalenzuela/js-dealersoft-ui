@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '@core/interfaces';
 import { Column, ColumnType, OperationEvent, OptionSettings } from '@core/lib/dynamic-table/utils/interfaces';
-import { ApiHelperService, LoadingService, RequestService } from '@core/services';
+import { ApiHelperService, LoadingService, RequestService , AuthService} from '@core/services';
 import { delay } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ExportType } from '@core/services/request.service';
@@ -10,12 +10,18 @@ import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { InvoiceInfoComponent } from '@core/components/invoice-info/invoice-info.component';
 
+import {  FilterDeepOption } from '@core/interfaces';
+import { FilterOperator } from '@core/interfaces/query-params';
+
 @Component({
   selector: 'app-multiple-invoices',
   templateUrl: './multiple-invoices.component.html',
   styleUrls: ['./multiple-invoices.component.scss']
 })
 export class MultipleInvoicesComponent implements OnInit {
+
+
+  private currentUserId: number | undefined;
 
   public data: Invoice[] = [];
   public displayedColumns: Column[] = [
@@ -84,15 +90,21 @@ export class MultipleInvoicesComponent implements OnInit {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly matDialog: MatDialog,
+    private readonly authService: AuthService
   ) {
     if (this.activatedRoute.snapshot.queryParamMap.has('page')) {
       this.currentPage = <number><unknown>this.activatedRoute.snapshot.queryParamMap.get('page');
     }
     this.noShowLoader = false;
-    this.loadPaginatedData(this.currentPage);
+   
   }
 
   ngOnInit(): void {
+
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUserId = user?.id
+      this.loadPaginatedData(this.currentPage);
+    })
     this.loadingService.loadingSub.pipe(delay(0)).subscribe((loading) => this.loading = loading);
 
     this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
@@ -103,7 +115,7 @@ export class MultipleInvoicesComponent implements OnInit {
 
   public loadPaginatedData = ($event: number) => {
     this.currentPage = $event;
-    this.requestService.Get(this.apiHelperService.invoicesURL, this.query())
+    this.requestService.Get(this.apiHelperService.invoicesURL, this.query(this.currentUserId))
       .subscribe(res => {
         this.data = res.data;
         this.pageCount = res.meta.pagination.pageCount;
@@ -151,7 +163,35 @@ export class MultipleInvoicesComponent implements OnInit {
     }
   }
 
-  private query = () => this.requestService.generateQuery({
+
+
+  /**
+   * 
+   * 
+   *   private queryInvoices = (id: any) =>
+    this.requestService.generateQuery({
+      populate: ['*'],
+      filters: [
+        {
+          field: '[client][id]',
+          value: id,
+          operator: FilterOperator.$eq,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
+   */
+
+  private query = (id: any) => this.requestService.generateQuery({
+    populate: ['*'],
+    filters: [
+      {
+        field: '[owner][id]',
+        value: id,
+        operator: FilterOperator.$eq,
+         option: FilterDeepOption.$and,
+      },
+    ],
     'pagination[pageSize]': 10,
     'pagination[page]': this.currentPage
   });
