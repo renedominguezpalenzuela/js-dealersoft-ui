@@ -292,16 +292,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.desactivarIVA();
     this.actualizando_radio_buttons = false;
-
-
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
- 
-
-
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el parent
       this.carBuyForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -322,8 +315,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         )
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
-
-          
 
           this.carBuyForm.patchValue({
             ...data,
@@ -347,12 +338,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           //   net_buy: vNetto.toFixed(this.total_decimales),
           // });
 
-          if (data===undefined) {
-            this.boton_salvar_disabled=false;
+          if (data === undefined) {
+            this.boton_salvar_disabled = false;
           } else {
-            this.boton_salvar_disabled=true;
+            this.boton_salvar_disabled = true;
           }
-      
         });
     }
 
@@ -470,8 +460,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   private salvarEImprimir(imprimir: any) {
     //Tengo el id del carro en la tabla cars, no es el mismo
 
-
     const id = this.car_data?.id;
+
+  
 
     //Convirtiendo a 2 valores decimales
     this.focus_net_buy = false;
@@ -541,7 +532,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             )
             .subscribe(() => {
               if (imprimir) {
-              
                 this.imprimir();
               }
 
@@ -559,21 +549,19 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         // });
       });
   }
+
+
   public generatePdf() {
 
-
-
-
-    this.salvarEImprimir(true);
+    if (!this.boton_salvar_disabled) {
+      this.boton_salvar_disabled=true;
+      this.salvarEImprimir(true);
+    } else {
+      this.imprimir();
+    }
   }
 
   private imprimir = () => {
-
-
-
-
-
-
     let tipo = '/';
     if (this.a25_activo) {
       tipo = 'reports/buy-car/a25';
@@ -684,14 +672,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
- 
-
-
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
-    
-  
+
     if (lineas >= 4 && event.keyCode == 13) {
       event.preventDefault();
       return false;

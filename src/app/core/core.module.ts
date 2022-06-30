@@ -52,6 +52,8 @@ import { ContratoFechaCompraComponent } from './pages/reportes/componentes/contr
 import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-compra-iva/precio-compra-iva.component';
 import { ComentariosComponent } from './pages/reportes/componentes/comentarios/comentarios.component';
 import { CarDetailsSuperminComponent } from './pages/reportes/componentes/car-details-supermin/car-details-supermin.component';
+import { FechaBillComponent } from './pages/reportes/componentes/fecha-bill/fecha-bill.component';
+
 
 
 @NgModule({
@@ -104,7 +106,8 @@ import { CarDetailsSuperminComponent } from './pages/reportes/componentes/car-de
     ContratoFechaCompraComponent,
     PrecioCompraIvaComponent,
     ComentariosComponent,
-    CarDetailsSuperminComponent
+    CarDetailsSuperminComponent,
+    FechaBillComponent
 
   ],
   declarations: [
@@ -141,7 +144,9 @@ import { CarDetailsSuperminComponent } from './pages/reportes/componentes/car-de
     ContratoFechaCompraComponent,
     PrecioCompraIvaComponent,
     ComentariosComponent,
-    CarDetailsSuperminComponent
+    CarDetailsSuperminComponent,
+    FechaBillComponent,
+
 
     // FooterEmpresaComponent,
   ],

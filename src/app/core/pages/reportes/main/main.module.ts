@@ -27,6 +27,9 @@ import { NettoEuKaufvertragExportComponent } from './netto-eu/netto-eu-kaufvertr
 
 import { BuyCarA25Component } from './buy-car-a25/buy-car-a25.component';
 import { BuyCarIvaComponent } from './buy-car-iva/buy-car-iva.component';
+import { BillA25Component } from './bill-a25/bill-a25.component';
+import { BillIvaComponent } from './bill-iva/bill-iva.component';
+;
 
 
  
@@ -59,6 +62,9 @@ const routes: Routes = [
    { path: 'buy-car/a25/:jwt', component: BuyCarA25Component },
    { path: 'buy-car/iva/:jwt', component: BuyCarIvaComponent },
 
+   { path: 'bill/a25/:jwt', component: BillA25Component },
+   { path: 'bill/iva/:jwt', component: BillIvaComponent },
+
 
     // { path: 'buy-car', component: BuyCarComponent },
 
@@ -85,7 +91,10 @@ const routes: Routes = [
     NettoEuKaufvertragExportComponent,
     
     BuyCarA25Component,
-         BuyCarIvaComponent
+         BuyCarIvaComponent,
+         BillA25Component,
+         BillIvaComponent,
+
  
 
 

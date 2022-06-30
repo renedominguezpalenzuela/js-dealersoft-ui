@@ -864,6 +864,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   private imprimir(type: ExportType) {
     let tipo = '/';
 
+    let nombre_reporte='report.pdf'
+    // nombre_reporte = `${name} no.${this.carSellForm.controls['invoice_number'].value} (${moment().format('MM.DD.YYYY')}).pdf`
+
+    if (this.selected_tab == 0) { //invoice
+       nombre_reporte = `Rechnung ${this.carSellForm.controls['invoice_number'].value} - ${this.car_data?.attributes.car_identifier}.pdf`  
+
+    } else if (this.selected_tab==1) {
+      nombre_reporte = `Kaufvertrag ${this.car_data?.attributes.name} - ${this.car_data?.attributes.car_identifier}.pdf`  
+    }
+
+
+
     switch (type) {
       case 'privado':
         if (this.selected_tab == 0) {
@@ -933,15 +945,23 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           type === ExportType.net_export ? `Rechnung` : `Verkaufsrechnung`;
         saveAs(
           new Blob([res], { type: 'application/pdf' }),
-          `${name} no.${
-            this.carSellForm.controls['invoice_number'].value
-          } (${moment().format('MM.DD.YYYY')}).pdf`
+          nombre_reporte
         );
       });
   }
 
   public generatePdf(type: ExportType) {
-    this.salvarEImprimir(true, type);
+    
+    if (!this.boton_salvar_disabled) {
+      this.boton_salvar_disabled=true;
+      this.salvarEImprimir(true, type);
+    } else {
+      this.imprimir(type);
+    }
+
+
+
+    
   }
 
   private clearIvaSell = () => {

@@ -25,6 +25,9 @@ import { FilterOperator } from '@core/interfaces/query-params';
 
 import { CreateInvoiceService } from '../../../servicios/create-invoice.service';
 
+import * as saveAs from 'file-saver';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-new-bill',
   templateUrl: './new-bill.component.html',
@@ -49,15 +52,21 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   total_decimales = 2;
 
+  a25_activo = false;
+
+  
+
   public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = []; //lista de clientes del Usuario
 
   public boton_disabled: boolean = false;
+  public mostrar_boton_imprimir: boolean = false;
 
   @Input() public invoice_data: any | undefined;
 
+
   private currentUserId: number | undefined;
-  private invoice_id: number | undefined;
+  private invoice_id: string | undefined;
 
   @ViewChild('autoComplete') private autoComplete:
     | ElementRef<HTMLInputElement>
@@ -117,6 +126,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       if (params['id']) {
         //Deshabilitar boton de salvar
         this.boton_disabled = true;
+        this.mostrar_boton_imprimir=true;
+
+        this.invoice_id =params['id']; 
 
         this.requestService
           .Get(
@@ -125,12 +137,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           )
           .subscribe((res) => {
             this.invoice_data = res.data.attributes;
-                        
+
             this.newInvoiceForm.patchValue({
               ...this.invoice_data,
               client: res.data.attributes.client.data.id,
             });
-         
+
             //Adicionando nuevos articulo
             this.invoice_data.places.map((unDato: any) => {
               this.addArticlesWidtData(unDato);
@@ -141,6 +153,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       } else {
         //Habilitar boton de salvar
         this.boton_disabled = false;
+        this.mostrar_boton_imprimir=false;
 
         //Adicionando nuevo articulo vacio
         this.addArticle();
@@ -153,6 +166,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     this.newInvoiceForm
       .get('iva')!
       .valueChanges.subscribe((change: boolean) => {
+        if (change) {
+          this.a25_activo = false;
+        } else {
+          this.a25_activo = true;
+        }
+
         this.newInvoiceForm.patchValue(
           { a25: !change },
           { emitEvent: false, onlySelf: true }
@@ -162,6 +181,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     this.newInvoiceForm
       .get('a25')!
       .valueChanges.subscribe((change: boolean) => {
+        if (change) {
+          this.a25_activo = true;
+        } else {
+          this.a25_activo = false;
+        }
+
         this.newInvoiceForm.patchValue(
           { iva: !change },
           { emitEvent: false, onlySelf: true }
@@ -177,16 +202,16 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.newInvoiceForm.valid) {
       this.requestService
         .Post(this.apiHelperService.invoicesURL, this.newInvoiceForm.value)
-        .subscribe(() => {
+        .subscribe((datos) => {
+          
           this.notificationService.riseNotification({
             color: 'success',
             data: 'Neue Rechnung gespeichert',
           });
-           this.router.navigate(['/admin/list-invoices']);
+          this.router.navigate(['/admin/list-invoices']);
         });
     } else {
       let errores = this.findInvalidControls();
-      
 
       this.notificationService.riseNotification({
         color: 'warning',
@@ -260,8 +285,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   //mostrando lista de clientes en combobox
   ngAfterViewInit(): void {
-    
-// this.ActualizarDatos(this.invoice_id);
+    // this.ActualizarDatos(this.invoice_id);
     fromEvent(this.autoComplete!.nativeElement, 'input')
       .pipe(distinctUntilChanged(), debounceTime(150))
       .subscribe(($event: any) => {
@@ -341,8 +365,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private ActualizarDatos(invoice_id: any) {
-
-    
     this.requestService
       .Get(
         this.apiHelperService.invoicesURL,
@@ -361,7 +383,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       .subscribe((res) => {
         const data = res?.data[0]?.attributes;
 
-        
         this.newInvoiceForm.patchValue({
           ...data,
           client: data?.client?.data?.id,
@@ -374,6 +395,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         this.newInvoiceForm.updateValueAndValidity();
       });
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.['invoice_data'] && this.invoice_data) {
       this.requestService
@@ -408,9 +430,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public generateInvoice_Number() {
-
-    
-    let valorFormularioInvoice_Number = this.newInvoiceForm.get('invoice_number')!.value;
+    let valorFormularioInvoice_Number =
+      this.newInvoiceForm.get('invoice_number')!.value;
 
     if (valorFormularioInvoice_Number != null) {
       this.notificationService.riseNotification({
@@ -430,7 +451,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       });
   }
 
-
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -443,5 +463,33 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
+  public generatePdf = () => {
+    console.log("ID")
 
+    console.log(this.invoice_data);
+
+    let tipo = '/';
+    if (this.a25_activo) {
+      tipo = 'reports/bill/a25';
+    } else {
+      tipo = 'reports/bill/iva';
+    }
+
+    console.log("Invoice datea")
+    console.log(this.invoice_id)
+    
+    
+    this.requestService
+      .downloadPDF(this.apiHelperService.pdfURL, {
+        // type: ExportType.vehicle,
+        type: tipo,
+        id: this.invoice_id  //no es un car
+      })
+      .subscribe((res) => {
+        saveAs(
+          new Blob([res], { type: 'application/pdf' }),
+          `Rechnung_${this.invoice_data?.invoice_number}_(${moment().format('YYYY-MM-DD')}).pdf`
+        );
+      });
+  };
 }
