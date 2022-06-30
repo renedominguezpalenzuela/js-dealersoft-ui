@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiHelperService, AuthService, NotificationService, RequestService, ValidationsService } from '@core/services';
 import { Router } from '@angular/router';
@@ -21,9 +21,11 @@ declare interface ImgSrc {
   templateUrl: './new-vehicle.component.html',
   styleUrls: ['./new-vehicle.component.scss']
 })
-export class NewVehicleComponent implements OnInit, OnChanges {
+export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
   totalAusstattung = 4;
+
+  public boton_salvar_disabled = false;
 
   public vehicleForm = this.formBuilder.group({
     name: [null, [Validators.required]],
@@ -39,12 +41,18 @@ export class NewVehicleComponent implements OnInit, OnChanges {
     source: [null],
     owner: [null, [Validators.required]],
   });
+
+
+  @Input() public car: Car | undefined;
+
+
+
   public options: { label: string, value: string }[] = environment.sourcesOptions;
   public comments: string[] = [];
   public currentComment: string = '';
   public commentsError: boolean = false;
   public isUpdating: boolean = false;
-  @Input() public car: Car | undefined;
+  
   public imgSrcList: ImgSrc[] = [];
   public currentImgSrc: ImgSrc | undefined;
   public toDelete: number[] = [];
@@ -58,14 +66,25 @@ export class NewVehicleComponent implements OnInit, OnChanges {
     private readonly notificationService: NotificationService,
     private readonly authService: AuthService
   ) {
-
+   
    
 
   
   }
 
+  ngAfterViewInit(): void { 
+
+    
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
+
+  
     if (changes?.['car'].currentValue) {
+
+      //se esta editando un carro existente, no se puede salvar 
+      this.boton_salvar_disabled=true;
+     
       this.isUpdating = true;
       for (let key in this.vehicleForm.controls) {
         this.vehicleForm.get(key)!.clearValidators();
@@ -86,6 +105,9 @@ export class NewVehicleComponent implements OnInit, OnChanges {
         this.currentImgSrc = this.imgSrcList[0];
       }
 
+    } else {
+      //se esta creando un nuevo carro, se puede salvar
+      this.boton_salvar_disabled=false;
     }
 
     
@@ -95,6 +117,9 @@ export class NewVehicleComponent implements OnInit, OnChanges {
 
   
     this.authService.currentUser.subscribe(user => this.vehicleForm.patchValue({ owner: user?.id }));
+
+  
+    
 
     
   }

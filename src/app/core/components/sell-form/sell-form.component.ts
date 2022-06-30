@@ -55,6 +55,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   actualizando_radio_buttons = false;
 
+  public boton_salvar_disabled = false;
+
   car_id = 0;
 
   public selected_tab: number = 0;
@@ -280,6 +282,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit(): void {
+
+  
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
@@ -474,6 +478,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   //Se actualiza el formulario con los datos de la BD
   ngOnChanges(changes: SimpleChanges): void {
+
+
+
+
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
       this.carSellForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -496,6 +504,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         )
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
+
+
+          if (data===undefined) {
+            this.boton_salvar_disabled=false;
+          } else {
+            this.boton_salvar_disabled=true;
+          }
+
+          
 
           if (data != null) {
             this.existenDatosGuardadosenBD = true;

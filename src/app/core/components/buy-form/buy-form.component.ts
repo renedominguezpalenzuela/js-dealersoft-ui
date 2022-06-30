@@ -43,6 +43,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() public car_data: Car | undefined;
   actualizando_radio_buttons = false;
 
+  public boton_salvar_disabled = true;
+
   /*
   campo del formulario car_name
   en html:
@@ -296,6 +298,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+ 
+
+
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el parent
       this.carBuyForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -316,6 +322,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         )
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
+
+          
 
           this.carBuyForm.patchValue({
             ...data,
@@ -338,6 +346,13 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           //   gross_buy: vGross_buy.toFixed(this.total_decimales),
           //   net_buy: vNetto.toFixed(this.total_decimales),
           // });
+
+          if (data===undefined) {
+            this.boton_salvar_disabled=false;
+          } else {
+            this.boton_salvar_disabled=true;
+          }
+      
         });
     }
 
