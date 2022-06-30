@@ -125,6 +125,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           )
           .subscribe((res) => {
             this.invoice_data = res.data.attributes;
+            console.log(this.invoice_data)
 
             
             this.newInvoiceForm.patchValue({
