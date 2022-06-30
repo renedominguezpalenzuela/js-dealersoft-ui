@@ -453,6 +453,20 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       return;
     }
 
+
+
+    let fechaRechnungsdatum = this.carSellForm.get('invoice_date')!.value;
+
+    if (fechaRechnungsdatum == null) {
+      this.carSellForm.get('invoice_date')!.markAsTouched();
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Rechnungsdatum wird benötigt',
+      });
+      return;
+    }
+
+
     let numero = this.createInvoice
       .generateInvoice_Number()
       .subscribe((datos: any) => {

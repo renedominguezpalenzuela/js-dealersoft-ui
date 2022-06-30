@@ -25,7 +25,9 @@ export class DynamicTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Output() public operationEvent: EventEmitter<OperationEvent> = new EventEmitter<OperationEvent>();
   @Output() public paginationEvent: EventEmitter<number> = new EventEmitter<number>();
-  @Input() public data: any[] = [];
+  
+  @Input() public data: any[] = []; //recibo los datos a mostrar
+
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   public columnType = ColumnType;
   @Input() public displayedColumns: Column[] = [];
@@ -79,10 +81,12 @@ export class DynamicTableComponent implements OnInit, AfterViewInit, OnChanges {
 
   public ngOnInit(): void {
     this.dataSource.data = this.data;
+
     this.dataSource.filterPredicate = (data: Element, filter: string) => {
       let out = false;
       this.displayedColumns.forEach(col => {
         const value = new NestedPropertyPipe().transform(data, col.column)?.toString();
+        
         if (!!value && value.toLowerCase()?.includes(filter.trim().toLowerCase())) {
           out = true;
           return;
@@ -90,6 +94,7 @@ export class DynamicTableComponent implements OnInit, AfterViewInit, OnChanges {
       });
       return out;
     };
+
     this.dataSource.filter = this.filterQuery;
     this.configColumns(this.displayedColumns);
     this.detectorRef.detectChanges();

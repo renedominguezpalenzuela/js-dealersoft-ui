@@ -69,11 +69,11 @@ export class MultipleInvoicesComponent implements OnInit {
         literal: 'PDF exportieren',
         event: 'ExportPdf'
       },
-      {
-        icon: 'info',
-        literal: 'Detail anzeigen',
-        event: 'Detail'
-      }
+      // {
+      //   icon: 'info',
+      //   literal: 'Detail anzeigen',
+      //   event: 'Detail'
+      // }
     ]
   };
   public filterQuery: string = '';

@@ -20,6 +20,11 @@
     </div>
 
     <div class="mt-4">
+      <!-- <app-tabla-invoices>
+        
+      </app-tabla-invoices>  -->
+
+
       <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"
                          [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
                          [displayedColumns]="displayedColumns" [endFieldSticky]="'op'" [filterQuery]="filterQuery"

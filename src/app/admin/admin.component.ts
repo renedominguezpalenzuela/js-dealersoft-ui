@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit {
     },
     {
       icon: 'request_quote',
-      label: 'Diverse Rechnungen',
+      label: 'Alle Rechnungen',
       url: '/admin/list-invoices',
       type: 'link',
     },

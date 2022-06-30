@@ -429,4 +429,19 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         });
       });
   }
+
+
+  public keydown(event: any) {
+    let cadena_texto = event.target.value;
+    const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
+
+    if (lineas >= 2 && event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+
 }
