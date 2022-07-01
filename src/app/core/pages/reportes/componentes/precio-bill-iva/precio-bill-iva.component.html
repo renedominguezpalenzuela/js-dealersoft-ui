@@ -1,4 +1,4 @@
-<div class="grid grid-cols-6 gap-y-0 gap-x-4 w-full ">
+<div class="grid grid-cols-6 gap-y-0 gap-x-2 w-full ">
     <div class="row-start-1 row-end-1 col-start-1 w-full col-end-7 border-b border-black ">
 
     </div>
@@ -39,17 +39,40 @@
     </ng-container >
 
 
-    <div class=" col-start-5 w-full mt-5 col-end-7 border-b border-black ">
+
+
+    <div class="mt-5 col-start-1 w-full col-end-7 border-b border-black ">
 
     </div>
 
 
+    <div class=" col-start-5  text-details    mt-3   text-right">
+        <span class="">Zwischensumme:</span> 
+    </div>
+    <div class=" col-start-6  text-details   mt-3   text-right">
+        <span>{{total || 0 | currency}}</span> 
+    </div>
 
-    <div class=" col-start-5  text-details-bold mb-1   mt-3 mr-1  text-right">
+
+    <div class=" col-start-5  text-details   mt-1   text-right">
+        <span class="">MwSt. 19%:</span> 
+    </div>
+    <div class=" col-start-6  text-details    mt-1   text-right">
+        <span>{{iva || 0 | currency}}</span> 
+    </div>
+
+
+    
+    <div class=" col-start-5 w-full mt-1 col-end-7 border-b border-black ">
+
+    </div>
+
+
+    <div class=" col-start-5  text-details-bold    mt-1   text-right">
         <span class="">Gesamtbetrag:</span> 
     </div>
-    <div class=" col-start-6  text-details-bold mb-1   mt-3 mr-1  text-right">
-        <span>{{total || 0 | currency}}</span> 
+    <div class=" col-start-6  text-details-bold    mt-1   text-right">
+        <span>{{brutto || 0 | currency}}</span> 
     </div>
 
 

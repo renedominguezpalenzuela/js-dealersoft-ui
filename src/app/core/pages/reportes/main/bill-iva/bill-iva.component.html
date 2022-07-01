@@ -1,1 +1,43 @@
-<p>bill-iva works!</p>
+<app-header-privado [car_buy_data]="bill_info" [me]="me" [imgPath]="imgPath"></app-header-privado>
+
+
+<div class="pt-3 px-20 ">
+
+
+    <!-- Contrato fecha -->
+    <app-fecha-bill [invoice_date]="invoice_date" [invoice_number]="invoice_number" [user_city]="user_city">
+    </app-fecha-bill>
+
+    <p class="flex text-center mt-4 text-details  ">
+        Wir berechnen Ihnen hiermit gemäß Absprache folgende(n) Artikel
+
+    </p>
+
+    <div class="mt-10 text-contract-big">
+        Beschreibung
+    </div>
+
+    <div class="mt-4 ">
+        <app-precio-bill-iva [lista_articulos]="bill_info.attributes.places" ></app-precio-bill-iva>
+
+    </div>
+
+
+
+
+
+
+    <div class="mt-10 ">
+        <table class="" style="text-align: left">
+            <tr>
+                <span class="pr-2 text-details-bold ">Lieferdatum: </span>
+                <span class="text-details">{{bill_info?.attributes?.delivery_date | date:'dd.MM.yyyy'}}</span>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+
+
+<app-footer-empresa [car_buy_data]="bill_info" [me]="me"></app-footer-empresa>
