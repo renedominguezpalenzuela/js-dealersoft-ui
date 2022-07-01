@@ -282,8 +282,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit(): void {
-
-  
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
@@ -453,8 +451,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       return;
     }
 
-
-
     let fechaRechnungsdatum = this.carSellForm.get('invoice_date')!.value;
 
     if (fechaRechnungsdatum == null) {
@@ -466,6 +462,16 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       return;
     }
 
+    this.carSellForm.updateValueAndValidity();
+
+    if (!this.carSellForm.valid) {
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'fehlende Angaben!!!!',
+      });
+
+      return;
+    }
 
     let numero = this.createInvoice
       .generateInvoice_Number()
@@ -475,6 +481,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           invoice_number: datos,
         });
       });
+
+
+      this.boton_salvar_disabled = true;  
+
+    this.salvarEImprimir(false, ExportType.none);
   }
 
   private querySelledCars = (id: any) =>
@@ -492,10 +503,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   //Se actualiza el formulario con los datos de la BD
   ngOnChanges(changes: SimpleChanges): void {
-
-
-
-
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
       this.carSellForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -519,14 +526,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
 
-
-          if (data===undefined) {
-            this.boton_salvar_disabled=false;
+          if (data === undefined) {
+            this.boton_salvar_disabled = false;
           } else {
-            this.boton_salvar_disabled=true;
+            this.boton_salvar_disabled = true;
           }
-
-          
 
           if (data != null) {
             this.existenDatosGuardadosenBD = true;
@@ -627,6 +631,21 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public salvarEImprimir(imprimir: any, type: ExportType) {
     //Tengo el id del carro en la tabla cars, no es el mismo
+
+    if (this.selected_tab == 0) {
+      let valorFormularioInvoice_Number =
+        this.carSellForm.get('invoice_number')!.value;
+
+      if (valorFormularioInvoice_Number != null) {
+        this.notificationService.riseNotification({
+          color: 'warning',
+          data: 'Rechnungsnummer wurde bereits generiert, es kann keine neue erstellt werden',
+        });
+
+        return;
+      }
+    }
+
     const id = this.car_data?.id;
 
     this.focus_net_sell = false;
@@ -685,72 +704,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             .subscribe(() => {
               //Solo se elimina el carro cuando se crea el invoice number
 
-              let precio = 0;
-              if (this.carSellForm.get('a25')!.value) {
-                precio = this.carSellForm.get('gross_sell')!.value;
+              this.crearInvoice();
+
+              let texto_mensaje = '';
+              if (this.selected_tab == 0) {
+                texto_mensaje = 'Neuwagen eingelagert verkauft';
+              } else {
+                texto_mensaje = 'Kaufvertrag erstellt';
               }
-
-              if (this.carSellForm.get('iva')!.value) {
-                precio = this.carSellForm.get('gross_sell')!.value;
-              }
-
-              if (this.carSellForm.get('export')!.value) {
-                precio = this.carSellForm.get('net_sell')!.value;
-              }
-
-              let datosInvoice = {
-                invoice_number: this.carSellForm.get('invoice_number')!.value,
-                title:
-                  this.car_data?.attributes.name +
-                  ', FIN: ' +
-                  this.car_data?.attributes.car_identifier,
-                description: this.carSellForm.get('bemerkunhen')!.value,
-                date: this.carSellForm.get('kv_date')!.value,
-                delivery_date: this.carSellForm.get('lieferung')!.value,
-                // client: { data: this.carSellForm.get('client')!.value },
-                client: this.carSellForm.get('client')!.value,
-                owner:  this.authUser?.id,
-                a25: this.carSellForm.get('a25')!.value,
-                iva: this.carSellForm.get('iva')!.value,
-                places: [{
-                  article:
-                    this.car_data?.attributes.name +
-                    ', FIN: ' +
-                    this.car_data?.attributes.car_identifier,
-                  quantity: 1,
-                  unit_price: precio,
-                }],
-              };
-
-            
-
-              this.createInvoice
-                .guardarInvoiceFromSellCar(datosInvoice)
-                .subscribe(() => {
-                  if (this.selected_tab == 0) {
-                    this.actualizarCarSelled(this.carSellForm.value.car, true);
-                  }
-
-                  if (imprimir) {
-                    this.imprimir(type);
-                  }
-
-                  let texto_mensaje = '';
-                  if (this.selected_tab == 0) {
-                    texto_mensaje = 'Neuwagen eingelagert verkauft';
-                  } else {
-                    texto_mensaje = 'Kaufvertrag erstellt';
-                  }
-                  this.notificationService.riseNotification({
-                    color: 'success',
-                    data: texto_mensaje,
-                  });
-
-                  this.notificationService.riseNotification({
-                    color: 'success',
-                    data: 'Neue Rechnung gespeichert',
-                  });
-                });
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: texto_mensaje,
+              });
             });
         } else {
           const id_venta = res?.data[0]?.id;
@@ -778,6 +743,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 color: 'success',
                 data: texto_mensaje,
               });
+
+              this.crearInvoice();
             });
         }
 
@@ -788,6 +755,61 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         // });
       });
   }
+
+  crearInvoice() {
+    if (this.selected_tab == 0) {
+      let precio = 0;
+      if (this.carSellForm.get('a25')!.value) {
+        precio = this.carSellForm.get('gross_sell')!.value;
+      }
+
+      if (this.carSellForm.get('iva')!.value) {
+        precio = this.carSellForm.get('gross_sell')!.value;
+      }
+
+      if (this.carSellForm.get('export')!.value) {
+        precio = this.carSellForm.get('net_sell')!.value;
+      }
+
+      let datosInvoice = {
+        invoice_number: this.carSellForm.get('invoice_number')!.value,
+        title:
+          this.car_data?.attributes.name +
+          ', FIN: ' +
+          this.car_data?.attributes.car_identifier,
+        description: this.carSellForm.get('bemerkunhen')!.value,
+        kv_date: this.carSellForm.get('kv_date')!.value,
+        date: this.carSellForm.get('invoice_date')!.value,
+        delivery_date: this.carSellForm.get('lieferung')!.value,
+        // client: { data: this.carSellForm.get('client')!.value },
+        client: this.carSellForm.get('client')!.value,
+        owner: this.authUser?.id,
+        a25: this.carSellForm.get('a25')!.value,
+        iva: this.carSellForm.get('iva')!.value,
+        places: [
+          {
+            article:
+              this.car_data?.attributes.name +
+              ', FIN: ' +
+              this.car_data?.attributes.car_identifier,
+            quantity: 1,
+            unit_price: precio,
+          },
+        ],
+      };
+
+      this.createInvoice
+        .guardarInvoiceFromSellCar(datosInvoice)
+        .subscribe(() => {
+          this.actualizarCarSelled(this.carSellForm.value.car, true);
+
+          this.notificationService.riseNotification({
+            color: 'success',
+            data: 'Neue Rechnung gespeichert',
+          });
+        });
+    }
+  }
   //*************************************************************************************************
   //  Boton Guardar
   //*************************************************************************************************
@@ -796,6 +818,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public actualizarCarSelled(carID: any, showMessage: boolean) {
+    ///solo pasar a vendido si se genero el numero de invoice
+
+    if (!this.carSellForm.get('invoice_number')!.value) {
+      console.log('numero invoice no generado');
+      return;
+    }
+
     this.requestService
       .Put(this.apiHelperService.carsURL + '/' + carID, { selled: true })
       .subscribe(() => {
@@ -864,17 +893,15 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   private imprimir(type: ExportType) {
     let tipo = '/';
 
-    let nombre_reporte='report.pdf'
+    let nombre_reporte = 'report.pdf';
     // nombre_reporte = `${name} no.${this.carSellForm.controls['invoice_number'].value} (${moment().format('MM.DD.YYYY')}).pdf`
 
-    if (this.selected_tab == 0) { //invoice
-       nombre_reporte = `Rechnung ${this.carSellForm.controls['invoice_number'].value} - ${this.car_data?.attributes.car_identifier}.pdf`  
-
-    } else if (this.selected_tab==1) {
-      nombre_reporte = `Kaufvertrag ${this.car_data?.attributes.name} - ${this.car_data?.attributes.car_identifier}.pdf`  
+    if (this.selected_tab == 0) {
+      //invoice
+      nombre_reporte = `Rechnung ${this.carSellForm.controls['invoice_number'].value} - ${this.car_data?.attributes.car_identifier}.pdf`;
+    } else if (this.selected_tab == 1) {
+      nombre_reporte = `Kaufvertrag ${this.car_data?.attributes.name} - ${this.car_data?.attributes.car_identifier}.pdf`;
     }
-
-
 
     switch (type) {
       case 'privado':
@@ -943,25 +970,17 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe((res) => {
         const name: string =
           type === ExportType.net_export ? `Rechnung` : `Verkaufsrechnung`;
-        saveAs(
-          new Blob([res], { type: 'application/pdf' }),
-          nombre_reporte
-        );
+        saveAs(new Blob([res], { type: 'application/pdf' }), nombre_reporte);
       });
   }
 
   public generatePdf(type: ExportType) {
-    
     if (!this.boton_salvar_disabled) {
-      this.boton_salvar_disabled=true;
+      this.boton_salvar_disabled = true;
       this.salvarEImprimir(true, type);
     } else {
       this.imprimir(type);
     }
-
-
-
-    
   }
 
   private clearIvaSell = () => {

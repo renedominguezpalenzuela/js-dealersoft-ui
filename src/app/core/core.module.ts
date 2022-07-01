@@ -53,6 +53,7 @@ import { PrecioCompraIvaComponent } from './pages/reportes/componentes/precio-co
 import { ComentariosComponent } from './pages/reportes/componentes/comentarios/comentarios.component';
 import { CarDetailsSuperminComponent } from './pages/reportes/componentes/car-details-supermin/car-details-supermin.component';
 import { FechaBillComponent } from './pages/reportes/componentes/fecha-bill/fecha-bill.component';
+import { PrecioBillA25Component } from './pages/reportes/componentes/precio-bill-a25/precio-bill-a25.component';
 
 
 
@@ -107,7 +108,8 @@ import { FechaBillComponent } from './pages/reportes/componentes/fecha-bill/fech
     PrecioCompraIvaComponent,
     ComentariosComponent,
     CarDetailsSuperminComponent,
-    FechaBillComponent
+    FechaBillComponent,
+    PrecioBillA25Component
 
   ],
   declarations: [
@@ -146,6 +148,7 @@ import { FechaBillComponent } from './pages/reportes/componentes/fecha-bill/fech
     ComentariosComponent,
     CarDetailsSuperminComponent,
     FechaBillComponent,
+    PrecioBillA25Component,
 
 
     // FooterEmpresaComponent,

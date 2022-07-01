@@ -28,6 +28,9 @@ import { CreateInvoiceService } from '../../../servicios/create-invoice.service'
 import * as saveAs from 'file-saver';
 import * as moment from 'moment';
 
+import { forkJoin } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-new-bill',
   templateUrl: './new-bill.component.html',
@@ -54,7 +57,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   a25_activo = false;
 
-  
+  private readonly jwt: string;
 
   public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = []; //lista de clientes del Usuario
@@ -82,8 +85,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     private readonly matDialog: MatDialog,
     private readonly authService: AuthService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly createInvoice: CreateInvoiceService
-  ) {}
+    private readonly createInvoice: CreateInvoiceService,
+    private readonly httpClient: HttpClient
+  ) {
+
+    this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
+  }
 
   get articles(): FormArray {
     return this.newInvoiceForm.controls['places'] as FormArray;
@@ -464,10 +471,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public generatePdf = () => {
-    console.log("ID")
+    // console.log("ID")
 
-    console.log(this.invoice_data);
+    // console.log(this.invoice_data);
 
+    this.Prueba()
+    
     let tipo = '/';
     if (this.a25_activo) {
       tipo = 'reports/bill/a25';
@@ -475,9 +484,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       tipo = 'reports/bill/iva';
     }
 
-    console.log("Invoice datea")
-    console.log(this.invoice_id)
-    
     
     this.requestService
       .downloadPDF(this.apiHelperService.pdfURL, {
@@ -492,4 +498,92 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         );
       });
   };
+
+
+  bill_info: any ="";
+  
+
+  public Prueba = () => {
+    forkJoin([
+      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/?id=${  this.invoice_id }`, 
+      this.generateOptionsInvoice( this.invoice_id)),
+    //  this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
+      this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
+     // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
+    ]).subscribe(res => {
+
+       this.bill_info = res[0].data[0];
+
+       let invoice_number = this.bill_info.attributes.invoice_number;
+
+
+       let client = this.bill_info.attributes.client.data.attributes;
+       let owner = this.bill_info.attributes.owner.data.attributes
+
+       console.log("SDDD")
+
+      console.log(this.bill_info)
+      console.log(client)
+      console.log(owner)
+      console.log(invoice_number)
+
+
+    // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
+    //   this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
+    //   if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
+    //   this.me = res[3];
+
+    });
+  }
+
+  // this.requestService
+  // .Get(
+  //   this.apiHelperService.invoicesURL,
+  //   this.requestService.generateQuery({
+  //     populate: ['*'],
+  //     filters: [
+  //       {
+  //         field: '[id]',
+  //         operator: FilterOperator.$eq,
+  //         value: <string>this.invoice_data?.id,
+  //         option: FilterDeepOption.$and,
+  //       },
+  //     ],
+  //   })
+  // )
+
+
+  private generateOptionsInvoice = (id: any) => {
+    return {
+      params: this.queryInvoice(id),
+   
+    }
+  }
+
+  private queryInvoice = (id: any) => this.requestService.generateQuery({
+    populate: ['*'],
+    filters: [
+      {
+        field: '[id]',
+        operator: FilterOperator.$eq,
+        value: id,
+        option: FilterDeepOption.$and,
+      },
+    ],
+  });
+
+  private generateOptions = () => {
+    return {
+      params: this.query(),
+      //  headers: new HttpHeaders({ Authorization: `Bearer ${ this.jwt }` })
+    }
+  }
+
+  private query = () => this.requestService.generateQuery({
+    populate: ['owner', 'client', 'car', 'user', 'logo']
+  });
+
+
+
+
 }

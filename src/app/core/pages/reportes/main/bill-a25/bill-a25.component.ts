@@ -9,6 +9,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { environment } from '../../../../../../environments/environment';
 
+import {  FilterDeepOption } from '@core/interfaces';
+import { FilterOperator } from '@core/interfaces/query-params';
+
 
 
 
@@ -80,20 +83,29 @@ export class BillA25Component implements OnInit {
   }
 
   public loadPaginatedData = () => {
-    forkJoin([
-      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/?id=${ this.id }`, this.generateOptions()),
-    //  this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
+    forkJoin([ 
+      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/?id=${  this.id }`, 
+      this.generateOptionsInvoice( this.id)),
+
       this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
     ]).subscribe(res => {
 
-      this.bill_info = res[0].data2.filter((item: any) => item.id === this.id)[0];
+ 
+ 
 
 
-    // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
-    //   this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
-    //   if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
-    //   this.me = res[3];
+ 
+       this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === res[2].id)[0];
+       if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
+       this.me = res[2];
+
+       
+       this.bill_info = res[0].data[0];
+
+       this.invoice_number =  this.bill_info.attributes.invoice_number;
+       this.invoice_date = this.bill_info.attributes.date;
+       this.user_city = this.bill_info.attributes.owner.data.attributes.city
 
     });
   }
@@ -115,5 +127,27 @@ export class BillA25Component implements OnInit {
   private query = () => this.requestService.generateQuery({
     populate: ['owner', 'client', 'car', 'user', 'logo']
   });
+
+  private generateOptionsInvoice = (id: any) => {
+    return {
+      params: this.queryInvoice(id),
+      // headers: new HttpHeaders({ Authorization: `Bearer ${ this.jwt }` })
+   
+    }
+  }
+
+  private queryInvoice = (id: any) => this.requestService.generateQuery({
+    populate: ['*'],
+    filters: [
+      {
+        field: '[id]',
+        operator: FilterOperator.$eq,
+        value: id,
+        option: FilterDeepOption.$and,
+      },
+    ],
+  });
+
+
 
 }

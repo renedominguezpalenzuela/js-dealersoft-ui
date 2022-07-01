@@ -1,52 +1,47 @@
-<app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+<app-header-privado [car_buy_data]="bill_info" [me]="me" [imgPath]="imgPath"></app-header-privado>
 
 
 <div class="pt-3 px-20 ">
 
- 
 
     <!-- Contrato fecha -->
-    <app-fecha-bill  [invoice_date]="invoice_date" [invoice_number]="invoice_number" [user_city]="user_city"></app-fecha-bill>
+    <app-fecha-bill [invoice_date]="invoice_date" [invoice_number]="invoice_number" [user_city]="user_city">
+    </app-fecha-bill>
 
     <p class="flex text-center mt-4 text-details  ">
-        Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Ausschluß jeglicher Gewährleistung im Hinblick auf sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen. </p>
-    <p class="flex text-center mt-4  text-details-bold">
-        Es handelt sich hierbei um ein Geschäft unter Voll-Kaufleuten und fällt somit nicht unter das EU-Gewährleistungsgesetz!
+        Wir berechnen Ihnen hiermit gemäß Absprache folgende(n) Artikel
+
     </p>
 
-
-    <!-- <div class="mt-20 ">
-        <app-car-details-min [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-min>
-    </div> -->
-
-
-    <!-- Precio neto -->
-    <!-- <div class="mt-10 ">
-        <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
+    <div class="mt-20 text-contract-big">
+        Beschreibung
     </div>
 
+    <div class="mt-10">
+        <app-precio-bill-a25></app-precio-bill-a25>
+
+    </div>
+
+
+
+
+
+
     <div class="mt-10 ">
-    <app-comentarios [car_buy_data]="car_buy_data"></app-comentarios>
-    </div> -->
- 
-
-
-    <!-- <div class="mt-10 ">
         <table class="" style="text-align: left">
-            <tr class="text-car-details">
-                <th class="pr-4 text-car-details-bold ">Lieferdatum: </th>
-                <td>{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</td>
+            <tr>
+                <span class="pr-2 text-details-bold ">Lieferdatum: </span>
+                <span class="text-details">{{bill_info?.attributes?.delivery_date | date:'dd.MM.yyyy'}}</span>
+            </tr>
+
+            <tr>
+                <div class="text-details">Der Verkauf erfolgt nach §25a</div>
+                <div class="text-details">Gebrauchtware / Sonderregelung</div>
             </tr>
         </table>
-    </div> -->
+    </div>
 
 </div>
 
 
-<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
-
-
-
-
-
-
+<app-footer-empresa [car_buy_data]="bill_info" [me]="me"></app-footer-empresa>
