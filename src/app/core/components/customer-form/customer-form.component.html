@@ -53,10 +53,8 @@
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>Telefonnummer</mat-label>
-          <input [required]="isRequired()" formControlName="phone" matInput>
-          <mat-error *ngIf="hasRequiredError('phone')">
-            <b>Telefonnummer</b> wird benötigt
-          </mat-error>
+          <input  formControlName="phone" matInput>
+          
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">

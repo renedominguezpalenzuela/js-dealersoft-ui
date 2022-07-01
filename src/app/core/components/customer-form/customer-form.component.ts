@@ -20,7 +20,7 @@ export class CustomerFormComponent implements OnInit {
     first_name: [null, [Validators.required]],
     last_name: [null, [Validators.required]],
     birth_date: [null, []],
-    phone: [null, [Validators.required]],
+    phone: [null, ],
     fax: ['', []],
     tax_number: ['', []],
     email: [null, [Validators.email]],

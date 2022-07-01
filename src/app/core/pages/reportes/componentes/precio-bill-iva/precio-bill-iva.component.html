@@ -24,7 +24,6 @@
             {{unArticulo.article }}
         </div>
 
-
         <div class=" col-start-4 text-details mb-1  mt-3  mr-1 text-center">
             {{unArticulo.quantity }}
         </div>
@@ -38,48 +37,36 @@
         </div>
     </ng-container >
 
-
-
-
     <div class="mt-5 col-start-1 w-full col-end-7 border-b border-black ">
 
     </div>
 
-
     <div class=" col-start-5  text-details    mt-3   text-right">
         <span class="">Zwischensumme:</span> 
     </div>
+
     <div class=" col-start-6  text-details   mt-3   text-right">
         <span>{{total || 0 | currency}}</span> 
     </div>
 
-
     <div class=" col-start-5  text-details   mt-1   text-right">
         <span class="">MwSt. 19%:</span> 
     </div>
+    
     <div class=" col-start-6  text-details    mt-1   text-right">
         <span>{{iva || 0 | currency}}</span> 
     </div>
-
-
-    
+  
     <div class=" col-start-5 w-full mt-1 col-end-7 border-b border-black ">
 
     </div>
 
-
     <div class=" col-start-5  text-details-bold    mt-1   text-right">
         <span class="">Gesamtbetrag:</span> 
     </div>
+
     <div class=" col-start-6  text-details-bold    mt-1   text-right">
         <span>{{brutto || 0 | currency}}</span> 
     </div>
-
-
-
-
-
-
-
 
 </div>

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TablaInvoicesComponent } from './componentes/tabla-invoices/tabla-invoices.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TablaInvoicesComponent } from './componentes/tabla-invoices/tabla-invoi
     CoreModule,
     FormsModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ]
 })
 export class MultipleInvoicesModule {
