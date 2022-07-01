@@ -9,9 +9,17 @@ export class PrecioBillA25Component implements OnInit {
 
 
   @Input() lista_articulos: any;
+  public total:any = 0;
   constructor() { }
 
   ngOnInit(): void {
+
+   this.lista_articulos.map((unArticulo: any)=>{
+      this.total = this.total + unArticulo.quantity * unArticulo.unit_price
+    })
+
+    
+
   }
 
 }

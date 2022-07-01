@@ -523,9 +523,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
        console.log("SDDD")
 
       console.log(this.bill_info)
-      console.log(client)
-      console.log(owner)
-      console.log(invoice_number)
+      // console.log(client)
+      // console.log(owner)
+      // console.log(invoice_number)
 
 
     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
