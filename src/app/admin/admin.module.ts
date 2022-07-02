@@ -16,6 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CoreModule } from '@core/core.module';
 import { ApiHelperService, AuthService, RequestService } from '@core/services';
 import { Router } from '@angular/router';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { Router } from '@angular/router';
     MatListModule,
     MatIconModule,
     MatProgressBarModule,
-    CoreModule
+    CoreModule,
+    MatMenuModule
   ],
 })
 export class AdminModule {

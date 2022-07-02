@@ -28,20 +28,31 @@
         <h1 class="font-sans tracking-widest font-bold text-2xl ml-10 text-gray-900">{{titlePage}}</h1>
       </div>
 
-      <div class="navbar-end hidden sm:flex">
-        <div *ngIf="isAuth" class="flex items-center pl-5 mr-10 rounded-full border-2">
-          <span class="mr-5 font-sans font-semibold text-gray-900">
+      <div class="navbar-end hidden sm:flex" >
+        <button class="" [matMenuTriggerFor]="menu" id="button_menu">
+        <div *ngIf="isAuth" class="flex items-center  rounded-full border-2" >
+          <span class="px-5 py-2 font-sans font-semibold text-gray-900" >
             {{authUser?.first_name}} {{authUser?.last_name}}
           </span>
-          <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full"
-               width="32px"/>
+          <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full mr-3"
+               width="42px"/>
           <ng-template #defaultImg>
             <img alt="user_img_default" src="assets/user-male-circle.png"/>
           </ng-template>
         </div>
+      </button>
       </div>
 
     </div>
+
+    <mat-menu #menu="matMenu" class="ml-4" >
+      <a (click)="logOut()" class="flex justify-start items-center hover:font-bold pt-2" id="logout">
+        <mat-icon class="text-3xl ml-3 relative" style="top: -6px">logout</mat-icon>
+        <span class="pt-3 px-5 relative" style="top: -4px">Logout</span>
+      </a>
+  
+    </mat-menu>
+    
 
     <main class="w-full z-0 px-8 pt-6 pb-5">
       <router-outlet></router-outlet>
