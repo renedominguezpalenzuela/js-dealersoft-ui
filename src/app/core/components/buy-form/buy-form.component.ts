@@ -24,10 +24,39 @@ import { ExportType } from '@core/services/request.service';
 import * as saveAs from 'file-saver';
 import * as moment from 'moment';
 
+import { Inject} from '@angular/core';
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import 'moment/locale/de';
+import 'moment/locale/fr';
+
+
+
 @Component({
   selector: 'app-buy-form',
   templateUrl: './buy-form.component.html',
   styleUrls: ['./buy-form.component.scss'],
+  providers: [
+    // The locale would typically be provided on the root module of your application. We do it at
+    // the component level here, due to limitations of our example generation script.
+    {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
+
+    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
+    // `MatMomentDateModule` in your applications root module. We provide it at the component level
+    // here, due to limitations of our example generation script.
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
+
+
 })
 export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_net_buy = false;
@@ -98,7 +127,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly requestService: RequestService,
     private readonly notificationService: NotificationService,
     private readonly apiHelperService: ApiHelperService,
-    private readonly matDialog: MatDialog
+    private readonly matDialog: MatDialog,
+    private _adapter: DateAdapter<any>,
+    @Inject(MAT_DATE_LOCALE) private _locale: string,
+
   ) {}
 
   // public calcularIVA() {
@@ -190,6 +222,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this._locale = 'de';
+    this._adapter.setLocale(this._locale);
+
     //Cambios en el valor del checkbox a25
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (this.actualizando_radio_buttons) return;

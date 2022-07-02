@@ -1,5 +1,6 @@
 <div class="shadow rounded-t-lg table-container">
-  <table [dataSource]="dataSource" class="table w-full leading-normal rounded-lg" mat-table matSort>
+  <table [dataSource]="dataSource" class="table w-full leading-normal rounded-lg" mat-table matSort
+  matSortActive="id" matSortDirection="desc" matSortDisableClear >
 
     <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column.column"
                   [stickyEnd]="canBeEndSticky(column.column)" [sticky]="canBeStartSticky(column.column)">

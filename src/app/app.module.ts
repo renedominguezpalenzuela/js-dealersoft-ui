@@ -11,18 +11,18 @@ import localeEnDe from '@angular/common/locales/en-DE';
 import localeEnDeExtra from '@angular/common/locales/extra/en-DE';
 import { registerLocaleData } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
-import {CreateInvoiceService} from './servicios/create-invoice.service';
+import { CreateInvoiceService } from './servicios/create-invoice.service';
+
 
 
 // import { SaveDom2Pipe } from './save-dom2.pipe';
-
 
 registerLocaleData(localeEnDe, localeEnDeExtra);
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     // SaveDom2Pipe
   ],
   imports: [
@@ -30,10 +30,10 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   providers: [
-    CreateInvoiceService, 
+    CreateInvoiceService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
@@ -45,9 +45,9 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
       multi: true,
     },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
-    { provide: LOCALE_ID, useValue: 'en-DE' }
+    { provide: LOCALE_ID, useValue: 'en-DE' },
+    
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
