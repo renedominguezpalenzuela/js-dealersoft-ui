@@ -73,21 +73,27 @@
           <mat-form-field appearance="outline" class="xl:w-full">
 
 
-            <div *ngIf="comments.length<4; else nomorecomments">
-              <mat-label>Ausstattung #{{comments.length + 1}}</mat-label>
-            </div>
+            <!-- <ng-template *ngIf="comments.length<4; else nomorecomments"> -->
+              <!-- <mat-label>Ausstattung #{{comments.length + 1}}</mat-label> -->
+              
+            <!-- </ng-template> -->
 
-            <ng-template #nomorecomments>
-              <mat-label>keine weiteren Ausstattungen möglich</mat-label>
-            </ng-template>
+            <!-- <ng-template #nomorecomments> -->
+              <!-- <mat-label>keine weiteren Ausstattungen möglich</mat-label> -->
+              
+            <!-- </ng-template> -->
 
+            <mat-label>{{texto_label}}</mat-label>
 
-            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput>
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only">
+
+            
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button
                     matSuffix type="button">
               <mat-icon>add</mat-icon>
             </button>
           </mat-form-field>
+
           <span *ngIf="commentsError" class="label-text-alt text-red-500 pl-2 relative -top-4">
             Fügen Sie ein <b>Ausstattungsmerkmal hinzu</b>
           </span>

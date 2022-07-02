@@ -91,6 +91,9 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   public currentImgSrc: ImgSrc | undefined;
   public toDelete: number[] = [];
 
+  public texto_label: any="Ausstattung #1";
+  public input_read_only: boolean=false;
+
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly requestService: RequestService,
@@ -231,20 +234,45 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
     } else if (this.comments.length === 0) this.commentsError = true;
   }
 
-  public addComment = () => {
 
-    
-    if (this.comments.length<4) {
-    if (this.currentComment) {
-      this.comments.push(this.currentComment);
+  public addComment = () => {
+    if (this.comments.length < 4) {
+      if (this.currentComment) {
+        this.comments.push(this.currentComment);
+        this.currentComment = '';
+        this.commentsError = false;
+        this.input_read_only = false;
+        let numero_comentario = this.comments.length + 1;
+
+        if (numero_comentario<=4) {
+        this.texto_label = 'Ausstattung #' + numero_comentario.toString();
+        } else {
+          this.input_read_only = true;
+          this.texto_label = 'keine weiteren Ausstattungen möglich';
+        }
+        // this.totalAusstattung=this.totalAusstattung-1;
+      }
+    } else {
+      this.input_read_only = true;
+      
+      this.texto_label = 'keine weiteren Ausstattungen möglich';
       this.currentComment = '';
-      this.commentsError = false;
-      // this.totalAusstattung=this.totalAusstattung-1;
     }
-   }
   };
 
-  public removeComment = (i: number) => this.comments.splice(i, 1);
+  public removeComment = (i: number) => {
+    this.comments.splice(i, 1);
+
+    let numero_comentario = this.comments.length + 1;
+
+    if (numero_comentario<=4) {
+      this.texto_label = 'Ausstattung #' + numero_comentario.toString();
+      this.input_read_only = false;
+    }
+
+
+  }
+
 
   public hasRequiredError = (input: string): boolean => {
     return this.validationsService.hasRequiredError(this.vehicleForm, input);
