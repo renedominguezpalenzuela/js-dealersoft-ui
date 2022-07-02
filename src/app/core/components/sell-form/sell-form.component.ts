@@ -35,11 +35,7 @@ import { Location } from '@angular/common';
 import { CreateInvoiceService } from '../../../servicios/create-invoice.service';
 
 import { Inject} from '@angular/core';
-import {
-  MAT_MOMENT_DATE_FORMATS,
-  MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-} from '@angular/material-moment-adapter';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import 'moment/locale/de';
 import 'moment/locale/fr';
@@ -50,20 +46,12 @@ import 'moment/locale/fr';
   templateUrl: './sell-form.component.html',
   styleUrls: ['./sell-form.component.scss'],
   providers: [
-    // The locale would typically be provided on the root module of your application. We do it at
-    // the component level here, due to limitations of our example generation script.
     {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
-
-    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
-    // `MatMomentDateModule` in your applications root module. We provide it at the component level
-    // here, due to limitations of our example generation script.
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
+    { provide: DateAdapter,  useClass: MomentDateAdapter,   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS], },
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
   ],
+
+  
 
 })
 export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {

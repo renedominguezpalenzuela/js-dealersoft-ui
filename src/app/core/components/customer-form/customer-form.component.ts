@@ -7,9 +7,21 @@ import { Customer } from '@core/interfaces';
 import { User } from '@core/interfaces';
 import { AuthService } from '@core/services';
 
+
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import 'moment/locale/de';
+import 'moment/locale/fr';
+
 @Component({
   templateUrl: './customer-form.component.html',
   styleUrls: ['./customer-form.component.scss'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
+    { provide: DateAdapter,  useClass: MomentDateAdapter,   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS], },
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
+
 })
 export class CustomerFormComponent implements OnInit {
   public authUser: User | null = null;
@@ -40,7 +52,9 @@ export class CustomerFormComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly validationsService: ValidationsService,
     private readonly authService: AuthService,
-    @Inject(MAT_DIALOG_DATA) public data: Customer
+    @Inject(MAT_DIALOG_DATA) public data: Customer,
+    private _adapter: DateAdapter<any>,
+    @Inject(MAT_DATE_LOCALE) private _locale: string,
   ) {
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
@@ -57,6 +71,9 @@ export class CustomerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this._locale = 'de';
+    this._adapter.setLocale(this._locale);
   
     //  this.customerForm.patchValue({ user: this.authUser?.id });
     this.customerForm.patchValue({ user: this.authUser });
