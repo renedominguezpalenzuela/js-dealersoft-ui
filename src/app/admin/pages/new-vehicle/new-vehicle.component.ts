@@ -18,6 +18,8 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import 'moment/locale/de';
 import 'moment/locale/fr';
 
+import { Globals } from '../../../globales';
+
 
 
 
@@ -36,6 +38,8 @@ declare interface ImgSrc {
   templateUrl: './new-vehicle.component.html',
   styleUrls: ['./new-vehicle.component.scss'],
   providers: [
+
+    Globals,
     // The locale would typically be provided on the root module of your application. We do it at
     // the component level here, due to limitations of our example generation script.
 
@@ -104,6 +108,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
     private readonly authService: AuthService,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private globales: Globals
 
   ) {
    
@@ -112,18 +117,52 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   
   }
 
+
+  desHabilitarControles() {
+    for (const field in this.vehicleForm.controls) { // 'field' is a string
+      this.vehicleForm.controls[field].disable();
+    }
+	}
+
+  
+  habilitarControles() {
+    for (const field in this.vehicleForm.controls) { // 'field' is a string
+      this.vehicleForm.controls[field].enable();
+    }
+  }
+
+
+
+
   ngAfterViewInit(): void { 
+
+   
 
     
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
+
+  
+    // this.boton_salvar_disabled=true;
+   if (this.car?.attributes.can_save) {
+    this.boton_salvar_disabled=false;
+    this.habilitarControles()
+    
+   } else { 
+    this.boton_salvar_disabled=true; 
+    this.desHabilitarControles()
+   }
+
+
+
   
     if (changes?.['car'].currentValue) {
 
-      //se esta editando un carro existente, no se puede salvar 
-      this.boton_salvar_disabled=true;
+      //Verificar si se puede editar el carro si campo can_save = true (si se presiona martillo can_save=false)
+
+    
      
       this.isUpdating = true;
       for (let key in this.vehicleForm.controls) {
@@ -145,9 +184,6 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
         this.currentImgSrc = this.imgSrcList[0];
       }
 
-    } else {
-      //se esta creando un nuevo carro, se puede salvar
-      this.boton_salvar_disabled=false;
     }
 
     
@@ -160,14 +196,29 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
     this._locale = 'de';
     this._adapter.setLocale(this._locale);
+
+   
     
 
     
   }
 
   public submit() {
+
+
+
     if (this.vehicleForm.valid && this.comments.length > 0) {
-      const formValue = { ...this.vehicleForm.value, comments: this.comments };
+      //Se adicionan los comentarios al formulario
+    const  formValue = {
+        ...this.vehicleForm.value,
+        comments: this.comments,
+      };
+
+     
+
+
+
+
       if (this.isUpdating) {
         const files = this.imgSrcList.filter(elm => elm.file instanceof File);
         if (files.length > 0) {
@@ -188,9 +239,11 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
                       .pipe().subscribe();
                   this.requestService.Get(`${ this.apiHelperService.carsURL }/${ this.car!.id }`).subscribe(resUpdate => {
                     this.car = resUpdate.data;
+                    //Vehicle updated successfully
+                    //Fahrzeug erfolgreich aktualisiert
                     this.notificationService.riseNotification({
                       color: 'success',
-                      data: 'Fahrzeug erfolgreich aktualisiert'
+                      data: 'gespeichert'
                     });
                   });
                 });
@@ -205,16 +258,22 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
                   .pipe().subscribe();
               this.requestService.Get(`${ this.apiHelperService.carsURL }/${ this.car!.id }`).subscribe(resUpdate => {
                 this.car = resUpdate.data;
+                //Vehicle updated successfully
+                //Fahrzeug erfolgreich aktualisiert
+                //
                 this.notificationService.riseNotification({
                   color: 'success',
-                  data: 'Fahrzeug erfolgreich aktualisiert'
+                  data: 'gespeichert'
                 });
               });
             });
         }
       } else {
+
+        //Stored new car
+        //Neuwagen eingelagert
         const subscription = () => {
-          this.notificationService.riseNotification({ color: 'success', data: 'Neuwagen eingelagert' });
+          this.notificationService.riseNotification({ color: 'success', data: 'gespeichert' });
           this.router.navigate(['/admin/all-vehicles']);
         }
         if (this.imgSrcList.length > 0) {
@@ -231,11 +290,16 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
           this.requestService.Post(this.apiHelperService.carsURL, formValue).subscribe(subscription);
         }
       }
-    } else if (this.comments.length === 0) this.commentsError = true;
+     
+    } else if (this.comments.length === 0) {
+      this.commentsError = true;
+      
+    }
   }
 
 
   public addComment = () => {
+
     if (this.comments.length < 4) {
       if (this.currentComment) {
         this.comments.push(this.currentComment);
@@ -261,6 +325,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   };
 
   public removeComment = (i: number) => {
+  
     this.comments.splice(i, 1);
 
     let numero_comentario = this.comments.length + 1;

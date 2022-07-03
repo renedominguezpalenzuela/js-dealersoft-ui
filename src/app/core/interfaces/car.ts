@@ -19,6 +19,9 @@ export interface Car {
     selled: boolean,
     pictures: { data: Image[] },
     car_buy_data: { data: CarBuy },
-    owner: User
+    owner: User,
+    can_save: boolean,
+    a25: boolean,
+    iva: boolean
   }
 }

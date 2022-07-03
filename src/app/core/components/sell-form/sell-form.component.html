@@ -118,11 +118,17 @@
             </mat-form-field>
 
             <div class="col-span-1 lg:row-start-1 pt-2">
-              <mat-label class="btn btn-ghost text-gray-5000 drawer-button 	 " (click)="generateInvoice_Number()">
+
+              <button mat-icon-button [disabled]="boton_salvar_disabled" class="text-gray-5000 drawer-button" (click)="generateInvoice_Number()">
+                <mat-icon class="text-black">gavel</mat-icon>
+              </button>
+              <!-- <mat-label  class="btn btn-ghost text-gray-5000 drawer-button 	 " (click)="generateInvoice_Number()" >
                 <mat-icon class="text-black">gavel</mat-icon>
 
-              </mat-label>
+              </mat-label> -->
             </div>
+           
+  
 
             <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1 lg:row-start-2 ">
               <mat-label>Rechnungsdatum</mat-label>

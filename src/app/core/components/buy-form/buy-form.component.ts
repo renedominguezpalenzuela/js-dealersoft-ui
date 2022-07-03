@@ -72,7 +72,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() public car_data: Car | undefined;
   actualizando_radio_buttons = false;
 
-  public boton_salvar_disabled = true;
+  public boton_salvar_disabled = false;
 
   /*
   campo del formulario car_name
@@ -154,6 +154,20 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //   this.carBuyForm.updateValueAndValidity();
   // }
 
+  desHabilitarControles() {
+    for (const field in this.carBuyForm.controls) { // 'field' is a string
+      this.carBuyForm.controls[field].disable();
+    }
+	}
+
+  
+  habilitarControles() {
+    for (const field in this.carBuyForm.controls) { // 'field' is a string
+      this.carBuyForm.controls[field].enable();
+    }
+  }
+
+
   public calcularIVA() {
     let vNet_buy: number = this.carBuyForm.get('net_buy')!.value;
     let vGross_buy: number = this.carBuyForm.get('gross_buy')!.value;
@@ -227,6 +241,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     //Cambios en el valor del checkbox a25
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
+      if (this.boton_salvar_disabled) return;
+
       if (this.actualizando_radio_buttons) return;
       this.actualizando_radio_buttons = true;
       if (change) {
@@ -235,19 +251,21 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.a25_activo = false;
       } else {
         this.desactivarIVA();
-        this.carBuyForm.patchValue({ a25: true });
+        this.carBuyForm.patchValue({ a25: true, net_buy: null, iva_buy: null });
         this.a25_activo = true;
       }
       this.actualizando_radio_buttons = false;
     });
 
     this.carBuyForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
+      if (this.boton_salvar_disabled) return;
+
       if (this.actualizando_radio_buttons) return;
       this.actualizando_radio_buttons = true;
       if (change) {
         this.a25_activo = true;
         this.desactivarIVA();
-        this.carBuyForm.patchValue({ iva: false });
+        this.carBuyForm.patchValue({ iva: false, net_buy: null, iva_buy: null });
       } else {
         this.activarIVA();
         this.carBuyForm.patchValue({ iva: true });
@@ -257,6 +275,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     this.carBuyForm.get('net_buy')!.valueChanges.subscribe(() => {
+      if (this.boton_salvar_disabled) return;
+      
+     
+
       if (this.focus_net_buy) {
         const value: number = this.carBuyForm.get('net_buy')!.value;
 
@@ -278,6 +300,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     this.carBuyForm.get('gross_buy')!.valueChanges.subscribe(() => {
+      if (this.boton_salvar_disabled) return;
+      
+
       if (this.focus_gross_buy) {
         const value: number = this.carBuyForm.get('gross_buy')!.value;
         const iva: number = (value * this.factorIva) / (1 + this.factorIva);
@@ -299,6 +324,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     this.carBuyForm.get('iva_buy')!.valueChanges.subscribe(() => {
+      if (this.boton_salvar_disabled) return;
+      
+
       if (this.focus_iva) {
         const value: number = this.carBuyForm.get('iva_buy')?.value;
         let netto: number = value / this.factorIva;
@@ -330,6 +358,23 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+
+    
+   
+    // this.boton_salvar_disabled=true;
+   if (this.car_data?.attributes.can_save) {
+    this.boton_salvar_disabled=false;
+    this.habilitarControles();
+   } else { 
+    this.boton_salvar_disabled=true; 
+    this.desHabilitarControles()
+   }
+
+
+
+
+
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el parent
       this.carBuyForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -373,11 +418,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           //   net_buy: vNetto.toFixed(this.total_decimales),
           // });
 
-          if (data === undefined) {
-            this.boton_salvar_disabled = false;
-          } else {
-            this.boton_salvar_disabled = true;
-          }
         });
     }
 
@@ -433,24 +473,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //  Boton Guardar
   //*************************************************************************************************
   public submit() {
+    //Solo salvar, no imprimir
     this.salvarEImprimir(false);
   }
 
-  // public submit() {
-
-  //   if (this.carBuyForm.valid) {
-  //     this.requestService
-  //       .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
-  //       .subscribe(() => {
-  //         this.notificationService.riseNotification({
-  //           color: 'success',
-  //           data: 'Neuwagenkauf gespeichert',
-  //         });
-  //       });
-  //   } else {
-  //
-  //   }
-  // }
+  
 
   public addCustomer = ($event: MouseEvent) => {
     $event.preventDefault();
@@ -464,9 +491,12 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe((out: boolean | { body: any }) => {
         if (typeof out !== 'boolean' && typeof out !== 'undefined') {
           const subscription = (res: any) => {
+
+            
+            //New customer saved
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'New customer saved',
+              data: 'Neukunde gespeichert',
             });
             this.clientsOptions.push(res.data);
             this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
@@ -519,6 +549,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.carBuyForm.updateValueAndValidity();
 
     if (!this.carBuyForm.valid) {
+      //Error en datos
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'fehlende Angaben!!!!',
@@ -526,6 +557,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       return;
     }
+
+
+    //-------0) Actualizar IVA y A25 en CAR con valores del formulario   
+    this.actualizarCarIVA_A25(this.car_data?.id, this.a25_activo, !this.a25_activo)
 
     //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
     let query = this.requestService.generateQuery({
@@ -553,26 +588,48 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
               if (imprimir) {
                 this.imprimir();
               }
+
+              //Neuwagen eingelagert ankauft
+              //Bought a new car in storage
+              //Salvando por primera vez el auto
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Neuwagen eingelagert ankauft',
+                data: 'gespeichert',
               });
             });
         } else {
           const id_compra = res?.data[0]?.id;
+
+          //Si ya existe una tupla y a25, debe setearse a null los campos no usados
+
+          let datos = {
+            ...this.carBuyForm.value,          
+          }
+          
+          if (this.a25_activo) {
+            datos = {
+              ...datos,
+              net_buy: null, 
+              iva_buy: null
+            }
+         }     
+      
           this.requestService
             .Put(
               this.apiHelperService.carsBuyURL + '/' + id_compra,
-              this.carBuyForm.value
+              datos
             )
             .subscribe(() => {
               if (imprimir) {
                 this.imprimir();
               }
 
+              //Fahrzeug eingelagert
+              //vehicle stored
+
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Fahrzeug eingelagert',
+                data: 'gespeichert',
               });
             });
         }
@@ -588,12 +645,12 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public generatePdf() {
 
-    if (!this.boton_salvar_disabled) {
-      this.boton_salvar_disabled=true;
+    if (!this.boton_salvar_disabled) {    
       this.salvarEImprimir(true);
     } else {
       this.imprimir();
     }
+
   }
 
   private imprimir = () => {
@@ -718,4 +775,17 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       return true;
     }
   }
+
+
+
+  //  this.actualizarCarIVA_A25(this.carSellForm.value.car, true, false);
+  public actualizarCarIVA_A25(carID: any, a25:boolean,  iva: boolean) {
+
+    this.requestService
+      .Put(this.apiHelperService.carsURL + '/' + carID, { iva: iva, a25: a25 })
+      .subscribe(() => {
+    
+      });
+  }
+
 }

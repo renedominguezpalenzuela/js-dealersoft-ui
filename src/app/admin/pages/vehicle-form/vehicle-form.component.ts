@@ -14,10 +14,13 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { FilterOperator } from '@core/interfaces/query-params';
 import { timer } from 'rxjs';
 
+import { Globals } from '../../../globales';
+
 @Component({
   selector: 'app-vehicle-form',
   templateUrl: './vehicle-form.component.html',
   styleUrls: ['./vehicle-form.component.scss'],
+  providers: [ Globals ],
   encapsulation: ViewEncapsulation.None,
 })
 export class VehicleFormComponent implements OnInit, OnDestroy {
@@ -39,7 +42,8 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     private readonly requestService: RequestService,
     private readonly apiHelperService: ApiHelperService,
     private readonly authService: AuthService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private globals: Globals
   ) {
     
   }
@@ -50,6 +54,10 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+
+
+
     this.authService.currentUser.subscribe(
       (user) => (this.currentUserId = user?.id)
     );
@@ -126,24 +134,14 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
         reloj.subscribe((t) => {
           
           window.location.reload();
-        });
-      
-      
-      
-      }
-
-      
-
+        });      
+       }
 
       this.requestService
         .Get(this.apiHelperService.carsBuyURL, this.queryBuyedCars(this.car.id))
         .subscribe((res) => {
           let datos = res.data;
-
-          
-
           if (datos[0]?.attributes.a25) this.existeCompraconA25 = true;
-
           this.router.navigate(
             [{ existeCompraConA25: this.existeCompraconA25 }],
             {
@@ -152,9 +150,6 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
               queryParamsHandling: 'merge',
             }
           );
-
-         
-
         });
     } else {
       this.router.navigate([], {

@@ -85,11 +85,11 @@
 
             <mat-label>{{texto_label}}</mat-label>
 
-            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only">
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only" [disabled]="boton_salvar_disabled">
 
             
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button
-                    matSuffix type="button">
+                    matSuffix type="button" [disabled]="boton_salvar_disabled">
               <mat-icon>add</mat-icon>
             </button>
           </mat-form-field>
@@ -99,14 +99,13 @@
           </span>
         </div>
         <div class="col-span-2 xl:col-span-1">
-          <div class="grid grid-cols-1 gap-y-2">
-            <div *ngFor="let comment of comments; let i = index"
-                 class="p-1 flex justify-between items-center rounded-full bg-gray-300 col-span-1">
-              <p class="p-0 pl-3">
+          <div class="grid grid-cols-1 gap-y-2" >
+            <div *ngFor="let comment of comments; let i = index" class="p-1 flex justify-between items-center rounded-full bg-gray-300 col-span-1">
+              <p class="p-0 pl-3 py-1">
                 {{comment}}
               </p>
-              <button (click)="removeComment(i)" class="btn btn-ghost rounded-full relative top-0.5" type="button">
-                <mat-icon>close</mat-icon>
+              <button (click)="removeComment(i)" class="btn btn-ghost rounded-full relative py-1" type="button" *ngIf="!boton_salvar_disabled" >
+                <mat-icon  >close</mat-icon>
               </button>
             </div>
           </div>

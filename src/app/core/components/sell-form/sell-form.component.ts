@@ -71,6 +71,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   actualizando_radio_buttons = false;
 
   public boton_salvar_disabled = false;
+  
 
   car_id = 0;
 
@@ -368,6 +369,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
 
     this.carSellForm.get('net_sell')!.valueChanges.subscribe(() => {
+      if (this.boton_salvar_disabled) return;
+
       if (this.focus_net_sell) {
         const value: number = this.carSellForm.get('net_sell')!.value;
 
@@ -388,6 +391,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     this.carSellForm.get('gross_sell')!.valueChanges.subscribe(() => {
+      if (this.boton_salvar_disabled) return;
+
       // if (!this.isIvaActive) {
       if (this.focus_gross_sell) {
         const value: number = this.carSellForm.get('gross_sell')!.value;
@@ -411,6 +416,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     this.carSellForm.get('iva_sell')!.valueChanges.subscribe(() => {
+      if (this.boton_salvar_disabled) return;
+
       // if (!this.isIvaActive) {
       if (this.focus_iva) {
         const value: number = this.carSellForm.get('iva_sell')!.value;
@@ -451,10 +458,14 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public generateInvoice_Number() {
+
+
     let valorFormularioInvoice_Number =
       this.carSellForm.get('invoice_number')!.value;
 
-    if (valorFormularioInvoice_Number != null) {
+
+      //Error: solo se puede generar un unico numero de invoice
+    if (valorFormularioInvoice_Number != null || this.boton_salvar_disabled) {
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'Rechnungsnummer wurde bereits generiert, es kann keine neue erstellt werden',
@@ -463,6 +474,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       return;
     }
 
+
+    //Error se necesita la fecha lieferung para generar invoice_number
     let fechaLieferdatum = this.carSellForm.get('lieferung')!.value;
 
     if (fechaLieferdatum == null) {
@@ -474,6 +487,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       return;
     }
 
+
+    //Error se necesita la fecha invoice_date para generar invoice_number
     let fechaRechnungsdatum = this.carSellForm.get('invoice_date')!.value;
 
     if (fechaRechnungsdatum == null) {
@@ -487,6 +502,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.carSellForm.updateValueAndValidity();
 
+    //Error en datos del formulario
     if (!this.carSellForm.valid) {
       this.notificationService.riseNotification({
         color: 'warning',
@@ -508,6 +524,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.boton_salvar_disabled = true;  
 
+
+      //Solo salvar, no imprimir
     this.salvarEImprimir(false, ExportType.none);
   }
 
@@ -524,8 +542,37 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       ],
     });
 
+
+       
+  desHabilitarControles() {
+    for (const field in this.carSellForm.controls) { // 'field' is a string
+      this.carSellForm.controls[field].disable();
+    }
+	}
+
+  
+  habilitarControles() {
+    for (const field in this.carSellForm.controls) { // 'field' is a string
+      this.carSellForm.controls[field].enable();
+    }
+  }
+   
+
+
   //Se actualiza el formulario con los datos de la BD
   ngOnChanges(changes: SimpleChanges): void {
+
+
+    if (this.car_data?.attributes.can_save) {
+      this.boton_salvar_disabled=false;
+    this.habilitarControles()
+     } else { 
+      this.boton_salvar_disabled=true; 
+     this.desHabilitarControles()
+     }
+
+
+
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
       this.carSellForm.patchValue({ car_name: this.car_data.attributes.name });
@@ -549,11 +596,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
 
-          if (data === undefined) {
-            this.boton_salvar_disabled = false;
-          } else {
-            this.boton_salvar_disabled = true;
-          }
+          // if (data === undefined) {
+          //   this.boton_salvar_disabled = false;
+          // } else {
+          //   this.boton_salvar_disabled = true;
+          // }
 
           if (data != null) {
             this.existenDatosGuardadosenBD = true;
@@ -659,6 +706,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       let valorFormularioInvoice_Number =
         this.carSellForm.get('invoice_number')!.value;
 
+      //Ya  
       if (valorFormularioInvoice_Number != null) {
         this.notificationService.riseNotification({
           color: 'warning',
@@ -731,10 +779,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               let texto_mensaje = '';
               if (this.selected_tab == 0) {
-                texto_mensaje = 'Neuwagen eingelagert verkauft';
+               // texto_mensaje = 'Neuwagen eingelagert verkauft';
               } else {
-                texto_mensaje = 'Kaufvertrag erstellt';
+               // texto_mensaje = 'Kaufvertrag erstellt';
               }
+
+              texto_mensaje = 'gespeichert';
+
               this.notificationService.riseNotification({
                 color: 'success',
                 data: texto_mensaje,
@@ -757,10 +808,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               let texto_mensaje = '';
               if (this.selected_tab == 0) {
-                texto_mensaje = 'Fahrzeug verkauft';
+              //  texto_mensaje = 'Fahrzeug verkauft';
               } else {
-                texto_mensaje = 'Kaufvertrag erstellt';
+              //  texto_mensaje = 'Kaufvertrag erstellt';
               }
+
+              texto_mensaje='gespeichert'
 
               this.notificationService.riseNotification({
                 color: 'success',
@@ -826,6 +879,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         .subscribe(() => {
           this.actualizarCarSelled(this.carSellForm.value.car, true);
 
+          //Creada nueva invoice
           this.notificationService.riseNotification({
             color: 'success',
             data: 'Neue Rechnung gespeichert',
@@ -849,20 +903,20 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     this.requestService
-      .Put(this.apiHelperService.carsURL + '/' + carID, { selled: true })
+      .Put(this.apiHelperService.carsURL + '/' + carID, { selled: true, can_save: false })
       .subscribe(() => {
         if (showMessage) {
-          let texto_mensaje = '';
-          if (this.selected_tab == 0) {
-            texto_mensaje = 'Fahrzeug aus Lagerbestand entfernt';
-          } else {
-            texto_mensaje = 'Kaufvertrag erstellt';
-          }
+          let texto_mensaje = 'gespeichert';
+          // if (this.selected_tab == 0) {
+          //   texto_mensaje = 'Fahrzeug aus Lagerbestand entfernt';
+          // } else {
+          //   texto_mensaje = 'Kaufvertrag erstellt';
+          // }
 
-          this.notificationService.riseNotification({
-            color: 'success',
-            data: texto_mensaje,
-          });
+          // this.notificationService.riseNotification({
+          //   color: 'success',
+          //   data: texto_mensaje,
+          // });
         }
       });
   }
@@ -999,7 +1053,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public generatePdf(type: ExportType) {
     if (!this.boton_salvar_disabled) {
-      this.boton_salvar_disabled = true;
       this.salvarEImprimir(true, type);
     } else {
       this.imprimir(type);
