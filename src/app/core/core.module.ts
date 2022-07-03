@@ -58,6 +58,7 @@ import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -111,7 +112,8 @@ import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill
     CarDetailsSuperminComponent,
     FechaBillComponent,
     PrecioBillA25Component,
-    PrecioBillIvaComponent
+    PrecioBillIvaComponent,
+    
 
   ],
   declarations: [
@@ -152,6 +154,7 @@ import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill
     FechaBillComponent,
     PrecioBillA25Component,
     PrecioBillIvaComponent,
+    
 
 
     // FooterEmpresaComponent,

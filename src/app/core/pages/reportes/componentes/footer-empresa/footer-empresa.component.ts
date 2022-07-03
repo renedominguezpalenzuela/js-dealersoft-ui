@@ -8,12 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FooterEmpresaComponent implements OnInit {
 
 
+   //static static_pagina_actual = 0;
+   //pagina_actual!: number;
+
   @Input() me:any;  
   @Input() car_buy_data:any;  
+
   
-  constructor() { }
+  
+  constructor() {
+
+    //FooterEmpresaComponent.static_pagina_actual++;
+    //this.pagina_actual = Number(FooterEmpresaComponent.static_pagina_actual)
+
+   }
 
   ngOnInit(): void {
+
+  
   }
+
+ 
 
 }

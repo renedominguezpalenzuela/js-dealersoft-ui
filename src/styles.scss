@@ -289,3 +289,30 @@ iframe {
 //   size: A4;
 //   margin: 11mm 17mm 17mm 17mm;
 // }
+
+
+// footer {
+//   position:fixed;
+//   bottom:0;
+//   left:0;
+// }
+
+//  body {
+//    counter-reset: page_number;
+//  }
+
+// #total_paginas:after {
+//   counter-increment: page_number;
+//   content:  counter(page_number);
+// }
+
+
+@page {
+  // @bottom-right {
+  //   content: counter(page) ' of ' counter(pages);
+  // }
+ #total_paginas:after {
+  content: 'Seite ' counter(page) ' / ' counter(pages);
+ }
+
+}
