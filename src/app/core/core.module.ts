@@ -55,6 +55,7 @@ import { CarDetailsSuperminComponent } from './pages/reportes/componentes/car-de
 import { FechaBillComponent } from './pages/reportes/componentes/fecha-bill/fecha-bill.component';
 import { PrecioBillA25Component } from './pages/reportes/componentes/precio-bill-a25/precio-bill-a25.component';
 import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill-iva/precio-bill-iva.component';
+import { FooterEmpresa2Component } from './pages/reportes/componentes/footer-empresa2/footer-empresa2.component';
 
 
 
@@ -113,6 +114,7 @@ import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill
     FechaBillComponent,
     PrecioBillA25Component,
     PrecioBillIvaComponent,
+    FooterEmpresa2Component
     
 
   ],
@@ -154,6 +156,7 @@ import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill
     FechaBillComponent,
     PrecioBillA25Component,
     PrecioBillIvaComponent,
+    FooterEmpresa2Component,
     
 
 

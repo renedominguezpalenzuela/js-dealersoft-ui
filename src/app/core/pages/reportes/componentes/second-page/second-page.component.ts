@@ -14,10 +14,14 @@ export class SecondPageComponent implements OnInit {
 
   @Input() empresa: any;
 
+
+
   constructor() { }
 
 
   ngOnInit(): void {
+
+    
   }
 
   

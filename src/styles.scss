@@ -222,10 +222,7 @@ iframe {
   font-family: "Helvetica" !important;
 }
 
-// Salto de linea
-.new-page {
-  page-break-before: always;
-}
+
 
 .text-details {
   font-size: 0.8rem !important; /* 14px */
@@ -272,17 +269,59 @@ iframe {
   font-family: "Helvetica-Bold" !important;
 }
 
+
+// Salto de linea
+.new-page {
+  page-break-before: always;
+}
+
+
+
+
 @media print {
-  .myfooter {
-    position: fixed; //show footer on every page
+
+  // #second_page {
+  //   position:relative
+  // }
+
+  //  html, body {
+  //    width: 8.5in;
+  //    height: 11in;
+  //  }
+
+
+
+  .myfooter1 {
+    // position: fixed; //show footer on every page
+    // position: absolute; //show footer only on the page in which is defined
+    position: absolute;
     bottom: 0px;
+    left: 0px;
+  }
+
+  .myfooter2 {
+    // position: fixed; //show footer on every page
+    // position: absolute; //show footer only on the page in which is defined
+    position: absolute;
+    top: 2000px;
     left: 0px;
   }
 }
 
 @page {
-  size: letter;
-   margin: 0.1in;
+   size: letter;
+    margin: 0.1in;
+
+   
+
+  // @bottom-right {
+  //   content: counter(page) ' of ' counter(pages);
+  // }
+//  #total_paginas:after {
+//   content: 'Seite ' counter(page) ' / ' counter(pages);
+//  }
+
+
 }
 
 // @page {
@@ -307,12 +346,3 @@ iframe {
 // }
 
 
-@page {
-  // @bottom-right {
-  //   content: counter(page) ' of ' counter(pages);
-  // }
- #total_paginas:after {
-  content: 'Seite ' counter(page) ' / ' counter(pages);
- }
-
-}

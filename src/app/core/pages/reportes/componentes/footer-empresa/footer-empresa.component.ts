@@ -25,6 +25,7 @@ export class FooterEmpresaComponent implements OnInit {
 
   ngOnInit(): void {
 
+ 
   
   }
 
