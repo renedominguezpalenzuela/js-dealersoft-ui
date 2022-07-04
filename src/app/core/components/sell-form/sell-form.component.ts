@@ -234,7 +234,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.carSellForm.get('iva_sell')!.removeValidators(Validators.required);
     this.carSellForm.get('iva_sell')!.disable();
 
-    // this.carSellForm.get('net_sell')!.setValue(null);
     this.carSellForm.get('net_sell')!.markAsUntouched();
     this.carSellForm.get('net_sell')!.markAsPristine();
     this.carSellForm.get('net_sell')!.addValidators(Validators.required);
@@ -1075,6 +1074,47 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
  
    
+    let xnet_sell: number = 0
+     let xiva_sell: number = 0
+     let xgross_sell: number = 0;
+           //iva_sell gross_sell
+
+           if (this.carSellForm.get('net_sell')?.value===null) {
+            xnet_sell = 0;              
+           } else {
+            xnet_sell = Number(this.carSellForm.get('net_sell')?.value);
+           }
+
+           if (this.carSellForm.get('iva_sell')?.value===null) {
+            xiva_sell = 0;  
+            
+           } else {
+            xiva_sell = Number(this.carSellForm.get('iva_sell')?.value);
+           }
+
+
+           if (this.carSellForm.get('gross_sell')?.value===null) {
+            xgross_sell = 0;              
+           } else {
+            xgross_sell = Number(this.carSellForm.get('gross_sell')?.value);
+           }
+
+
+          
+
+          const datos = {
+            ...this.carSellForm.value,
+            gross_sell: xgross_sell.toFixed(this.total_decimales),
+            net_sell:  xnet_sell.toFixed(this.total_decimales),
+            iva_sell: xiva_sell.toFixed(this.total_decimales)
+
+          }
+
+
+          
+          console.log("Valora guardar")
+          console.log(datos)
+        
         
 
 
@@ -1087,16 +1127,20 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.focus_gross_sell = false;
     this.focus_iva = false;
 
-    let xnet_sell: number = Number(this.carSellForm.get('net_sell')!.value);
-    let xiva_sell: number = Number(this.carSellForm.get('iva_sell')!.value);
-    let xgross_sell: number = Number(this.carSellForm.get('gross_sell')!.value);
+//     let xnet_sell: number = Number(this.carSellForm.get('net_sell')?.value);
+//     let xiva_sell: number = Number(this.carSellForm.get('iva_sell')?.value);
+//     let xgross_sell: number = Number(this.carSellForm.get('gross_sell')?.value);
 
-    this.carSellForm.patchValue({
-      // ...this.carSellForm.value,   
-      gross_sell: xgross_sell.toFixed(this.total_decimales),
-      net_sell: xnet_sell.toFixed(this.total_decimales),
-      iva_sell: xiva_sell.toFixed(this.total_decimales),
-    });
+   
+   
+//   this.carSellForm.patchValue({   
+//    gross_sell: xgross_sell.toFixed(this.total_decimales),
+//    net_sell: xnet_sell.toFixed(this.total_decimales),
+//    iva_sell: xiva_sell.toFixed(this.total_decimales),
+//  });
+
+
+
 
    this.carSellForm.updateValueAndValidity();
 
@@ -1158,8 +1202,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         //2 --- si no existe creo tupla nueva en carSellData si existe lo modifico
         if (data === undefined) {
-
-          this.requestService.Post(this.apiHelperService.carsSellURL, this.carSellForm.value)
+          //this.carSellForm.value
+          this.requestService.Post(this.apiHelperService.carsSellURL,datos )
             .subscribe(() => {
               //Solo se elimina el carro cuando se crea el invoice number     
 
@@ -1191,10 +1235,17 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
               
             });
 
-        } else {
+        } else { //modificar tupla existente
 
           const id_venta = res?.data[0]?.id;
-          this.requestService.Put( this.apiHelperService.carsSellURL + '/' + id_venta, this.carSellForm.value )
+
+
+
+
+           
+
+          //this.carSellForm.value
+          this.requestService.Put( this.apiHelperService.carsSellURL + '/' + id_venta, datos )
             .subscribe(() => {
               //Actualizar el carro -- campo selled = true
               this.actualizarCarSelled(this.carSellForm.value.car, false);         
