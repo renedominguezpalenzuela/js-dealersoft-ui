@@ -784,6 +784,16 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   // selected_option_Export = false;
 
   private imprimir(type: ExportType) {
+
+    this.selected_option_a25 = this.carSellForm.get('a25')!.value;
+    this.selected_option_MnSt = this.carSellForm.get('iva')!.value;
+    this.selected_option_Export = this.carSellForm.get('export')!.value;
+
+
+    console.log("Datos")
+    console.log( this.carSellForm.value)  
+
+
     let tipo = '/';
 
     let nombre_reporte = 'report.pdf';
@@ -1048,6 +1058,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
 
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.carSellForm.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name + ', ' + controls[name].value);
+      }
+    }
+    return invalid;
+  }
+
+
   
   public salvarEImprimir(imprimir: any, type: ExportType) {
 
@@ -1057,6 +1079,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
     const id = this.car_data?.id;
+
+   
   
 
     this.focus_net_sell = false;
@@ -1068,8 +1092,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     let xgross_sell: number = Number(this.carSellForm.get('gross_sell')!.value);
 
     this.carSellForm.patchValue({
-      ...this.carSellForm.value,
-   
+      // ...this.carSellForm.value,   
       gross_sell: xgross_sell.toFixed(this.total_decimales),
       net_sell: xnet_sell.toFixed(this.total_decimales),
       iva_sell: xiva_sell.toFixed(this.total_decimales),
@@ -1081,6 +1104,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
     if (!this.carSellForm.valid) {
+
+      console.log("Error in form: carSellForm")
+
+      console.log(this.findInvalidControls())
+
+      
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'fehlende Angaben!!!!',
