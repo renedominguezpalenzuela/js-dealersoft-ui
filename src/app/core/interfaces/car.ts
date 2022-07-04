@@ -22,6 +22,8 @@ export interface Car {
     owner: User,
     can_save: boolean,
     a25: boolean,
-    iva: boolean
+    iva: boolean,
+
+    sell: any
   }
 }

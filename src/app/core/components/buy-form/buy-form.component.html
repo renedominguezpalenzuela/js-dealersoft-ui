@@ -42,7 +42,7 @@
             </mat-option>
           </mat-autocomplete>
           <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
-            mat-icon-button matSuffix>
+            mat-icon-button matSuffix [disabled]="boton_salvar_disabled">
             <mat-icon>add</mat-icon>
           </button>
           <mat-error *ngIf="hasRequiredError('client')">

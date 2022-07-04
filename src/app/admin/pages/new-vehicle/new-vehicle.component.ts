@@ -72,10 +72,10 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
     first_register_date: [null, [Validators.required]],
     kilometres: [null, [Validators.required, Validators.min(0)]],
     kilowatt: [null, [Validators.min(0)]],
-    color: [null, [Validators.nullValidator]],
-    last_owner: [null, [Validators.nullValidator]],
-    hsn: ["", [Validators.nullValidator]],
-    tsn: ["", [Validators.nullValidator]],
+    color: [null ],
+    last_owner: [null ],
+    hsn: [null],
+    tsn: [null],
     source: [null],
     owner: [null, [Validators.required]],
   });
@@ -144,9 +144,9 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   ngOnChanges(changes: SimpleChanges): void {
 
 
-  console.log("NEW VEHICLE FORM -- boton_salvar_diabled")
-   console.log(this.boton_salvar_disabled) 
-   console.log(this.car)
+  // console.log("NEW VEHICLE FORM -- boton_salvar_diabled")
+  //  console.log(this.boton_salvar_disabled) 
+  //  console.log(this.car)
   
     // this.boton_salvar_disabled=true;
    if (this.car?.attributes.can_save) {

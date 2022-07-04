@@ -77,7 +77,7 @@ export class CreateInvoiceService {
         
 
           observer.next(String(this.last_invoice_number));
-          observer.complete();
+           observer.complete();
         });
 
       });
