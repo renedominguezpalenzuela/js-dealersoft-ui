@@ -86,11 +86,11 @@
             <mat-label>{{texto_label}}</mat-label>
 
             <!--  [disabled]="boton_salvar_disabled" -->
-            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="boton_salvar_disabled">
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only">
 
             
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button
-                    matSuffix type="button" [disabled]="boton_salvar_disabled">
+                    matSuffix type="button" [disabled]="input_read_only">
               <mat-icon>add</mat-icon>
             </button>
           </mat-form-field>

@@ -156,10 +156,12 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
    } else { 
     //this.boton_salvar_disabled=true; 
     this.desHabilitarControles()
+    this.input_read_only = true;
    }
 
    if ( this.boton_salvar_disabled===true ) {
     this.desHabilitarControles()
+    this.input_read_only = true;
    }
 
 
