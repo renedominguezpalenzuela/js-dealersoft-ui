@@ -790,8 +790,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.selected_option_Export = this.carSellForm.get('export')!.value;
 
 
-    console.log("Datos")
-    console.log( this.carSellForm.value)  
+    // console.log("Datos")
+    // console.log( this.carSellForm.value)  
 
 
     let tipo = '/';
@@ -1123,16 +1123,16 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     const valorFormularioInvoice_Number = this.carSellForm.get('invoice_number')!.value;
     if (this.selected_tab == 0) {
      
-         if (valorFormularioInvoice_Number === null) {
-         this.notificationService.riseNotification({
-           color: 'warning',
-           data: 'Rechnungsnummer wurde nicht generiert',
-         });
+        //  if (valorFormularioInvoice_Number === null) {
+        //  this.notificationService.riseNotification({
+        //    color: 'warning',
+        //    data: 'Rechnungsnummer wurde nicht generiert',
+        //  });
 
-         console.log("Invoice number nulo")
+        //  console.log("Invoice number nulo")
 
-         return;
-       }
+         //return;
+       //}
      }
 
 
