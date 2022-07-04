@@ -1043,9 +1043,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       if (this.isChecked===null) {
       let  sell = this?.car_data?.attributes.sell
 
-      console.log(sell.bemerkungencheck2page)
+  
 
-       if (sell.bemerkungencheck2page) {
+       if (sell?.bemerkungencheck2page) {
         this.isChecked = true;
        } else {
         this.isChecked = false;
