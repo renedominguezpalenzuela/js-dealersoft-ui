@@ -774,13 +774,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.selected_option_MnSt = this.carSellForm.get('iva')!.value;
     this.selected_option_Export = this.carSellForm.get('export')!.value;
 
-    console.log("Reporters")
-    console.log( this.carSellForm.value)
-    console.log("Tabs "+this.selected_tab)     
-    console.log("A25 "+ this.selected_option_a25)    
-    console.log("IVA "+ this.selected_option_MnSt)
-    console.log("Exp "+ this.selected_option_Export)
-    console.log("Export Type "+type)
+ 
 
     let tipo = '/';
 
@@ -848,7 +842,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     
 
  
-    console.log("Tipo " +tipo)
+  
 
 
     if (tipo == '/') {
@@ -1004,7 +998,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public onNativeChange(e: any) {
     this.isChecked = e.target.checked;
-    console.log('is chechedl' + this.isChecked);
+    
   }
 
   // @ViewChildren('childTabs') childTabs: QueryList<MatTabGroup>;

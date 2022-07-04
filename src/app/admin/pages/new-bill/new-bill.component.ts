@@ -515,9 +515,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public generatePdf = () => {
-    // console.log("ID")
-
-    // console.log(this.invoice_data);
 
     this.Prueba()
     
@@ -564,13 +561,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
        let client = this.bill_info.attributes.client.data.attributes;
        let owner = this.bill_info.attributes.owner.data.attributes
 
-       console.log("SDDD")
-
-      console.log(this.bill_info)
-      // console.log(client)
-      // console.log(owner)
-      // console.log(invoice_number)
-
+  
 
     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
     //   this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];

@@ -144,9 +144,6 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   ngOnChanges(changes: SimpleChanges): void {
 
 
-  // console.log("NEW VEHICLE FORM -- boton_salvar_diabled")
-  //  console.log(this.boton_salvar_disabled) 
-  //  console.log(this.car)
   
     // this.boton_salvar_disabled=true;
    if (this.car?.attributes.can_save) {

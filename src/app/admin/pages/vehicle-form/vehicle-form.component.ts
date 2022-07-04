@@ -47,8 +47,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     
   ) {
 
-    // console.log("Local Storage in Constructor")
-    // console.log(localStorage.getItem('can_save'))
+ 
     // if (localStorage.getItem('can_save')==='true') {
     //   this.can_save = true;
     // } else {
@@ -67,8 +66,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
 
-    // console.log("Local Storage in nGInit")
-    // console.log(localStorage.getItem('can_save'))
+ 
     // if (localStorage.getItem('can_save')==='true' ||  localStorage.getItem('can_save')===undefined) {
     //   this.can_save = true;
     // } else {
@@ -151,8 +149,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
   public updateQueryParams = ($event: MatTabChangeEvent) => {
     //Activar el ink-bar del tab de invoice_number y contrato
 
-    // console.log("Local Storage in TAB")
-    // console.log(localStorage.getItem('can_save'))
+    
     // if (localStorage.getItem('can_save')==='true' ||  localStorage.getItem('can_save')===undefined) {
     //   this.can_save = true;
     // } else {
