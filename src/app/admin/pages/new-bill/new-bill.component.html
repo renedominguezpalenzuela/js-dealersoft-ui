@@ -15,10 +15,15 @@
         </mat-form-field>
 
         <div class="col-span-1 col-start-2 pt-2">
-          <mat-label class="btn btn-ghost text-gray-5000 drawer-button 	 " (click)="generateInvoice_Number()">
+          <!-- <mat-label class="btn btn-ghost text-gray-5000 drawer-button 	 " (click)="generateInvoice_Number()" [disabled]="boton_salvar_disabled">
             <mat-icon class="text-black">gavel</mat-icon>
 
-          </mat-label>
+          </mat-label> -->
+
+          <button mat-icon-button [disabled]="boton_salvar_disabled" class="text-gray-5000 drawer-button" (click)="generateInvoice_Number()" type="button">
+            <mat-icon class="text-black">gavel</mat-icon>
+          </button>
+         
         </div>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
@@ -68,7 +73,7 @@
           </mat-autocomplete>
 
           <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
-            mat-icon-button matSuffix type="button">
+            mat-icon-button matSuffix type="button" [disabled]="boton_salvar_disabled">
             <mat-icon>add</mat-icon>
           </button>
           <mat-error *ngIf="hasRequiredError('client')">
@@ -92,7 +97,7 @@
       <div class="divider font-bold font-sans">
         <span class="mr-3">Position hinzufügen</span>
         <button (click)="addArticle()" class="tooltip tooltip-bottom" data-tip="Add Article" mat-icon-button
-          type="button">
+          type="button" [disabled]="boton_salvar_disabled">
           <mat-icon class="add-course-btn">add</mat-icon>
         </button>
       </div>
@@ -123,8 +128,8 @@
 
               <div class="col-span-1 flex items-center justify-start">
                 <button class="tooltip tooltip-bottom relative -top-2" data-tip="Remove Article" mat-icon-button
-                  type="button">
-                  <mat-icon (click)="deleteArticle(i)">
+                  type="button" [disabled]="boton_salvar_disabled" (click)="deleteArticle(i)">
+                  <mat-icon >
                     delete_forever
                   </mat-icon>
                 </button>
@@ -150,7 +155,7 @@
 
 
 
-        <button class="btn btn-primary w-40 col-start-2 " type="submit" [disabled]="boton_disabled">
+        <button class="btn btn-primary w-40 col-start-2 " type="submit" [disabled]="boton_salvar_disabled">
           <span class="tracking-wide">Rechnung erstellen</span>
         </button>
 

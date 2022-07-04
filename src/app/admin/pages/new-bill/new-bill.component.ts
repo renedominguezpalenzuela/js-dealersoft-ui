@@ -91,7 +91,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = []; //lista de clientes del Usuario
 
-  public boton_disabled: boolean = false;
+  public boton_salvar_disabled: boolean = false;
   public mostrar_boton_imprimir: boolean = false;
 
   @Input() public invoice_data: any | undefined;
@@ -168,7 +168,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     this.activatedRoute.params.subscribe((params: Params) => {
       if (params['id']) {
         //Deshabilitar boton de salvar
-        this.boton_disabled = true;
+        this.boton_salvar_disabled = true;
         this.mostrar_boton_imprimir=true;
 
         this.invoice_id =params['id']; 
@@ -192,10 +192,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
             });
 
             this.newInvoiceForm.updateValueAndValidity();
+            this.desHabilitarControles();
+
           });
       } else {
         //Habilitar boton de salvar
-        this.boton_disabled = false;
+        this.boton_salvar_disabled = false;
         this.mostrar_boton_imprimir=false;
 
         //Adicionando nuevo articulo vacio
@@ -440,6 +442,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+    if ( this.boton_salvar_disabled===true ) {
+      this.desHabilitarControles()
+    }
+
+
     if (changes?.['invoice_data'] && this.invoice_data) {
       this.requestService
         .Get(
@@ -618,6 +626,20 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   private query = () => this.requestService.generateQuery({
     populate: ['owner', 'client', 'car', 'user', 'logo']
   });
+
+
+  desHabilitarControles() {
+    for (const field in this.newInvoiceForm.controls) { // 'field' is a string
+      this.newInvoiceForm.controls[field].disable();
+    }
+	}
+
+  
+  habilitarControles() {
+    for (const field in this.newInvoiceForm.controls) { // 'field' is a string
+      this.newInvoiceForm.controls[field].enable();
+    }
+  }
 
 
 
