@@ -70,7 +70,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   actualizando_radio_buttons = false;
 
-  public boton_salvar_disabled = false;
+  // public boton_salvar_disabled = false;
+  @Input() public boton_salvar_disabled!:  boolean | undefined;
   
 
   car_id = 0;
@@ -306,6 +307,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this._adapter.setLocale(this._locale);
 
 
+
+
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
@@ -449,12 +452,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     // this.existeCompraconA25 = this.route.snapshot.paramMap.get('existeCompraconA25');
     this.primeraVez = false;
 
-    // if (!localStorage.getItem('foo')) {
-    //   localStorage.setItem('foo', 'no reload')
-    //   location.reload()
-    // } else {
-    //   localStorage.removeItem('foo')
-    // }
+    
   }
 
   public generateInvoice_Number() {
@@ -522,6 +520,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
 
 
+      
+      localStorage.setItem('can_save', false.toString())          
+      this.desHabilitarControles();
+
+
       this.boton_salvar_disabled = true;  
 
 
@@ -564,12 +567,19 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
     if (this.car_data?.attributes.can_save) {
-      this.boton_salvar_disabled=false;
+      //this.boton_salvar_disabled=false;
     this.habilitarControles()
      } else { 
-      this.boton_salvar_disabled=true; 
+     // this.boton_salvar_disabled=true; 
      this.desHabilitarControles()
      }
+
+     if ( this.boton_salvar_disabled===true ) {
+      this.desHabilitarControles()
+     }
+  
+
+    
 
 
 
@@ -718,6 +728,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     const id = this.car_data?.id;
+
+   
 
     this.focus_net_sell = false;
     this.focus_gross_sell = false;
@@ -874,10 +886,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         ],
       };
 
+      
+
       this.createInvoice
         .guardarInvoiceFromSellCar(datosInvoice)
         .subscribe(() => {
-          this.actualizarCarSelled(this.carSellForm.value.car, true);
+         // this.actualizarCarSelled(this.carSellForm.value.car, true);
+         this.actualizarCarSelled(this.car_data?.id, true);
 
           //Creada nueva invoice
           this.notificationService.riseNotification({

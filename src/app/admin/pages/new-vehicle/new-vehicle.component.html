@@ -85,7 +85,8 @@
 
             <mat-label>{{texto_label}}</mat-label>
 
-            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only" [disabled]="boton_salvar_disabled">
+            <!--  [disabled]="boton_salvar_disabled" -->
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="boton_salvar_disabled">
 
             
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button

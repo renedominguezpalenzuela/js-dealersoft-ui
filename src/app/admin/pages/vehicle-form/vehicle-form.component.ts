@@ -14,13 +14,12 @@ import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { FilterOperator } from '@core/interfaces/query-params';
 import { timer } from 'rxjs';
 
-import { Globals } from '../../../globales';
+
 
 @Component({
   selector: 'app-vehicle-form',
   templateUrl: './vehicle-form.component.html',
   styleUrls: ['./vehicle-form.component.scss'],
-  providers: [ Globals ],
   encapsulation: ViewEncapsulation.None,
 })
 export class VehicleFormComponent implements OnInit, OnDestroy {
@@ -29,6 +28,8 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
   public carsOptions: Car[] = [];
   public clientsOptions: Customer[] = [];
   private currentUserId: number | undefined;
+ public can_save:  boolean = false;
+ //public boton_salvar_disabled: Boolean | undefined;
 
 
 
@@ -43,17 +44,37 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     private readonly apiHelperService: ApiHelperService,
     private readonly authService: AuthService,
     private renderer: Renderer2,
-    private globals: Globals
+    
   ) {
+
+    // console.log("Local Storage in Constructor")
+    // console.log(localStorage.getItem('can_save'))
+    // if (localStorage.getItem('can_save')==='true') {
+    //   this.can_save = true;
+    // } else {
+    //   this.can_save = false;
+    // }
+    
     
   }
 
 
   ngOnDestroy(): void {
     localStorage.removeItem('firstTime') 
+   // localStorage.removeItem('can_save') 
   }
 
   ngOnInit(): void {
+
+
+    // console.log("Local Storage in nGInit")
+    // console.log(localStorage.getItem('can_save'))
+    // if (localStorage.getItem('can_save')==='true' ||  localStorage.getItem('can_save')===undefined) {
+    //   this.can_save = true;
+    // } else {
+    //   this.can_save = false;
+    // }
+    
 
 
 
@@ -62,11 +83,16 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
       (user) => (this.currentUserId = user?.id)
     );
 
+  
     this.activatedRoute.params.subscribe((params: Params) =>
       this.requestService
         .Get(`${this.apiHelperService.carsURL}/${params['id']}`)
         .subscribe((res) => {
           this.car = res.data;
+
+          this.can_save = this.car.attributes.can_save;
+          
+    
         })
     );
 
@@ -125,6 +151,29 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
   public updateQueryParams = ($event: MatTabChangeEvent) => {
     //Activar el ink-bar del tab de invoice_number y contrato
 
+    // console.log("Local Storage in TAB")
+    // console.log(localStorage.getItem('can_save'))
+    // if (localStorage.getItem('can_save')==='true' ||  localStorage.getItem('can_save')===undefined) {
+    //   this.can_save = true;
+    // } else {
+    //   this.can_save = false;
+    // }
+
+    //Cada ves que cambi de TAB actualiza el estado de can_Save
+
+    this.activatedRoute.params.subscribe((params: Params) =>
+    this.requestService
+      .Get(`${this.apiHelperService.carsURL}/${params['id']}`)
+      .subscribe((res) => {
+        this.car = res.data;
+
+        this.can_save = this.car.attributes.can_save;
+        
+  
+      })
+  );
+    
+
     if ($event.index == 2) {
       this.existeCompraconA25 = false;
 
@@ -133,7 +182,7 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
         let reloj = timer(550);
         reloj.subscribe((t) => {
           
-          window.location.reload();
+         // window.location.reload();
         });      
        }
 

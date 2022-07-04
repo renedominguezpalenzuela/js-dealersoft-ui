@@ -63,7 +63,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
   totalAusstattung = 4;
 
-  public boton_salvar_disabled = false;
+  @Input() public boton_salvar_disabled!:  boolean | undefined;
 
   public vehicleForm = this.formBuilder.group({
     name: [null, [Validators.required]],
@@ -144,21 +144,28 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   ngOnChanges(changes: SimpleChanges): void {
 
 
+  console.log("NEW VEHICLE FORM -- boton_salvar_diabled")
+   console.log(this.boton_salvar_disabled) 
+   console.log(this.car)
   
     // this.boton_salvar_disabled=true;
    if (this.car?.attributes.can_save) {
-    this.boton_salvar_disabled=false;
+    //this.boton_salvar_disabled=false;
     this.habilitarControles()
     
    } else { 
-    this.boton_salvar_disabled=true; 
+    //this.boton_salvar_disabled=true; 
+    this.desHabilitarControles()
+   }
+
+   if ( this.boton_salvar_disabled===true ) {
     this.desHabilitarControles()
    }
 
 
 
   
-    if (changes?.['car'].currentValue) {
+    if (changes?.['car']?.currentValue) {
 
       //Verificar si se puede editar el carro si campo can_save = true (si se presiona martillo can_save=false)
 

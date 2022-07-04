@@ -72,7 +72,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() public car_data: Car | undefined;
   actualizando_radio_buttons = false;
 
-  public boton_salvar_disabled = false;
+  
+  @Input() public boton_salvar_disabled!: Boolean | undefined;
 
   /*
   campo del formulario car_name
@@ -239,6 +240,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     this._locale = 'de';
     this._adapter.setLocale(this._locale);
 
+   
+ 
+
     //Cambios en el valor del checkbox a25
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (this.boton_salvar_disabled) return;
@@ -364,13 +368,20 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
    
     // this.boton_salvar_disabled=true;
    if (this.car_data?.attributes.can_save) {
-    this.boton_salvar_disabled=false;
+//    this.boton_salvar_disabled=false;
     this.habilitarControles();
    } else { 
-    this.boton_salvar_disabled=true; 
+  //  this.boton_salvar_disabled=true; 
     this.desHabilitarControles()
    }
 
+   if ( this.boton_salvar_disabled===true ) {
+    this.desHabilitarControles()
+   }
+
+
+
+ 
 
 
 
