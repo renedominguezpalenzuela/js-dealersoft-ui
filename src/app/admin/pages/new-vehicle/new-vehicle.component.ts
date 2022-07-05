@@ -144,11 +144,18 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
   ngOnChanges(changes: SimpleChanges): void {
 
 
-  
+
     // this.boton_salvar_disabled=true;
-   if (this.car?.attributes.can_save) {
+   if (this.car?.attributes.can_save===true) {
+    console.log("can save = " + this.car?.attributes.can_save)
+    
     //this.boton_salvar_disabled=false;
     this.habilitarControles()
+    if (this.comments.length < 4) {
+
+      console.log("input read only = " + this.input_read_only)
+      this.input_read_only = false;
+    }
     
    } else { 
     //this.boton_salvar_disabled=true; 
@@ -159,8 +166,15 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
    if ( this.boton_salvar_disabled===true ) {
     this.desHabilitarControles()
     this.input_read_only = true;
+   } else {
+    if (this.comments.length < 4) {
+      this.input_read_only = false;
+    }
    }
 
+
+   
+   console.log("input read only = " + this.input_read_only)
 
 
   
@@ -306,7 +320,11 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
   public addComment = () => {
 
+    
+
     if (this.comments.length < 4) {
+      
+
       if (this.currentComment) {
         this.comments.push(this.currentComment);
         this.currentComment = '';
@@ -314,12 +332,12 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
         this.input_read_only = false;
         let numero_comentario = this.comments.length + 1;
 
-        if (numero_comentario<=4) {
-        this.texto_label = 'Ausstattung #' + numero_comentario.toString();
-        } else {
-          this.input_read_only = true;
-          this.texto_label = 'keine weiteren Ausstattungen möglich';
-        }
+         if (numero_comentario<=4) {
+            this.texto_label = 'Ausstattung #' + numero_comentario.toString();
+         } else {
+           this.input_read_only = true;
+           this.texto_label = 'keine weiteren Ausstattungen möglich';
+         }
         // this.totalAusstattung=this.totalAusstattung-1;
       }
     } else {
