@@ -55,11 +55,11 @@
 
 
         <div class="col-span-2 flex items-start sm:items-center justify-start gap-x-3 pl-5 flex-col sm:flex-row">
-          <div class="flex gap-x-3 pb-3">
-            <input class="toggle" formControlName="a25" id="a25" type="checkbox">
+          <div class="flex gap-x-3 pb-3" *ngIf="puede_solo_a25">
+            <input class="toggle" formControlName="a25" id="a25" type="checkbox" >
             <label class="cursor-pointer font-semibold text-gray-500" for="a25">§25a</label>
           </div>
-          <div class="flex gap-x-3 pb-3">
+          <div class="flex gap-x-3 pb-3" *ngIf="puede_solo_iva">
             <input class="toggle" formControlName="iva" id="iva" type="checkbox">
             <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
           </div>

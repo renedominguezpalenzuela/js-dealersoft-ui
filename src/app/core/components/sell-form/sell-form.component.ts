@@ -89,6 +89,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   selected_option_MnSt = false;
   selected_option_Export = false;
 
+  puede_solo_iva = true;
+  puede_solo_a25 = true;
+
   // @Input() public car: Car | undefined;
   @Input() public car_data: Car | undefined;
 
@@ -329,7 +332,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.activarA25();
       } else {
         this.actualizando_radio_buttons = true;
-        this.carSellForm.patchValue({ export: false, iva: true });
+        if (this.puede_solo_a25) {
+           this.carSellForm.patchValue({ export: true,  iva: false });
+        } else {
+          this.carSellForm.patchValue({ export: false, iva: true });
+        }
         this.activarIVA();
       }
 
@@ -351,6 +358,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.actualizando_radio_buttons = true;
         this.carSellForm.patchValue({ export: true, a25: false });
         this.activarExport();
+        if (this.puede_solo_iva) {
+          this.carSellForm.patchValue({ export: true, iva: false });
+       } else {
+        this.carSellForm.patchValue({ export: true, a25: false });
+       }
       }
 
       this.actualizando_radio_buttons = false;
@@ -476,14 +488,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   desHabilitarControles() {
     for (const field in this.carSellForm.controls) {
-      // 'field' is a string
       this.carSellForm.controls[field].disable();
     }
   }
 
   habilitarControles() {
     for (const field in this.carSellForm.controls) {
-      // 'field' is a string
       this.carSellForm.controls[field].enable();
     }
   }
@@ -501,6 +511,27 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.boton_salvar_disabled === true) {
       this.desHabilitarControles();
     }
+
+    //Constrains de a25 e iva en funcion de lo salvado en buyCar
+    if (this.car_data?.attributes.a25===true && this.car_data?.attributes.iva===false) {
+      console.log("A25")
+      this.puede_solo_iva = false;
+      this.puede_solo_a25 = true; 
+    }
+
+    if (this.car_data?.attributes.a25===false && this.car_data?.attributes.iva===true) {
+      console.log("IVA")
+      this.puede_solo_iva = true;
+      this.puede_solo_a25 = false; 
+    }
+
+
+    //console.log("DDDD")
+    //console.log(this.car_data?.attributes)
+
+
+
+    
 
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el paren
