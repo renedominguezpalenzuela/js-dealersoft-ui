@@ -147,13 +147,11 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
     // this.boton_salvar_disabled=true;
    if (this.car?.attributes.can_save===true) {
-    console.log("can save = " + this.car?.attributes.can_save)
+
     
     //this.boton_salvar_disabled=false;
     this.habilitarControles()
     if (this.comments.length < 4) {
-
-      console.log("input read only = " + this.input_read_only)
       this.input_read_only = false;
     }
     
@@ -174,7 +172,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
 
    
-   console.log("input read only = " + this.input_read_only)
+
 
 
   
