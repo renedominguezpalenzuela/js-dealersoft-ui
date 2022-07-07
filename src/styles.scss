@@ -8,10 +8,24 @@ body {
   scroll-behavior: smooth;
 }
 
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: local("Montserrat-Regular"),
+    url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat-ExtraBold";
+  src: local("Montserrat-ExtraBold"),
+    url("/assets/fonts/Montserrat-ExtraBold.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+  font-family: "Montserrat-Regular";
 }
 
 .input {
@@ -135,18 +149,8 @@ iframe {
   background-color: #121a34 !important;
 }
 
-@font-face {
-  font-family: "Montserrat-Regular";
-  src: local("Montserrat-Regular"),
-    url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
-}
 
-@font-face {
-  font-family: "Montserrat-ExtraBold";
-  src: local("Montserrat-ExtraBold"),
-    url("/assets/fonts/Montserrat-ExtraBold.ttf") format("truetype");
-}
-
+/*
 @font-face {
   font-family: "HelveticaLTStd-Bold";
   src: local("HelveticaLTStd-Bold"),
@@ -162,7 +166,7 @@ iframe {
   font-family: "Helvetica-Bold";
   src: local("Helvetica-Bold"),
     url("/assets/fonts/Helvetica-Bold.ttf") format("truetype");
-}
+}*/
 
 /* Degradado */
 .fondo {

@@ -1,0 +1,871 @@
+[33mcommit ab64421ffc4a86da9eed2beaaf67f7dc2041ae51[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jul 7 14:09:35 2022 -0400
+
+    report name
+
+[33mcommit 248c4c0889889e68d74c894ae810eb923a030efe[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jul 7 14:01:25 2022 -0400
+
+    eliminando options en invoives
+
+[33mcommit b482bd5a8b9fe9a43c278897b958940511dfc31d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jul 7 13:27:39 2022 -0400
+
+    invoice order
+
+[33mcommit 82606922b9d83be21bea8f6f3e4a86629d60bcf7[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jul 6 20:24:39 2022 -0400
+
+    cancel invoice
+
+[33mcommit e843ecc89bcdad33531393b2d481b5fb559c41e4[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jul 5 14:38:16 2022 -0400
+
+    a25, iva, export
+
+[33mcommit 8ede1d2ad6462bdeff5dfdec183314c531900610[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jul 5 13:30:17 2022 -0400
+
+    fixing read only on input
+
+[33mcommit 17df49333691f6d823220448bde9d2fa6714a43a[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jul 5 13:29:54 2022 -0400
+
+    fixing read only on input
+
+[33mcommit 8b5056f40e547629d4fae29025234834624a4946[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 18:09:07 2022 -0400
+
+    salva last ok2
+
+[33mcommit 9c15e6d8d38205d4dfc7fbffa3fa5bd861480281[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 18:06:12 2022 -0400
+
+    salva last ok
+
+[33mcommit ad3adbd48fe38377a8e7425b2a0cc3aa77a1560a[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 17:33:29 2022 -0400
+
+    save ok 5
+
+[33mcommit 308ed85bc605442e90ffeba82671bcbd82bc78ea[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 16:34:53 2022 -0400
+
+    save fix 5
+
+[33mcommit faa224c2d4fc70971938bd9af77be7c36114777e[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 16:29:38 2022 -0400
+
+    fixing save 4
+
+[33mcommit ddbc459fb182e8dde4f5d0ea2299783b906e1721[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 16:28:24 2022 -0400
+
+    fixing save 4
+
+[33mcommit e12aff29fcd6403a5763d53780cb1b4d8bf626dc[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 14:08:58 2022 -0400
+
+    fixing comment on second pag
+
+[33mcommit ef280c017e9065cd5b1033b2af8df9c786cefbe6[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 13:57:32 2022 -0400
+
+    save ok3
+
+[33mcommit 87f8b889f46e1e875183dc008e5e5422e42c6aa3[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 13:33:42 2022 -0400
+
+    save ok 2
+
+[33mcommit 8e9e6fb369795268b60b2454ab6594aaffd2167b[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 13:22:40 2022 -0400
+
+    save ok
+
+[33mcommit 19e8c01c5e7614defd8111711cc02e0175b00af2[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jul 4 09:48:50 2022 -0400
+
+    fixing add new car comments
+
+[33mcommit 93ca73ff484d71a8134d957e96e375cc217bfdfd[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jul 3 20:55:46 2022 -0400
+
+    aaa
+
+[33mcommit 3d1e8355512f98de446d0d18a71d85619a853bb1[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jul 3 18:52:21 2022 -0400
+
+    saving ok
+
+[33mcommit 0df2327d501ad0972a196c0ea2e3b28ae739631c[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jul 2 23:39:09 2022 -0400
+
+    2pages report
+
+[33mcommit ace825326652190218cb03e4c6c9b754cbc91e22[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jul 2 21:26:18 2022 -0400
+
+    before add paged.js
+
+[33mcommit 5a674347dbf6ef01967c11748c17f9446cd0deba[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jul 2 15:08:22 2022 -0400
+
+    button logout
+
+[33mcommit f6a13d058be078f161feccac502744c7850f3bf7[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jul 2 13:19:55 2022 -0400
+
+    fixing comments in new car
+
+[33mcommit 36ec9ce483b5f46935ccbd99381204e8b11d8cb4[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jul 2 11:24:35 2022 -0400
+
+    invoice number space
+
+[33mcommit 1547214ced5e807e05a5efe833df694730610a2e[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jul 1 20:26:39 2022 -0400
+
+    date formats
+
+[33mcommit 6171518fd24e4557debdabca16997c348b6656c6[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jul 1 14:16:13 2022 -0400
+
+    client mandatory fields
+
+[33mcommit fc2653b69a5e919276c6ee9a985f8b5d1fbeecfb[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jul 1 09:58:56 2022 -0400
+
+    report iva bill
+
+[33mcommit 1c3a9e4a5627c20648155e89b944aebeca7a49e2[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jul 1 09:32:41 2022 -0400
+
+    bill a25 report
+
+[33mcommit 61ba11afad67593c82daf278ee644353ab304d19[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jul 1 00:53:26 2022 -0400
+
+    invoices
+
+[33mcommit fa8c89a6c2ea177d37e7e71dbec565142ec672cc[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 30 16:19:51 2022 -0400
+
+    invoice report
+
+[33mcommit 2c534cdd57b6ffc16d7252ae62ea885877b02ba5[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 30 12:40:47 2022 -0400
+
+    invoices
+
+[33mcommit e992b63d7fa7d6d19b961cfde555945ad17e049c[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 30 10:48:43 2022 -0400
+
+    disable save buttons
+
+[33mcommit b1650c0d680d5713f96b875f36778378e0cb0b97[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 30 09:55:53 2022 -0400
+
+    fixinig client in invoice
+
+[33mcommit f46b4eb3d0c0bc5cf577eb2497649de069ece9a8[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 29 16:08:50 2022 -0400
+
+    invoice numbner ok
+
+[33mcommit 3a79b686005ad7a392b84682e25794e13ec44537[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 29 12:28:38 2022 -0400
+
+    invoice and sell cars
+
+[33mcommit 15ba3790cdd4fff30c26b6d8444ff2df962b7467[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 29 10:52:06 2022 -0400
+
+    errors on invoice1
+
+[33mcommit 5ea48479302b967aec88e72a210011ce83d93613[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 29 10:49:25 2022 -0400
+
+    errors on invoice
+
+[33mcommit 3ac1c09830c5477bca64dad46358a93a0a8c0867[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 28 17:09:27 2022 -0400
+
+    cambios en invoice
+
+[33mcommit 1ca4d7f5264eedea13fa3db81019940f88faa49d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 28 15:32:44 2022 -0400
+
+    inicializando invoice form
+
+[33mcommit 224772a847727b8907c6e43ab41a95718f2bb833[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 28 15:29:24 2022 -0400
+
+    servicio generar numero invoice
+
+[33mcommit f1c1a5fb6dfe74efc7f7b15a6c0dc5813f1f1a3a[m
+Author: unknown <renedp1975@gmail.com>
+Date:   Mon Jun 27 16:25:03 2022 -0500
+
+    invoices
+
+[33mcommit e7680ef114fca4caa533b25e9720e995d467ebf0[m
+Author: unknown <renedp1975@gmail.com>
+Date:   Thu Jun 23 23:13:35 2022 -0500
+
+    users filter in invoices
+
+[33mcommit 84493ae803df0597fc9ede0593a92c09f7c5abab[m
+Author: unknown <renedp1975@gmail.com>
+Date:   Thu Jun 23 22:22:52 2022 -0500
+
+    show tab indicators ok
+
+[33mcommit 40711c71aa8e5d9afbbe9c70f4c9466efe851872[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jun 27 14:42:47 2022 -0400
+
+    reload
+
+[33mcommit 3b878c83c23a9bbc0973df794ff0792a0b3c2f04[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 25 20:13:35 2022 -0400
+
+    second page not in rechnung
+
+[33mcommit 1c1bdab020c140e264772b8a9e213d8545d6ef9e[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 25 19:23:48 2022 -0400
+
+    tax number
+
+[33mcommit 5231f24cb213f7636522cb103ac5f12fc568a180[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 25 19:18:44 2022 -0400
+
+    changing strapi version
+
+[33mcommit 0d29022bec1e785b82c27e9c38677dec96b2ec04[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 25 15:40:33 2022 -0400
+
+    align data with headers on tables
+
+[33mcommit 12a4982249cccf39b50453cc3d481964173f648b[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 25 12:39:38 2022 -0400
+
+    fixing a25
+
+[33mcommit 63c82dbe6d3feb14eefc35744fc09b16a22eec55[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 25 11:41:49 2022 -0400
+
+    fixing netto, brutto
+
+[33mcommit fa555607f034e22bcea7e4debbdd5a424bc43237[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 24 10:11:20 2022 -0400
+
+    total de comentarios al crear auto
+
+[33mcommit 88ca6510433c0c7979d209b0b2e7ed831681049f[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 24 09:56:30 2022 -0400
+
+    changing field names
+
+[33mcommit d537918792e490acc357847cc6254ea339e8b3ae[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 23 10:44:07 2022 -0400
+
+    salvar al imprimir
+
+[33mcommit 868628f7bac953b510ffc33ed37bf649eff65aec[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 22 19:22:00 2022 -0400
+
+    fixing buy form
+
+[33mcommit 8493344c2859f2f931385776efb2dbec3661564c[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 22 18:47:30 2022 -0400
+
+    fixing decimal places
+
+[33mcommit 46888a75eeab468ba2051f6508734494560d5305[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 22 18:30:30 2022 -0400
+
+    buy reports
+
+[33mcommit 0c01733f4b9ff5a69a05962a10d776c4f88820cf[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 22 17:36:44 2022 -0400
+
+    kv_date
+
+[33mcommit c6077ff107504dd3f839d0cc30db9cff25e753e7[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 22 17:33:45 2022 -0400
+
+    buy car
+
+[33mcommit 6aa6f9c4380bf91ca9d97d582a1e62066bec03aa[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 21 15:52:42 2022 -0400
+
+    reportes done all
+
+[33mcommit 3c3d5bd6cbfccedd33cc9d5b0f854652e0a7e2ea[m
+Author: unknown <renedp1975@gmail.com>
+Date:   Tue Jun 21 12:04:16 2022 -0500
+
+    ajustes varios
+
+[33mcommit 784d79c0ac941998bbe5c74a02c43eeb8309e727[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 21 09:53:57 2022 -0400
+
+    last report fix
+
+[33mcommit 8657caa176b2c18bbbe550dd5681ee51e80d601d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 21 09:51:37 2022 -0400
+
+    reports done
+
+[33mcommit 9412ddc88575a77807f245602e3437016615c985[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jun 20 18:48:33 2022 -0400
+
+    reports private minus 1
+
+[33mcommit 72bc1293a6a060aae66e004ed73324a216aca2ae[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jun 20 17:06:11 2022 -0400
+
+    new formta reports
+
+[33mcommit 9343dd1b9857e06452baaf4e8295c0cb953b2d41[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 20:03:13 2022 -0400
+
+    all reports ready
+
+[33mcommit 7c3d71debf778de5f7548da418500f9f5ab7644b[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 18:53:28 2022 -0400
+
+    private button all reports done
+
+[33mcommit 7ac4f55de1adba548e183091c2860a2433311c01[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 15:39:53 2022 -0400
+
+    fixing color tabs 3
+
+[33mcommit 8a3f7fd81458a5995b67932ae0660a0e2355d4bd[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 15:24:43 2022 -0400
+
+    fixing tab colors
+
+[33mcommit b7a38382de134584abc047fa30c7eb7598930cc2[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 15:19:13 2022 -0400
+
+    fixing tab colors
+
+[33mcommit 8346d2db03b972133e85fb61063e4c5fc3626ab9[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 13:58:15 2022 -0400
+
+    accion de botones
+
+[33mcommit b91207328efa3a1aa963aa1797b34180312bdf82[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun Jun 19 01:30:55 2022 -0400
+
+    rechung A25
+
+[33mcommit f6ed7333da8b9e091c6cc66d4dcc1c1df3e4ac04[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 18 19:34:12 2022 -0400
+
+    gewerbe report
+
+[33mcommit 19e28569c2d61e57031ed11da0ea401a4a0f98ab[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 17 12:56:20 2022 -0400
+
+    preserve line breaks in comment
+
+[33mcommit 9c629d69bf842dced51b61f7b1cec5eeb0573a0d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 16 13:04:16 2022 -0400
+
+    last fix
+
+[33mcommit 76234ccb6445954dfdce953606d9e30953e2bb14[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 15 16:02:50 2022 -0400
+
+    field Geschäftsführer
+
+[33mcommit e1e1620984e73551d2d1adc1360bd8103ac23281[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 15 08:51:10 2022 -0400
+
+    changing a25 to §25a
+
+[33mcommit c2c8052c5c6c7486941a249a87e24fe4f674a227[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 14 23:34:00 2022 -0400
+
+    eliminating console text
+
+[33mcommit 78363c59f9ccd317b7a1a4aeb1e97ff0ba91a216[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 14 23:12:33 2022 -0400
+
+    images in AWS
+
+[33mcommit 0c74f1e4b17b31a2cfc2f023f7cd44b15a9129a9[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 14 22:16:07 2022 -0400
+
+    user image
+
+[33mcommit 6a30fafb3c74c070d974596909f154f422723957[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 14 16:41:22 2022 -0400
+
+    Images in profile
+
+[33mcommit e506807a71bebb5648ea0f8e2dce7fd20c7f866d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 14 14:26:26 2022 -0400
+
+    changing img to local
+
+[33mcommit 7442303db8ec6010cb4c9d9234c6a9d836c2f8d9[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue Jun 14 10:23:06 2022 -0400
+
+    changing img
+
+[33mcommit 6383307de5c04084303a80383cde771507d7c310[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jun 13 15:06:32 2022 -0400
+
+    last
+
+[33mcommit 07f9e01ef3ad7dff0dfb3e377d62da88c3f037f9[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon Jun 13 13:20:17 2022 -0400
+
+    fixes
+
+[33mcommit a5f6b69240249abafcf3574c7c5f06502ab3a964[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 11 16:43:16 2022 -0400
+
+    A25 by default in Sell
+
+[33mcommit b65d9ed67a1fcbf6162c0528d978827577d4011d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 11 13:03:29 2022 -0400
+
+    adding tab to sell
+
+[33mcommit f2e512d13693d069991826daa17f2829ac9e9c39[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 11 12:11:55 2022 -0400
+
+    Date fields allow direct input
+
+[33mcommit ad9d0810ca98e488112fbfab80a9c4a254ff23f7[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 11 01:18:17 2022 -0400
+
+    Sell form a25
+
+[33mcommit c3160d1c1d69e53fd240e1c06eaa21db6b328de5[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 10 22:52:29 2022 -0400
+
+    Ausstattung max of 4
+
+[33mcommit 564488cfe6aef6b273eaace464980a7d78537380[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 10 22:44:18 2022 -0400
+
+    Selled car
+
+[33mcommit 5bb844e78328bdd164b56b0787c6e9a75eee0df6[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 10 22:05:11 2022 -0400
+
+    Fixing invoice_number initial number is 220000
+
+[33mcommit bb99ee2d5b697d0122db42eb74248d7e8ba899d6[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 10 21:57:36 2022 -0400
+
+    Fixed invoice_number generation
+
+[33mcommit c308b10e9668612c2c1d9175cc4def85b944b4a1[m
+Author: unknown <renedp1975@gmail.com>
+Date:   Fri Jun 10 14:16:36 2022 -0500
+
+    starting fixing invoice_number
+
+[33mcommit 11f487a06f3ccba0d74bcfcb8d7c10cb3313ed89[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri Jun 10 10:02:03 2022 -0400
+
+    fixes
+
+[33mcommit 5fb441993c3381d129bfac3b07b9a9965ec1efd0[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 9 16:10:25 2022 -0400
+
+    Real Fixed User - Client Relationship
+
+[33mcommit 8579e32598e4406f295f82d456b32ada8c038018[m
+Author: unknown <renedp1975@gmail.com>
+Date:   Wed Jun 8 14:29:21 2022 -0500
+
+    fixed client - user relationship
+
+[33mcommit 9fedfcff95961bc6cb8ba187a3054cf999eeec6b[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 8 13:05:31 2022 -0400
+
+    user - client relations
+
+[33mcommit 230c4c2363de4d42f5c5957773a4f088831687ec[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 4 14:46:33 2022 -0400
+
+    some changes
+
+[33mcommit 2b7a2a79617d760022a03f39887fc16e29dc837a[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat Jun 4 13:08:45 2022 -0400
+
+    adding 2 decimal places to brutto, netto, iva fields
+
+[33mcommit 1cd66889c163fbc4358a02d337d73692e6ea9cc8[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu Jun 2 22:46:13 2022 -0400
+
+    changes
+
+[33mcommit fdcb5126c367a488baf268ae27153cd70b7d8c6d[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed Jun 1 12:49:10 2022 -0400
+
+    logo
+
+[33mcommit 5137e25a20a7fa8878aebfc0f82cd07972f91bc5[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Tue May 31 01:01:54 2022 -0400
+
+    filter user for the client
+
+[33mcommit 1409a0c43f15c2d9feedc2d053000faeb3494952[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sat May 28 12:16:27 2022 -0400
+
+    fixing register loading for image access to Upload
+
+[33mcommit 656c9264018794bab81be682ef46f8bb162c2419[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 26 16:05:22 2022 -0400
+
+    fixing colors
+
+[33mcommit d904efc429f1b15e18661727fe05ea455016373e[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 26 16:04:07 2022 -0400
+
+    fixing car tabs color
+
+[33mcommit 64badf062867c2ebc8e44d844fb78728a3c723a7[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 26 15:38:09 2022 -0400
+
+    adding login validation
+
+[33mcommit edee92fd75b4b7fcb316c98ea9ad74d0db673ac3[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 26 14:58:33 2022 -0400
+
+    new desing
+
+[33mcommit 0f70117b416c6246959df0719bf8f6c3fda1a369[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 26 09:13:03 2022 -0400
+
+    login and register separated
+
+[33mcommit ec274e79924f9e22fd1ecb21287e8a1603ab2511[m
+Merge: 92a60b3 0163e54
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Wed May 25 19:58:09 2022 -0400
+
+    Merge pull request #8 from renedominguezpalenzuela/redesign
+    
+    Redesign
+
+[33mcommit 0163e548a51033fc59e52327b48862ff988bcbdf[m[33m ([m[1;31morigin/redesign[m[33m, [m[1;32mredesign[m[33m)[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed May 25 19:54:36 2022 -0400
+
+    design
+
+[33mcommit f4557bf3198add7461098fb366ee424748f344f4[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed May 25 19:32:49 2022 -0400
+
+    fixing tab colors
+
+[33mcommit 403ceeb79ef28ff1b2dd05a29a6ac305d16756ff[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed May 25 19:06:47 2022 -0400
+
+    adding Dom2 Pipe
+
+[33mcommit 92a60b3b7b301089e8312c7d6886bcc8be81f477[m
+Merge: 1875892 66fd50b
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Fri May 20 09:08:49 2022 -0400
+
+    Merge pull request #7 from renedominguezpalenzuela/redesign
+    
+    Redesign
+
+[33mcommit 66fd50b6f2af4b7231129fffec16b65dbee0f3ae[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri May 20 09:05:22 2022 -0400
+
+    fixing space in login
+
+[33mcommit 470b35a34d2b46fe37a85ee77b240342c3e28f63[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Fri May 20 09:02:11 2022 -0400
+
+    redesign
+
+[33mcommit 18758920ff21f97dd89ee6c294513edd79a16a73[m
+Merge: 0d4749d ae4a713
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Thu May 19 14:54:20 2022 -0400
+
+    Merge pull request #6 from renedominguezpalenzuela/redesign
+    
+    changing design
+
+[33mcommit ae4a713cb0d7d6d5d616fe149a18d7bf5d9c2a0b[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 19 14:46:44 2022 -0400
+
+    changing design
+
+[33mcommit 0d4749df7639d77bddef3ca1ec9633d127a91ef8[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon May 16 11:21:15 2022 -0400
+
+    before start redisign
+
+[33mcommit d225c7fda849549a5b1500f59a61e2168b86f5c4[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun May 15 20:17:25 2022 -0400
+
+    decimal places on sell form
+
+[33mcommit a9940fd82eb9f21ea9453edb2a8d39455bd08567[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun May 15 13:00:33 2022 -0400
+
+    submit button of buy-car-form
+
+[33mcommit 3bb6adabc7ca9be7b9edc7e90c960ff07022b83a[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun May 15 12:41:48 2022 -0400
+
+    submit button of sell-car-form
+
+[33mcommit e5265344b9053d846fa463e4deba11b54eb3afed[m
+Merge: 7449c03 cca881b
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 12 16:53:06 2022 -0400
+
+    fixing conflicts
+
+[33mcommit 7449c03dfc7aa0e1e172e2fa7805907223935eae[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 12 16:50:48 2022 -0400
+
+    2 pages reports
+
+[33mcommit cca881b53519efc21a675084e23cf355f349455a[m
+Merge: f676d39 d8d272f
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Thu May 12 16:50:17 2022 -0400
+
+    Merge pull request #5 from renedominguezpalenzuela/sell_page
+    
+    sell page
+
+[33mcommit d8d272f5f3decc5d20696519ab28761bb0088640[m[33m ([m[1;31morigin/sell_page[m[33m)[m
+Merge: b0b766c f676d39
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Thu May 12 16:49:59 2022 -0400
+
+    Merge branch 'main' into sell_page
+
+[33mcommit f676d39f161a28e42186a3026604fc3f1ea4bcb5[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 12 15:36:23 2022 -0400
+
+    aditional field on sell car
+
+[33mcommit b0b766c8171c3911b0a19a8c69f47008ff95d14e[m[33m ([m[1;32msell_page[m[33m)[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Thu May 12 09:58:36 2022 -0400
+
+    sell page
+
+[33mcommit 178cec86703a2a54547969a629746ecfd32b1c3b[m
+Merge: 68853ea df0eccd
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Wed May 11 23:29:40 2022 -0400
+
+    Merge pull request #4 from renedominguezpalenzuela/split_words
+    
+    fixing net, gross, iva
+
+[33mcommit df0eccd1102aed83a4e5ba4f48baa4db7e48ada3[m[33m ([m[1;31morigin/split_words[m[33m, [m[1;32msplit_words[m[33m)[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Wed May 11 23:27:44 2022 -0400
+
+    fixing net, gross, iva
+
+[33mcommit 68853eae05b1e06d6995d06a17a31c1f1364a00a[m
+Merge: 6a839d4 bda2252
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Mon May 9 18:10:18 2022 -0400
+
+    Merge pull request #3 from renedominguezpalenzuela/split_words
+    
+    Dealersoft2.pdf
+
+[33mcommit bda2252964912f501c399f65283560887c3b7089[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon May 9 18:08:06 2022 -0400
+
+    Dealersoft2.pdf
+
+[33mcommit 6a839d4674fa897f50316824e46e7a7292283ea4[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Mon May 9 08:49:49 2022 -0400
+
+    eliminating console.log
+
+[33mcommit b236757123e085d57c5ce7b4fa2ddbf48c595153[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun May 8 23:49:32 2022 -0400
+
+    Fixing error with error messages in http-request.interceptor.ts
+
+[33mcommit f593126e5e57ff1c728be630e723d232bb9eedbf[m
+Merge: 807071c e5fa225
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Sun May 8 23:08:23 2022 -0400
+
+    Merge pull request #2 from renedominguezpalenzuela/free_box
+    
+    free box buy card report
+
+[33mcommit e5fa22529dbecf5584f1794e906458671c3fe013[m[33m ([m[1;31morigin/free_box[m[33m, [m[1;32mfree_box[m[33m)[m
+Author: renedsoft <renedsoft@gmail.com>
+Date:   Sun May 8 23:06:26 2022 -0400
+
+    free box buy card report
+
+[33mcommit 807071c2282e8a63ef6a59b7c4460dd36fe97760[m
+Merge: fe7853f 163abaf
+Author: Rene Dominguez Palenzuela <renedp1975@gmail.com>
+Date:   Thu May 5 10:28:45 2022 -0400
+
+    Merge pull request #1 from renedominguezpalenzuela/change_fields_name
+    
+    changing fields name on Ankauf
+
+[33mcommit 163abaf84659453bba1fc738773ea8b491d203ac[m[33m ([m[1;31morigin/change_fields_name[m[33m, [m[1;32mchange_fields_name[m[33m)[m
+Author: renedominguezpalenzuela <renedp1975@gmail.com>
+Date:   Thu May 5 10:24:26 2022 -0400
+
+    changing fields name on Ankauf
+
+[33mcommit fe7853f8fd82ea9984cdc5558be97906124edaa9[m[33m ([m[1;31morigin/default_car[m[33m, [m[1;32mdefault_car[m[33m)[m
+Author: renedominguezpalenzuela <renedp1975@gmail.com>
+Date:   Wed May 4 16:52:09 2022 -0400
+
+    Updating car name on sell car and buy car components
+
+[33mcommit 426321c8e2ee434143d0028d8428d24d1f99aefe[m
+Author: renedominguezpalenzuela <renedp1975@gmail.com>
+Date:   Sun May 1 17:52:34 2022 -0400
+
+    changing url of server backend
+
+[33mcommit 4bf67620c934b540344fa455710cd304e303bfeb[m
+Author: renedominguezpalenzuela <renedp1975@gmail.com>
+Date:   Sat Apr 30 14:08:30 2022 -0400
+
+    first commit
