@@ -9,35 +9,35 @@
 <mat-divider></mat-divider>
 <div mat-dialog-content>
   <ul class="my-3 px-1" style="max-height: 320px">
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Rechnungs Nr.:</b> <br class="sm:hidden">
       {{data.attributes?.invoice_number}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Rechnungs Titel:</b> <br class="sm:hidden">
       {{data.attributes?.title}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Beschreibung:</b> <br class="sm:hidden">
       {{data.attributes?.description}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Rechnungsdatum:</b> <br class="sm:hidden">
       {{data.attributes?.date | date}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Lieferdatum:</b> <br class="sm:hidden">
       {{data.attributes?.delivery_date | date}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Kunde:</b> <br class="sm:hidden">
       {{client}}
     </li>
-    <li class="font-sans py-1 flex items-center">
+    <li class="font-montserratpy-1 flex items-center">
       <b class="mr-3">MwSt.:</b>
       <mat-icon>{{data.attributes.iva ? 'check' : 'block'}}</mat-icon>
     </li>
-    <li class="font-sans py-1 flex items-center">
+    <li class="font-montserratpy-1 flex items-center">
       <b class="mr-3">a25:</b>
       <mat-icon>{{data.attributes.a25 ? 'check' : 'block'}}</mat-icon>
     </li>

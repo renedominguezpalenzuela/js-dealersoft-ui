@@ -1,16 +1,14 @@
-<div class="card shadow-lg bg-white m-0.5 sm:m-5 mb-8">
-  <div class="md:card-body">
-    
-    <mat-tab-group (selectedTabChange)="updateQueryParams($event)" [(selectedIndex)]="tabIndex"
-                   animationDuration="250ms" >
-      <mat-tab label="Fahrzeugdaten">
+<div class="card shadow-lg bg-white m-0.5 sm:m-5 mb-8  ">
+  <div class="md:card-body ">    
+    <mat-tab-group (selectedTabChange)="updateQueryParams($event)" [(selectedIndex)]="tabIndex" animationDuration="250ms" >
+      <mat-tab label="Fahrzeugdaten" class="" >
         <app-new-vehicle [car]="car"  [boton_salvar_disabled]="!can_save"></app-new-vehicle>
       </mat-tab>
-      <mat-tab label="Ankauf" class="color-mat-tab">
+      <mat-tab label="Ankauf" class="color-mat-tab ">
         <app-buy-form [car_data]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions" [boton_salvar_disabled]="!can_save">
         </app-buy-form>
       </mat-tab>
-      <mat-tab label="Verkauf" class="color-mat-tab">
+      <mat-tab label="Verkauf" class="color-mat-tab  ">
         <app-sell-form   [car_data]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions" [boton_salvar_disabled]="!can_save"></app-sell-form>
       </mat-tab>
     </mat-tab-group>

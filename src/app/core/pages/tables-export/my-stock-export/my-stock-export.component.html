@@ -9,7 +9,7 @@
 
     <div class="flex justify-between items-center w-full">
       <h1 class="text-2xl font-bold tracking-widest antialiased">Mein Bestand</h1>
-      <p class="antialiased font-sans font-semibold text-xl">{{month}}, {{year}}</p>
+      <p class="antialiased font-montserratfont-semibold text-xl">{{month}}, {{year}}</p>
     </div>
 
     <table class="table-auto border-collapse border-0.5 border-gray-400 w-full mt-5 text-sm">
@@ -37,23 +37,23 @@
 
     <ul class="mt-10 pl-8 w-72 text-sm">
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Fahrzeugbestand:</span>
+        <span class="font-montserratfont-semibold">Fahrzeugbestand:</span>
         <span>{{data?.length}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Nettosumme:</span>
+        <span class="font-montserratfont-semibold">Nettosumme:</span>
         <span>{{sumNetTotal() || 0 | currency}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">a25 Summe:</span>
+        <span class="font-montserratfont-semibold">a25 Summe:</span>
         <span>{{suma25Total() || 0 | currency}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Gesamtsumme:</span>
+        <span class="font-montserratfont-semibold">Gesamtsumme:</span>
         <span>{{sumTotal() || 0 | currency}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">MwSt. Summe:</span>
+        <span class="font-montserratfont-semibold">MwSt. Summe:</span>
         <span>{{sumIvaTotal() || 0 | currency}}</span>
       </li>
     </ul>

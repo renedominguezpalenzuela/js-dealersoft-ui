@@ -1,8 +1,8 @@
-<div class="shadow rounded-t-lg table-container">
+<div class="shadow rounded-t-lg table-container ">
   <table [dataSource]="dataSource" class="table w-full leading-normal rounded-lg" mat-table matSort
   matSortActive="id" matSortDirection="desc" matSortDisableClear >
 
-    <ng-container  *ngFor="let column of displayedColumns"   [matColumnDef]="column.column"
+    <ng-container  *ngFor="let column of displayedColumns"   [matColumnDef]="column.column" 
             [stickyEnd]="canBeEndSticky(column.column)" [sticky]="canBeStartSticky(column.column)">
 
 
@@ -12,7 +12,7 @@
 
     <ng-container *ngIf="column.ordenar;else nosort">
 
-      <th *matHeaderCellDef mat-header-cell mat-sort-header="{{column.column}}">
+      <th class="font-montserrat-bold" *matHeaderCellDef mat-header-cell mat-sort-header="{{column.column}}">
         <div class="pl-2 pr-5 " [innerHTML]="column.header"></div>
       </th>
     </ng-container>
@@ -22,22 +22,23 @@
    
 
     <ng-template #nosort>
-      <th *matHeaderCellDef mat-header-cell>
-        <div class="pl-2 pr-5 " [innerHTML]="column.header"></div>
+      <th class="font-montserrat-bold" *matHeaderCellDef mat-header-cell>
+        <div class="pl-2 pr-5" [innerHTML]="column.header"></div>
       </th>
     </ng-template>
 
       <td *matCellDef="let element" [style.fontSize.px]="12" class="pl-2 pr-5 ">
 
         <ng-container [ngSwitch]="column.type">
+
           <ng-container *ngSwitchCase="columnType.Regular">
-            <span >{{element | nestedProperty:column.column}}</span>
+            <span class="font-montserrat" >{{element | nestedProperty:column.column}}</span>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.Bullets">
             <ul class="bullet-list">
               <li *ngFor="let item of element | nestedProperty:column.column" style="list-style: circle">
-                <span class="truncate">{{column.prop ? item[column.prop] : item}}</span>
+                <span class="truncate font-montserrat">{{column.prop ? item[column.prop] : item}}</span>
               </li>
             </ul>
           </ng-container>
@@ -49,16 +50,16 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.Date">
-            <span>{{(element | nestedProperty:column.column) | date: 'dd/MM/yyyy'}}</span>
+            <span  class="font-montserrat" >{{(element | nestedProperty:column.column) | date: 'dd/MM/yyyy'}}</span>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.InnerHTML">
-            <span [innerHTML]="element | nestedProperty:column.column"></span>
+            <span  class="font-montserrat" [innerHTML]="element | nestedProperty:column.column"></span>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.SellStatus">
             <span
-              class="px-3 py-1 font-semibold leading-tight {{(element | nestedProperty:column.column) ? 'bg-green-200' : 'bg-blue-200'}} bg-opacity-50 rounded-full">
+              class="px-3 py-1 font-montserrat leading-tight {{(element | nestedProperty:column.column) ? 'bg-green-200' : 'bg-blue-200'}} bg-opacity-50 rounded-full">
               <span class="{{(element | nestedProperty:column.column) ? 'text-green-900' : 'text-blue-900'}}">
                 {{(element | nestedProperty:column.column) ? 'verkauft' : 'im Verkauf'}}
               </span>
@@ -66,32 +67,32 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.CallTo">
-            <a class="font-sans font-semibold hover:text-blue-400"
+            <a class="font-montserrat  hover:text-blue-400"
                href="tel:{{element | nestedProperty:column.column}}">
               {{element | nestedProperty:column.column}}
             </a>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.MailTo">
-            <a class="font-sans font-semibold hover:text-blue-400"
+            <a class="font-montserrat hover:text-blue-400"
                href="mailto:{{element | nestedProperty:column.column}}">
               {{element | nestedProperty:column.column}}
             </a>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.ExternalLink">
-            <a [href]="element | nestedProperty:column.column" class="font-sans font-semibold hover:text-blue-400"
+            <a [href]="element | nestedProperty:column.column" class="font-montserrat hover:text-blue-400"
                target="_blank">
               {{element | nestedProperty:column.column}}
             </a>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.Currency">
-            <span>{{(element | nestedProperty:column.column) || 0 | currency}}</span>
+            <span class="font-montserrat">{{(element | nestedProperty:column.column) || 0 | currency}}</span>
           </ng-container>
 
           <ng-container *ngSwitchCase="columnType.Extra">
-            <span>{{element | nestedProperty:column.column}} {{column!.prop}}</span>
+            <span class="font-montserrat">{{element | nestedProperty:column.column}} {{column!.prop}}</span>
           </ng-container>
 
         </ng-container>
@@ -114,7 +115,7 @@
             <li (click)="option(op.event, row)" *ngFor="let op of OptionSettings.options">
               <a class="flex flex-row justify-start items-center">
                 <mat-icon class="mr-1 text-base">{{op.icon}}</mat-icon> 
-                <span class="font-semibold">{{op.literal}}</span>
+                <span class="font-montserrat">{{op.literal}}</span>
               </a>
             </li>
           </ul>

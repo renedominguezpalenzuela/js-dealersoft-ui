@@ -9,7 +9,7 @@
 
     <div class="flex justify-between items-center w-full">
       <h1 class="text-2xl font-bold tracking-widest antialiased">Gewinn- und Verlust</h1>
-      <p class="antialiased font-sans font-semibold text-xl">{{month}}, {{year}}</p>
+      <p class="antialiased font-montserratfont-semibold text-xl">{{month}}, {{year}}</p>
     </div>
 
     <table class="table-auto border-collapse border-0.5 border-gray-400 w-full mt-5 text-sm">
@@ -55,11 +55,11 @@
 
     <ul class="mt-10 pl-8 w-72 text-sm">
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Netto Gewinn</span>
+        <span class="font-montserratfont-semibold">Netto Gewinn</span>
         <span>{{sumNetProfit() || 0 | currency}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Summe MwSt.:</span>
+        <span class="font-montserratfont-semibold">Summe MwSt.:</span>
         <span>{{sumNetIva() || 0 | currency}}</span>
       </li>
     </ul>

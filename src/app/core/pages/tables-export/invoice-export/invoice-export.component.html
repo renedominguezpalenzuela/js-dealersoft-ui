@@ -31,10 +31,10 @@
       </li>
     </ul>
     <div class="border border-black py-4 px-8 flex w-full justify-between mb-5">
-      <h2 class="text-xl font-semibold pl-10">RECHNUNG RECHNUNG Nr. {{invoice?.attributes?.invoice_number}}</h2>
+      <h2 class="text-xl font-montserrat pl-10">RECHNUNG RECHNUNG Nr. {{invoice?.attributes?.invoice_number}}</h2>
       <span class="">{{invoice?.attributes?.date | date:'d.M.yyyy'}}</span>
     </div>
-    <p class="font-sans prose text-sm">Hiermit berechnen wir Ihnen die folgenden Artikel wie vereinbart.</p>
+    <p class="font-montserratprose text-sm">Hiermit berechnen wir Ihnen die folgenden Artikel wie vereinbart.</p>
     <ul class="mt-3">
       <li class="my-0.5">
         <span class="font-bold">{{invoice?.attributes?.title}}</span>
@@ -58,14 +58,14 @@
       </tr>
     </table>
     <div class="flex w-full justify-end mt-2 mb-6 border-t border-gray-400 text-sm">
-      <p class="font-bold font-sans px-6 pt-4 mr-24">
+      <p class="font-bold font-montserratpx-6 pt-4 mr-24">
         <span class="mr-20">Gesamt Summe:</span>
         <span>{{totalAmount() | currency}}</span>
       </p>
     </div>
-    <p class="font-sans prose my-0.5 text-sm">Der Verkauf erfolgt nach §25a</p>
-    <p class="font-sans prose mt-0.5 mb-10 text-sm">Gebrauchtware / Sonderregelung</p>
-    <p class="font-sans prose my-0.5 text-sm mb-40">
+    <p class="font-montserratprose my-0.5 text-sm">Der Verkauf erfolgt nach §25a</p>
+    <p class="font-montserratprose mt-0.5 mb-10 text-sm">Gebrauchtware / Sonderregelung</p>
+    <p class="font-montserratprose my-0.5 text-sm mb-40">
       <span class="font-bold mr-2">Lieferdatum:</span>
       <span class="">{{invoice?.attributes?.delivery_date | date:'d-MM-yyyy'}}</span>
     </p>

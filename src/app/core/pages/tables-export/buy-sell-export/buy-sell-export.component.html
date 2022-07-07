@@ -9,7 +9,7 @@
 
     <div class="flex justify-between items-center w-full">
       <h1 class="text-2xl font-bold tracking-widest antialiased">Einkauf</h1>
-      <p class="antialiased font-sans font-semibold text-xl">{{month}}, {{year}}</p>
+      <p class="antialiased font-montserratfont-semibold text-xl">{{month}}, {{year}}</p>
     </div>
 
     <table class="table-auto border-collapse border-0.5 border-gray-400 w-full mt-5 text-sm">
@@ -43,11 +43,11 @@
 
     <ul class="my-6 pl-8 w-72 text-sm">
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Einkauf Netto</span>
+        <span class="font-montserratfont-semibold">Einkauf Netto</span>
         <span>{{sumNetBuy() || 0 | currency}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Einkauf MwSt.</span>
+        <span class="font-montserratfont-semibold">Einkauf MwSt.</span>
         <span>{{sumIvaBuy() || 0 | currency}}</span>
       </li>
     </ul>
@@ -93,11 +93,11 @@
 
     <ul class="my-6 pl-8 w-72 text-sm">
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Verkauf Netto</span>
+        <span class="font-montserratfont-semibold">Verkauf Netto</span>
         <span>{{sumNetSell() || 0 | currency}}</span>
       </li>
       <li class="w-full flex justify-between">
-        <span class="font-sans font-semibold">Verkauf MwSt.</span>
+        <span class="font-montserratfont-semibold">Verkauf MwSt.</span>
         <span>{{sumIvaSell() || 0 | currency}}</span>
       </li>
     </ul>

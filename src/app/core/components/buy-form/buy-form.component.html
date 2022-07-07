@@ -1,7 +1,7 @@
 <div class="card bg-white">
   <div class="card-body">
     <form (ngSubmit)="submit()" [formGroup]="carBuyForm">
-      <div class="divider font-bold font-sans">Allgemeine Daten</div>
+      <div class="divider font-montserrat">Allgemeine Daten</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
 
@@ -21,8 +21,8 @@
             <b>Fahrzeugname</b> wird benötigt
           </mat-error> -->
 
-          <mat-label>Fahrzeugname</mat-label>
-          <input formControlName="car_name" matInput readonly="true">
+          <mat-label class="font-montserrat">Fahrzeugname</mat-label>
+          <input formControlName="car_name" matInput readonly="true" class="font-montserrat">
           <!-- <mat-error *ngIf="hasRequiredError('name')">
             <b>Fahrzeugname</b> ist erforderlich
           </mat-error> -->
@@ -34,10 +34,10 @@
           **************************************************************************************************************** 
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Nachname</mat-label>
-          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
+          <mat-label class="font-montserrat">Nachname</mat-label>
+          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text" class="font-montserrat">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
-            <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option.id" class="font-montserrat">
               {{option.attributes.first_name}} {{option.attributes.last_name}}
             </mat-option>
           </mat-autocomplete>
@@ -56,8 +56,8 @@
           **************************************************************************************************************** 
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Abholung</mat-label>
-          <input formControlName="collection" matInput required>
+          <mat-label class="font-montserrat">Abholung</mat-label>
+          <input formControlName="collection" matInput required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('collection')">
             <b>Abholung</b> wird benötigt
           </mat-error>
@@ -72,8 +72,8 @@
           **************************************************************************************************************** 
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Ankaufsdatum</mat-label>
-          <input [matDatepicker]="pickerBuyDate" formControlName="buy_date" matInput  required>
+          <mat-label class="font-montserrat">Ankaufsdatum</mat-label>
+          <input [matDatepicker]="pickerBuyDate" formControlName="buy_date" matInput  required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('buy_date')">
             <b>Ankaufsdatum</b> wird benötigt
           </mat-error>
@@ -88,8 +88,8 @@
           **************************************************************************************************************** 
         -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Zahlungsart</mat-label>
-          <input formControlName="payment" matInput min="0" type="text">
+          <mat-label class="font-montserrat">Zahlungsart</mat-label>
+          <input formControlName="payment" matInput min="0" type="text" class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('payment')">
             <b>Zahlungsart</b> wird benötigt
           </mat-error>
@@ -106,13 +106,13 @@
             <input class="toggle" formControlName="a25" id="a25"  type="checkbox">
             <!-- <input #a25 (change)="iva.checked = !a25.checked" checked="checked" class="toggle" formControlName="a25"
               id="a25" type="checkbox"> -->
-            <label class="cursor-pointer font-semibold text-gray-500" for="a25">§25a</label>
+            <label class="cursor-pointer font-montserrat text-gray-500" for="a25">§25a</label>
           </div>
           <div class="flex gap-x-3 pb-3">
             <input class="toggle" formControlName="iva" id="iva" type="checkbox">
             <!-- <input #iva (change)="a25.checked = !iva.checked" checked="checked" class="toggle" formControlName="iva"
               id="iva" type="checkbox"> -->
-            <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
+            <label class="cursor-pointer font-montserrat text-gray-500" for="iva">MwSt.</label>
           </div>
         </div>
 
@@ -128,7 +128,7 @@
 
 
 
-      <div class="divider font-bold font-sans">Ankaufpreis</div>
+      <div class="divider font-bold font-montserrat">Ankaufpreis</div>
 
 
       <!-- 
@@ -145,9 +145,9 @@
       -->
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Netto in €</mat-label>
+          <mat-label class="font-montserrat">Netto in €</mat-label>
           <input formControlName="net_buy" matInput min="0" type="number" name="net_buy" (focus)="onFocusEvent($event)"
-          (focusout)="focusOutFunction($event)" >
+          (focusout)="focusOutFunction($event)" class="font-montserrat" >
           <mat-error *ngIf="hasRequiredError('net_buy')">
             <b>Netto</b> wird benötigt
           </mat-error>
@@ -161,11 +161,11 @@
       -->
        <!-- ng-model='vGross_buy' -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Brutto in €</mat-label>
+          <mat-label class="font-montserrat">Brutto in €</mat-label>
           <input formControlName="gross_buy" matInput min="0" type="number" name="gross_buy"
          
-            (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" >
-          <mat-error *ngIf="hasRequiredError('gross_buy')">
+            (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" class="font-montserrat">
+          <mat-error *ngIf="hasRequiredError('gross_buy')" >
             <b>Brutto</b> wird benötigt
           </mat-error>
         </mat-form-field>
@@ -177,26 +177,15 @@
           **************************************************************************************************************** 
       -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Mehrwertsteuer in €</mat-label>
-          <input formControlName="iva_buy" matInput min="0" type="number" name="iva_buy" (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" >
+          <mat-label class="font-montserrat">Mehrwertsteuer in €</mat-label>
+          <input formControlName="iva_buy" matInput min="0" type="number" name="iva_buy" (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" class="font-montserrat" >
           <mat-error *ngIf="hasRequiredError('iva_buy')">
             <b>Mehrwertsteuer</b> wird benötigt
           </mat-error>
         </mat-form-field>
 
 
-        <!-- 
-          **************************************************************************************************************** 
-          **   Nettoberichtigung in €                     
-          **************************************************************************************************************** 
-      -->
-        <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Nettoberichtigung in €</mat-label>
-          <input formControlName="net_buy_adjustment" matInput min="0" type="number">
-          <mat-error *ngIf="hasRequiredError('net_buy_adjustment')">
-            <b>Nettoberichtigung</b> wird benötigt
-          </mat-error>
-        </mat-form-field> -->
+
       </div>
 
 
@@ -206,14 +195,14 @@
           **  Sonstige Kosten                   
           **************************************************************************************************************** 
       -->
-      <div class="divider font-bold font-sans">Sonstige Kosten</div>
+      <div class="divider font-bold font-montserrat">Sonstige Kosten</div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 <!-- cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" -->
         <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Bemerkungen</mat-label>
+          <mat-label class="font-montserrat">Bemerkungen</mat-label>
           <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
            
-            maxlength="240" (keydown)="keydown($event)"></textarea>
+            maxlength="240" (keydown)="keydown($event)" class="font-montserrat"></textarea>
         </mat-form-field>
 
         <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
@@ -233,13 +222,13 @@
       </div>
       <mat-divider></mat-divider>
       <div class="flex w-full justify-center md:justify-end items-center mt-6 space-x-3">
-        <button (click)="generatePdf()" class="btn btn-primary border-2" type="button">
+        <button (click)="generatePdf()" class="btn btn-primary border-2 " type="button">
           <mat-icon>picture_as_pdf</mat-icon>
-          <span class="font-sans pl-3">Kaufvertrag</span>
+          <span class="font-montserrat pl-3">Kaufvertrag</span>
         </button>
 
-        <button class="btn btn-primary w-40" type="submit"  [disabled]="boton_salvar_disabled">
-          <span class="tracking-wide">Speichern</span>
+        <button class="btn btn-primary w-40 " type="submit"  [disabled]="boton_salvar_disabled">
+          <span class="tracking-wide font-montserrat">Speichern</span>
         </button>
 
       </div>

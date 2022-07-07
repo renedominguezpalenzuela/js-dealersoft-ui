@@ -9,45 +9,45 @@
 <mat-divider></mat-divider>
 <div mat-dialog-content>
   <ul class="my-3 px-1" style="max-height: 320px">
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Full Name:</b> <br class="sm:hidden">
       {{data.attributes?.title}} {{data.attributes.first_name}} {{data.attributes.last_name}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Email:</b> <br class="sm:hidden">
-      <a class="font-sans font-semibold hover:text-blue-400" href="mailto:{{data.attributes.email}}">
+      <a class="font-montserratfont-semibold hover:text-blue-400" href="mailto:{{data.attributes.email}}">
         {{data.attributes.email}}
       </a>
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Geburtstag:</b> <br class="sm:hidden">
       {{data.attributes.birth_date | date}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Website:</b> <br class="sm:hidden">
-      <a [href]="data.attributes.website" class="font-sans font-semibold hover:text-blue-400" target="_blank">
+      <a [href]="data.attributes.website" class="font-montserratfont-semibold hover:text-blue-400" target="_blank">
         {{cleanUrl(data.attributes.website)}}
       </a>
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Phone Nummer:</b> <br class="sm:hidden">
-      <a class="font-sans font-semibold hover:text-blue-400" href="tel:{{data.attributes.phone}}">
+      <a class="font-montserratfont-semibold hover:text-blue-400" href="tel:{{data.attributes.phone}}">
         {{data.attributes.phone}}
       </a>
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Fax:</b> <br class="sm:hidden">
       {{data.attributes.fax}}
     </li>
     <li class="py-1 break-words font-mono">
-      <b class="font-sans">Address:</b>
+      <b class="font-montserrat">Address:</b>
       {{address}}
     </li>
     <li class="py-1 break-words font-mono">
-      <b class="font-sans">Aditional address:</b>
+      <b class="font-montserrat">Aditional address:</b>
       {{data.attributes.aditional_address || '...'}}
     </li>
-    <li class="font-sans py-1">
+    <li class="font-montserratpy-1">
       <b>Tax Nummer:</b>
       {{data.attributes.tax_number}}
     </li>

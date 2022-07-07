@@ -24,7 +24,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+  /*font-family: font-montserrat, "Helvetica Neue", sans-serif;*/
   font-family: "Montserrat-Regular";
 }
 
@@ -185,13 +185,13 @@ iframe {
 
 .header-client-data {
   font-size: 0.8rem;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
   line-height: 0.95rem;
 }
 
 .header-user-data {
   font-size: 0.9rem;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 
   // line-height: 1.3rem;
 }
@@ -205,25 +205,25 @@ iframe {
 
 .text-contract-big {
   font-size: 1.1rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 .text-contract {
   font-size: 0.875rem !important; /* 14px */
   line-height: 0.9rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 .text-sm-nospace {
   font-size: 0.875rem !important; /* 14px */
   line-height: 0.9rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 .text-footer {
   font-size: 0.65rem !important; /* 14px */
   line-height: 0.7rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 
@@ -231,52 +231,61 @@ iframe {
 .text-details {
   font-size: 0.8rem !important; /* 14px */
   line-height: 0.9rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 .text-details-bold {
   font-size: 0.8rem !important; /* 14px */
   line-height: 0.9rem !important;
-  font-family: "Helvetica-Bold" !important;
+  font-family: "Montserrat-ExtraBold" !important;
 }
 
 
 .text-details-firma {
   font-size: 0.9rem !important; /* 14px */
   line-height: 1.9rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 
 .text-car-details {
   font-size: 0.85rem !important; /* 14px */
   line-height: 1.2rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 .text-car-details-bold {
   font-size: 0.85rem !important; /* 14px */
   line-height: 1.2rem !important;
-  font-family: "Helvetica-Bold" !important;
+  font-family: "Montserrat-ExtraBold" !important;
   // font-weight: 600;
 }
 
 .text-price {
   font-size: 0.8rem !important; /* 14px */
   line-height: 1.1rem !important;
-  font-family: "Helvetica" !important;
+  font-family: "Montserrat-Regular" !important;
 }
 
 .text-price-bold {
   font-size: 0.85rem !important; /* 14px */
   line-height: 1.1rem !important;
-  font-family: "Helvetica-Bold" !important;
+  font-family: "Montserrat-ExtraBold" !important;
 }
 
 
 // Salto de linea
 .new-page {
   page-break-before: always;
+}
+
+
+.font-montserrat{
+  font-family: "Montserrat-Regular"!important ;
+}
+
+.font-montserrat-bold {
+  font-family: "Montserrat-ExtraBold"!important ;
 }
 
 

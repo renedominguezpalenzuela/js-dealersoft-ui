@@ -11,17 +11,17 @@
         class="flex flex-col md:flex-row md:space-x-3 lg:flex-col xl:flex-row justify-start items-center mb-2 2xl:mb-0">
         <div class="flex flex-col sm:flex-row justify-center sm:space-x-3 w-full">
           <mat-form-field appearance="outline" class="pb-1 2xl:pb-0">
-            <mat-label>Monat</mat-label>
+            <mat-label class="font-montserrat">Monat</mat-label>
             <mat-select [(value)]="month">
-              <mat-option *ngFor="let option of months" [value]="option">
+              <mat-option *ngFor="let option of months" [value]="option" class="font-montserrat">
                 {{ option.label }}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline" class="pb-1 2xl:pb-0">
-            <mat-label>Jahr</mat-label>
+            <mat-label class="font-montserrat">Jahr</mat-label>
             <mat-select [(value)]="year">
-              <mat-option *ngFor="let option of years" [value]="option">
+              <mat-option *ngFor="let option of years" [value]="option" class="font-montserrat">
                 {{ option }}
               </mat-option>
             </mat-select>
@@ -39,7 +39,7 @@
       </div>
       <div class="flex w-full 2xl:w-1/2 space-x-3 justify-evenly xl:justify-end items-center flex-row">
         <span *ngIf="!!month && !!year"
-              class="px-3 py-1 font-semibold leading-tight bg-green-200 bg-opacity-50 rounded-full h-fit mb-1 lg:mb-0">
+              class="px-3 py-1 font-montserrat leading-tight bg-green-200 bg-opacity-50 rounded-full h-fit mb-1 lg:mb-0">
           <span class="text-green-900">{{month?.label}}, {{year}}</span>
         </span>
         <button (click)="loadPaginatedData(currentPageBuy, currentPageSell)" class="btn btn-ghost" type="button">
@@ -50,7 +50,7 @@
 
     <div class="mt-4 grid grid-cols-2 gap-3 w-full">
       <div class="col-span-2 lg:col-span-1 card shadow bg-gray-100 h-fit">
-        <h2 class="font-sans font-semibold pl-5 py-5 text-xl">
+        <h2 class="font-montserratfont-semibold pl-5 py-5 text-xl">
           Einkauf
         </h2>
         <app-dynamic-table (paginationEvent)="loadPaginatedData($event, currentPageSell)" [canSticky]="true"
@@ -62,7 +62,7 @@
       </div>
 
       <div class="col-span-2 lg:col-span-1 card shadow bg-gray-100 h-fit">
-        <h2 class="font-sans font-semibold pl-5 py-5 text-xl">
+        <h2 class="font-montserratfont-semibold pl-5 py-5 text-xl">
           Verkauf
         </h2>
         <app-dynamic-table (paginationEvent)="loadPaginatedData(currentPageBuy, $event)" [canSticky]="true"
@@ -76,10 +76,10 @@
       <div class="col-span-2 lg:col-span-1 card shadow bg-white p-4">
         <ul>
           <li>
-            <span class="font-semibold font-sans mr-3">Einkauf Netto:</span><span>{{sumNetBuy() | currency}}</span>
+            <span class="font-montserrat font-montserratmr-3">Einkauf Netto:</span><span>{{sumNetBuy() | currency}}</span>
           </li>
           <li>
-            <span class="font-semibold font-sans mr-3">Einkauf MwSt:</span><span>{{sumIvaBuy() | currency}}</span>
+            <span class="font-montserrat font-montserratmr-3">Einkauf MwSt:</span><span>{{sumIvaBuy() | currency}}</span>
           </li>
         </ul>
       </div>
@@ -87,10 +87,10 @@
       <div class="col-span-2 lg:col-span-1 card shadow bg-white p-4">
         <ul>
           <li>
-            <span class="font-semibold font-sans mr-3">Verkauf Netto:</span><span>{{sumNetSell() | currency}}</span>
+            <span class="font-montserrat font-montserratmr-3">Verkauf Netto:</span><span>{{sumNetSell() | currency}}</span>
           </li>
           <li>
-            <span class="font-semibold font-sans mr-3">Verkauf MwSt:</span><span>{{sumIvaSell() | currency}}</span>
+            <span class="font-montserrat font-montserratmr-3">Verkauf MwSt:</span><span>{{sumIvaSell() | currency}}</span>
           </li>
         </ul>
       </div>

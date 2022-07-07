@@ -23,7 +23,7 @@ export class StripePaymentComponent implements OnInit {
       }
     },
     classes: {
-      base: 'input w-full placeholder:font-semibold font-semibold placeholder:text-gray-500 text-gray-500'
+      base: 'input w-full placeholder:font-montserrat font-montserrat placeholder:text-gray-500 text-gray-500'
     }
   };
   public elementsOptions: StripeElementsOptions = { locale: 'en' };

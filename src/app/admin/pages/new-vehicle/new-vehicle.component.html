@@ -1,36 +1,36 @@
 <div [ngClass]="{'shadow-lg': !car}" class="card bg-white m-0.5 sm:m-5 mb-8">
   <div class="card-body">
-    <h1 *ngIf="!isUpdating" class="card-title text-2xl">Fahrzeugdaten</h1>
+    <h1 *ngIf="!isUpdating" class="card-title text-2xl ">Fahrzeugdaten</h1>
     <mat-divider *ngIf="!isUpdating"></mat-divider>
     <form (ngSubmit)="submit()" [formGroup]="vehicleForm">
-      <div class="divider font-bold font-sans">Allgemeine Daten</div>
+      <div class="divider font-bold font-montserrat">Allgemeine Daten</div>
       <div class="w-full my-3 flex flex-col 2xl:flex-row">
         <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-7/12">
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Fahrzeugname</mat-label>
-            <input [required]="isRequired()" formControlName="name" matInput>
+            <mat-label class="font-montserrat">Fahrzeugname</mat-label>
+            <input [required]="isRequired()" formControlName="name" matInput class="font-montserrat">
             <mat-error *ngIf="hasRequiredError('name')">
               <b>Fahrzeugname</b> ist erforderlich
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>FIN</mat-label>
-            <input [required]="isRequired()" formControlName="car_identifier" matInput>
+            <mat-label class="font-montserrat">FIN</mat-label>
+            <input [required]="isRequired()" formControlName="car_identifier" matInput class="font-montserrat">
             <mat-error *ngIf="hasRequiredError('car_identifier')">
               <b>FIN</b> ist erforderlich
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Aufbauvariante</mat-label>
-            <input [required]="isRequired()" formControlName="build_variant" matInput>
+            <mat-label class="font-montserrat">Aufbauvariante</mat-label>
+            <input [required]="isRequired()" formControlName="build_variant" matInput class="font-montserrat">
             <mat-error *ngIf="hasRequiredError('build_variant')">
               <b>Aufbauvariante</b> ist erforderlich
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Erstzulassung</mat-label>
+            <mat-label class="font-montserrat">Erstzulassung</mat-label>
             <input [matDatepicker]="picker" [required]="isRequired()" formControlName="first_register_date" matInput
-                   >
+            class="font-montserrat">
             <mat-error *ngIf="hasRequiredError('first_register_date')">
               <b>Erstzulassung</b> ist erforderlich
             </mat-error>
@@ -38,36 +38,36 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Kilometer</mat-label>
-            <input formControlName="kilometres" matInput min="0" type="number">
+            <mat-label class="font-montserrat">Kilometer</mat-label>
+            <input formControlName="kilometres" matInput min="0" type="number" class="font-montserrat">
             <mat-error *ngIf="hasRequiredError('kilometres')">
               <b>Kilometer</b> ist erforderlich
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Kilowatt</mat-label>
-            <input formControlName="kilowatt" matInput min="0" type="number">
+            <mat-label class="font-montserrat">Kilowatt</mat-label>
+            <input formControlName="kilowatt" matInput min="0" type="number" class="font-montserrat">
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Farbe</mat-label>
-            <input formControlName="color" matInput>
+            <mat-label class="font-montserrat">Farbe</mat-label>
+            <input formControlName="color" matInput class="font-montserrat">
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>Anzahl der Vorbesitzer laut Brief</mat-label>
-            <input formControlName="last_owner" matInput>
+            <mat-label class="font-montserrat">Anzahl der Vorbesitzer laut Brief</mat-label>
+            <input formControlName="last_owner" matInput class="font-montserrat">
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>HSN</mat-label>
-            <input formControlName="hsn" matInput>
+            <mat-label class="font-montserrat">HSN</mat-label>
+            <input formControlName="hsn" matInput class="font-montserrat">
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
-            <mat-label>TSN</mat-label>
-            <input formControlName="tsn" matInput>
+            <mat-label class="font-montserrat">TSN</mat-label>
+            <input formControlName="tsn" matInput class="font-montserrat">
           </mat-form-field>
         </div>
        
       </div>
-      <div class="divider font-bold font-sans">Ausstattungen oder Bemerkungen</div>
+      <div class="divider font-bold font-montserrat">Ausstattungen oder Bemerkungen</div>
       <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-8/12 mb-4">
         <div class="col-span-2 xl:col-span-1 flex flex-col justify-start">
           <mat-form-field appearance="outline" class="xl:w-full">
@@ -83,7 +83,7 @@
               
             <!-- </ng-template> -->
 
-            <mat-label>{{texto_label}}</mat-label>
+            <mat-label class="font-montserrat">{{texto_label}}</mat-label>
 
             <!--  [disabled]="boton_salvar_disabled" -->
             <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only">
@@ -102,7 +102,7 @@
         <div class="col-span-2 xl:col-span-1">
           <div class="grid grid-cols-1 gap-y-2" >
             <div *ngFor="let comment of comments; let i = index" class="p-1 flex justify-between items-center rounded-full bg-gray-300 col-span-1">
-              <p class="p-0 pl-3 py-1">
+              <p class="p-0 pl-3 py-1 font-montserrat">
                 {{comment}}
               </p>
               <button (click)="removeComment(i)" class="btn btn-ghost rounded-full relative py-1" type="button" *ngIf="!boton_salvar_disabled" >
@@ -116,7 +116,7 @@
       <mat-divider></mat-divider>
       <div class="flex w-full justify-center md:justify-end items-center mt-6">
         <button class="btn btn-primary w-40" type="submit" [disabled]="boton_salvar_disabled">
-          <span class="tracking-wide">Speichern</span>
+          <span class="tracking-wide font-montserrat">Speichern</span>
         </button>
       </div>
     </form>

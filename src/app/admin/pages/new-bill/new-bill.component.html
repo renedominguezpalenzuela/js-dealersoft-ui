@@ -2,13 +2,13 @@
   <div class="card-body">
     <h1 class="card-title text-2xl">Neue Rechnung</h1>
     <mat-divider></mat-divider>
-    <form (ngSubmit)="submit()" [formGroup]="newInvoiceForm">
-      <div class="divider font-bold font-sans">Allgemeine Daten</div>
-      <div class="grid grid-cols-2 gap-x-8 gap-y-1 w-full xl:w-9/12 my-3">
+    <form (ngSubmit)="submit()" [formGroup]="newInvoiceForm" >
+      <div class="divider font-bold font-montserrat">Allgemeine Daten</div>
+      <div class="grid grid-cols-2 gap-x-8 gap-y-1 w-full xl:w-9/12 my-3 ">
 
         <mat-form-field appearance="outline" class="col-start-1 col-span-2 lg:col-span-1">
-          <mat-label>Rechnungs Nr.</mat-label>
-          <input formControlName="invoice_number" matInput min="0" required type="number">
+          <mat-label class="font-montserrat">Rechnungs Nr.</mat-label>
+          <input formControlName="invoice_number" matInput min="0" required type="number" class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('invoice_number')">
             <b>Rechnungs Nr.</b> wird benötigt
           </mat-error>
@@ -28,34 +28,34 @@
         </div>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Rechnungs Titel</mat-label>
-          <input formControlName="title" matInput required>
+          <mat-label class="font-montserrat">Rechnungs Titel</mat-label>
+          <input formControlName="title" matInput required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('title')">
             <b>Rechnungs Titel</b> wird benötigt
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Beschreibung</mat-label>
-          <input formControlName="description" matInput required>
+          <mat-label class="font-montserrat">Beschreibung</mat-label>
+          <input formControlName="description" matInput required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('description')">
             <b>Beschreibung</b> wird benötigt
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Rechnungsdatum</mat-label>
-          <input [matDatepicker]="pickerDate" formControlName="date" matInput required>
+          <mat-label class="font-montserrat">Rechnungsdatum</mat-label>
+          <input [matDatepicker]="pickerDate" formControlName="date" matInput required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('date')">
             <b>Rechnungsdatum</b> wird benötigt
           </mat-error>
-          <mat-datepicker-toggle [for]="pickerDate" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #pickerDate></mat-datepicker>
+          <mat-datepicker-toggle [for]="pickerDate" matSuffix class="font-montserrat"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDate class="font-montserrat"></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Lieferdatum</mat-label>
-          <input [matDatepicker]="pickerDeliveryDate" formControlName="delivery_date" matInput required>
+          <mat-label class="font-montserrat">Lieferdatum</mat-label>
+          <input [matDatepicker]="pickerDeliveryDate" formControlName="delivery_date" matInput required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('delivery_date')">
             <b>Lieferdatum</b> wird benötigt
           </mat-error>
@@ -65,8 +65,8 @@
 
         <!-- Clientes -->
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-          <mat-label>Kunde</mat-label>
-          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
+          <mat-label class="font-montserrat">Kunde</mat-label>
+          <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text" class="font-montserrat">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
             <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
               {{option.attributes.first_name}} {{option.attributes.last_name}}
@@ -86,16 +86,16 @@
         <div class="col-span-1 flex items-center justify-start gap-x-3 my-1 pl-3">
           <div class="flex gap-x-3">
             <input checked="checked" class="toggle" formControlName="a25" id="a25" type="checkbox">
-            <label class="cursor-pointer font-semibold text-gray-500" for="a25">§25a</label>
+            <label class="cursor-pointer font-montserrat text-gray-500" for="a25">§25a</label>
           </div>
           <div class="flex gap-x-3">
             <input checked="checked" class="toggle" formControlName="iva" id="iva" type="checkbox">
-            <label class="cursor-pointer font-semibold text-gray-500" for="iva">MwSt.</label>
+            <label class="cursor-pointer font-montserrat text-gray-500" for="iva">MwSt.</label>
           </div>
         </div>
       </div>
 
-      <div class="divider font-bold font-sans">
+      <div class="divider font-bold font-montserrat">
         <span class="mr-3">Position hinzufügen</span>
         <button (click)="addArticle()" class="tooltip tooltip-bottom" data-tip="Add Article" mat-icon-button
           type="button" [disabled]="boton_salvar_disabled">
@@ -111,20 +111,20 @@
             <div [formGroupName]="i" class="col-span-2 grid grid-cols-5 gap-x-4 gap-y-1">
 
               <mat-form-field appearance="outline" class="col-span-5 ">
-                <mat-label>Artikela</mat-label>
+                <mat-label class="font-montserrat">Artikela</mat-label>
                 <!-- <input formControlName="article" matInput required type="text"> -->
                 <textarea matInput placeholder="Bemerkungen" formControlName="article" rows="2" maxlength="240"
-                  (keydown)="keydown($event)"> </textarea>
+                  (keydown)="keydown($event)" class="font-montserrat"> </textarea>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="col-span-5 lg:col-span-1">
-                <mat-label>Anzahl</mat-label>
-                <input formControlName="quantity" matInput min="1" required type="number">
+                <mat-label class="font-montserrat">Anzahl</mat-label>
+                <input formControlName="quantity" matInput min="1" required type="number" class="font-montserrat">
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="col-span-5 lg:col-span-3">
-                <mat-label>Einzelpreis</mat-label>
-                <input formControlName="unit_price" matInput min="0" required type="number">
+                <mat-label class="font-montserrat">Einzelpreis</mat-label>
+                <input formControlName="unit_price" matInput min="0" required type="number" class="font-montserrat">
               </mat-form-field>
 
               <div class="col-span-1 flex items-center justify-start">

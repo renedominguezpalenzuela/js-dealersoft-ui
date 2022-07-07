@@ -9,22 +9,22 @@
 <mat-divider></mat-divider>
 <div mat-dialog-content style="max-height: 350px">
   <ul class="my-3 px-1">
-    <li class="font-sans py-1"><b>Name:</b> <br class="sm:hidden"> {{data.attributes.name}}</li>
-    <li class="font-sans py-1"><b>Fahrzeugkennung:</b> <br class="sm:hidden"> {{data.attributes.car_identifier}}</li>
-    <li class="font-sans py-1"><b>Bauvariante:</b> <br class="sm:hidden"> {{data.attributes.build_variant}}</li>
-    <li class="font-sans py-1"><b>Erstes Registrierungsdatum:</b>
+    <li class="font-montserratpy-1"><b>Name:</b> <br class="sm:hidden"> {{data.attributes.name}}</li>
+    <li class="font-montserratpy-1"><b>Fahrzeugkennung:</b> <br class="sm:hidden"> {{data.attributes.car_identifier}}</li>
+    <li class="font-montserratpy-1"><b>Bauvariante:</b> <br class="sm:hidden"> {{data.attributes.build_variant}}</li>
+    <li class="font-montserratpy-1"><b>Erstes Registrierungsdatum:</b>
       <br class="sm:hidden"> {{data.attributes.first_register_date | date}}</li>
-    <li class="font-sans py-1"><b>Kilometers:</b> <br class="sm:hidden"> {{data.attributes.kilometres}} Km</li>
-    <li class="font-sans py-1"><b>Kilowatt:</b> <br class="sm:hidden"> {{data.attributes.kilowatt}} Kw</li>
-    <li class="font-sans py-1"><b class="mr-2">Fade:</b> <br class="sm:hidden">
-      <span [style.color]="data.attributes.color" class="font-semibold">{{data.attributes.color}}</span>
+    <li class="font-montserratpy-1"><b>Kilometers:</b> <br class="sm:hidden"> {{data.attributes.kilometres}} Km</li>
+    <li class="font-montserratpy-1"><b>Kilowatt:</b> <br class="sm:hidden"> {{data.attributes.kilowatt}} Kw</li>
+    <li class="font-montserratpy-1"><b class="mr-2">Fade:</b> <br class="sm:hidden">
+      <span [style.color]="data.attributes.color" class="font-montserrat">{{data.attributes.color}}</span>
     </li>
-    <li class="font-sans py-1"><b>Letzter Besitzer:</b> <br class="sm:hidden"> {{data.attributes.last_owner}}</li>
-    <li class="font-sans py-1"><b>HSN:</b> <br class="sm:hidden"> {{data.attributes.hsn}}</li>
-    <li class="font-sans py-1"><b>TSN:</b> <br class="sm:hidden"> {{data.attributes.tsn}}</li>
-    <li class="font-sans py-1 flex items-center"><b class="mr-2">Verkauft:</b> <br class="sm:hidden">
+    <li class="font-montserratpy-1"><b>Letzter Besitzer:</b> <br class="sm:hidden"> {{data.attributes.last_owner}}</li>
+    <li class="font-montserratpy-1"><b>HSN:</b> <br class="sm:hidden"> {{data.attributes.hsn}}</li>
+    <li class="font-montserratpy-1"><b>TSN:</b> <br class="sm:hidden"> {{data.attributes.tsn}}</li>
+    <li class="font-montserratpy-1 flex items-center"><b class="mr-2">Verkauft:</b> <br class="sm:hidden">
       <span
-        class="px-3 py-1 font-semibold leading-tight {{data.attributes.selled ? 'bg-green-200' : 'bg-blue-200'}} bg-opacity-50 rounded-full">
+        class="px-3 py-1 font-montserrat leading-tight {{data.attributes.selled ? 'bg-green-200' : 'bg-blue-200'}} bg-opacity-50 rounded-full">
         <span class="{{data.attributes.selled ? 'text-green-900' : 'text-blue-900'}}">
           {{data.attributes.selled ? 'selled' : 'in stock'}}
         </span>
