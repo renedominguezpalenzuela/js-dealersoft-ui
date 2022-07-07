@@ -679,6 +679,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       let datosInvoice = {
         invoice_number: this.carSellForm.get('invoice_number')!.value,
+        reference_invoice_number: this.carSellForm.get('invoice_number')!.value,
         title:
           this.car_data?.attributes.name +
           ', FIN: ' +

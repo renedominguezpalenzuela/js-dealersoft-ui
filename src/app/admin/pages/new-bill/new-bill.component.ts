@@ -16,6 +16,9 @@ import {
   ValidationsService,
   AuthService,
 } from '@core/services';
+
+import { Observable } from 'rxjs';
+
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Customer, FilterDeepOption, Invoice } from '@core/interfaces';
 import { CustomerFormComponent } from '@core/components/customer-form/customer-form.component';
@@ -31,17 +34,18 @@ import * as moment from 'moment';
 import { forkJoin } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Inject} from '@angular/core';
+import { Inject } from '@angular/core';
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import 'moment/locale/de';
-
-
-
 
 @Component({
   selector: 'app-new-bill',
@@ -62,12 +66,15 @@ import 'moment/locale/de';
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    
-  ]
+  ],
 })
 export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   public newInvoiceForm = this.formBuilder.group({
     invoice_number: [null, [Validators.required]],
+    reference_invoice_number: [null, [Validators.required]],
+    invoice_type: [1, [Validators.required]],
+    cancelled: [false, [Validators.required]],
+
     title: [null, [Validators.required]],
     description: [null, [Validators.required]],
     date: [null, [Validators.required]],
@@ -96,7 +103,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() public invoice_data: any | undefined;
 
-
   private currentUserId: number | undefined;
   private invoice_id: string | undefined;
 
@@ -117,9 +123,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     private readonly createInvoice: CreateInvoiceService,
     private readonly httpClient: HttpClient,
     private _adapter: DateAdapter<any>,
-    @Inject(MAT_DATE_LOCALE) private _locale: string,
+    @Inject(MAT_DATE_LOCALE) private _locale: string
   ) {
-
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
   }
 
@@ -141,11 +146,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     });
 
   ngOnInit(): void {
-
     this._locale = 'de';
     this._adapter.setLocale(this._locale);
 
-    
     this.authService.currentUser.subscribe((user) => {
       this.currentUserId = user?.id;
 
@@ -169,9 +172,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       if (params['id']) {
         //Deshabilitar boton de salvar
         this.boton_salvar_disabled = true;
-        this.mostrar_boton_imprimir=true;
+        this.mostrar_boton_imprimir = true;
 
-        this.invoice_id =params['id']; 
+        this.invoice_id = params['id'];
 
         this.requestService
           .Get(
@@ -193,12 +196,11 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
             this.newInvoiceForm.updateValueAndValidity();
             this.desHabilitarControles();
-
           });
       } else {
         //Habilitar boton de salvar
         this.boton_salvar_disabled = false;
-        this.mostrar_boton_imprimir=false;
+        this.mostrar_boton_imprimir = false;
 
         //Adicionando nuevo articulo vacio
         this.addArticle();
@@ -248,7 +250,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       this.requestService
         .Post(this.apiHelperService.invoicesURL, this.newInvoiceForm.value)
         .subscribe((datos) => {
-          
           this.notificationService.riseNotification({
             color: 'success',
             data: 'Neue Rechnung gespeichert',
@@ -257,6 +258,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         });
     } else {
       let errores = this.findInvalidControls();
+      console.log('Errors New Bill');
+      console.log(errores);
 
       this.notificationService.riseNotification({
         color: 'warning',
@@ -442,11 +445,9 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    if ( this.boton_salvar_disabled===true ) {
-      this.desHabilitarControles()
+    if (this.boton_salvar_disabled === true) {
+      this.desHabilitarControles();
     }
-
 
     if (changes?.['invoice_data'] && this.invoice_data) {
       this.requestService
@@ -470,6 +471,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           this.newInvoiceForm.patchValue({
             ...data,
           });
+
+         
           // this.newInvoiceForm.patchValue({
           //   gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
           //   net_buy: data?.net_buy?.toFixed(this.total_decimales),
@@ -498,8 +501,30 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       .subscribe((datos: any) => {
         this.newInvoiceForm.patchValue({
           invoice_number: datos,
+          reference_invoice_number: datos,
         });
       });
+  }
+
+  public generateCancelInvoice_Number(): Observable<any> {
+    // let valorFormularioInvoice_Number =
+    //   this.newInvoiceForm.get('invoice_number')!.value;
+
+    // if (valorFormularioInvoice_Number != null) {
+    //   this.notificationService.riseNotification({
+    //     color: 'warning',
+    //     data: 'Rechnungsnummer wurde bereits generiert, es kann keine neue erstellt werden',
+    //   });
+
+    //   return;
+    // }
+
+    return this.createInvoice.generateInvoice_Number();
+    // .subscribe((datos: any) => {
+    //   this.newInvoiceForm.patchValue({
+    //     reference_invoice_number: datos,
+    //   });
+    // });
   }
 
   public keydown(event: any) {
@@ -515,9 +540,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public generatePdf = () => {
+    this.Prueba();
 
-    this.Prueba()
-    
     let tipo = '/';
     if (this.a25_activo) {
       tipo = 'reports/bill/a25';
@@ -525,51 +549,50 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       tipo = 'reports/bill/iva';
     }
 
-    
     this.requestService
       .downloadPDF(this.apiHelperService.pdfURL, {
         // type: ExportType.vehicle,
         type: tipo,
-        id: this.invoice_id  //no es un car
+        id: this.invoice_id, //no es un car
       })
       .subscribe((res) => {
         saveAs(
           new Blob([res], { type: 'application/pdf' }),
-          `Rechnung_${this.invoice_data?.invoice_number}_(${moment().format('YYYY-MM-DD')}).pdf`
+          `Rechnung_${this.invoice_data?.invoice_number}_(${moment().format(
+            'YYYY-MM-DD'
+          )}).pdf`
         );
       });
   };
 
-
-  bill_info: any ="";
-  
+  bill_info: any = '';
 
   public Prueba = () => {
     forkJoin([
-      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/?id=${  this.invoice_id }`, 
-      this.generateOptionsInvoice( this.invoice_id)),
-    //  this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
-      this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
-     // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
-    ]).subscribe(res => {
+      this.httpClient.get<any>(
+        `${this.apiHelperService.invoicesURL}/?id=${this.invoice_id}`,
+        this.generateOptionsInvoice(this.invoice_id)
+      ),
+      //  this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
+      this.httpClient.get<any>(
+        this.apiHelperService.logosURL,
+        this.generateOptions()
+      ),
+      // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
+    ]).subscribe((res) => {
+      this.bill_info = res[0].data[0];
 
-       this.bill_info = res[0].data[0];
+      let invoice_number = this.bill_info.attributes.invoice_number;
 
-       let invoice_number = this.bill_info.attributes.invoice_number;
+      let client = this.bill_info.attributes.client.data.attributes;
+      let owner = this.bill_info.attributes.owner.data.attributes;
 
-
-       let client = this.bill_info.attributes.client.data.attributes;
-       let owner = this.bill_info.attributes.owner.data.attributes
-
-  
-
-    // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
-    //   this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
-    //   if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
-    //   this.me = res[3];
-
+      // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
+      //   this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
+      //   if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
+      //   this.me = res[3];
     });
-  }
+  };
 
   // this.requestService
   // .Get(
@@ -587,52 +610,129 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   //   })
   // )
 
-
   private generateOptionsInvoice = (id: any) => {
     return {
       params: this.queryInvoice(id),
-   
-    }
-  }
+    };
+  };
 
-  private queryInvoice = (id: any) => this.requestService.generateQuery({
-    populate: ['*'],
-    filters: [
-      {
-        field: '[id]',
-        operator: FilterOperator.$eq,
-        value: id,
-        option: FilterDeepOption.$and,
-      },
-    ],
-  });
+  private queryInvoice = (id: any) =>
+    this.requestService.generateQuery({
+      populate: ['*'],
+      filters: [
+        {
+          field: '[id]',
+          operator: FilterOperator.$eq,
+          value: id,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
 
   private generateOptions = () => {
     return {
       params: this.query(),
       //  headers: new HttpHeaders({ Authorization: `Bearer ${ this.jwt }` })
+    };
+  };
+
+  private query = () =>
+    this.requestService.generateQuery({
+      populate: ['owner', 'client', 'car', 'user', 'logo'],
+    });
+
+  desHabilitarControles() {
+    for (const field in this.newInvoiceForm.controls) {
+      // 'field' is a string
+      this.newInvoiceForm.controls[field].disable();
     }
   }
 
-  private query = () => this.requestService.generateQuery({
-    populate: ['owner', 'client', 'car', 'user', 'logo']
-  });
-
-
-  desHabilitarControles() {
-    for (const field in this.newInvoiceForm.controls) { // 'field' is a string
-      this.newInvoiceForm.controls[field].disable();
-    }
-	}
-
-  
   habilitarControles() {
-    for (const field in this.newInvoiceForm.controls) { // 'field' is a string
+    for (const field in this.newInvoiceForm.controls) {
+      // 'field' is a string
       this.newInvoiceForm.controls[field].enable();
     }
   }
 
+  cancelInvoice() {
+    //si el tipo de invoice a cancelar es 2, no se puede cancelar
+    //Eine Stornorechnung kann nicht storniert werden
+    //si el invoice a cancelar esta ya cancelada no se puede cancelar
+    //Eine stornierte Rechnung kann nicht storniert werden
 
 
+ 
 
+    if (this.invoice_data.cancelled) {
+      
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Eine stornierte Rechnung kann nicht storniert werden',
+      });
+
+      return;
+
+    }
+
+    if (this.invoice_data.invoice_type===2) {
+      
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Eine Stornorechnung kann nicht storniert werden',
+      });
+      return;
+      
+    }
+
+    
+
+    this.generateCancelInvoice_Number().subscribe((numero_invoice) => {
+
+
+      // if (!this.newInvoiceForm.valid) {
+      //   let errores = this.findInvalidControls();
+      //   console.log('Errors in Cancell Bill');
+      //   console.log(errores);
+      //   return;
+      // } 
+
+      let datosInvoice = {
+        ...this.invoice_data,
+        invoice_number: numero_invoice,
+        reference_invoice_number:
+          this.newInvoiceForm.get('invoice_number')?.value,
+        cancelled: false,
+        invoice_type: 2,
+        client: this.invoice_data?.client.data.id,
+        owner: this.invoice_data?.owner.data.id,
+        title: "Rechnungsnummer " +this.newInvoiceForm.get('invoice_number')?.value+ " stornieren"
+        // +this.invoice_data.title      
+      };
+
+      this.createInvoice
+        .guardarInvoiceFromSellCar(datosInvoice)
+        .subscribe(() => {
+          //Creada nueva invoice
+
+          this.requestService
+          .Put(this.apiHelperService.invoicesURL + '/' +this.invoice_id  , {
+            cancelled: true,            
+          }).subscribe(()=>{
+
+            this.notificationService.riseNotification({
+              color: 'success',
+              data: 'Stornorechnung erstellt',
+            });
+            this.router.navigate(['/admin/list-invoices']);
+          }
+
+          )
+
+
+          
+        });
+     
+    });
+  }
 }

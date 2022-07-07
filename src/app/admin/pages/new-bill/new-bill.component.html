@@ -20,10 +20,11 @@
 
           </mat-label> -->
 
-          <button mat-icon-button [disabled]="boton_salvar_disabled" class="text-gray-5000 drawer-button" (click)="generateInvoice_Number()" type="button">
+          <button mat-icon-button [disabled]="boton_salvar_disabled" class="text-gray-5000 drawer-button"
+            (click)="generateInvoice_Number()" type="button">
             <mat-icon class="text-black">gavel</mat-icon>
           </button>
-         
+
         </div>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
@@ -129,7 +130,7 @@
               <div class="col-span-1 flex items-center justify-start">
                 <button class="tooltip tooltip-bottom relative -top-2" data-tip="Remove Article" mat-icon-button
                   type="button" [disabled]="boton_salvar_disabled" (click)="deleteArticle(i)">
-                  <mat-icon >
+                  <mat-icon>
                     delete_forever
                   </mat-icon>
                 </button>
@@ -144,20 +145,29 @@
 
       <mat-divider></mat-divider>
 
-      <div class="grid grid-cols-2 w-full  gap-3 mt-3">
-
-
-        <div *ngIf="mostrar_boton_imprimir">
-          <button class="btn btn-primary w-40 col-start-1" (click)="generatePdf()" type="button">
-            <span class="tracking-wide">Rechnung drucken</span>
-          </button>
-        </div>
+      <div class="grid grid-cols-4 w-full  gap-x-2 mt-3">
 
 
 
-        <button class="btn btn-primary w-40 col-start-2 " type="submit" [disabled]="boton_salvar_disabled">
+        <button class="btn btn-primary w-40 col-start-1" (click)="generatePdf()" type="button"
+          *ngIf="mostrar_boton_imprimir">
+          <span class="tracking-wide">Rechnung drucken - D</span>
+        </button>
+
+
+
+        <!-- Rechnung stornieren -->
+        <button class="btn btn-primary w-41 col-start-2 " (click)="cancelInvoice()" [disabled]="!boton_salvar_disabled"
+          *ngIf="mostrar_boton_imprimir"  type="button">
+          <span class="tracking-wide">Storno Rechnung erstellen</span>
+        </button>
+
+
+
+        <button class="btn btn-primary w-40 col-start-4 " type="submit" [disabled]="boton_salvar_disabled">
           <span class="tracking-wide">Rechnung erstellen</span>
         </button>
+
 
 
 
