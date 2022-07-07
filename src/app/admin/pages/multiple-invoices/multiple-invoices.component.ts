@@ -27,39 +27,55 @@ export class MultipleInvoicesComponent implements OnInit {
   public displayedColumns: Column[] = [
     {
       column: 'attributes.invoice_number',
-      header: 'NUmber',
+      header: 'Number',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
+
+    {
+      column: 'attributes.reference_invoice_number',
+      header: 'Ref Number',
+      show: true,
+      type: ColumnType.Regular,
+      ordenar: true
+    },
+
+
     {
       column: 'attributes.title',
       header: 'Titel',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: false
     },
     {
       column: 'attributes.date',
       header: 'Datum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: false
     },
     {
       column: 'attributes.delivery_date',
       header: 'Lieferdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: false
     },
     {
       column: 'attributes.a25',
       header: '§25a',
       show: true,
-      type: ColumnType.Boolean
+      type: ColumnType.Boolean,
+      ordenar: false
     },
     {
       column: 'attributes.iva',
       header: 'inkl. MwSt.',
       show: true,
-      type: ColumnType.Boolean
+      type: ColumnType.Boolean,
+      ordenar: false
     }
   ];
   public OptionSettings: OptionSettings = {

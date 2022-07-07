@@ -27,93 +27,108 @@ export class MyStockComponent implements OnInit {
       column: 'attributes.name',
       header: 'Fahrzeugname',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.car_identifier',
       header: 'FIN',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.first_register_date',
       header: 'Erstzulassung',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.kilometres',
       header: 'Kilometer',
       show: true,
       type: ColumnType.Extra,
-      prop: 'Km'
+      prop: 'Km',
+      ordenar: true
     },
     {
       column: 'attributes.kilowatt',
       header: 'Kilowatt',
       show: true,
       type: ColumnType.Extra,
-      prop: 'Kw'
+      prop: 'Kw',
+      ordenar: true
     },
     {
       column: 'attributes.build_variant',
       header: 'Aufbauvariante',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.hsn',
       header: 'HSN',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.color',
       header: 'Farbe',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.buy.buy_date',
       header: 'Einkaufdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.buy.net_buy',
       header: 'Einakuf Netto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.buy.gross_buy',
       header: 'Einkauf Brutto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.sell.invoice_date',
       header: 'Verkaufsdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.sell.net_sell',
       header: 'Verkauf Netto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.sell.gross_sell',
       header: 'Verkauf Brutto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'net_profit',
       header: 'Netto Gewinn',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     }
   ];
   public OptionSettings: OptionSettings = {

@@ -4,6 +4,7 @@ export interface Column {
   show: boolean;
   type: ColumnType;
   prop?: string;
+  ordenar:boolean;
 }
 
 export enum ColumnType {

@@ -24,117 +24,136 @@ export class AllVehiclesComponent implements OnInit {
       column: 'attributes.name',
       header: 'Fahrzeugname',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.car_identifier',
       header: 'Kennung',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.selled',
       header: 'Verkauft',
       show: true,
-      type: ColumnType.SellStatus
+      type: ColumnType.SellStatus,
+      ordenar: true
     },
     {
       column: 'attributes.first_register_date',
       header: 'Erstregistrierung',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.last_owner',
       header: 'Letzter Besitzer',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.kilometres',
       header: 'Kilometer',
       show: true,
       type: ColumnType.Extra,
-      prop: 'Km'
+      prop: 'Km',
+      ordenar: true
     },
     {
       column: 'attributes.kilowatt',
       header: 'Kilowatt',
       show: true,
       type: ColumnType.Extra,
-      prop: 'Kw'
+      prop: 'Kw',
+      ordenar: true
     },
     {
       column: 'attributes.build_variant',
       header: 'Variante',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.hsn',
       header: 'HSN',
       show: false,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.color',
       header: 'Farbe',
       show: false,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.tsn',
       header: 'TSN',
       show: false,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.comments',
       header: 'Bemerkungen',
       show: false,
-      type: ColumnType.Bullets
+      type: ColumnType.Bullets,
+      ordenar: true
     },
     {
       column: 'attributes.buy.buy_date',
       header: 'Einkaufdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.buy.net_buy',
       header: 'Einakuf Netto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.buy.gross_buy',
       header: 'Einkauf Brutto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.sell.invoice_date',
       header: 'Verkaufsdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.sell.net_sell',
       header: 'Verkauf Netto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.sell.gross_sell',
       header: 'Verkauf Brutto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'net_profit',
       header: 'Netto Gewinn',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     }
   ];
   public OptionSettings: OptionSettings = {

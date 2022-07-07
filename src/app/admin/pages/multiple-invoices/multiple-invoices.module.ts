@@ -7,14 +7,14 @@ import { CoreModule } from '@core/core.module';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TablaInvoicesComponent } from './componentes/tabla-invoices/tabla-invoices.component';
+
 import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
   declarations: [
     MultipleInvoicesComponent,
-    TablaInvoicesComponent
+    
   ],
   imports: [
     CommonModule,

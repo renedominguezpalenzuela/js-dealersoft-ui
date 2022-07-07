@@ -41,60 +41,70 @@ export class CustomerInformationComponent implements OnInit {
       header: 'Titel',
       show: true,
       type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.first_name',
       header: 'Vorname',
       show: true,
       type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.last_name',
       header: 'Nachnames',
       show: true,
       type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.email',
       header: 'Email',
       show: true,
       type: ColumnType.MailTo,
+      ordenar: true
     },
     {
       column: 'attributes.phone',
       header: 'Telefon',
       show: true,
       type: ColumnType.CallTo,
+      ordenar: true
     },
     {
       column: 'attributes.city',
       header: 'Stadt',
       show: true,
       type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.country',
       header: 'Land',
       show: true,
       type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.birth_date',
       header: 'Geburtsdatum',
       show: false,
       type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.fax',
       header: 'Fax',
       show: false,
       type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.website',
       header: 'Webseite',
       show: false,
       type: ColumnType.ExternalLink,
+      ordenar: true
     },
   ];
   public OptionSettings: OptionSettings = {

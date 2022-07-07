@@ -25,67 +25,78 @@ export class VehicleEvaluationComponent implements OnInit {
       column: 'attributes.buy_date',
       header: 'Einkaufdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.car.data.attributes.name',
       header: 'Fahrzeug',
       show: true,
-      type: ColumnType.Regular
+      type: ColumnType.Regular,
+      ordenar: true
     },
     {
       column: 'attributes.net_buy',
       header: 'Einakuf Netto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.gross_buy',
       header: 'Einkauf Brutto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.a25',
       header: '§25a',
       show: true,
-      type: ColumnType.Boolean
+      type: ColumnType.Boolean,
+      ordenar: true
     },
     {
       column: 'attributes.iva',
       header: 'MwSt.',
       show: true,
-      type: ColumnType.Boolean
+      type: ColumnType.Boolean,
+      ordenar: true
     },
     {
       column: 'attributes.export',
       header: 'Export',
       show: true,
-      type: ColumnType.Boolean
+      type: ColumnType.Boolean,
+      ordenar: true
     },
     {
       column: 'attributes.invoice_date',
       header: 'Verkaufsdatum',
       show: true,
-      type: ColumnType.Date
+      type: ColumnType.Date,
+      ordenar: true
     },
     {
       column: 'attributes.net_sell',
       header: 'Verkauf Netto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'attributes.gross_sell',
       header: 'Verkauf Brutto',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     },
     {
       column: 'net_profit',
       header: 'Netto Gewinn',
       show: true,
-      type: ColumnType.Currency
+      type: ColumnType.Currency,
+      ordenar: true
     }
   ];
   public filterQuery: string = '';
