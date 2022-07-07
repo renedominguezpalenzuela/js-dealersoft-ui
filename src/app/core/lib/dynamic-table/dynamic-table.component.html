@@ -100,9 +100,11 @@
     </ng-container>
 
     <ng-container *ngIf="showOptions" [stickyEnd]="canBeEndSticky('op')" matColumnDef="op">
+      
       <th *matHeaderCellDef class="center" mat-header-cell>
         <span>Optionen</span>
       </th>
+
       <td *matCellDef="let row" class="center" mat-cell>
         <button [matMenuTriggerFor]="beforeMenu" mat-button>
           <mat-icon class="text-gray-700">more_vert</mat-icon>
@@ -111,7 +113,7 @@
           <ul class="p-2 shadow-md menu dropdown-content bg-base-100 rounded-box w-52" tabindex="0">
             <li (click)="option(op.event, row)" *ngFor="let op of OptionSettings.options">
               <a class="flex flex-row justify-start items-center">
-                <mat-icon class="mr-1 text-base">{{op.icon}}</mat-icon>
+                <mat-icon class="mr-1 text-base">{{op.icon}}</mat-icon> 
                 <span class="font-semibold">{{op.literal}}</span>
               </a>
             </li>

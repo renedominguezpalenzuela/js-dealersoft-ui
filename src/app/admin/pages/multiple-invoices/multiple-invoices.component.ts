@@ -78,13 +78,15 @@ export class MultipleInvoicesComponent implements OnInit {
       ordenar: false
     }
   ];
+
+
   public OptionSettings: OptionSettings = {
     options: [
-      {
-        icon: 'picture_as_pdf',
-        literal: 'PDF exportieren',
-        event: 'ExportPdf'
-      },
+      // {
+      //   icon: 'picture_as_pdf',
+      //   literal: 'PDF exportieren',
+      //   event: 'ExportPdf'
+      // },
       // {
       //   icon: 'info',
       //   literal: 'Detail anzeigen',
@@ -92,6 +94,8 @@ export class MultipleInvoicesComponent implements OnInit {
       // }
     ]
   };
+
+
   public filterQuery: string = '';
   public loading: boolean = false;
   public noShowLoader = true;

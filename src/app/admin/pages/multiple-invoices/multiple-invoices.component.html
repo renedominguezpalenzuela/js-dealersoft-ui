@@ -22,12 +22,17 @@
     <div class="mt-4">
 
 
+<!-- [OptionSettings]="OptionSettings" -->
+<!--
 
-      <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"
-                         [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
-                         [displayedColumns]="displayedColumns" [endFieldSticky]="'op'" [filterQuery]="filterQuery"
+[endFieldSticky]="'op'" -->
+      <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"                         
+                          [canSticky]="true" [data]="data"
+                          [showOptions]="false"
+                          [showExtraOption]="true"  [extraOption]="extraOption" 
+                         [displayedColumns]="displayedColumns"  [filterQuery]="filterQuery"
                          [pageCount]="pageCount" [startFieldSticky]="'attributes.invoice_number'" class="w-full"
-                         [extraOption]="extraOption"  [showExtraOption]="true" >
+                           >
       </app-dynamic-table>
     </div>
 
