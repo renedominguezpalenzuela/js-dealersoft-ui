@@ -514,13 +514,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     //Constrains de a25 e iva en funcion de lo salvado en buyCar
     if (this.car_data?.attributes.a25===true && this.car_data?.attributes.iva===false) {
-      console.log("A25")
+    
       this.puede_solo_iva = false;
       this.puede_solo_a25 = true; 
     }
 
     if (this.car_data?.attributes.a25===false && this.car_data?.attributes.iva===true) {
-      console.log("IVA")
+    
       this.puede_solo_iva = true;
       this.puede_solo_a25 = false; 
     }

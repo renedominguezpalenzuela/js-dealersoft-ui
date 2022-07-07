@@ -258,8 +258,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         });
     } else {
       let errores = this.findInvalidControls();
-      console.log('Errors New Bill');
-      console.log(errores);
 
       this.notificationService.riseNotification({
         color: 'warning',
