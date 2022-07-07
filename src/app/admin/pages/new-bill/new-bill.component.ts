@@ -556,12 +556,20 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         id: this.invoice_id, //no es un car
       })
       .subscribe((res) => {
+
+        let nombre =   `Storno Rechnung St.-Nr. ${this.invoice_data?.invoice_number} für Re Nr. ${this.invoice_data?.reference_invoice_number} .pdf`;
+        if (this.invoice_data?.invoice_type===1) {
+           nombre=  `Rechnung_${this.invoice_data?.invoice_number}_(${moment().format('YYYY-MM-DD')}).pdf`
+        }
+
+
         saveAs(
           new Blob([res], { type: 'application/pdf' }),
-          `Rechnung_${this.invoice_data?.invoice_number}_(${moment().format(
-            'YYYY-MM-DD'
-          )}).pdf`
+          nombre
         );
+
+
+        
       });
   };
 
