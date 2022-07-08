@@ -24,7 +24,7 @@
           <mat-label class="font-montserrat">Kunde</mat-label>
           <input class="font-montserrat" #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
-            <mat-option *ngFor="let option of filteredOptions" [value]="option.id">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option.id"  class="font-montserrat">
               {{option.attributes.first_name}} {{option.attributes.last_name}}
             </mat-option>
           </mat-autocomplete>
