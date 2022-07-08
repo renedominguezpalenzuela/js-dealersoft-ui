@@ -86,7 +86,7 @@
             <mat-label class="font-montserrat">{{texto_label}}</mat-label>
 
             <!--  [disabled]="boton_salvar_disabled" -->
-            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only">
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only" class="font-montserrat">
 
             
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button

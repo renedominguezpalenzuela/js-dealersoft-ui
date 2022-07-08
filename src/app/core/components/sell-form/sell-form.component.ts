@@ -46,7 +46,7 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import 'moment/locale/de';
-import 'moment/locale/fr';
+
 
 @Component({
   selector: 'app-sell-form',

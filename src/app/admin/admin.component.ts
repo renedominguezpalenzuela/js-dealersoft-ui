@@ -133,6 +133,8 @@ export class AdminComponent implements OnInit {
           .subscribe((logos) => {
             
             this.logo = logos.data[0];
+            console.log("LOGO")
+            console.log(this.logo)
             if (this.logo?.attributes.logo.data.attributes.url)
               this.showLogo = true;
           });
@@ -156,10 +158,14 @@ export class AdminComponent implements OnInit {
   get imgPath(): string {
 
 
-
     if (isDevMode()) {
 
-       return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+      let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+      if (inicio_url==="http") {
+        return `${this.logo?.attributes.logo.data.attributes.url}`;
+      } else {
+        return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+      }       
     } else {      
 
      return `${this.logo?.attributes.logo.data.attributes.url}`;

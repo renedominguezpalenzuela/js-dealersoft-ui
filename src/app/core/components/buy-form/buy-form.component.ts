@@ -32,7 +32,7 @@ import {
 } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import 'moment/locale/de';
-import 'moment/locale/fr';
+
 
 
 
