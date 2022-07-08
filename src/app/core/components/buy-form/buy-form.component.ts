@@ -34,6 +34,11 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import 'moment/locale/de';
 
 
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
+
+
 
 
 @Component({
@@ -67,6 +72,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   vGross_buy: number = 0.0;
   a25_activo = true;
+
+  private readonly jwt: string;
 
   //variable recibida desde el componente padre que contiene los datos provenientes del API
   @Input() public car_data: Car | undefined;
@@ -131,8 +138,17 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly matDialog: MatDialog,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly httpClient: HttpClient
 
-  ) {}
+  ) {
+
+    this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
+
+
+    
+  }
 
   // public calcularIVA() {
 
@@ -654,7 +670,59 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
 
+  
+  private generateOptions = () => {
+    let myjwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTEsImlhdCI6MTY1NzI5OTY5NCwiZXhwIjoxNjU5ODkxNjk0fQ.IXnXVQ3I3zfgmMMfaCY9jQzfzogvHJwfwLSEIHlbNzc"
+    return {
+      params: this.query(),
+      headers: new HttpHeaders({ Authorization: `Bearer ${ myjwt }` })
+    }
+  }
+
+  private query = () => this.requestService.generateQuery({
+    populate: ['owner', 'client', 'car', 'user', 'logo']
+  });
+
+
+  public car_info: any;
+  public car_buy_data: any;
+  public logo:any;
+  
+  public loadPaginatedData_TEST = (id:any) => {
+    forkJoin([
+      this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ id }`, this.generateOptions()),
+      this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions()),
+      this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
+      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
+    ]).subscribe((res:any) => {
+      this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
+      this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
+      this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3]?.id)[0];
+
+      console.log("EEE")
+      console.log(res[3])
+
+     
+    
+     // if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
+     // this.me = res[3];
+
+
+
+    });
+  }
+
+
+
   public generatePdf() {
+
+    this.loadPaginatedData_TEST(91)
+
+
+
+    // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateHeader()).subscribe((dato)=>{
+
+    // })
 
     if (!this.boton_salvar_disabled) {    
       this.salvarEImprimir(true);

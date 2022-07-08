@@ -133,8 +133,7 @@ export class AdminComponent implements OnInit {
           .subscribe((logos) => {
             
             this.logo = logos.data[0];
-            console.log("LOGO")
-            console.log(this.logo)
+           
             if (this.logo?.attributes.logo.data.attributes.url)
               this.showLogo = true;
           });

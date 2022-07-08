@@ -33,10 +33,13 @@ export class BuyCarA25Component implements OnInit {
   public me: any;
 
 
-  private readonly jwt: string;
+  public readonly jwt: string;
   private readonly baseDate: string = `${ moment().year() }-${ moment().month() + 1 > 9 ? moment().month() + 1 : `0${ moment().month() + 1 }` }-`;
   private beginDate: string = this.baseDate + '01';
   private showLogo: boolean = false;
+
+
+  public image_url: any;
 
 
   constructor(
@@ -51,6 +54,8 @@ export class BuyCarA25Component implements OnInit {
     this.currentDate = `${ this.month } ${ new Date().getDate() }, ${ this.year }`;
     this.currentUrl = `${ window.location.hostname }/export/vehicle`;
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
+
+  
     this.loadQueryParams();
     this.loadPaginatedData();
 
@@ -61,9 +66,18 @@ export class BuyCarA25Component implements OnInit {
 
  
   get imgPath(): string {
-    if (this.showLogo)
-      return `${ this.apiHelperService.hostUrl }${ this.logo?.attributes.logo.data.attributes.url }`;
-    else return `assets/brand_logo/dealersoft_black.png`;
+  let img_url = this.logo?.attributes.logo.data.attributes.url;  
+  this.image_url = img_url;
+    if (this.showLogo) {
+      if (img_url.substring(0,4)==='http') {
+        return img_url
+      } else {
+        return `${ this.apiHelperService.hostUrl }${ img_url }`;
+      }            
+    }  
+    else  {
+      return `assets/brand_logo/dealersoft_black.png`;
+    }
   }
 
   ngOnInit(): void {
@@ -81,24 +95,15 @@ export class BuyCarA25Component implements OnInit {
       this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions()),
       this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
-    ]).subscribe(res => {
+    ]).subscribe((res:any) => {
       this.car_info = res[0].data2.filter((item: any) => item.id === this.id)[0];
       this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
+
       this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];
       if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
       this.me = res[3];
 
 
-          
-  
-
-      
-
-
- 
-
-
-    
 
     });
   }
