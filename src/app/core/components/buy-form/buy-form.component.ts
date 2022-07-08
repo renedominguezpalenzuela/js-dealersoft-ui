@@ -716,14 +716,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public generatePdf() {
 
-    this.loadPaginatedData_TEST(91)
-
-
-
-    // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateHeader()).subscribe((dato)=>{
-
-    // })
-
+    
     if (!this.boton_salvar_disabled) {    
       this.salvarEImprimir(true);
     } else {
