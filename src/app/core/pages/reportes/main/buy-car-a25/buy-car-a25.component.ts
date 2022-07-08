@@ -67,7 +67,7 @@ export class BuyCarA25Component implements OnInit {
  
   get imgPath(): string {
   let img_url = this.logo?.attributes.logo.data.attributes.url;  
-  this.image_url = img_url;
+  
     if (this.showLogo) {
       if (img_url.substring(0,4)==='http') {
         return img_url

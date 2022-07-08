@@ -58,11 +58,27 @@ export class A25Component implements OnInit {
   }
 
  
+  
   get imgPath(): string {
-    if (this.showLogo)
-      return `${ this.apiHelperService.hostUrl }${ this.logo?.attributes.logo.data.attributes.url }`;
-    else return `assets/brand_logo/dealersoft_black.png`;
-  }
+    let img_url = this.logo?.attributes.logo.data.attributes.url;  
+    
+      if (this.showLogo) {
+        if (img_url.substring(0,4)==='http') {
+          return img_url
+        } else {
+          return `${ this.apiHelperService.hostUrl }${ img_url }`;
+        }            
+      }  
+      else  {
+        return `assets/brand_logo/dealersoft_black.png`;
+      }
+    }
+
+  // get imgPath(): string {
+  //   if (this.showLogo)
+  //     return `${ this.apiHelperService.hostUrl }${ this.logo?.attributes.logo.data.attributes.url }`;
+  //   else return `assets/brand_logo/dealersoft_black.png`;
+  // }
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {

@@ -44,6 +44,9 @@ export class InvoiceExportComponent implements OnInit {
     this.loadUserdata();
   }
 
+
+
+
   get imgPath(): string {
     if (this.showLogo)
       return `${ this.apiHelperService.hostUrl }${ this.logo?.attributes.logo.data.attributes.url }`;
