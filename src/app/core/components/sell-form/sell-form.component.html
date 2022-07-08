@@ -157,7 +157,7 @@
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2 lg:row-start-3">
               <mat-label class="font-montserrat">Bemerkungen</mat-label>
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4" maxlength="240"
-                (keydown)="keydown($event)"></textarea>
+                (keydown)="keydown($event)"  class="font-montserrat"></textarea>
             </mat-form-field>
 
           </div>
@@ -183,7 +183,7 @@
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
               <mat-label class="font-montserrat">Bemerkungen</mat-label>
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"
-                maxlength="240" (keydown)="keydown($event)"> </textarea>
+                maxlength="240" (keydown)="keydown($event)"  class="font-montserrat"> </textarea>
             </mat-form-field>
           </div>
         </mat-tab>
@@ -228,7 +228,7 @@
           <div class="flex gap-x-3 pb-3">
             <input #bemerkungencheck2page class="toggle" formControlName="bemerkungencheck2page"
               id="bemerkungencheck2page" type="checkbox"  [checked]="isChecked" (change)="onNativeChange($event)">
-            <label class="cursor-pointer font-montserrat text-gray-500" for="bemerkungencheck2page">Bemerkungen für zweite
+            <label class="cursor-pointer font-montserrat text-gray-500 font-montserrat" for="bemerkungencheck2page">Bemerkungen für zweite
               Seite</label>
           </div>
         </div>
