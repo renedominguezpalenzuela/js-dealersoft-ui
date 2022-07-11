@@ -2,7 +2,7 @@
   <div class="card-body">
     <h1 *ngIf="!isUpdating" class="card-title text-2xl ">Fahrzeugdaten</h1>
     <mat-divider *ngIf="!isUpdating"></mat-divider>
-    <form (ngSubmit)="submit()" [formGroup]="vehicleForm">
+    <form (ngSubmit)="submit()" [formGroup]="vehicleForm" (keydown.enter)="$event.preventDefault()">
       <div class="divider font-bold font-montserrat">Allgemeine Daten</div>
       <div class="w-full my-3 flex flex-col 2xl:flex-row">
         <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full 2xl:w-7/12">
@@ -62,7 +62,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
             <mat-label class="font-montserrat">TSN</mat-label>
-            <input formControlName="tsn" matInput class="font-montserrat">
+            <input formControlName="tsn" matInput class="font-montserrat" >
           </mat-form-field>
         </div>
        
@@ -86,11 +86,11 @@
             <mat-label class="font-montserrat">{{texto_label}}</mat-label>
 
             <!--  [disabled]="boton_salvar_disabled" -->
-            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only" class="font-montserrat">
+            <input [(ngModel)]="currentComment" [ngModelOptions]="{standalone: true}" matInput [readonly]="input_read_only" class="font-montserrat"   (keyup.enter)="addComment()">
 
             
             <button (click)="addComment()" class="tooltip tooltip-bottom" data-tip="Add comment" mat-icon-button
-                    matSuffix type="button" [disabled]="input_read_only">
+                    matSuffix type="button" [disabled]="input_read_only" >
               <mat-icon>add</mat-icon>
             </button>
           </mat-form-field>

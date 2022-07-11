@@ -318,6 +318,8 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
   public addComment = () => {
 
+   
+
     
 
     if (this.comments.length < 4) {
