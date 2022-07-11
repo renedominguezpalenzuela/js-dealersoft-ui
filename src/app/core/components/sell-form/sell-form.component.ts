@@ -660,6 +660,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 value: $event.target.value,
                 option: FilterDeepOption.$or,
               },
+              {
+                field: 'company_name',
+                operator: FilterOperator.$contains,
+                value: $event.target.value,
+                option: FilterDeepOption.$or,
+              },
             ],
           });
           this.requestService
@@ -786,7 +792,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
               data: 'New customer saved',
             });
             this.clientsOptions.push(res.data);
-            this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
+            //this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
+            this.autoComplete!.nativeElement.value =res.data.attributes.company_name ? `${res.data.attributes.company_name}` : `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
             this.carSellForm.patchValue({ client: res.data.id });
           };
 
@@ -803,7 +810,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.filteredOptions.find((elm) => elm.id === id)
       );
       if (customer)
-        return `${customer.attributes.first_name} ${customer.attributes.last_name}`;
+        //return `${customer.attributes.first_name} ${customer.attributes.last_name}`;
+        return  customer.attributes.company_name ? customer.attributes.company_name : `${customer.attributes.first_name} ${customer.attributes.last_name}`;
       else return '';
     }
     return '';
@@ -946,7 +954,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       (option) =>
         option.attributes.first_name.toLowerCase().includes(filterValue) ||
         option.attributes.last_name.toLowerCase().includes(filterValue) ||
-        option.attributes.email.toLowerCase().includes(filterValue)
+        option.attributes.email.toLowerCase().includes(filterValue) ||
+        option.attributes.company_name.toLowerCase().includes(filterValue) 
     );
   }
 

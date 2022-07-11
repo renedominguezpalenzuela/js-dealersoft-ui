@@ -3,6 +3,7 @@ export interface Customer {
   attributes: {
     first_name: string,
     last_name: string,
+    company_name: string,
     birth_date: Date,
     phone: string,
     fax: string,

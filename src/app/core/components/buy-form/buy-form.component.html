@@ -38,7 +38,14 @@
           <input #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text" class="font-montserrat">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
             <mat-option *ngFor="let option of filteredOptions" [value]="option.id" class="font-montserrat">
-              {{option.attributes.first_name}} {{option.attributes.last_name}}
+              
+              <ng-container *ngIf="option.attributes?.company_name">
+                {{option.attributes?.company_name}}
+              </ng-container>
+              <ng-container *ngIf="!option.attributes?.company_name">
+                {{option.attributes?.first_name}} {{option.attributes?.last_name}}
+              </ng-container>    
+              
             </mat-option>
           </mat-autocomplete>
           <button (click)="addCustomer($event)" class="tooltip tooltip-bottom" data-tip="Neuen Kunden hinzufügen"
