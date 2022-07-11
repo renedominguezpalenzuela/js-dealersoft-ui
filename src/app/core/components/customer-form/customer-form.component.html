@@ -1,31 +1,33 @@
-<form (ngSubmit)="submit()" [formGroup]="customerForm">
-  <h1 mat-dialog-title>Neuer Kunde</h1>
+<form (ngSubmit)="submit()" [formGroup]="customerForm"  class="font-montserrat">
+  <h1 mat-dialog-title class="font-montserrat">Neuer Kunde</h1>
   <mat-divider></mat-divider>
-  <div mat-dialog-content>
+  <div mat-dialog-content class="font-montserrat">
     <div class="grid grid-cols-2 gap-x-3 gap-y-2 mt-2 max-h-96 overflow-y-auto px-2">
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Titel</mat-label>
-          <mat-select [required]="isRequired()" formControlName="title">
-            <mat-option value="Herr">Herr</mat-option>
-            <mat-option value="Frau">Frau</mat-option>
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label class="font-montserrat">Titel</mat-label>
+          <mat-select [required]="isRequired()" formControlName="title" class="font-montserrat">
+            <mat-option value="Herr" class="font-montserrat">Herr</mat-option>
+            <mat-option value="Frau" class="font-montserrat">Frau</mat-option>
           </mat-select>
           <mat-error *ngIf="hasRequiredError('title')">
             <b>Titel</b> wird benötigt
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Vorname</mat-label>
-          <input [required]="isRequired()" formControlName="first_name" matInput>
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label >Vorname</mat-label>
+          <input [required]="isRequired()" formControlName="first_name" matInput >
           <mat-error *ngIf="hasRequiredError('first_name')">
             <b>Vorname</b> wird benötigt
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Nachname</mat-label>
           <input [required]="isRequired()" formControlName="last_name" matInput>
           <mat-error *ngIf="hasRequiredError('last_name')">
@@ -35,7 +37,7 @@
       </div>
 
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Geburtsdatum</mat-label>
           <input [matDatepicker]="pickerDate" formControlName="birth_date" matInput >
           <mat-datepicker-toggle [for]="pickerDate" matSuffix></mat-datepicker-toggle>
@@ -44,27 +46,27 @@
       </div>
 
       <div class="col-span-2">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Firmenname </mat-label>
           <input formControlName="company_name" matInput>
         </mat-form-field>
       </div>
 
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Telefonnummer</mat-label>
           <input  formControlName="phone" matInput>
           
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Fax</mat-label>
           <input formControlName="fax" matInput>
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Steuernummer</mat-label>
           <!-- <input [required]="isRequired()" formControlName="tax_number" matInput> -->
           <input formControlName="tax_number" matInput> 
@@ -74,7 +76,7 @@
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>E-Mail</mat-label>
           <input formControlName="email" matInput type="email">
           <mat-error *ngIf="hasEmailError('email')">
@@ -83,44 +85,44 @@
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Website</mat-label>
           <input formControlName="website" matInput>
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Straße</mat-label>
           <input formControlName="street" matInput>
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Hausnummer</mat-label>
           <input formControlName="house_number" matInput>
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Postleitzahl</mat-label>
           <input formControlName="postal_code" matInput type="number">
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Stadt</mat-label>
           <input formControlName="city" matInput>
         </mat-form-field>
       </div>
       <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Land</mat-label>
           <input formControlName="country" matInput>
         </mat-form-field>
       </div>
 
       <div class="col-span-2">
-        <mat-form-field appearance="outline" class="w-full">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Adresszusatz</mat-label>
           <input formControlName="aditional_address" matInput>
         </mat-form-field>
