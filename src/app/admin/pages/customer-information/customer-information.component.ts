@@ -36,10 +36,11 @@ export class CustomerInformationComponent implements OnInit {
 
   public data: Customer[] = [];
   public displayedColumns: Column[] = [
+
     {
       column: 'attributes.title',
       header: 'Titel',
-      show: true,
+      show: false,
       type: ColumnType.Regular,
       ordenar: true
     },
@@ -57,6 +58,16 @@ export class CustomerInformationComponent implements OnInit {
       type: ColumnType.Regular,
       ordenar: true
     },
+
+    {
+      column: 'attributes.company_name',
+      header: 'Firmenname',
+      show: true,
+      type: ColumnType.Regular,
+      ordenar: true
+    },
+  
+
     {
       column: 'attributes.email',
       header: 'Email',
@@ -204,6 +215,8 @@ export class CustomerInformationComponent implements OnInit {
   };
 
   public openSelectColumnDialog() {
+
+    console.log( this.displayedColumns )
     this.matDialog
       .open(SelectColumnsComponent, {
         width: '450px',
@@ -214,6 +227,8 @@ export class CustomerInformationComponent implements OnInit {
       .subscribe((out: false | { columns: Column[] }) => {
         if (out) {
           this.displayedColumns = JSON.parse(JSON.stringify(out.columns));
+
+         
           this.dynamicTableService.setUrl(
             this.router.url,
             this.displayedColumns
