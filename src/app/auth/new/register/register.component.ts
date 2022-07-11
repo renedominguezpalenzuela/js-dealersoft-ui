@@ -39,13 +39,16 @@ export class RegisterComponent implements OnInit {
     iban: [null, [Validators.required]],
     bic_swift_code: [null, [Validators.required]],
     hrb_walsrode: [null, [Validators.required]],
-    bank_name:[null, [Validators.required]],
-    username:[null, [Validators.required]]
+    bank_name: [null, [Validators.required]],
+    username: [null, [Validators.required]],
+
   });
+
   public logoImg: File | undefined;
   public showLogo: boolean = false;
   public logoImgSrc: string = '';
   public isLoading: boolean = false;
+
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -57,7 +60,11 @@ export class RegisterComponent implements OnInit {
     private httpClient: HttpClient
   ) {}
 
-  ngOnInit(): void {}
+ 
+
+  ngOnInit(): void {
+ 
+  }
 
   public hasError = (input: string): boolean => {
     return this.validationsService.hasError(this.registerForm, input);
@@ -134,7 +141,9 @@ export class RegisterComponent implements OnInit {
       this.registerForm.valid &&
       this.logoImg instanceof File &&
       !this.isLoading &&
-      this.registerForm.valid && this.logoImg instanceof File && !this.isLoading
+      this.registerForm.valid &&
+      this.logoImg instanceof File &&
+      !this.isLoading
     ) {
       this.isLoading = true;
       const newUser = {
@@ -184,8 +193,6 @@ export class RegisterComponent implements OnInit {
           const form = new FormData();
 
           form.append('files', <File>this.logoImg);
-
-          
 
           this.requestService
             .POSTUpload(this.apiHelperService.uploadFilesURL, form)
