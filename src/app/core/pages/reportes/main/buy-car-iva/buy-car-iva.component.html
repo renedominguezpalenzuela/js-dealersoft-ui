@@ -17,7 +17,7 @@
 
         
       
-        <div class="mt-16 ">
+        <div class="mt-4">
             <app-car-details-compra [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-compra>
         </div>
 
@@ -26,13 +26,13 @@
             <app-precio-compra-iva [car_buy_data]="car_buy_data"></app-precio-compra-iva>
         </div>
        
-        <p class=" text-center mt-4 text-details">
-            Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren.              
+        <p class=" mt-4 text-details">
+            Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren. Gerichtsstand ist {{me?.city}}              
         </p>
 
-        <p class=" text-center  text-details">
-            Gerichtsstand ist {{me?.city}}
-        </p>
+        <!-- <p class=" text-center  text-details">
+            
+        </p> -->
         
         <app-firma></app-firma>
 
