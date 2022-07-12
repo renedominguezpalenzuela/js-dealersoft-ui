@@ -60,25 +60,22 @@ export class CustomerFormComponent implements OnInit {
     title: [null],
     first_name: [null],
     last_name: [null],
-    birth_date: [null, []],
-
+    birth_date: [null],
     company_name: [null ],
-
     phone: [null],
-    fax: ['', []],
-    tax_number: ['', []],
+    fax: [null],
+    tax_number: [null],
     email: [null, [Validators.email]],
-    website: ['', []],
-    street: ['', []],
-    house_number: ['', []],
-    postal_code: ['', []],
-    city: ['', []],
-    country: ['', []],
-    aditional_address: ['', []],
-    user: [null],
-    
-    company: [true, ], //Check Box
-    private: [false], //Check Box
+    website: [null],
+    street: [null],
+    house_number: [null],
+    postal_code: [null],
+    city: [null],
+    country: [null],
+    aditional_address: [null],
+    user: [null],    
+    company: [true ], //Check Box
+    private: [false] //Check Box
   });
 
   constructor(
@@ -181,7 +178,7 @@ export class CustomerFormComponent implements OnInit {
     this._adapter.setLocale(this._locale);
 
     //  this.customerForm.patchValue({ user: this.authUser?.id });
-    this.customerForm.patchValue({ user: this.authUser });
+    this.customerForm.patchValue({ user: this.authUser?.id });
 
     this.customerForm
       .get('company')!
@@ -250,7 +247,8 @@ export class CustomerFormComponent implements OnInit {
 
   public submit() {
     // this.customerForm.updateValueAndValidity()
-    if (this.customerForm.valid) {      
+    if (this.customerForm.valid) { 
+      console.log( this.customerForm.value)     
       this.dialogRef.close({ body: this.customerForm.value });
     } else {    
       this.markAsTouchedAllControls();   
