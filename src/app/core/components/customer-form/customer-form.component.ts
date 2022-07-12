@@ -49,7 +49,7 @@ import 'moment/locale/de';
 export class CustomerFormComponent implements OnInit {
   public authUser: User | null = null;
   public isAuth: boolean = false;
-  public mostrarCompanyName: boolean = true;
+  // public mostrarCompanyName: boolean = true;
 
   public actualizando_radio_buttons: boolean = false;
 
@@ -108,9 +108,16 @@ export class CustomerFormComponent implements OnInit {
 
      this.required_empresa=true;
     this.required_privado=false;
+    // this.mostrarCompanyName=true;
 
   
+    
+    this.customerForm.get('company_name')!.markAsUntouched();
+    this.customerForm.get('company_name')!.markAsPristine();
     this.customerForm.get('company_name')!.addValidators(Validators.required);
+    this.customerForm.get('company_name')!.enable();
+
+
     // this.customerForm.get('company_name')!.markAsUntouched();
     // this.customerForm.get('company_name')!.markAsPristine();  
 
@@ -145,12 +152,16 @@ export class CustomerFormComponent implements OnInit {
 
     this.required_empresa=false;
     this.required_privado=true;
+    // this.mostrarCompanyName=false;
     
 
     this.customerForm.get('company_name')!.setValue(null);
+    this.customerForm.get('company_name')!.markAsUntouched();
+    this.customerForm.get('company_name')!.markAsPristine();
     this.customerForm.get('company_name')!.removeValidators(Validators.required);
-    // this.customerForm.get('company_name')!.markAsUntouched();
-    // this.customerForm.get('company_name')!.markAsPristine();
+    this.customerForm.get('company_name')!.disable();
+    
+
 
      
      this.customerForm.get('first_name')!.addValidators(Validators.required);
@@ -238,11 +249,12 @@ export class CustomerFormComponent implements OnInit {
   
 
   public submit() {
-    this.customerForm.updateValueAndValidity()
+    // this.customerForm.updateValueAndValidity()
     if (this.customerForm.valid) {      
       this.dialogRef.close({ body: this.customerForm.value });
     } else {    
-      this.markAsTouchedAllControls();      
+      this.markAsTouchedAllControls();   
+      console.log(this.findInvalidControls())   
     
     }
   }
