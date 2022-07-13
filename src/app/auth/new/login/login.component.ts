@@ -1,5 +1,5 @@
-import { Component, OnInit/**ViewEncapsulation */ } from '@angular/core';
-import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { Component, OnInit /**ViewEncapsulation */ } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   ApiHelperService,
@@ -9,12 +9,13 @@ import {
   ValidationsService,
 } from '@core/services';
 
-
+import { Globals } from '../../../globales';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  providers: [Globals],
   // encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
     private readonly requestService: RequestService,
     private readonly apiHelperService: ApiHelperService,
     private readonly authService: AuthService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly globales: Globals
   ) {
     this.returnURL =
       this.activatedRoute.snapshot.queryParamMap.get('returnUrl') || '/admin';
@@ -68,23 +70,22 @@ export class LoginComponent implements OnInit {
   };
 
   onSubmit() {
-  
+    this.globales.tiempo = new Date().getTime();
+    console.log('INICIO Proces login');
     if (this.loginForm.valid) {
-      
-
-      
       this.requestService
         .Post(this.apiHelperService.loginURL, this.loginForm.value, false)
         .subscribe(() => {
+          var end = new Date().getTime();
+          var time = end - this.globales.tiempo;
+          console.log('LLamado a: ' + this.apiHelperService.loginURL);
+          console.log('Execution time: ' + time);
 
           this.notificationService.riseNotification({
             color: 'success',
             data: 'Protokollierung erfolgreich',
           });
 
-          
-
-        
           this.router.navigate([this.returnURL]);
         });
     }

@@ -14,10 +14,13 @@ import { environment } from '../../../../environments/environment';
 import { ExportType } from '@core/services/request.service';
 import { saveAs } from 'file-saver';
 
+import { Globals } from '../../../globales';
+
 @Component({
   selector: 'app-my-stock',
   templateUrl: './my-stock.component.html',
-  styleUrls: ['./my-stock.component.scss']
+  styleUrls: ['./my-stock.component.scss'],
+  providers: [Globals]
 })
 export class MyStockComponent implements OnInit {
 
@@ -181,7 +184,8 @@ export class MyStockComponent implements OnInit {
     private readonly router: Router,
     private readonly notificationService: NotificationService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly globales: Globals
   ) {
     if (this.activatedRoute.snapshot.queryParamMap.has('page')) {
       this.currentPage = <number><unknown>this.activatedRoute.snapshot.queryParamMap.get('page');
@@ -200,6 +204,8 @@ export class MyStockComponent implements OnInit {
   }
 
   public loadPaginatedData = ($event: number) => {
+    var tiempo_parcial_ini = new Date().getTime();
+
     this.currentPage = $event;
     this.requestService.Get(this.apiHelperService.carsURL, this.query())
       .subscribe(res => {
@@ -212,11 +218,35 @@ export class MyStockComponent implements OnInit {
           net_iva: elm.attributes.sell?.iva_sell - elm.attributes.buy?.iva_buy
         }));
         this.pageCount = res.meta.pagination.pageCount;
+
+
+        
+        var end = new Date().getTime();
+        var time = end - tiempo_parcial_ini;
+        console.log("Inicio llamada a "+this.apiHelperService.carsURL)
+        console.log('Execution time: ' + time);
+
+
         this.router.navigate([], {
           relativeTo: this.activatedRoute,
           queryParams: { page: this.currentPage },
           queryParamsHandling: 'merge',
         });
+
+        console.log("Abrir pagina")
+        console.log(this.currentPage)
+
+                
+         end = new Date().getTime();
+         time = end - tiempo_parcial_ini;
+
+        console.log('Execution time: ' + time);
+
+
+
+        
+
+
         this.noShowLoader = true;
       });
   }
