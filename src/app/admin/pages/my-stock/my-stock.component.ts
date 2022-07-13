@@ -223,7 +223,7 @@ export class MyStockComponent implements OnInit {
         
         var end = new Date().getTime();
         var time = end - tiempo_parcial_ini;
-        console.log("Inicio llamada a "+this.apiHelperService.carsURL)
+        console.log("Calling: "+this.apiHelperService.carsURL)
         console.log('Execution time: ' + time);
 
 

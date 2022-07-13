@@ -54,7 +54,7 @@ export class AdminModule {
 
           var end = new Date().getTime();
           var time = end - tiempo_parcial_ini;
-          console.log("Inicio llamada a "+this.apiHelperService.meURL)
+          console.log("Calling: "+this.apiHelperService.meURL)
           console.log('Execution time: ' + time);
         
           console.log(result)
