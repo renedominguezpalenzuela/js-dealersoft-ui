@@ -233,14 +233,7 @@ export class MyStockComponent implements OnInit {
           queryParamsHandling: 'merge',
         });
 
-        console.log("Abrir pagina")
-        console.log(this.currentPage)
 
-                
-         end = new Date().getTime();
-         time = end - tiempo_parcial_ini;
-
-        console.log('Execution time: ' + time);
 
 
 
