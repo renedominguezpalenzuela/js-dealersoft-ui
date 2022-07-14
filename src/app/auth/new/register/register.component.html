@@ -4,6 +4,9 @@
     <!-- Seleccionar imagen -->
     <div class="col-span-2 flex flex-col justify-center items-center">
       <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file">
+    
+
+
       <div class="avatar mt-2">
         <div class="w-24 h-24 mask mask-squircle ring ring-gray">
           <img *ngIf="showLogo else defaultImg" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom2">
@@ -17,49 +20,50 @@
           FIRMENLOGO HOCHLADEN
         </label>
       </div>
+
+      <span *ngIf="ImageError" class="label-text-alt text-red-400 pl-2 mt-1">
+        Bitte Firmenlogo Hochladen
+      </span> 
+
     </div>
 
-
-       <!-- 
-          **************************************************************************************************************** 
-          **   Radio buttons  a25, MwSt                            
-          **************************************************************************************************************** 
-        -->
-        <!-- <div class="col-span-2 lg:col-span-1 flex items-center justify-start gap-x-3 pl-5"> -->
-          <!-- <div class="relative mt-3 col-span-2 "> -->
-
-          <!-- <div class="relative col-start-1 mt-3 flex justify-center">
-            <input class="toggle" formControlName="company" id="company"  type="checkbox">
-       
-            <label class="cursor-pointer font-montserrat text-gray-500" for="company">Firmenkunde</label>
-          </div> -->
-       
-          <!-- (change)="checkRememberMe()" -->
-          <!-- <div class="col-start-2 mt-3 flex justify-start items-center">
-            <input  class="mr-3 rounded-full  accent-[#3A4157] focus:ring-0" id="remember" name="remember"
-              type="checkbox">
-            <label class="cursor-pointer text-sm       text-white" for="remember">Eingeloggt bleiben</label>
-          </div> -->
-
-
-          <!-- <div class="relative col-start-2 mt-3 flex justify-center">
-            <input class="toggle" formControlName="private" id="private" type="checkbox">
-
-            <label class="cursor-pointer font-montserrat text-gray-500" for="private">Privatperson</label>
-          </div> -->
-        <!-- </div> -->
-
-    <div class="relative mt-3 col-span-2 sm:col-span-1">
-      <input
+    
+     <div class="relative mt-3 col-span-2 sm:col-span-1">
+      <input matInput 
         class="{{hasError('first_name') ? 'input-error' : 'input-primary'}} rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
-        formControlName="first_name" placeholder="Vorname" required type="text">
+        formControlName="first_name" placeholder="Vorname" [required]="true" type="text">
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="name_img" class="ml-4" src="assets/user--v1.png" />
       </div>
       <span *ngIf="hasRequiredError('first_name')" class="label-text-alt text-red-400 pl-2">
         <b>Vorname</b> wird benötigt
       </span>
-    </div>
+    </div>  
+
+<!-- 
+    <mat-form-field class="relative mt-3 col-span-2 sm:col-span-1"  >
+      <input matInput 
+      class="{{hasError('first_name') ? 'input-error' : 'input-primary'}} rounded-full bg-[#1E253E] mycolor input pl-12 w-full"
+      
+        formControlName="first_name" placeholder="Vorname" [required]="true" type="text">
+      <div class="absolute left-0 top-3 flex items-center">
+        <img alt="name_img" class="ml-4" src="assets/user--v1.png" />
+      </div>
+      <mat-error *ngIf="hasRequiredError('first_name')" class="label-text-alt text-red-400 pl-2">
+        <b>Vorname</b> wird benötigt
+      </mat-error>
+    </mat-form-field> -->
+
+
+
+
+        <!-- <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+      <mat-label class="font-montserrat">Fahrzeugname</mat-label>
+      <input [required]="isRequired()" formControlName="name" matInput class="font-montserrat">
+      <mat-error *ngIf="hasRequiredError('name')">
+        <b>Fahrzeugname</b> ist erforderlich
+      </mat-error>
+    </mat-form-field> -->
 
 
     <div class="relative mt-3 col-span-2 sm:col-span-1">
@@ -77,7 +81,7 @@
     <div class="relative mt-3 col-span-2 " >
       <input autocomplete="company_name" class="{{hasError('company_name') ? 'input-error' : 'input-primary'}}
       input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="company_name" placeholder="Firmenname" 
-        type="text">
+        type="text" required>
       <div class="absolute left-0 top-3 flex items-center">
         <img alt="company_name_img" class="ml-4" src="assets/company.png" />
       </div>
@@ -295,6 +299,7 @@
 
      
     
+
 
 
     <div class="relative mt-3 col-span-2 sm:col-span-1">

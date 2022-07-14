@@ -24,6 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SaveDom2Pipe } from './../save-dom2.pipe';
 
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +54,10 @@ import { SaveDom2Pipe } from './../save-dom2.pipe';
     MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    RouterModule
   
   ]
 })

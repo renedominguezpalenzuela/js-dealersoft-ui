@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  // URL_HOST: 'http://localhost:1337',
-  // URL_API: 'http://localhost:1337/api',
+  URL_HOST: 'http://localhost:1337',
+  URL_API: 'http://localhost:1337/api',
 
-  URL_HOST: 'https://js-dealersoft-server.herokuapp.com',
-  URL_API: 'https://js-dealersoft-server.herokuapp.com/api',
+  // URL_HOST: 'https://js-dealersoft-server.herokuapp.com',
+  // URL_API: 'https://js-dealersoft-server.herokuapp.com/api',
   sourcesOptions: [
     { label: 'Telefon Ads', value: 'telefon_ads' },
     { label: 'Telefon Organisch', value: 'telefon_organic' },

@@ -13,6 +13,8 @@ import * as moment from 'moment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,13 +28,14 @@ export class RegisterComponent implements OnInit {
     company_name: [null, [Validators.required]],
     password: [null, [Validators.required, Validators.minLength(8)]],
     email: [null, [Validators.required, Validators.email]],
-    employees_number: [null, [Validators.required]],
+    employees_number: [null, Validators.required ],
     street: [null, [Validators.required]],
     house_number: [null, [Validators.required]],
     city: [null, [Validators.required]],
     postal_code: [null, [Validators.required]],
+
     phone: [null, [Validators.required]],
-    website: [null, [Validators.required]],
+    website: [null],
     steuer_nr: [null, [Validators.required]],
     ust_Idnr: [null, [Validators.required]],
     geschaftsfuhrer: [null, [Validators.required]],
@@ -48,6 +51,8 @@ export class RegisterComponent implements OnInit {
   public showLogo: boolean = false;
   public logoImgSrc: string = '';
   public isLoading: boolean = false;
+
+  public ImageError: boolean = false;
 
 
   constructor(
@@ -71,8 +76,30 @@ export class RegisterComponent implements OnInit {
   };
 
   public hasRequiredError = (input: string): boolean => {
-    return this.validationsService.hasRequiredError(this.registerForm, input);
+
+    const errror_input = this.validationsService.hasRequiredError(this.registerForm, input);
+    
+
+    return errror_input;
   };
+
+
+  public logoImageError(){
+
+    
+    if (this.logoImg instanceof File) {
+       return false;
+    } else {
+            
+     
+      return true
+
+    }
+
+
+     if (this.logoImg===undefined) return true; else return false
+  }
+
 
   public hasMinLengthError = (input: string): boolean => {
     return this.validationsService.hasMinLengthError(this.registerForm, input);
@@ -86,6 +113,7 @@ export class RegisterComponent implements OnInit {
 
   public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
     let cabcera = new HttpHeaders({ Accept: 'application/json' });
+   
     return this.httpClient.post(url, files, {
       headers: cabcera,
       reportProgress: true,
@@ -94,6 +122,34 @@ export class RegisterComponent implements OnInit {
   };
 
   public register() {
+
+
+    // if (this.logoImgSrc!=null) {
+    //   this.ImageError = false;
+    // } else {
+
+    //   this.ImageError = true;
+    //   this.notificationService.riseNotification({
+    //     color: 'warning',
+    //     data: 'Bitte Firmenlogo Hochladen',
+    //   });
+    //   return;
+
+    // }
+    if (this.logoImg instanceof File) {
+      this.ImageError = false;
+
+    } else {
+            
+      this.ImageError = true;
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'Bitte Firmenlogo Hochladen',
+      });
+    // return;
+
+    }
+  
     if (
       this.registerForm.valid &&
       this.logoImg instanceof File &&
@@ -133,98 +189,147 @@ export class RegisterComponent implements OnInit {
           }
         }
       );
-    }
-  }
+    }  else {
+      this.registerForm.updateValueAndValidity();
 
-  public register2() {
-    if (
-      this.registerForm.valid &&
-      this.logoImg instanceof File &&
-      !this.isLoading &&
-      this.registerForm.valid &&
-      this.logoImg instanceof File &&
-      !this.isLoading
-    ) {
-      this.isLoading = true;
-      const newUser = {
-        ...this.registerForm.value,
-        active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
-      };
-      this.requestService
-        .Post(this.apiHelperService.registerURL, newUser, false)
-        .subscribe((res) => {
-          const form = new FormData();
-          form.append('files', <File>this.logoImg);
+      this.markAsTouchedAllControls();
+  //    let errores = this.findInvalidControls();
 
-          this.POSTUpload2(
-            this.apiHelperService.uploadFilesURL,
-            form
-          ).subscribe((events) => {
-            if (events.type === HttpEventType.Response) {
-              const data = { logo: events.body[0].id, user: res.user.id };
-              this.requestService
-                .Post(this.apiHelperService.logosURL, data)
-                .subscribe(() => {
-                  this.isLoading = false;
-                  this.notificationService.riseNotification({
-                    color: 'success',
-                    data: 'Registrierung & Anmeldung erfolgreich',
-                  });
-                  // this.router.navigate(['/admin']);
-                });
-            }
-          });
-        });
-    }
-  }
+  
 
-  public registerOLD() {
-    if (this.registerForm.valid && !this.isLoading) {
-      // if (this.registerForm.valid && this.logoImg instanceof File && !this.isLoading) {
-      this.isLoading = true;
-      const newUser = {
-        ...this.registerForm.value,
-        active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
-      };
-
-      this.requestService
-        .Post(this.apiHelperService.registerURL, newUser, false)
-        .subscribe((res) => {
-          const form = new FormData();
-
-          form.append('files', <File>this.logoImg);
-
-          this.requestService
-            .POSTUpload(this.apiHelperService.uploadFilesURL, form)
-            .subscribe((events) => {
-              if (events.type === HttpEventType.Response) {
-                const data = { logo: events.body[0].id, user: res.user.id };
-
-                this.requestService
-                  .Post(this.apiHelperService.logosURL, data)
-                  .subscribe(() => {
-                    this.isLoading = false;
-                    this.notificationService.riseNotification({
-                      color: 'success',
-                      data: 'Registrierung & Anmeldung erfolgreich',
-                    });
-                  });
-              }
-            });
-        });
-    } else {
-      this.isLoading = false;
       this.notificationService.riseNotification({
-        color: 'error',
-        data: 'Data Errors!!!',
+        color: 'warning',
+        data: 'fehlende Angaben',
       });
+
+
+
+
+
     }
   }
+
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.registerForm.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name + ', ' + controls[name].value);
+      }
+    }
+    return invalid;
+  }
+
+  
+
+  public markAsTouchedAllControls() {
+    const invalid = [];
+    const controls = this.registerForm.controls;
+    for (const name in controls) {
+    //  controls[name].markAsTouched();
+      controls[name].markAsDirty();
+    }
+  }
+
+
+  // public register2() {
+
+ 
+  //   if (
+  //     this.registerForm.valid &&
+  //     this.logoImg instanceof File &&
+  //     !this.isLoading &&
+  //     this.registerForm.valid &&
+  //     this.logoImg instanceof File &&
+  //     !this.isLoading
+  //   ) {
+  //     this.isLoading = true;
+  //     const newUser = {
+  //       ...this.registerForm.value,
+  //       active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
+  //     };
+  //     this.requestService
+  //       .Post(this.apiHelperService.registerURL, newUser, false)
+  //       .subscribe((res) => {
+  //         const form = new FormData();
+  //         form.append('files', <File>this.logoImg);
+
+  //         this.POSTUpload2(
+  //           this.apiHelperService.uploadFilesURL,
+  //           form
+  //         ).subscribe((events) => {
+  //           if (events.type === HttpEventType.Response) {
+  //             const data = { logo: events.body[0].id, user: res.user.id };
+  //             this.requestService
+  //               .Post(this.apiHelperService.logosURL, data)
+  //               .subscribe(() => {
+  //                 this.isLoading = false;
+  //                 this.notificationService.riseNotification({
+  //                   color: 'success',
+  //                   data: 'Registrierung & Anmeldung erfolgreich',
+  //                 });
+  //                 // this.router.navigate(['/admin']);
+  //               });
+  //           }
+  //         });
+  //       });
+  //   }
+  // }
+
+  // public registerOLD() {
+  //   if (this.registerForm.valid && !this.isLoading) {
+  //     // if (this.registerForm.valid && this.logoImg instanceof File && !this.isLoading) {
+  //     this.isLoading = true;
+  //     const newUser = {
+  //       ...this.registerForm.value,
+  //       active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
+  //     };
+
+  //     this.requestService
+  //       .Post(this.apiHelperService.registerURL, newUser, false)
+  //       .subscribe((res) => {
+  //         const form = new FormData();
+
+  //         form.append('files', <File>this.logoImg);
+
+  //         this.requestService
+  //           .POSTUpload(this.apiHelperService.uploadFilesURL, form)
+  //           .subscribe((events) => {
+  //             if (events.type === HttpEventType.Response) {
+  //               const data = { logo: events.body[0].id, user: res.user.id };
+
+  //               this.requestService
+  //                 .Post(this.apiHelperService.logosURL, data)
+  //                 .subscribe(() => {
+  //                   this.isLoading = false;
+  //                   this.notificationService.riseNotification({
+  //                     color: 'success',
+  //                     data: 'Registrierung & Anmeldung erfolgreich',
+  //                   });
+  //                 });
+  //             }
+  //           });
+  //       });
+  //   } else {
+  //     this.isLoading = false;
+  //     this.notificationService.riseNotification({
+  //       color: 'error',
+  //       data: 'Data Errors!!!',
+  //     });
+  //   }
+  // }
 
   public previewLogo($event: any) {
     const file: File = $event.target.files[0];
     this.logoImg = file;
     this.logoImgSrc = window.URL.createObjectURL(file);
     this.showLogo = true;
+    this.ImageError = false;
+    // if (this.logoImg instanceof File) {
+    //   this.ImageError = false;
+    // } else {
+    //   this.ImageError = true;
+    // }
+    
   }
 }
