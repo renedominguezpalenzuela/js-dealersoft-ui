@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
     this.globales.tiempo = new Date().getTime();
     if (this.loginForm.valid) {
       this.requestService
-        .Post(this.apiHelperService.loginURL, this.loginForm.value, true)
+        .Post(this.apiHelperService.loginURL, this.loginForm.value, false)
         .subscribe(() => {
           var end = new Date().getTime();
           var time = end - this.globales.tiempo;
