@@ -41,6 +41,8 @@ import { forkJoin } from 'rxjs';
 
 
 
+
+
 @Component({
   selector: 'app-buy-form',
   templateUrl: './buy-form.component.html',
@@ -521,6 +523,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //*************************************************************************************************
   public submit() {
     //Solo salvar, no imprimir
+    
+    
     this.salvarEImprimir(false);
   }
 
@@ -694,13 +698,18 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
   
-  private generateOptions = () => {
-    let myjwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTEsImlhdCI6MTY1NzI5OTY5NCwiZXhwIjoxNjU5ODkxNjk0fQ.IXnXVQ3I3zfgmMMfaCY9jQzfzogvHJwfwLSEIHlbNzc"
+  private generateOptions_TEST = () => {
+    let myjwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTQsImlhdCI6MTY1ODE1OTAyMiwiZXhwIjoxNjYwNzUxMDIyfQ.YmxqFRX7VUgDEkY9YjPZcLu74tfKVyvs6IvO47ese1M"
     return {
-      params: this.query(),
+      params: this.query_user(),
       headers: new HttpHeaders({ Authorization: `Bearer ${ myjwt }` })
     }
   }
+
+  
+  private query_user = () => this.requestService.generateQuery({
+    populate: ['logo','user']
+  });
 
   private query = () => this.requestService.generateQuery({
     populate: ['owner', 'client', 'car', 'user', 'logo']
@@ -710,26 +719,53 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   public car_info: any;
   public car_buy_data: any;
   public logo:any;
+  public me:any;
   
   public loadPaginatedData_TEST = (id:any) => {
     forkJoin([
-      this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ id }`, this.generateOptions()),
-      this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions()),
-      this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
-      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
+
+      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions_TEST()),           
+      // this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ id }`),
+       this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ id }`),
+      //this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions_TEST()),
+      
     ]).subscribe((res:any) => {
-      this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
-      this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
-      this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3]?.id)[0];
-
-      console.log("EEE")
-      console.log(res[3])
-
+     // this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
+     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
      
-    
-     // if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
-     // this.me = res[3];
 
+     //if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
+
+     this.me = res[0];
+     let user_id = this.me.id;
+     console.log(user_id)
+
+    // this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === user_id)[0];
+
+
+     console.log("CAR INFO")
+     this.car_info = res[1];
+     console.log(this.car_info)
+   
+
+     console.log("USER") 
+     console.log(this.me)
+
+     this.car_buy_data = this.car_info.data.attributes.buy;
+     console.log("BUY") 
+     console.log(this.car_buy_data) 
+
+     //http://localhost:1337/api/logos?filters[user][id][$eq]=55&populate=logo
+
+     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
+      (dato)=>{
+        console.log("Logo")
+        console.log(dato)
+
+        this.logo = dato;
+
+      }
+     )
 
 
     });
@@ -738,6 +774,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
   public generatePdf() {
+
+    this.loadPaginatedData_TEST(94);
 
     
     if (!this.boton_salvar_disabled) {    
@@ -750,7 +788,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   private imprimir = () => {
 
-   // this.loadPaginatedData_TEST(26)
+ 
 
 
     let tipo = '/';
@@ -888,4 +926,23 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
   }
 
+
+
+  
+  // public Test_loadPaginatedData = () => {
+  //   forkJoin([
+  //     this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
+  //     this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ this.id }`, this.generateOptions()),
+  //     this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions()),
+  //     this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
+      
+  //   ]).subscribe((res:any) => {
+  //     this.me = res[0];
+  //     this.car_info = res[1].data2.filter((item: any) => item.id === this.id)[1];
+     
+  //     this.car_buy_data = res[2].data.filter((item: any) => item.attributes.car.data.id === this.id)[1];
+  //     this.logo = res[3].data.filter((item: any) => item.attributes.user.data.id === res[0].id)[1];
+  //     if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
+  //   });
+  // }
 }

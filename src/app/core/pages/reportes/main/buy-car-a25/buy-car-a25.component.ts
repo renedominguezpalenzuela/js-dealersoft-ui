@@ -93,22 +93,59 @@ export class BuyCarA25Component implements OnInit {
   
   }
 
+
+
   public loadPaginatedData = () => {
     forkJoin([
+      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),           
+      this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ this.id }`)      
+    ]).subscribe((res:any) => {
+     // this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
+     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
+
+     this.me = res[0];
+     let user_id = this.me.id;
+     this.car_info = res[1];    
+     this.car_buy_data = this.car_info.data.attributes.buy;
+
+     
+     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
+      (dato)=>{
+     
+        this.logo = dato;
+        if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
+
+      }
+     )
+
+
+    });
+  }
+
+
+  public loadPaginatedData_OLD = () => {
+    forkJoin([
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
-      this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ this.id }`, this.generateOptions()),
+     // this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ this.id }`, this.generateOptions()),
+     this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ this.id }`, this.generateOptions()),
       this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions()),
       this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
       
     ]).subscribe((res:any) => {
       this.me = res[0];
-      this.car_info = res[1].data2.filter((item: any) => item.id === this.id)[1];
+      //this.car_info = res[1].data2.filter((item: any) => item.id === this.id)[1];
+      this.car_info = res[1].data;
      
       this.car_buy_data = res[2].data.filter((item: any) => item.attributes.car.data.id === this.id)[1];
+
+
       this.logo = res[3].data.filter((item: any) => item.attributes.user.data.id === res[0].id)[1];
       if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
     });
   }
+
+
+
 
   private generateOptions = () => {
     return {

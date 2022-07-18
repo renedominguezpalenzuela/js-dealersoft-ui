@@ -9,24 +9,25 @@
 
     <div class="col-start-1 row-start-2  flex justify-between items-center header-client-data pt-1 ">
         <div>
-            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.title}}</p>
-            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.first_name}}
-                {{car_buy_data?.attributes?.client?.data?.attributes?.last_name}}</p>
-            <p><span>{{car_buy_data?.attributes?.client?.data?.attributes?.street}}</span>
-                <span class="pl-1">{{car_buy_data?.attributes?.client?.data?.attributes?.house_number}}</span>
+
+            <p>{{car_buy_data?.client?.title}}</p>
+            <p>{{car_buy_data?.client?.first_name}}
+                {{car_buy_data?.client?.last_name}}</p>
+            <p><span>{{car_buy_data?.client?.street}}</span>
+                <span class="pl-1">{{car_buy_data?.client?.house_number}}</span>
             </p>
-            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}}
-                {{car_buy_data?.attributes?.client?.data?.attributes?.city}}</p>
-            <p>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</p>
+            <p>{{car_buy_data?.client?.postal_code}}
+                {{car_buy_data?.client?.city}}</p>
+            <p>{{car_buy_data?.client?.country}}</p>
 
 
             
-            <p class="pt-2" *ngIf="car_buy_data?.attributes?.client?.data?.attributes?.tax_number">
+            <p class="pt-2" *ngIf="car_buy_data?.client?.tax_number">
                <span>
                 Steuernummer: 
                </span> 
                <span>
-                  {{car_buy_data?.attributes?.client?.data?.attributes?.tax_number}}
+                  {{car_buy_data?.client?.tax_number}}
                </span>
 
             </p>

@@ -73,6 +73,8 @@ export class LoginComponent implements OnInit {
   };
 
   onSubmit() {
+
+    console.log("Starting loggin...")
     this.globales.tiempo = new Date().getTime();
     if (this.loginForm.valid) {
       this.requestService
