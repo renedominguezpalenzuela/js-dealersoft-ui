@@ -760,9 +760,15 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
       (dato)=>{
         console.log("Logo")
-        console.log(dato)
+        
 
         this.logo = dato;
+
+        //console.log(dato.data[0].attributes.logo.data.attributes.url)
+        console.log(this.logo?.data[0].attributes.logo.data.attributes.url)
+
+       // this.image_url=this.logo?.attributes.logo.data.attributes.url;
+       // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
 
       }
      )

@@ -70,13 +70,14 @@ export class BuyCarA25Component implements OnInit {
 
  
   get imgPath(): string {
-  let img_url = this.logo?.attributes.logo.data.attributes.url;  
+  //let img_url = this.logo?.data[0].attributes.logo.data.attributes.url;  
+  
   
     if (this.showLogo) {
-      if (img_url.substring(0,4)==='http') {
-        return img_url
+      if (this.image_url.substring(0,4)==='http') {
+        return this.image_url
       } else {
-        return `${ this.apiHelperService.hostUrl }${ img_url }`;
+        return `${ this.apiHelperService.hostUrl }${ this.image_url }`;
       }            
     }  
     else  {
@@ -100,25 +101,16 @@ export class BuyCarA25Component implements OnInit {
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),           
       this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ this.id }`)      
     ]).subscribe((res:any) => {
-     // this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
-     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
-
      this.me = res[0];
      let user_id = this.me.id;
      this.car_info = res[1];    
-     this.car_buy_data = this.car_info.data.attributes.buy;
-
-     
+     this.car_buy_data = this.car_info.data.attributes.buy;     
      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
       (dato)=>{
-     
-        this.logo = dato;
-        if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
-
+        this.image_url=dato?.data[0].attributes.logo.data.attributes.url;                       
+        if (this.image_url)   this.showLogo = true;        
       }
      )
-
-
     });
   }
 
