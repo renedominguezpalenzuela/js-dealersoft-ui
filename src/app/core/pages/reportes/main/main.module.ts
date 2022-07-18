@@ -29,7 +29,7 @@ import { BuyCarA25Component } from './buy-car-a25/buy-car-a25.component';
 import { BuyCarIvaComponent } from './buy-car-iva/buy-car-iva.component';
 import { BillA25Component } from './bill-a25/bill-a25.component';
 import { BillIvaComponent } from './bill-iva/bill-iva.component';
-;
+
 
 
  

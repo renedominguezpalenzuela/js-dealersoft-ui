@@ -2,19 +2,24 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
+import { Globals } from '../globales';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
+  providers: [Globals]
 })
 export class AuthComponent implements OnInit {
 
+  public version:any ="";
   public showButtons: boolean = true;
   private readonly urls = ['/auth/login', '/auth/register'];
 
-  constructor(private readonly router: Router, private renderer: Renderer2) {
+  constructor(private readonly router: Router, private renderer: Renderer2,   private readonly globales: Globals) {
 
     this.renderer.addClass(document.body, 'color_fondo');
+    this.version = this.globales.version; 
 
 
     this.router.events

@@ -1,49 +1,50 @@
+<app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
 
 
-    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+<div class="pt-3 px-20">
 
-    
-    <div class="pt-3 px-20">
+    <div> CAR ID {{id}}</div>
 
-       
-  
-     
-        
-        <!-- Contrato fecha -->
-        
-        <app-contrato-fecha-compra  [car_buy_data]="car_buy_data" [me]="me" ></app-contrato-fecha-compra >
 
-        <p class="flex  mt-4 text-details">
 
-            
-     
-            Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:            
-        </p>
 
-        
-      
-        <div class="mt-4 ">
-            <app-car-details-compra [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-compra>
-        </div>
 
-        <!-- Precio neto -->
-        <div class="mt-8 ">
-            <app-precio-compra [car_buy_data]="car_buy_data"></app-precio-compra>
-        </div>
-       
-        <p class=" mt-4 text-details">
-            Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren. Gerichtsstand ist {{me?.city}}              
-        </p>
 
-        <!-- <p class=" text-center  text-details">
-            
-        </p> -->
-        
-        <app-firma></app-firma>
+    <!-- Contrato fecha -->
 
+    <app-contrato-fecha-compra [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha-compra>
+
+    <p class="flex  mt-4 text-details">
+
+
+
+        Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:
+    </p>
+
+
+
+
+    <div class="mt-4 ">
+        <app-car-details-compra [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-compra>
     </div>
 
-    <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+    <!-- Precio neto -->
+    <div class="mt-8 ">
+        <app-precio-compra [car_buy_data]="car_buy_data"></app-precio-compra>
+    </div>
+
+    <p class=" mt-4 text-details">
+        Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren. Gerichtsstand ist {{me?.city}}
+    </p>
+
+    <!-- <p class=" text-center  text-details">
+            
+        </p> -->
+
+    <app-firma></app-firma>
 
 
 
+</div>
+
+<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>

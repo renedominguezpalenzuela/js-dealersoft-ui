@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   });
 
   public rememberMe = false;
+  public version: any = "";
 
   constructor(
     private readonly router: Router,
@@ -41,6 +42,8 @@ export class LoginComponent implements OnInit {
   ) {
     this.returnURL =
       this.activatedRoute.snapshot.queryParamMap.get('returnUrl') || '/admin';
+
+   
   }
 
   private _returnURL: string | undefined;

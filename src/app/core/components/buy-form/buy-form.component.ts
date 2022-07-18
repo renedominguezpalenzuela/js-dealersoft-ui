@@ -749,6 +749,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private imprimir = () => {
+
+   // this.loadPaginatedData_TEST(26)
+
+
     let tipo = '/';
     if (this.a25_activo) {
       tipo = 'reports/buy-car/a25';
