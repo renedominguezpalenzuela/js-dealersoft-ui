@@ -47,6 +47,11 @@ import {
 } from '@angular/material/core';
 import 'moment/locale/de';
 
+import {  ParamMap } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-sell-form',
@@ -151,6 +156,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   private existenDatosGuardadosenBD: boolean = false;
   private primeraVez: boolean = true;
 
+
+  //TEST
+  private readonly jwt: string;
+
   public exportType = ExportType;
   @ViewChild('autoComplete') private autoComplete:
     | ElementRef<HTMLInputElement>
@@ -169,7 +178,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     location: Location,
     private readonly createInvoice: CreateInvoiceService,
     private _adapter: DateAdapter<any>,
-    @Inject(MAT_DATE_LOCALE) private _locale: string
+    @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private readonly httpClient: HttpClient,
+    
+    private readonly activatedRoute: ActivatedRoute,
   ) {
     this.route = route;
 
@@ -191,6 +203,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.actualizando_radio_buttons = false;
     });
+
+    this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
 
     // this.tabGroup.realignInkBar();
   }
@@ -743,6 +757,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //  Boton Guardar
   //*************************************************************************************************
   public submit() {
+    
     this.salvarEImprimir(false, ExportType.none);
   }
 
@@ -824,6 +839,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   // selected_option_Export = false;
 
   private imprimir(type: ExportType) {
+
+    this.loadPaginatedData_TEST(94)
+
     this.selected_option_a25 = this.carSellForm.get('a25')!.value;
     this.selected_option_MnSt = this.carSellForm.get('iva')!.value;
     this.selected_option_Export = this.carSellForm.get('export')!.value;
@@ -1308,6 +1326,91 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       // Solo salvar, no imprimir
       this.salvarEImprimir(false, ExportType.none);
+    });
+  }
+
+
+  
+  
+  private generateOptions_TEST = () => {
+    let myjwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTQsImlhdCI6MTY1ODE1OTAyMiwiZXhwIjoxNjYwNzUxMDIyfQ.YmxqFRX7VUgDEkY9YjPZcLu74tfKVyvs6IvO47ese1M"
+    return {
+      params: this.query_user(),
+      headers: new HttpHeaders({ Authorization: `Bearer ${ myjwt }` })
+    }
+  }
+
+  
+  private query_user = () => this.requestService.generateQuery({
+    populate: ['logo','user']
+  });
+
+  private query = () => this.requestService.generateQuery({
+    populate: ['owner', 'client', 'car', 'user', 'logo']
+  });
+
+
+  public car_info: any;
+  public car_buy_data: any;
+  public logo:any;
+  public me:any;
+  
+
+   
+  public loadPaginatedData_TEST = (id:any) => {
+    forkJoin([
+
+      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions_TEST()),           
+      // this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ id }`),
+       this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ id }`),
+      //this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions_TEST()),
+      
+    ]).subscribe((res:any) => {
+     // this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
+     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
+     
+
+     //if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
+
+     this.me = res[0];
+     let user_id = this.me.id;
+     console.log(user_id)
+
+    // this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === user_id)[0];
+
+
+     console.log("CAR INFO")
+     this.car_info = res[1];
+     console.log(this.car_info)
+   
+
+     console.log("USER") 
+     console.log(this.me)
+
+     
+     console.log("SELL") 
+     this.car_buy_data = this.car_info.data.attributes.sell;
+     console.log(this.car_buy_data) 
+
+     //http://localhost:1337/api/logos?filters[user][id][$eq]=55&populate=logo
+
+     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
+      (dato: any)=>{
+        console.log("Logo")
+        
+
+       // this.logo = dato;
+
+        //console.log(dato.data[0].attributes.logo.data.attributes.url)
+        console.log(dato)
+
+       // this.image_url=this.logo?.attributes.logo.data.attributes.url;
+       // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
+
+      }
+     )
+
+
     });
   }
 }

@@ -1,23 +1,11 @@
 <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
 
-
 <div class="pt-3 px-20">
-
-      <!-- Contrato fecha -->
-
-      <div>imagen {{image_url}}</div>
-
+    <!-- Contrato fecha -->
     <app-contrato-fecha-compra [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha-compra>
-
     <p class="flex  mt-4 text-details">
-
-
-
         Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:
     </p>
-
-
-
 
     <div class="mt-4 ">
         <app-car-details-compra [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details-compra>
@@ -32,12 +20,7 @@
         Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren. Gerichtsstand ist {{me?.city}}
     </p>
 
-    <!-- <p class=" text-center  text-details">
-            
-        </p> -->
-
     <app-firma></app-firma>
-
 
 
 </div>

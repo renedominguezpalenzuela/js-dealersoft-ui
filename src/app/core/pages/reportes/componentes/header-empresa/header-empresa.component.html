@@ -11,12 +11,13 @@
     <div class="col-start-1 row-start-2  flex justify-between items-center  header-client-data pt-1">
         <div>
             <div>Firma</div>
-            <div>{{car_buy_data?.attributes?.client?.data?.attributes?.company_name}}</div>
-            <div><span> {{car_buy_data?.attributes?.client?.data?.attributes?.street}} </span>
-                <span>{{car_buy_data?.attributes?.client?.data?.attributes?.house_number}}</span></div>
-            <div><span> {{car_buy_data?.attributes?.client?.data?.attributes?.postal_code}} </span>
-                <span>{{car_buy_data?.attributes?.client?.data?.attributes?.city}}</span></div>
-            <div>{{car_buy_data?.attributes?.client?.data?.attributes?.country}}</div>
+            <div>{{car_buy_data?.client?.company_name}}</div>
+            <div><span> {{car_buy_data?.client?.street}} </span>
+                <span>{{car_buy_data?.client?.
+                    house_number}}</span></div>
+            <div><span> {{car_buy_data?.client?.postal_code}} </span>
+                <span>{{car_buy_data?.client?.city}}</span></div>
+            <div>{{car_buy_data?.client?.country}}</div>
 
 
 

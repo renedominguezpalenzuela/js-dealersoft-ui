@@ -5,7 +5,7 @@
   </div>
 
   <div class="text-car-details-bold col-start-2 row-start-1 ">
-    {{car_info?.attributes?.name}}
+    {{car_info?.data?.attributes?.name}}
   </div>
 
   <div class="text-car-details-bold col-start-1 row-start-2  ">
@@ -13,7 +13,7 @@
   </div>
 
   <div class="text-car-details-bold col-start-2 row-start-2 ">
-    {{car_info?.attributes?.car_identifier}}
+    {{car_info?.data?.attributes?.car_identifier}}
   </div>
 
 
@@ -23,7 +23,7 @@
   </div>
 
   <div class=" col-start-2 row-start-3  text-car-details">
-    {{car_info?.attributes?.first_register_date | date:'dd.MM.yyyy'}}
+    {{car_info?.data?.attributes?.first_register_date | date:'dd.MM.yyyy'}}
   </div>
 
 
@@ -32,7 +32,7 @@
   </div>
 
   <div class=" col-start-2 row-start-4  text-car-details">
-    {{car_info?.attributes?.kilowatt}}
+    {{car_info?.data?.attributes?.kilowatt}}
   </div>
 
 
@@ -42,7 +42,7 @@
   </div>
 
   <div class=" col-start-2 row-start-5  text-car-details">
-    {{car_info?.attributes?.kilometres}}
+    {{car_info?.data?.attributes?.kilometres}}
   </div>
 
 
@@ -51,7 +51,7 @@
   </div>
 
   <div class=" col-start-2 row-start-6  text-car-details">
-    {{car_info?.attributes?.build_variant}}
+    {{car_info?.data?.attributes?.build_variant}}
   </div>
 
 
@@ -60,7 +60,7 @@
   </div>
 
   <div class=" col-start-2 row-start-7  text-car-details">
-    {{car_info?.attributes?.color}}
+    {{car_info?.data?.attributes?.color}}
   </div>
 
 
@@ -69,7 +69,7 @@
   </div>
 
   <div class=" col-start-2 row-start-8  text-car-details">
-    {{car_info?.attributes?.last_owner }}
+    {{car_info?.data?.attributes?.last_owner }}
   </div>
 
 
@@ -78,14 +78,14 @@
   </div>
 
   <div class=" col-start-2 row-start-8 flex ">
-    <span class="w-2/5  text-car-details"> {{car_info?.attributes?.comments[0] }} </span>
-    <span class="w-2/5  text-car-details "> {{car_info?.attributes?.comments[1] }} </span>
+    <span class="w-2/5  text-car-details"> {{car_info?.data?.attributes?.comments[0] }} </span>
+    <span class="w-2/5  text-car-details "> {{car_info?.data?.attributes?.comments[1] }} </span>
   </div>
 
 
   <div class=" col-start-2 row-start-9 flex ">
-    <span class="w-2/5  text-car-details "> {{car_info?.attributes?.comments[2] }} </span>
-    <span class="w-2/5   text-car-details"> {{car_info?.attributes?.comments[3] }} </span>
+    <span class="w-2/5  text-car-details "> {{car_info?.data?.attributes?.comments[2] }} </span>
+    <span class="w-2/5   text-car-details"> {{car_info?.data?.attributes?.comments[3] }} </span>
   </div>
 
 
@@ -102,7 +102,7 @@
 
   <div class=" col-start-2 row-start-10 ">
 
-    <p class="break-all preserve-line-break w-97  text-car-details ">{{car_buy_data?.attributes?.bemerkunhen}}</p>
+    <p class="break-all preserve-line-break w-97  text-car-details ">{{car_buy_data?.bemerkunhen}}</p>
 
   </div>
 

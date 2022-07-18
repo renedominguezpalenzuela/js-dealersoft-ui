@@ -37,6 +37,7 @@ export class A25Component implements OnInit {
   private readonly baseDate: string = `${ moment().year() }-${ moment().month() + 1 > 9 ? moment().month() + 1 : `0${ moment().month() + 1 }` }-`;
   private beginDate: string = this.baseDate + '01';
   private showLogo: boolean = false;
+  public image_url: any;
 
 
   constructor(
@@ -51,28 +52,46 @@ export class A25Component implements OnInit {
     this.currentDate = `${ this.month } ${ new Date().getDate() }, ${ this.year }`;
     this.currentUrl = `${ window.location.hostname }/export/vehicle`;
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
-    this.loadQueryParams();
+    //this.loadQueryParams();
+
+    if (this.activatedRoute.snapshot.queryParamMap.has('id'))
+    this.id = +<number><unknown>this.activatedRoute.snapshot.queryParamMap.get('id');
+
+
     this.loadPaginatedData();
 
    
   }
 
  
-  
-  get imgPath(): string {
-    let img_url = this.logo?.attributes.logo.data.attributes.url;  
-    
-      if (this.showLogo) {
-        if (img_url.substring(0,4)==='http') {
-          return img_url
-        } else {
-          return `${ this.apiHelperService.hostUrl }${ img_url }`;
-        }            
-      }  
-      else  {
-        return `assets/brand_logo/dealersoft_black.png`;
-      }
+  get imgPath(): string {  
+    if (this.showLogo) {
+      if (this.image_url.substring(0,4)==='http') {
+        return this.image_url
+      } else {
+        return `${ this.apiHelperService.hostUrl }${ this.image_url }`;
+      }            
+    }  
+    else  {
+      return `assets/brand_logo/dealersoft_black.png`;
     }
+  }
+
+  
+  // get imgPath(): string {
+  //   let img_url = this.logo?.attributes.logo.data.attributes.url;  
+    
+  //     if (this.showLogo) {
+  //       if (img_url.substring(0,4)==='http') {
+  //         return img_url
+  //       } else {
+  //         return `${ this.apiHelperService.hostUrl }${ img_url }`;
+  //       }            
+  //     }  
+  //     else  {
+  //       return `assets/brand_logo/dealersoft_black.png`;
+  //     }
+  //   }
 
   // get imgPath(): string {
   //   if (this.showLogo)
@@ -81,14 +100,37 @@ export class A25Component implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
-      if (map.has('id')) this.id = +<number><unknown>map.get('id');
-    });
+    // this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
+    //   if (map.has('id')) this.id = +<number><unknown>map.get('id');
+    // });
 
   
   }
 
+
   public loadPaginatedData = () => {
+    forkJoin([
+      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),           
+      this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ this.id }`)      
+    ]).subscribe((res:any) => {
+     this.me = res[0];
+     let user_id = this.me.id;
+     this.car_info = res[1];    
+                         
+     this.car_buy_data = this.car_info.data.attributes.sell;   
+
+     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
+      (dato)=>{
+        this.image_url=dato?.data[0].attributes.logo.data.attributes.url;                       
+        if (this.image_url)   this.showLogo = true;        
+      }
+     )
+    });
+  }
+
+
+
+  public loadPaginatedData_OLD = () => {
     forkJoin([
       this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ this.id }`, this.generateOptions()),
       this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
