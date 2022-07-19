@@ -1,5 +1,5 @@
 
-  <app-header-empresa [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-empresa>
+  <app-header-empresa [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-empresa>
 
 
 
@@ -7,20 +7,20 @@
 
 
   <!-- Contrato fecha -->
-  <app-contrato-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha>
+  <app-contrato-fecha [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-contrato-fecha>
 
   <p class="flex justify-start mt-4 text-details mb-4">
-    XXUnter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{me?.company_name}} folgendes Fahrzeug:
+    XXUnter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{this.datosReportes.me?.company_name}} folgendes Fahrzeug:
   </p>
 
   <!-- CAR Details -->
 
-  <app-car-details [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
+  <app-car-details [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info"></app-car-details>
 
 
 
   <!-- Precio neto -->
-  <app-precio-a25 [car_buy_data]="car_buy_data"></app-precio-a25>
+  <app-precio-a25 [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-a25>
 
 
   <div class="text-details flex justify-center mt-4">
@@ -30,7 +30,7 @@
 
   <div class="text-details flex justify-center ">
 
-    Gerichtsstand ist {{me?.city}}.
+    Gerichtsstand ist {{this.datosReportes.me?.city}}.
   </div>
 
   <!-- Firma -->
@@ -41,8 +41,8 @@
 
 
 
-<app-footer-empresa [car_buy_data]="car_buy_data"  [me]="me"></app-footer-empresa>
+<app-footer-empresa [car_buy_data]="this.datosReportes.car_buy_data"  [me]="this.datosReportes.me"></app-footer-empresa>
 
 
 
-<app-second-page [empresa]="true" [car_buy_data]="car_buy_data"  [car_info]="car_info" [me]="me" [imgPath]="imgPath"></app-second-page>
+<app-second-page [empresa]="true" [car_buy_data]="this.datosReportes.car_buy_data"  [car_info]="this.datosReportes.car_info" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-second-page>
