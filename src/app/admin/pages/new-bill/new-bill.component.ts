@@ -561,7 +561,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public generatePdf = () => {
-    this.Prueba();
+    // this.Prueba();
 
     let tipo = '/';
     if (this.a25_activo) {
@@ -609,10 +609,10 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
     ]).subscribe((res) => {
       this.bill_info = res[0].data.attributes
-      console.log( this.bill_info)
+     
 
       let invoice_number = this.bill_info.invoice_number;
-      console.log( invoice_number)
+    
 
       //let client = this.bill_info.attributes.client.data.attributes;
       //let owner = this.bill_info.attributes.owner.data.attributes;
