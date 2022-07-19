@@ -207,6 +207,10 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
       this.vehicleForm.get('kilowatt')!.addValidators([Validators.min(0)]);
       this.vehicleForm.patchValue(this.car!.attributes);
       this.comments = this.car!.attributes.comments;
+
+      this.gestionarNumeroenComentarios() ;
+
+
       if (this.car!.attributes.pictures.data?.length > 0) {
         this.imgSrcList.push(...this.car!.attributes.pictures.data.map((pic, index) => ({
           index: this.imgSrcList.length + index + 1,
@@ -221,6 +225,37 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
     }
 
     
+  }
+
+  gestionarNumeroenComentarios() {
+    
+  
+
+    if (this.comments.length < 4) {
+   
+      
+
+    
+
+        console.log("Acaaaa")
+        
+        this.input_read_only = false;
+        let numero_comentario = this.comments.length + 1;
+
+         if (numero_comentario<=4) {
+            this.texto_label = 'Ausstattung #' + numero_comentario.toString();
+         } else {
+           this.input_read_only = true;
+           this.texto_label = 'keine weiteren Ausstattungen möglich';
+         }
+      
+      
+    } else {
+      this.input_read_only = true;
+      
+      this.texto_label = 'keine weiteren Ausstattungen möglich';
+      this.currentComment = '';
+    }
   }
 
   ngOnInit(): void {
