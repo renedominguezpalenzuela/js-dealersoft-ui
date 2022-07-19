@@ -565,8 +565,10 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
     let tipo = '/';
     if (this.a25_activo) {
+      
       tipo = 'reports/bill/a25';
     } else {
+      
       tipo = 'reports/bill/iva';
     }
 
@@ -584,10 +586,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         }
 
 
-        saveAs(
-          new Blob([res], { type: 'application/pdf' }),
-          nombre
-        );
+        saveAs(  new Blob([res], { type: 'application/pdf' }),    nombre );
 
 
         
@@ -598,23 +597,25 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   public Prueba = () => {
     forkJoin([
-      this.httpClient.get<any>(
-        `${this.apiHelperService.invoicesURL}/?id=${this.invoice_id}`,
-        this.generateOptionsInvoice(this.invoice_id)
-      ),
-      //  this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
+      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/${ this.invoice_id }`, 
+      this.generateOptionsInvoice( this.invoice_id)),
+
+      
+      this.httpClient.get<any>(this.apiHelperService.carsSellURL, this.generateOptions()),
       this.httpClient.get<any>(
         this.apiHelperService.logosURL,
         this.generateOptions()
       ),
       // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
     ]).subscribe((res) => {
-      this.bill_info = res[0].data[0];
+      this.bill_info = res[0].data.attributes
+      console.log( this.bill_info)
 
-      let invoice_number = this.bill_info.attributes.invoice_number;
+      let invoice_number = this.bill_info.invoice_number;
+      console.log( invoice_number)
 
-      let client = this.bill_info.attributes.client.data.attributes;
-      let owner = this.bill_info.attributes.owner.data.attributes;
+      //let client = this.bill_info.attributes.client.data.attributes;
+      //let owner = this.bill_info.attributes.owner.data.attributes;
 
       // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
       //   this.logo = res[2].data.filter((item: any) => item.attributes.user.data.id === res[3].id)[0];

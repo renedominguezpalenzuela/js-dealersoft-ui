@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { ApiHelperService, RequestService } from '@core/services';
 
+import {  FilterDeepOption } from '@core/interfaces';
+import { FilterOperator } from '@core/interfaces/query-params';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,19 +22,19 @@ export class DatosReportesService {
   
   public showLogo: boolean = false;
 
-
   public image_url: any;
   public car_info: any;
   public car_buy_data: any;
   public logo: any;
   public me: any;
 
-
+  public bill_info: any;
+  public invoice_number: any;
+  public invoice_date: any;
+  public user_city: any; 
+  public client: any; 
   
-  get imgPath(): string {
-    //let img_url = this.logo?.data[0].attributes.logo.data.attributes.url;  
-    
-    
+  get imgPath(): string {       
       if (this.showLogo) {
         if (this.image_url.substring(0,4)==='http') {
           return this.image_url
@@ -78,14 +81,70 @@ export class DatosReportesService {
       headers: new HttpHeaders({ Authorization: `Bearer ${ jwt }` })
     }
   }
-
-  // private loadQueryParams = () => {
-  //   if (this.activatedRoute.snapshot.queryParamMap.has('id'))
-  //     this.id = +<number><unknown>this.activatedRoute.snapshot.queryParamMap.get('id');
-  // }
-
+ 
   private query = () => this.requestService.generateQuery({
     populate: ['owner', 'client', 'car', 'user', 'logo']
   });
+  
+  public loadPaginatedDataInvoices = (id: any, jwt: any) => {
+    forkJoin([ 
+      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
+      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/${ id }`, this.generateOptionsInvoice( id)),
+    //  this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions(jwt)),
+      //this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
+    ]).subscribe(res => {
+
+
+      this.me = res[0];
+      let user_id = this.me.id;
+
+      this.bill_info = res[1].data.attributes;
+      this.invoice_number =  this.bill_info.invoice_number;
+      this.invoice_date = this.bill_info.date;
+      this.user_city = this.bill_info.owner.data.attributes.city
+
+      this.client = this.bill_info.owner.data.attributes;
+
+
+      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
+        (dato)=>{
+          this.image_url=dato?.data[0].attributes.logo.data.attributes.url;                       
+          if (this.image_url)   this.showLogo = true;        
+        });
+
+
+
+
+ 
+      //  this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === res[2].id)[0];
+      //  if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
+      //  this.me = res[2];
+
+       
+    
+    });
+  }
+
+  
+  private generateOptionsInvoice = (id: any) => {
+    return {
+      params: this.queryInvoice(id),
+      // headers: new HttpHeaders({ Authorization: `Bearer ${ this.jwt }` })
+   
+    }
+  }
+
+  private queryInvoice = (id: any) => this.requestService.generateQuery({
+    populate: ['*'],
+    filters: [
+      {
+        field: '[id]',
+        operator: FilterOperator.$eq,
+        value: id,
+        option: FilterDeepOption.$and,
+      },
+    ],
+  });
+
 
 }

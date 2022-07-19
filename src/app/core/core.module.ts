@@ -56,6 +56,7 @@ import { FechaBillComponent } from './pages/reportes/componentes/fecha-bill/fech
 import { PrecioBillA25Component } from './pages/reportes/componentes/precio-bill-a25/precio-bill-a25.component';
 import { PrecioBillIvaComponent } from './pages/reportes/componentes/precio-bill-iva/precio-bill-iva.component';
 import { FooterEmpresa2Component } from './pages/reportes/componentes/footer-empresa2/footer-empresa2.component';
+import { HeaderBillComponent } from './pages/reportes/componentes/header-bill/header-bill.component';
 
 
 
@@ -114,7 +115,8 @@ import { FooterEmpresa2Component } from './pages/reportes/componentes/footer-emp
     FechaBillComponent,
     PrecioBillA25Component,
     PrecioBillIvaComponent,
-    FooterEmpresa2Component
+    FooterEmpresa2Component,
+    HeaderBillComponent
     
 
   ],
@@ -157,6 +159,7 @@ import { FooterEmpresa2Component } from './pages/reportes/componentes/footer-emp
     PrecioBillA25Component,
     PrecioBillIvaComponent,
     FooterEmpresa2Component,
+    HeaderBillComponent,
     
 
 
