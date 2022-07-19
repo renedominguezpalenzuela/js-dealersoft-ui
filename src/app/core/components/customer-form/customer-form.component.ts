@@ -248,7 +248,7 @@ export class CustomerFormComponent implements OnInit {
   public submit() {
     // this.customerForm.updateValueAndValidity()
     if (this.customerForm.valid) { 
-      console.log( this.customerForm.value)     
+          
       this.dialogRef.close({ body: this.customerForm.value });
     } else {    
       this.markAsTouchedAllControls();   

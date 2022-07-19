@@ -1,12 +1,12 @@
 
 
-    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+    <app-header-privado [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-privado>
 
 
     <div class="pt-3 px-20">
 
         <!-- Contrato fecha -->
-        <app-invoice-fecha [car_buy_data]="car_buy_data" [me]="me"></app-invoice-fecha>
+        <app-invoice-fecha [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-invoice-fecha>
 
         <p class="flex text-center mt-4 text-details">
             Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Auschluss jeglicher Gewährleistung im Hinblick auf  sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen.
@@ -16,24 +16,24 @@
 
 
         <div class="mt-20 ">
-            <app-car-details-min [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details-min>
+            <app-car-details-min [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info"></app-car-details-min>
         </div>
 
 
         <!-- Precio neto -->
         <div class="mt-10 ">
-            <app-precio-netto2 [car_buy_data]="car_buy_data"></app-precio-netto2>
+            <app-precio-netto2 [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-netto2>
         </div>
 
         <div class="mt-10 ">
-            <app-comentarios [car_buy_data]="car_buy_data"></app-comentarios>
+            <app-comentarios [car_buy_data]="this.datosReportes.car_buy_data"></app-comentarios>
             </div>
          
 
 
         <div class="mt-10">
             <span class="pr-4 text-details-bold ">Lieferdatum: </span>
-            <span class="text-details">{{car_buy_data?.attributes?.lieferung | date:'dd.MM.yyyy'}}</span>
+            <span class="text-details">{{this.datosReportes.car_buy_data?.lieferung | date:'dd.MM.yyyy'}}</span>
         </div>
 
 
@@ -46,10 +46,10 @@
 
     
 
-<app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+<app-footer-empresa [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-footer-empresa>
 
 
 
-<app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath">
+<app-second-page [empresa]="false" [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath">
 </app-second-page>
 

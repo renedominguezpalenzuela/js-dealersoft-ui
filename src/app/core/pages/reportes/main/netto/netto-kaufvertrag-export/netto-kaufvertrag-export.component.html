@@ -1,39 +1,39 @@
 
 
-    <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+    <app-header-privado [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-privado>
 
     
     <div class="pt-3 px-20">
 
         <!-- Contrato fecha -->
-        <app-contrato-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato-fecha>
+        <app-contrato-fecha [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-contrato-fecha>
 
         <p class="flex  mt-4 text-details">
-            Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{me?.company_name}} folgendes Fahrzeug: 
+            Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{this.datosReportes.me?.company_name}} folgendes Fahrzeug: 
         </p>
 
         <div class="mt-4 ">
-            <app-car-details [kaufvertrag]="true" [car_buy_data]="car_buy_data" [car_info]="car_info"></app-car-details>
+            <app-car-details [kaufvertrag]="true" [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info"></app-car-details>
         </div>
 
         <!-- Precio neto -->
         <div class="mt-8 ">
-            <app-precio-netto [car_buy_data]="car_buy_data"></app-precio-netto>
+            <app-precio-netto [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-netto>
         </div>
        
         <p class="flex text-center mt-4 text-details">
-            Der Verkäufer weist auf die anhängenden allgemeinen Geschäftsbedingungen hin. Der Käufer hat von ihrem Inhalt Kenntnis genommen und ist mit ihrer Geltung einverstanden. Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren und er erkennt an, dass der Kaufgegenstand am Liefertag keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist. Das Fahrzeug wird unter Ausschluss jeglicher Gewährleistung verkauft. Gerichtsstand ist {{me?.city}}
+            Der Verkäufer weist auf die anhängenden allgemeinen Geschäftsbedingungen hin. Der Käufer hat von ihrem Inhalt Kenntnis genommen und ist mit ihrer Geltung einverstanden. Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren und er erkennt an, dass der Kaufgegenstand am Liefertag keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist. Das Fahrzeug wird unter Ausschluss jeglicher Gewährleistung verkauft. Gerichtsstand ist {{this.datosReportes.me?.city}}
         </p>
         
         <app-firma></app-firma>
 
     </div>
 
-    <app-footer-empresa [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+    <app-footer-empresa [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-footer-empresa>
 
 
 
-<app-second-page [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath">
+<app-second-page [empresa]="false" [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath">
 </app-second-page>
 
 

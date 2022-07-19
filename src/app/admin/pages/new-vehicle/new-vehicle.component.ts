@@ -237,7 +237,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
     
 
-        console.log("Acaaaa")
+      
         
         this.input_read_only = false;
         let numero_comentario = this.comments.length + 1;

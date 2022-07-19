@@ -216,7 +216,7 @@ export class CustomerInformationComponent implements OnInit {
 
   public openSelectColumnDialog() {
 
-    console.log( this.displayedColumns )
+    
     this.matDialog
       .open(SelectColumnsComponent, {
         width: '450px',

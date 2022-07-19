@@ -554,9 +554,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
 
-    //console.log("DDDD")
-    //console.log(this.car_data?.attributes)
-
+   
 
 
     
@@ -840,7 +838,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   private imprimir(type: ExportType) {
 
-    this.loadPaginatedData_TEST(94)
+    
 
     this.selected_option_a25 = this.carSellForm.get('a25')!.value;
     this.selected_option_MnSt = this.carSellForm.get('iva')!.value;

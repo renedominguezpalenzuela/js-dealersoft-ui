@@ -1,22 +1,22 @@
-<app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
+<app-header-privado [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-privado>
 
 <div class="pt-3  px-20">
 
     <!-- Contrato fecha -->
-    <app-contrato2-fecha [car_buy_data]="car_buy_data" [me]="me"></app-contrato2-fecha>
+    <app-contrato2-fecha [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-contrato2-fecha>
 
     <p class="flex  mt-4 text-details">
-        Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{me?.company_name}} folgendes Fahrzeug:
+        Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{this.datosReportes.me?.company_name}} folgendes Fahrzeug:
     </p>
 
     <div class="mt-3 ">
-        <app-car-details [kaufvertrag]="true" [car_info]="car_info" [car_buy_data]="car_buy_data"></app-car-details>
+        <app-car-details [kaufvertrag]="true" [car_info]="this.datosReportes.car_info" [car_buy_data]="this.datosReportes.car_buy_data"></app-car-details>
     </div>
 
 
     <!-- Precio neto -->
     <div class="mt-8 ">
-        <app-precio-iva [car_buy_data]="car_buy_data"></app-precio-iva>
+        <app-precio-iva [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-iva>
     </div>
 
 
@@ -25,7 +25,7 @@
     </p>
 
     <p class="flex  mt-1 text-details ">
-        Gerichtsstand ist {{me?.city}}
+        Gerichtsstand ist {{this.datosReportes.me?.city}}
     </p>
 
 
@@ -41,6 +41,6 @@
 
 
 
-<app-footer-empresa   [car_buy_data]="car_buy_data" [me]="me"></app-footer-empresa>
+<app-footer-empresa   [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-footer-empresa>
 
-<app-second-page   [empresa]="false" [car_buy_data]="car_buy_data" [car_info]="car_info" [me]="me" [imgPath]="imgPath"></app-second-page>
+<app-second-page   [empresa]="false" [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-second-page>
