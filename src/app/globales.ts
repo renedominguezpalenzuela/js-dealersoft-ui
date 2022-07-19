@@ -8,7 +8,7 @@ export class Globals {
   iva = false;
   a25 = false;
   tiempo = 0;
-  version = 0.04;
+  version = 0.05;
 
 
   

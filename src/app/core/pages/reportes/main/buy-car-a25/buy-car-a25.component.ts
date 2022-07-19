@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
-import { CarBuy, CarSell } from '@core/interfaces';
+// import { CarBuy, CarSell } from '@core/interfaces';
 //import * as moment from 'moment';
-import { ApiHelperService } from '@core/services';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 //import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { forkJoin } from 'rxjs';
-import { environment } from '../../../../../../environments/environment';
 //import { Globals } from '../../../../../globales';
+//import { environment } from '../../../../../../environments/environment';
+
+import { ApiHelperService } from '@core/services';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DatosReportesService } from '../../../../../servicios/datos-reportes.service';
 
 @Component({
@@ -17,17 +18,14 @@ import { DatosReportesService } from '../../../../../servicios/datos-reportes.se
   styleUrls: ['./buy-car-a25.component.scss'],
   //providers: [Globals]
 })
-export class BuyCarA25Component implements OnInit {
+export class BuyCarA25Component  {
 
 
 
-  public dataBuy: CarBuy[] = [];
-  public dataSell: CarSell[] = [];
+  //public dataBuy: CarBuy[] = [];
+ // public dataSell: CarSell[] = [];
   //public currentDate: string;
-  public currentUrl: string;
-  public currentPage: number = 1;
-  public id: number = 1;
-  public pageCount: number = 100;
+  
   //public year: number;
   //public month: string;
   // public car_info: any;
@@ -35,12 +33,19 @@ export class BuyCarA25Component implements OnInit {
   // public logo: any;
   // public me: any;
   // public image_url: any;
-
-
+  
+  public currentPage: number = 1;
+  public pageCount: number = 100;
+  public id: number = 1;
+  public currentUrl: string;
   public readonly jwt: string;
+  
+
+
+  
   //private readonly baseDate: string = `${ moment().year() }-${ moment().month() + 1 > 9 ? moment().month() + 1 : `0${ moment().month() + 1 }` }-`;
   //private beginDate: string = this.baseDate + '01';
-  private showLogo: boolean = false;
+  //private showLogo: boolean = false;
 
   constructor(
     private readonly apiHelperService: ApiHelperService,
@@ -64,19 +69,19 @@ export class BuyCarA25Component implements OnInit {
 
     //this.loadQueryParams();
     
-    this.datosReportes.loadPaginatedData(this.id, this.jwt);  
+    this.datosReportes.loadPaginatedData(this.id, this.jwt, true);  
   }
 
  
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
 
-    // this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
-    //   if (map.has('id')) this.id = +<number><unknown>map.get('id');
-    // });
+  //   // this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
+  //   //   if (map.has('id')) this.id = +<number><unknown>map.get('id');
+  //   // });
 
   
-  }
+  // }
 
 
 

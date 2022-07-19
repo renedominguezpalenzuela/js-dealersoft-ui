@@ -45,15 +45,21 @@ export class DatosReportesService {
     }
 
 
-  public loadPaginatedData = (id: any, jwt: any) => {
+  public loadPaginatedData = (id: any, jwt: any, buyScreen:boolean) => {
     forkJoin([
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),           
       this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ id }`)      
     ]).subscribe((res:any) => {
      this.me = res[0];
      let user_id = this.me.id;
-     this.car_info = res[1];    
-     this.car_buy_data = this.car_info.data.attributes.buy;     
+     this.car_info = res[1];   
+     
+     if (buyScreen) {
+       this.car_buy_data = this.car_info.data.attributes.buy;     
+     } else {
+      this.car_buy_data = this.car_info.data.attributes.sell;     
+     }
+     
      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
       (dato)=>{
         this.image_url=dato?.data[0].attributes.logo.data.attributes.url;                       
