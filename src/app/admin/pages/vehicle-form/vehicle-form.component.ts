@@ -174,14 +174,14 @@ export class VehicleFormComponent implements OnInit, OnDestroy {
     if ($event.index == 2) {
       this.existeCompraconA25 = false;
 
-      if (!localStorage.getItem('firstTime')) { 
-        localStorage.setItem('firstTime', 'no reload') 
-        let reloj = timer(550);
-        reloj.subscribe((t) => {
+      // if (!localStorage.getItem('firstTime')) { 
+      //   localStorage.setItem('firstTime', 'no reload') 
+      //   let reloj = timer(550);
+      //   reloj.subscribe((t) => {
           
-         // window.location.reload();
-        });      
-       }
+      //    // window.location.reload();
+      //   });      
+      //  }
 
       this.requestService
         .Get(this.apiHelperService.carsBuyURL, this.queryBuyedCars(this.car.id))
