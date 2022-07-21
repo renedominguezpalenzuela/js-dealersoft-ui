@@ -17,10 +17,12 @@ import { CoreModule } from '@core/core.module';
 import { ApiHelperService, AuthService, RequestService } from '@core/services';
 import { Router } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
+//import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
+  //  ProfileComponent
   ],
   imports: [
     CommonModule,

@@ -51,6 +51,10 @@ const routes: Routes = [
   {
     path: 'vehicle-form/:id',
     loadChildren: () => import('./pages/vehicle-form/vehicle-form.module').then(m => m.VehicleFormModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
   }
 ];
 

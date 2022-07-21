@@ -22,6 +22,9 @@ import { FilterOperator } from '@core/interfaces/query-params';
 import { Logo } from '@core/interfaces/logo';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
+
+
+//Menu izquierdo
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -263,5 +266,10 @@ export class AdminComponent implements OnInit {
           );
         }
       });
+  }
+
+
+  abrirProfile() {
+    this.router.navigate(['/admin/profile']);
   }
 }

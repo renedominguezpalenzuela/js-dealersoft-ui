@@ -44,12 +44,28 @@
       </div>
 
     </div>
-
+<!-- Menu boton superior derecho -->
     <mat-menu #menu="matMenu" class="ml-4" >
-      <a (click)="logOut()" class="flex justify-start items-center hover:font-bold pt-2" id="logout">
+      <ul>
+        <li>
+          
+
+          <a (click)="abrirProfile()" class="flex justify-start items-center hover:font-bold pt-2 cursor-pointer" id="logout">
+            <!-- <mat-icon class="text-3xl ml-3 relative" style="top: -6px">logout</mat-icon> -->
+            <img class="ml-2 " alt="user_img_default" src="assets/user-male-circle.png"/>
+            <span class="pt-3 px-4 relative" style="top: -4px">Profile</span>
+          </a>
+
+
+        </li>
+        <li>
+      <a (click)="logOut()" class="flex justify-start items-center hover:font-bold pt-2 cursor-pointer" id="logout">
         <mat-icon class="text-3xl ml-3 relative" style="top: -6px">logout</mat-icon>
-        <span class="pt-3 px-5 relative" style="top: -4px">Logout</span>
+        <span class="pt-3 px-5 relative" style="top: -4px">Logout </span>
       </a>
+    </li>
+
+    </ul>
   
     </mat-menu>
     
