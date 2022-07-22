@@ -9,8 +9,8 @@ import { AuthService } from '@core/services';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LoginComponent } from './new/login/login.component';
 import { RegisterComponent } from './new/register/register.component';
-import { ChangePasswordComponent } from './new/change-password/change-password.component';
-import { RecoveryAccountComponent } from './new/recovery-account/recovery-account.component';
+// import { ChangePasswordComponent } from './new/change-password/change-password.component';
+// import { RecoveryAccountComponent } from './new/recovery-account/recovery-account.component';
 import { MainPageComponent } from './new/main-page/main-page.component';
 import { LoginRegisterComponent } from './new/login-register/login-register.component';
 import { RegisterLoginComponent } from './new/register-login/register-login.component';
@@ -34,8 +34,8 @@ import { RouterModule } from '@angular/router';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    ChangePasswordComponent,
-    RecoveryAccountComponent,
+    // ChangePasswordComponent,
+    // RecoveryAccountComponent,
     MainPageComponent,
     LoginRegisterComponent,
     RegisterLoginComponent,

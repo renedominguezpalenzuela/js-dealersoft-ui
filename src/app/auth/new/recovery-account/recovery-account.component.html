@@ -1,1 +1,33 @@
-<p>recovery-account works!</p>
+<div class="card w-full  mt-12 text-center fondo px-28 py-8 ">
+  <div class="text-recovery-pass text-center">Wiederherstellungskonto</div>
+    <div class="card-body">
+
+      <form (ngSubmit)="recoverAccount()" [formGroup]="recoveryAccountForm" class="mt-6">
+        <div class="relative mt-3">
+          <input class="input pl-12 w-full {{hasError('email') ? 'input-error' : 'input-primary'}}"
+                 formControlName="email" placeholder="Email Address" required type="email">
+
+          <div class="absolute left-0 top-3 flex items-center">
+            <img alt="user_img" class="ml-4" src="assets/email.png"/>
+          </div>
+
+          <span *ngIf="hasRequiredError('email')" class="label-text-alt text-red-400 pl-2">
+            <b>Email</b> wird benötigt
+          </span>
+
+          <span *ngIf="hasEmailError('email')" class="label-text-alt text-red-400 pl-2">
+            <b>Email</b> ist ungültig
+          </span>
+
+        </div>
+
+        
+        <div class="flex items-center justify-center mt-8">
+          <button class="btn bg-black" type="submit">
+            Email me a reset link
+          </button>
+        </div>
+      </form>
+      
+    </div>
+   </div>

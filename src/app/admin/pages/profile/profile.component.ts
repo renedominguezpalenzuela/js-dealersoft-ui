@@ -26,11 +26,16 @@ export class ProfileComponent implements OnInit {
 
     //hace que se muestre la ventana de recuperar accunt mediante email
     //mucho mas segura, tiene que funcionar el correo correctamente
-    if (this.activatedRoute.snapshot.paramMap.has('code'))
-      this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('code') });
-    else this.router.navigate(['/auth/recovery-account']);
+    // if (this.activatedRoute.snapshot.paramMap.has('code'))
+    //   this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('code') });
+    // else this.router.navigate(['/auth/recovery-account']);
   }
 
+
+  public changePasswordScreen(){
+    console.log("llamando a recovery-accoun")
+    this.router.navigate(['auth/recovery-account'])
+  }
   
   public checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
     const pass = group.get('password')?.value;

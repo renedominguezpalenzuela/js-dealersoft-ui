@@ -44,11 +44,11 @@ const routes: Routes = [
   // },
   {
     path: 'recovery-account',
-    loadChildren: () => import('./pages/recovery-account/recovery-account.module').then((m) => m.RecoveryAccountModule)
+    loadChildren: () => import('./new/recovery-account/recovery-account.module').then((m) => m.RecoveryAccountModule)
   },
   {
     path: 'reset-password',
-    loadChildren: () => import('./pages/change-password/change-password.module').then((m) => m.ChangePasswordModule)
+    loadChildren: () => import('./new/change-password/change-password.module').then((m) => m.ChangePasswordModule)
   }
 ];
 

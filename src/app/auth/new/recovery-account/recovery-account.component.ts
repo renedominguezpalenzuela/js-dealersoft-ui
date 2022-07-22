@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiHelperService, RequestService, ValidationsService,NotificationService } from '@core/services';
+import { FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-recovery-account',
@@ -7,9 +10,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecoveryAccountComponent implements OnInit {
 
-  constructor() { }
+  public recoveryAccountForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+  });
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private requestService: RequestService,
+    private apiHelperService: ApiHelperService,
+    private validationsService: ValidationsService,
+    private readonly notificationService: NotificationService,
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
+  public hasError = (input: string): boolean => {
+    return this.validationsService.hasError(this.recoveryAccountForm, input);
+  };
+
+  public hasRequiredError = (input: string): boolean => {
+    return this.validationsService.hasRequiredError(this.recoveryAccountForm, input);
+  };
+
+  public hasEmailError = (input: string): boolean => {
+    return this.validationsService.hasEmailError(this.recoveryAccountForm, input);
+  };
+
+  public recoverAccount() {
+    if (this.recoveryAccountForm.valid) this.requestRecoveryAccount().subscribe((datos)=>
+      {
+   
+        this.notificationService.riseNotification({
+          color: 'success',
+          data: 'Recovery password email was sent',
+        });
+      }
+    );
+  }
+
+  public requestRecoveryAccount = () => {
+
+    // console.log("URL FORGOT")
+    // console.log(this.apiHelperService.forgotPasswordURL)
+    // console.log(this.recoveryAccountForm.value)
+    return this.requestService.Post(this.apiHelperService.forgotPasswordURL, this.recoveryAccountForm.value, false);
+   
+  };
 }
