@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ApiHelperService, RequestService, ValidationsService } from '@core/services';
 
@@ -19,14 +19,28 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private validationsService: ValidationsService
   ) {
-    if (this.activatedRoute.snapshot.paramMap.has('token'))
-      this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('token') });
-    else this.router.navigate(['/auth/recovery-account']);
+
+    console.log("Change password")
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+     
+      console.log(params['code']);
+
+      if (params['code']) {
+        this.changePasswordForm.patchValue({ code: <string>params['code'] });  
+      } else this.router.navigate(['/auth/recovery-account']);
+    });
+
+    
+    
+    // //console.log(this.activatedRoute.snapshot.paramMap)
+    // if (this.activatedRoute.snapshot.paramMap.has('code'))
+    //   this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('code') });
+    // else this.router.navigate(['/auth/recovery-account']);
   }
 
   public checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
     const pass = group.get('password')?.value;
-    const confirmPass = group.get('confirm')?.value;
+    const confirmPass = group.get('passwordConfirmation')?.value;
     return pass === confirmPass ? null : { notSame: true };
   };
 
@@ -34,7 +48,7 @@ export class ChangePasswordComponent implements OnInit {
     {
       code: ['', [Validators.nullValidator]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirm: ['', [Validators.required, Validators.minLength(8)]]
+      passwordConfirmation: ['', [Validators.required, Validators.minLength(8)]]
     },
     { validators: this.checkPasswords }
   );
@@ -59,6 +73,8 @@ export class ChangePasswordComponent implements OnInit {
   public togglePwd = () => (this.showPassword = !this.showPassword);
 
   public changePassword() {
+    console.log("Change password")
+    console.log(this.changePasswordForm.value)
     if (this.changePasswordForm.valid)
       this.requestService.Post(this.apiHelperService.resetPasswordURL, this.changePasswordForm.value, false)
         .subscribe(() => this.router.navigate(['/auth/login']));

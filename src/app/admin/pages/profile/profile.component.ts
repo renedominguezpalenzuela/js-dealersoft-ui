@@ -26,8 +26,8 @@ export class ProfileComponent implements OnInit {
 
     //hace que se muestre la ventana de recuperar accunt mediante email
     //mucho mas segura, tiene que funcionar el correo correctamente
-    if (this.activatedRoute.snapshot.paramMap.has('token'))
-      this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('token') });
+    if (this.activatedRoute.snapshot.paramMap.has('code'))
+      this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('code') });
     else this.router.navigate(['/auth/recovery-account']);
   }
 

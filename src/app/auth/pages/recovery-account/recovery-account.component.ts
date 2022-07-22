@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiHelperService, RequestService, ValidationsService, } from '@core/services';
+import { ApiHelperService, RequestService, ValidationsService,NotificationService } from '@core/services';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -18,6 +18,7 @@ export class RecoveryAccountComponent implements OnInit {
     private requestService: RequestService,
     private apiHelperService: ApiHelperService,
     private validationsService: ValidationsService,
+    private readonly notificationService: NotificationService,
   ) {
   }
 
@@ -37,10 +38,24 @@ export class RecoveryAccountComponent implements OnInit {
   };
 
   public recoverAccount() {
-    if (this.recoveryAccountForm.valid) this.requestRecoveryAccount().subscribe();
+    if (this.recoveryAccountForm.valid) this.requestRecoveryAccount().subscribe((datos)=>
+      {
+        console.log("DATOS")
+        console.log(datos)
+        this.notificationService.riseNotification({
+          color: 'success',
+          data: 'Recovery password email was sent',
+        });
+      }
+    );
   }
 
   public requestRecoveryAccount = () => {
+
+    // console.log("URL FORGOT")
+    // console.log(this.apiHelperService.forgotPasswordURL)
+    // console.log(this.recoveryAccountForm.value)
     return this.requestService.Post(this.apiHelperService.forgotPasswordURL, this.recoveryAccountForm.value, false);
+   
   };
 }
