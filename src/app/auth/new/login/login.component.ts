@@ -85,10 +85,10 @@ export class LoginComponent implements OnInit {
           console.log('Calling: ' + this.apiHelperService.loginURL);
           console.log('Execution time: ' + time);
 
-          this.notificationService.riseNotification({
-            color: 'success',
-            data: 'Protokollierung erfolgreich',
-          });
+          // this.notificationService.riseNotification({
+          //   color: 'success',
+          //   data: 'Protokollierung erfolgreich',
+          // });
 
           this.router.navigate([this.returnURL]);
         });

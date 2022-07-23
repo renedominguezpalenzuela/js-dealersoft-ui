@@ -121,7 +121,7 @@
             <div [formGroupName]="i" class="col-span-2 grid grid-cols-5 gap-x-4 gap-y-1">
 
               <mat-form-field appearance="outline" class="col-span-5 ">
-                <mat-label class="font-montserrat">Artikela</mat-label>
+                <mat-label class="font-montserrat">Artikel</mat-label>
                 <!-- <input formControlName="article" matInput required type="text"> -->
                 <textarea matInput placeholder="Bemerkungen" formControlName="article" rows="2" maxlength="240"
                   (keydown)="keydown($event)" class="font-montserrat"> </textarea>
@@ -159,7 +159,7 @@
 
 
 
-        <button class="btn btn-primary w-40 col-start-1" (click)="generatePdf()" type="button"
+        <button class="btn bg-[#8591AA] border-[#8591AA] w-40 col-start-1" (click)="generatePdf()" type="button"
           *ngIf="mostrar_boton_imprimir">
           <span class="tracking-wide">Rechnung drucken</span>
         </button>
@@ -167,14 +167,14 @@
 
 
         <!-- Rechnung stornieren -->
-        <button class="btn btn-primary w-41 col-start-2 " (click)="cancelInvoice()" [disabled]="!boton_salvar_disabled"
+        <button class="btn bg-[#8591AA] border-[#8591AA] w-41 col-start-2 " (click)="cancelInvoice()" [disabled]="!boton_salvar_disabled"
           *ngIf="mostrar_boton_imprimir"  type="button">
           <span class="tracking-wide">Storno Rechnung erstellen</span>
         </button>
 
 
 
-        <button class="btn btn-primary w-40 col-start-4 " type="submit" [disabled]="boton_salvar_disabled">
+        <button class="btn bg-[#8591AA] border-[#8591AA] w-40 col-start-4 " type="submit" [disabled]="boton_salvar_disabled">
           <span class="tracking-wide">Rechnung erstellen</span>
         </button>
 

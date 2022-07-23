@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         .Post(this.apiHelperService.loginURL, this.loginForm.value, false)
         .subscribe(
           () => {
-            this.notificationService.riseNotification({ color: 'success', data: 'Protokollierung erfolgreich' });
+            //this.notificationService.riseNotification({ color: 'success', data: 'Protokollierung erfolgreich' });
             this.router.navigate([this.returnURL]);
           }
         );

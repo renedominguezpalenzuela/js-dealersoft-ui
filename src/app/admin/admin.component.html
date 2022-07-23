@@ -4,7 +4,7 @@
   <input class="drawer-toggle" id="my-drawer-2" type="checkbox">
 
   <div class="flex flex-col items-center justify-start drawer-content">
-    <div class="navbar shadow-lg bg-base-100 text-neutral-content w-full sticky top-0 z-10">
+    <div class="flex navbar shadow-lg bg-base-100 text-neutral-content w-full sticky top-0 z-10 ">
 
       <div class="px-2 mx-2 navbar-start">
         <div class="lg:hidden">
@@ -24,9 +24,13 @@
         </div>
       </div>
 
-      <div class="hidden px-2 mx-2 navbar-center lg:flex">
-        <h1 class="font-montserrattracking-widest font-bold text-2xl ml-10 text-gray-900">{{titlePage}}</h1>
+      <div class="hidden justify-start  px-2 mx-2 navbar-center lg:flex">
+        <h1 class="font-montserrat tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
       </div>
+
+      <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">
+        <h1 class="font-montserrat tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
+      </div> -->
 
       <div class="navbar-end hidden sm:flex" >
         <button class="" [matMenuTriggerFor]="menu" id="button_menu">
@@ -132,7 +136,7 @@
       <!-- Icono de Stripe -->
       <li *ngIf="authUser?.active_until" class="">
         <div class="flex  justify-center rounded-lg  w-[80%] h-14 shadow mx-5 mt-2">
-          <div (click)="toStripePayment()"  class="w-1/4 bg-[#E8E9EB] h-full rounded-l-lg flex items-center justify-center cursor-pointer tooltip tooltip-bottom" data-tip="Pay platform">
+          <div (click)="toStripePayment()"  class="w-1/4 bg-[#E8E9EB] h-full rounded-l-lg flex items-center justify-center cursor-pointer tooltip tooltip-bottom" data-tip="Abonnement abschließen">
     
 
             <img  alt="Dealersoft.de Black brand"
