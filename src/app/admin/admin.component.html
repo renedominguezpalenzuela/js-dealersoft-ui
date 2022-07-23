@@ -88,21 +88,46 @@
           <mat-icon class="text-black">close</mat-icon>
         </button>
       </li>
+
+      <!-- Menu lateral -->
+
       <li *ngFor="let link of links" class="my-0.5">
         <ng-container *ngIf="link.type === 'link'">
           <a [routerLink]="link.url" class="flex justify-start items-center hover:font-bold"
              routerLinkActive="link-active">
-            <mat-icon class="text-3xl mr-3 relative" style="top: -6px">{{link.icon}}</mat-icon>
+
+             <ng-container *ngIf="link.img!='';else icono">
+                 <img class="mr-3 relative" alt="{{link.label}}" src="assets/menu_icons/{{link.img}}" style="height: 28px">
+             </ng-container>
+
+            <ng-template #icono>
+              <mat-icon class="text-3xl mr-3 relative" style="top: -6px">{{link.icon}}</mat-icon> 
+            </ng-template>
+
             <span class="pt-3 relative" style="top: -3px">{{link.label}}</span>
           </a>
         </ng-container>
         <ng-container *ngIf="link.type === 'button'">
           <a (click)="logOut()" class="flex justify-start items-center hover:font-bold" id="logout">
-            <mat-icon class="text-3xl mr-3 relative" style="top: -6px">{{link.icon}}</mat-icon>
+            <!-- <mat-icon class="text-3xl mr-3 relative" style="top: -6px">{{link.icon}}</mat-icon> -->
+            <!-- <img [style.width]="showSide ? '92px' : '75px'" alt="{{link.label}}"
+            src="assets/menu_icons/{{link.img}}" style="height: 28px"> -->
+
+            <ng-container *ngIf="link.img!='';else icono">
+              <img class="mr-3 relative" alt="{{link.label}}" src="assets/menu_icons/{{link.img}}" style="height: 28px">
+          </ng-container>
+
+         <ng-template #icono>
+           <mat-icon class="text-3xl mr-3 relative" style="top: -6px">{{link.icon}}</mat-icon> 
+         </ng-template>
+         
             <span class="pt-3 relative" style="top: -4px">{{link.label}}</span>
           </a>
         </ng-container>
       </li>
+
+
+
       <li *ngIf="authUser?.active_until" class="my-0.5">
         <div class="flex rounded-lg flex-row w-full h-14 shadow">
           <div (click)="toStripePayment()"

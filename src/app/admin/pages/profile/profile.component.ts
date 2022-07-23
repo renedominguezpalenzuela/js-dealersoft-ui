@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, isDevMode } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AbstractControl,
@@ -15,6 +15,8 @@ import {
   AuthService,
   NotificationService,
 } from '@core/services';
+
+import { Logo } from '@core/interfaces/logo';
 
 import { User } from '@core/interfaces';
 import { HttpEventType } from '@angular/common/http';
@@ -37,7 +39,10 @@ export class ProfileComponent implements OnInit {
 
   public authUser: User | null = null;
   public isAuth: boolean = false;
-  public userID: any;
+  public userID!: number | undefined;
+
+  public logo: Logo | undefined;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -85,33 +90,87 @@ export class ProfileComponent implements OnInit {
   );
 
   public registerForm = this.formBuilder.group({
-    first_name: [null, [Validators.required]],
-    last_name: [null, [Validators.required]],
-    company_name: [null, [Validators.required]],
-    password: [null, [Validators.required, Validators.minLength(8)]],
-    email: [null, [Validators.required, Validators.email]],
-    employees_number: [null, Validators.required],
-    street: [null, [Validators.required]],
-    house_number: [null, [Validators.required]],
-    city: [null, [Validators.required]],
-    postal_code: [null, [Validators.required]],
+    first_name: [null],
+    last_name: [null],
+    company_name: [null],
+    // password: [null, [Validators.minLength(8)]],
+    email: [null, [ Validators.email]],
+    employees_number: [null],
+    street: [null],
+    house_number: [null],
+    city: [null],
+    postal_code: [null],
 
-    phone: [null, [Validators.required]],
+    phone: [null],
     website: [null],
-    steuer_nr: [null, [Validators.required]],
-    ust_Idnr: [null, [Validators.required]],
-    geschaftsfuhrer: [null, [Validators.required]],
-    iban: [null, [Validators.required]],
-    bic_swift_code: [null, [Validators.required]],
-    hrb_walsrode: [null, [Validators.required]],
-    bank_name: [null, [Validators.required]],
-    username: [null, [Validators.required]],
+    steuer_nr: [null],
+    ust_Idnr: [null],
+    geschaftsfuhrer: [null],
+    iban: [null],
+    bic_swift_code: [null],
+    hrb_walsrode: [null],
+    bank_name: [null],
+    username: [null],
   });
 
+  
+  private queryLogo = (id: any) =>
+    this.requestService.generateQuery({
+      populate: ['logo'],
+      filters: [
+        {
+          field: '[user][id]',
+          value: id,
+          operator: FilterOperator.$eq,
+          option: FilterDeepOption.$and,
+        },
+      ],
+    });
+
+  get imgPath(): string {
+
+
+    if (isDevMode()) {
+
+      let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+      if (inicio_url==="http") {
+        return `${this.logo?.attributes.logo.data.attributes.url}`;
+      } else {
+        return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+      }       
+    } else {      
+
+     return `${this.logo?.attributes.logo.data.attributes.url}`;
+    }
+  }
+
+
   ngOnInit(): void {
+
+
     this.registerForm.patchValue({
       ...this.authUser,
     });
+
+    
+    let aquery = this.queryLogo(this.authUser?.id);
+     
+    this.requestService
+      .Get(this.apiHelperService.logosURL, aquery)
+      .subscribe((logos) => {
+        
+        this.logo = logos.data[0];
+       
+      
+       
+        if (this.logo?.attributes.logo.data.attributes.url) {
+          this.logoImgSrc = this.imgPath;
+          this.showLogo = true;
+        }
+          
+      });
+
+
 
     this.registerForm.updateValueAndValidity();
   }
@@ -133,6 +192,8 @@ export class ProfileComponent implements OnInit {
     return errror_input;
   };
 
+
+  
   public previewLogo($event: any) {
     const file: File = $event.target.files[0];
     this.logoImg = file;
@@ -178,27 +239,46 @@ export class ProfileComponent implements OnInit {
         .subscribe(() => this.router.navigate(['/auth/login']));
   }
 
+
+  
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.registerForm.controls;
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        invalid.push(name + ', ' + controls[name].value);
+      }
+    }
+    return invalid;
+  }
+
+
   public register() {
     console.log(this.userID);
 
-    if (this.isAuth) {
+    if (!this.isAuth) {
       console.log('User not authorized');
       return;
     }
 
+    const newUser = { ...this.registerForm.value };
+
+      console.log(newUser)
+
     if (
       this.registerForm.valid &&
-      this.logoImg instanceof File &&
+      
       !this.isLoading
     ) {
       this.isLoading = true;
-      const newUser = { ...this.registerForm.value };
-
+      
       this.requestService
-        .Put(`${this.apiHelperService.registerURL}/${this.userID}`, newUser)
+        .Put(`${this.apiHelperService.clientsURL}/${this.userID}`, newUser)
         .subscribe((respuesta) => {
           const form = new FormData();
           form.append('files', <File>this.logoImg);
+
+          if (this.logoImg instanceof File) {
           this.requestService
             .POSTUpload(this.apiHelperService.uploadFilesURL, form)
             .subscribe((events) => {
@@ -215,7 +295,23 @@ export class ProfileComponent implements OnInit {
                   });
               }
             });
+          } else {
+            this.isLoading = false;
+            this.notificationService.riseNotification({
+              color: 'success',
+              data: 'gespeichert',
+            });
+          }
         });
+    } else {
+      const errores = this.findInvalidControls();
+      console.log(errores)
+
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'fehlende Angaben',
+      });
+
     }
   }
 

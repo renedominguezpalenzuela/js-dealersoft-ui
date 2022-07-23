@@ -2,5 +2,6 @@ export interface Link {
   icon: string,
   label: string,
   url?: string,
-  type: 'link' | 'button'
+  type: 'link' | 'button',
+  img: string
 }
