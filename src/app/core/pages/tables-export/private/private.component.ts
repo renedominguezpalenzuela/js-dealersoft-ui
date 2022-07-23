@@ -64,16 +64,11 @@ export class PrivateExportComponent implements OnInit {
         }            
       }  
       else  {
-        return `assets/brand_logo/dealersoft_black.png`;
+        return `assets/brand_logo/Dealersoft.de-black.svg`;
       }
     }
 
 
-  // get imgPath(): string {
-  //   if (this.showLogo)
-  //     return `${ this.apiHelperService.hostUrl }${ this.logo?.attributes.logo.data.attributes.url }`;
-  //   else return `assets/brand_logo/dealersoft_black.png`;
-  // }
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {

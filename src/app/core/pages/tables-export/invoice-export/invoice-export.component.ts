@@ -50,7 +50,7 @@ export class InvoiceExportComponent implements OnInit {
   get imgPath(): string {
     if (this.showLogo)
       return `${ this.apiHelperService.hostUrl }${ this.logo?.attributes.logo.data.attributes.url }`;
-    else return `assets/brand_logo/dealersoft_black.png`;
+    else return `assets/brand_logo/Dealersoft.de-black.svg`;
   }
 
   ngOnInit(): void {

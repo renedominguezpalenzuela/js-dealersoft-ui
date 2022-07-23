@@ -19,7 +19,7 @@
         <div class="flex flex-row justify-center items-center px-2 mx-2 {{showSide ? '' : 'lg:hidden'}} pl-8 sm:pl-0">
           <a routerLink="/admin">
             <img [style.width]="showSide ? '92px' : '75px'" alt="Dealersoft.de Black brand"
-                 src="assets/brand_logo/dealersoft_black.png" style="height: 48px">
+                 src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 48px">
           </a>
         </div>
       </div>
@@ -52,8 +52,8 @@
 
           <a (click)="abrirProfile()" class="flex justify-start items-center hover:font-bold pt-2 cursor-pointer" id="logout">
             <!-- <mat-icon class="text-3xl ml-3 relative" style="top: -6px">logout</mat-icon> -->
-            <img class="ml-2 " alt="user_img_default" src="assets/user-male-circle.png"/>
-            <span class="pt-3 px-4 relative" style="top: -4px">Profile</span>
+            <img class="ml-2 " alt="user_img_default" src="assets/menu_icons/Recurso.svg" style="height: 20px"/>
+            <span class="pt-3 px-2 relative" style="top: -4px">Profile</span>
           </a>
 
 
@@ -61,8 +61,8 @@
         <li>
       <a (click)="logOut()" class="flex justify-start items-center hover:font-bold pt-2 cursor-pointer" id="logout">
         <!-- <mat-icon class="text-3xl ml-3 relative" style="top: -6px">logout</mat-icon> -->
-        <img  alt="Logout"  class="ml-2"  src="assets/menu_icons/Logout.svg" style="height: 28px">
-        <span class="pt-3 px-5 relative" style="top: -4px">Logout </span>
+        <img  alt="Logout"  class="ml-2"  src="assets/menu_icons/Logout.svg" style="height: 20px">
+        <span class="pt-3 px-2 relative" style="top: -4px">Logout </span>
       </a>
     </li>
 
@@ -83,7 +83,7 @@
         class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content h-full animate__animated lg:animate__fadeInLeft">
       <li class="border-b-2 border-gray-200 mb-5 hidden lg:flex lg:flex-row lg:justify-center lg:items-center">
         <img (click)="toAdmin()" alt="Dealersoft.de Black brand" class="cursor-pointer h-[140px] w-[230px]"
-             src="assets/brand_logo/dealersoft_black.png">
+             src="assets/brand_logo/Dealersoft.de-black.svg">
         <button (click)="toggleSide()" class="hidden lg:block btn btn-ghost text-gray-5000 drawer-button"
                 style="position: absolute;top: 10px;right: 10px;">
           <mat-icon class="text-black">close</mat-icon>
@@ -93,14 +93,9 @@
       <!-- Menu lateral -->
 
       <li *ngFor="let link of links" class="my-0.5">
-
-
-
-        <ng-container *ngIf="link.type === 'link'">
-        
+        <ng-container *ngIf="link.type === 'link'">      
           <a [routerLink]="link.url" [ngClass]="{'mt-2' : link.up_space}" class="flex justify-start items-center hover:font-bold" routerLinkActive="link-active">
             <!-- <a [routerLink]="link.url" [ngClass]="{'  border-t-2 border-gray-200' : link.up_space}" class="flex justify-start items-center hover:font-bold" routerLinkActive="link-active"> -->
-
              <ng-container *ngIf="link.img!='';else icono">
                  <img class="mr-3 relative" alt="{{link.label}}" src="assets/menu_icons/{{link.img}}" style="height: 20px">
              </ng-container>
@@ -115,23 +110,24 @@
         <ng-container *ngIf="link.type === 'button'">
           <a (click)="logOut()" [ngClass]="{'mt-2' : link.up_space}" class="flex justify-start items-center hover:font-bold" id="logout">
             <ng-container *ngIf="link.img!='';else icono">
-              <img class="mr-3 relative" alt="{{link.label}}" src="assets/menu_icons/{{link.img}}" style="height: 20px">
+              <img class="mr-3 relative" alt="{{link.label}}" src="assets/menu_icons/{{link.img}}" style="height: 20px; left:-5px">
             </ng-container>
 
             <ng-template #icono>
-              <mat-icon class="text-2xl mr-2 relative" style="top: -6px; left: -2px">{{link.icon}}</mat-icon> 
+              <mat-icon class="text-2xl mr-2 relative" style="top: -6px">{{link.icon}}</mat-icon> 
             </ng-template>
          
-            <span class="pt-3 relative" style="top: -4px">{{link.label}}</span>
+            <span class="pt-3 relative" style="top: -4px; left:-5px">{{link.label}}</span>
           </a>
         </ng-container>
       </li>
 
 
 
+      <!-- Icono de Stripe -->
       <li *ngIf="authUser?.active_until" class="my-0.5">
         <div class="flex rounded-lg flex-row w-full h-14 shadow">
-          <div (click)="toStripePayment()"  class="w-1/4 bg-[#42A5F5] h-full rounded-l-lg flex items-center justify-center cursor-pointer tooltip tooltip-bottom" data-tip="Pay platform">
+          <div (click)="toStripePayment()"  class="w-1/4 bg-[#E8E9EB] h-full rounded-l-lg flex items-center justify-center cursor-pointer tooltip tooltip-bottom" data-tip="Pay platform">
             <!-- <svg height="76" style=" fill:#000000;" viewBox="0 0 172 172" width="76" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px">
               <g fill="none" fill-rule="nonzero" font-family="none" font-size="none" font-weight="none" stroke="none"
                  stroke-dasharray="" stroke-dashoffset="0" stroke-linecap="butt" stroke-linejoin="miter"
@@ -145,9 +141,9 @@
             </svg> -->
 
             <img  alt="Dealersoft.de Black brand"
-            src="assets/brand_logo/dealersoft_black.png" style="height: 38px">
+            src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 38px">
           </div>
-          <div  class="w-3/4 {{days > 0 ? 'bg-blue-600' : 'bg-orange-600'}} h-full rounded-r-lg flex flex-row justify-center items-center pl-2 py-1">
+          <div  class="w-3/4 {{days > 0 ? 'bg-[#8591AA]' : 'bg-orange-600'}} h-full rounded-r-lg flex flex-row justify-center items-center pl-2 py-1">
             <p class="font-montserratfont-semibold text-white p-0 m-0">
               <span>verbleibende Testphase:</span>
               <span class="ml-0.5 bg-transparent py-0.5 px-1 rounded text-gray-50">

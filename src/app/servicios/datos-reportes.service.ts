@@ -43,7 +43,7 @@ export class DatosReportesService {
         }            
       }  
       else  {
-        return `assets/brand_logo/dealersoft_black.png`;
+        return `assets/brand_logo/Dealersoft.de-black.svg`;
       }
     }
 
