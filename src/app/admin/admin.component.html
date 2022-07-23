@@ -31,28 +31,33 @@
       <div class="navbar-end hidden sm:flex" >
         <button class="" [matMenuTriggerFor]="menu" id="button_menu">
         <div *ngIf="isAuth" class="flex items-center  rounded-full border-2" >
-          <span class="px-5 py-2 font-montserratfont-semibold text-gray-900" >
-            {{authUser?.first_name}} {{authUser?.last_name}}
-          </span>
-          <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full mr-3 py-1"
-                  style="max-height:40px;max-width:70px;"/>
+
+          <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full ml-3 mr-3 py-1"
+          style="height:40px;width:40px;"/>
           <ng-template #defaultImg>
             <img alt="user_img_default" src="assets/user-male-circle.png"/>
           </ng-template>
+          
+          <span class="pr-0 py-2 font-montserrat  text-gray-900" >
+            {{authUser?.first_name}} {{authUser?.last_name}} 
+          </span>
+          <!-- <mat-icon class="text-3xl ml-3 relative" style="top: -6px">keyboard_arrow_down</mat-icon>           -->
+          
+          <mat-icon class="text-3xl text-black ml-0 mr-4 relative" style="top: -6px">keyboard_arrow_down</mat-icon> 
         </div>
       </button>
       </div>
 
     </div>
 <!-- Menu boton superior derecho -->
-    <mat-menu #menu="matMenu" class="ml-4" >
+    <mat-menu #menu="matMenu" class="ml-4  w-40" >
       <ul>
         <li>
           
 
           <a (click)="abrirProfile()" class="flex justify-start items-center hover:font-bold pt-2 cursor-pointer" id="logout">
-            <!-- <mat-icon class="text-3xl ml-3 relative" style="top: -6px">logout</mat-icon> -->
-            <img class="ml-2 " alt="user_img_default" src="assets/menu_icons/Recurso.svg" style="height: 20px"/>
+          
+                        <img class="ml-2 " alt="user_img_default" src="assets/menu_icons/Recurso.svg" style="height: 20px"/>
             <span class="pt-3 px-2 relative" style="top: -5px">Profil</span>
           </a>
 
