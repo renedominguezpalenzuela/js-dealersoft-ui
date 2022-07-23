@@ -738,34 +738,31 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
      this.me = res[0];
      let user_id = this.me.id;
-     console.log(user_id)
+
 
     // this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === user_id)[0];
 
 
-     console.log("CAR INFO")
+
      this.car_info = res[1];
-     console.log(this.car_info)
+
    
 
-     console.log("USER") 
-     console.log(this.me)
 
      this.car_buy_data = this.car_info.data.attributes.buy;
-     console.log("BUY") 
-     console.log(this.car_buy_data) 
+ 
 
      //http://localhost:1337/api/logos?filters[user][id][$eq]=55&populate=logo
 
      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
       (dato)=>{
-        console.log("Logo")
+       
         
 
         this.logo = dato;
 
-        //console.log(dato.data[0].attributes.logo.data.attributes.url)
-        console.log(this.logo?.data[0].attributes.logo.data.attributes.url)
+   
+    
 
        // this.image_url=this.logo?.attributes.logo.data.attributes.url;
        // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;

@@ -631,12 +631,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   printOptions(lugar: any) {
-    // console.log(lugar)
-    // console.log('a25:    ' + this.selected_option_a25);
-    // console.log('iva:    ' + this.selected_option_MnSt);
-    // console.log('export: ' + this.selected_option_Export);
-    // console.log("datos guardados "+this.existenDatosGuardadosenBD)
-    // console.log("Primera ves "+this.primeraVez)
+
   }
 
   ngAfterViewInit(): void {
@@ -1372,35 +1367,28 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
      this.me = res[0];
      let user_id = this.me.id;
-     console.log(user_id)
+    
 
     // this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === user_id)[0];
 
 
-     console.log("CAR INFO")
      this.car_info = res[1];
-     console.log(this.car_info)
+
    
 
-     console.log("USER") 
-     console.log(this.me)
 
-     
-     console.log("SELL") 
+  
      this.car_buy_data = this.car_info.data.attributes.sell;
-     console.log(this.car_buy_data) 
+
 
      //http://localhost:1337/api/logos?filters[user][id][$eq]=55&populate=logo
 
      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
       (dato: any)=>{
-        console.log("Logo")
-        
+  
 
        // this.logo = dato;
 
-        //console.log(dato.data[0].attributes.logo.data.attributes.url)
-        console.log(dato)
 
        // this.image_url=this.logo?.attributes.logo.data.attributes.url;
        // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;

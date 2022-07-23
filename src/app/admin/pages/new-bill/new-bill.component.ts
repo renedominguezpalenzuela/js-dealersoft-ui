@@ -720,12 +720,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     this.generateCancelInvoice_Number().subscribe((numero_invoice) => {
 
 
-      // if (!this.newInvoiceForm.valid) {
-      //   let errores = this.findInvalidControls();
-      //   console.log('Errors in Cancell Bill');
-      //   console.log(errores);
-      //   return;
-      // } 
+   
 
       let datosInvoice = {
         ...this.invoice_data,

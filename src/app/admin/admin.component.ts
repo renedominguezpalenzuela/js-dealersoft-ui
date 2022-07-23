@@ -177,18 +177,25 @@ export class AdminComponent implements OnInit {
 
   get imgPath(): string {
 
+ 
+    const logo_url =  this.logo?.attributes.logo.data.attributes.formats.small?.url;
+
 
     if (isDevMode()) {
 
-      let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+      //let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+      let inicio_url = logo_url?.substring(0, 4);     
+
+
+
       if (inicio_url==="http") {
-        return `${this.logo?.attributes.logo.data.attributes.url}`;
+        return `${logo_url}`;
       } else {
-        return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+        return `${this.apiHelperService.hostUrl}${logo_url}`;
       }       
     } else {      
 
-     return `${this.logo?.attributes.logo.data.attributes.url}`;
+     return `${logo_url}`;
     }
   }
 

@@ -21,10 +21,10 @@ export class ChangePasswordComponent implements OnInit {
     private validationsService: ValidationsService
   ) {
 
-    console.log("Change password")
+
     this.activatedRoute.queryParams.subscribe((params: Params) => {
      
-      console.log(params['code']);
+     
 
       if (params['code']) {
         this.changePasswordForm.patchValue({ code: <string>params['code'] });  
@@ -33,10 +33,7 @@ export class ChangePasswordComponent implements OnInit {
 
     
     
-    // //console.log(this.activatedRoute.snapshot.paramMap)
-    // if (this.activatedRoute.snapshot.paramMap.has('code'))
-    //   this.changePasswordForm.patchValue({ code: <string>this.activatedRoute.snapshot.paramMap.get('code') });
-    // else this.router.navigate(['/auth/recovery-account']);
+
   }
 
   public checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
@@ -74,8 +71,7 @@ export class ChangePasswordComponent implements OnInit {
   public togglePwd = () => (this.showPassword = !this.showPassword);
 
   public changePassword() {
-    console.log("Change password")
-    console.log(this.changePasswordForm.value)
+
     if (this.changePasswordForm.valid)
       this.requestService.Post(this.apiHelperService.resetPasswordURL, this.changePasswordForm.value, false)
         .subscribe(() => this.router.navigate(['/auth/login']));

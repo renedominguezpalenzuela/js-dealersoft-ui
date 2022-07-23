@@ -40,8 +40,7 @@ export class RecoveryAccountComponent implements OnInit {
   public recoverAccount() {
     if (this.recoveryAccountForm.valid) this.requestRecoveryAccount().subscribe((datos)=>
       {
-        console.log("DATOS")
-        console.log(datos)
+  
         this.notificationService.riseNotification({
           color: 'success',
           data: 'Recovery password email was sent',
@@ -52,9 +51,6 @@ export class RecoveryAccountComponent implements OnInit {
 
   public requestRecoveryAccount = () => {
 
-    // console.log("URL FORGOT")
-    // console.log(this.apiHelperService.forgotPasswordURL)
-    // console.log(this.recoveryAccountForm.value)
     return this.requestService.Post(this.apiHelperService.forgotPasswordURL, this.recoveryAccountForm.value, false);
    
   };

@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public changePasswordScreen() {
-    console.log('llamando a recovery-accoun');
+  
     this.router.navigate(['auth/recovery-account']);
   }
 
@@ -127,22 +127,51 @@ export class ProfileComponent implements OnInit {
       ],
     });
 
+    
+
   get imgPath(): string {
+
+
+    // const logo_url =  this.logo?.attributes.logo.data.attributes.formats.small?.url;
+    const logo_url = this.logo?.attributes.logo.data.attributes.url;
 
 
     if (isDevMode()) {
 
-      let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+      //let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+      let inicio_url = logo_url?.substring(0, 4);     
+
+
+
       if (inicio_url==="http") {
-        return `${this.logo?.attributes.logo.data.attributes.url}`;
+        return `${logo_url}`;
       } else {
-        return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+        return `${this.apiHelperService.hostUrl}${logo_url}`;
       }       
     } else {      
 
-     return `${this.logo?.attributes.logo.data.attributes.url}`;
+     return `${logo_url}`;
     }
   }
+
+
+
+  // get imgPath(): string {
+
+
+  //   if (isDevMode()) {
+
+  //     let inicio_url = this.logo?.attributes.logo.data.attributes.url?.substring(0, 4);     
+  //     if (inicio_url==="http") {
+  //       return `${this.logo?.attributes.logo.data.attributes.url}`;
+  //     } else {
+  //       return `${this.apiHelperService.hostUrl}${this.logo?.attributes.logo.data.attributes.url}`;
+  //     }       
+  //   } else {      
+
+  //    return `${this.logo?.attributes.logo.data.attributes.url}`;
+  //   }
+  // }
 
 
   ngOnInit(): void {
@@ -192,6 +221,11 @@ export class ProfileComponent implements OnInit {
     return errror_input;
   };
 
+  
+  public hasEmailError2 = (input: string): boolean => {
+    return this.validationsService.hasEmailError(this.registerForm, input);
+  };
+
 
   
   public previewLogo($event: any) {
@@ -226,8 +260,7 @@ export class ProfileComponent implements OnInit {
   public togglePwd = () => (this.showPassword = !this.showPassword);
 
   public changePassword() {
-    console.log('Change password');
-    console.log(this.changePasswordForm.value);
+
 
     if (this.changePasswordForm.valid)
       this.requestService
@@ -254,6 +287,7 @@ export class ProfileComponent implements OnInit {
 
 
   public register() {
+  
     console.log(this.userID);
 
     if (!this.isAuth) {
@@ -263,7 +297,8 @@ export class ProfileComponent implements OnInit {
 
     const newUser = { ...this.registerForm.value };
 
-      console.log(newUser)
+ 
+
 
     if (
       this.registerForm.valid &&
@@ -272,11 +307,13 @@ export class ProfileComponent implements OnInit {
     ) {
       this.isLoading = true;
       
-      this.requestService
-        .Put(`${this.apiHelperService.usersURL}/${this.userID}`, newUser)
+      this.requestService.Put(this.apiHelperService.meURL, newUser)
         .subscribe((respuesta) => {
-          const form = new FormData();
-          form.append('files', <File>this.logoImg);
+
+          console.log(respuesta)
+          this.isLoading = false;
+         const form = new FormData();
+         form.append('files', <File>this.logoImg);
 
           if (this.logoImg instanceof File) {
           this.requestService
@@ -292,6 +329,7 @@ export class ProfileComponent implements OnInit {
                       color: 'success',
                       data: 'gespeichert',
                     });
+                    window.location.reload();
                   });
               }
             });
@@ -301,6 +339,7 @@ export class ProfileComponent implements OnInit {
               color: 'success',
               data: 'gespeichert',
             });
+            //window.location.reload();
           }
         });
     } else {

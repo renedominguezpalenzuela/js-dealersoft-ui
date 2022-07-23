@@ -59,7 +59,7 @@ export class AdminModule {
           console.log("Calling: "+this.apiHelperService.meURL)
           console.log('Execution time: ' + time);
         
-          console.log(result)
+         
         },
         error => {
           this.authService.updateUser = null;

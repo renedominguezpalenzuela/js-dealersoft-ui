@@ -52,9 +52,6 @@ export class RecoveryAccountComponent implements OnInit {
 
   public requestRecoveryAccount = () => {
 
-    // console.log("URL FORGOT")
-    // console.log(this.apiHelperService.forgotPasswordURL)
-    // console.log(this.recoveryAccountForm.value)
     return this.requestService.Post(this.apiHelperService.forgotPasswordURL, this.recoveryAccountForm.value, false);
    
   };

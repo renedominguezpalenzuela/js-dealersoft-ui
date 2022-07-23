@@ -34,8 +34,8 @@
           <span class="px-5 py-2 font-montserratfont-semibold text-gray-900" >
             {{authUser?.first_name}} {{authUser?.last_name}}
           </span>
-          <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full mr-3"
-               width="42px"/>
+          <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full mr-3 py-1"
+                  style="max-height:40px;max-width:70px;"/>
           <ng-template #defaultImg>
             <img alt="user_img_default" src="assets/user-male-circle.png"/>
           </ng-template>
@@ -145,7 +145,7 @@
           </div>
           <div  class="w-3/4 {{days > 0 ? 'bg-[#8591AA]' : 'bg-orange-600'}} h-full rounded-r-lg flex flex-row justify-center items-center pl-2 py-1">
             <p class="font-montserratfont-semibold text-white p-0 m-0">
-              <span>verbleibende Testphase:</span>
+              <span>verbleibende Testphase</span>
               <span class="ml-0.5 bg-transparent py-0.5 px-1 rounded text-gray-50">
                 {{days + ' Tage'}}
               </span>
