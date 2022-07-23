@@ -97,7 +97,7 @@ export class AdminComponent implements OnInit {
     },
     {
       icon: 'request_quote',
-      img:'',
+      img:'Gewinn-und_verlust.svg',
       label: 'Alle Rechnungen',
       url: '/admin/list-invoices',
       type: 'link',
