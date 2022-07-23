@@ -4,10 +4,10 @@
   <input class="drawer-toggle" id="my-drawer-2" type="checkbox">
 
   <div class="flex flex-col items-center justify-start drawer-content">
-    <div class="flex navbar shadow-lg bg-base-100 text-neutral-content w-full sticky top-0 z-10 ">
+    <div class="flex navbar shadow-lg bg-base-100 text-neutral-content  w-full sticky top-0 z-10 ">
 
 
-       <div class="px-2 mx-2 navbar-start">
+       <div  *ngIf="showSide" class="px-2 mx-2 navbar-start   ">
         <div class="lg:hidden">
           <label class="btn btn-ghost text-gray-5000 drawer-button" for="my-drawer-2">
             <mat-icon class="text-black">menu</mat-icon>
@@ -42,16 +42,19 @@
           </a>
         </div>
       </div> -->
-
-      <div class="hidden  px-2 mx-2 navbar-start  lg:flex">
+      <!-- <div class="navbar-start text-gray-900">
         <h1 class="font-montserrat  border tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
-      </div>
-
-      <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">
-        <h1 class="font-montserrat tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
       </div> -->
+<!-- 
+      <div class="hidden  px-2 mx-2 navbar-start  ">
+        <h1 class="font-montserrat  border tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
+      </div>  -->
 
-      <div class="navbar-end hidden sm:flex" >
+      <div class="hidden px-2 mx-2 navbar-start lg:flex">
+        <h1 class="font-montserrat tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
+      </div>  
+
+      <div class="navbar-end hidden lg:flex " >
         <button class="" [matMenuTriggerFor]="menu" id="button_menu">
         <div *ngIf="isAuth" class="flex items-center  rounded-full border-2" >
 
@@ -73,7 +76,7 @@
 
     </div>
 <!-- Menu boton superior derecho -->
-    <mat-menu #menu="matMenu" class="ml-4  w-40" >
+    <mat-menu #menu="matMenu" class="ml-4  w-40 border" >
       <ul>
         <li>
           
