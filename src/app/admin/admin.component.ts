@@ -39,6 +39,7 @@ export class AdminComponent implements OnInit {
       label: 'Neues Fahrzeug',
       url: '/admin/new-vehicle',
       type: 'link',
+      up_space:false
     },
     {
       icon: 'directions_car_filled',
@@ -46,6 +47,7 @@ export class AdminComponent implements OnInit {
       label: 'Mein Bestand',
       url: '/admin/my-stock',
       type: 'link',
+      up_space:false
     },
     {
       icon: 'fact_check',
@@ -53,6 +55,7 @@ export class AdminComponent implements OnInit {
       label: 'Alle Fahrzeuge',
       url: '/admin/all-vehicles',
       type: 'link',
+      up_space:false
     },
     {
       icon: 'perm_identity',
@@ -60,6 +63,7 @@ export class AdminComponent implements OnInit {
       label: 'Kundendaten',
       url: '/admin/customer-information',
       type: 'link',
+      up_space:false
     },
     {
       icon: 'receipt_long',
@@ -67,6 +71,7 @@ export class AdminComponent implements OnInit {
       label: 'Ein- & Verkauf',
       url: '/admin/buying-selling',
       type: 'link',
+      up_space:false
     },
     {
       icon: 'price_change',
@@ -74,6 +79,7 @@ export class AdminComponent implements OnInit {
       label: 'Gewinn- und Verlust',
       url: '/admin/win-lose',
       type: 'link',
+      up_space:false
     },
     // {
     //   icon: 'insert_chart_outlined',
@@ -87,6 +93,7 @@ export class AdminComponent implements OnInit {
       label: 'Neue Rechnung',
       url: '/admin/new-invoice',
       type: 'link',
+      up_space:true
     },
     {
       icon: 'request_quote',
@@ -94,12 +101,14 @@ export class AdminComponent implements OnInit {
       label: 'Alle Rechnungen',
       url: '/admin/list-invoices',
       type: 'link',
+      up_space:false
     },
     {
       icon: 'logout',
       img:'Logout.svg',
       label: 'Logout',
       type: 'button',
+      up_space:true
     },
   ];
   public titlePage: string = 'Admin';

@@ -3,5 +3,6 @@ export interface Link {
   label: string,
   url?: string,
   type: 'link' | 'button',
-  img: string
+  img: string,
+  up_space: boolean
 }

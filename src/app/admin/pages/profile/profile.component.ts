@@ -273,7 +273,7 @@ export class ProfileComponent implements OnInit {
       this.isLoading = true;
       
       this.requestService
-        .Put(`${this.apiHelperService.clientsURL}/${this.userID}`, newUser)
+        .Put(`${this.apiHelperService.usersURL}/${this.userID}`, newUser)
         .subscribe((respuesta) => {
           const form = new FormData();
           form.append('files', <File>this.logoImg);
