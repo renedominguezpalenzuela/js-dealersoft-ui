@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit {
   public links: Link[] = [
     {
       icon: 'add_circle_outline',
-      img:'',
+      img:'Neue_Rechnung.svg',
       label: 'Neues Fahrzeug',
       url: '/admin/new-vehicle',
       type: 'link',
