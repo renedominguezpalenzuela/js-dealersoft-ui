@@ -6,7 +6,8 @@
   <div class="flex flex-col items-center justify-start drawer-content">
     <div class="flex navbar shadow-lg bg-base-100 text-neutral-content w-full sticky top-0 z-10 ">
 
-      <div class="px-2 mx-2 navbar-start">
+
+       <div class="px-2 mx-2 navbar-start">
         <div class="lg:hidden">
           <label class="btn btn-ghost text-gray-5000 drawer-button" for="my-drawer-2">
             <mat-icon class="text-black">menu</mat-icon>
@@ -24,8 +25,26 @@
         </div>
       </div>
 
-      <div class="hidden justify-start  px-2 mx-2 navbar-center lg:flex">
-        <h1 class="font-montserrat tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
+      <!-- <div class="px-2 mx-2 navbar-start">
+        <div class="lg:hidden">
+          <label class="btn btn-ghost text-gray-5000 drawer-button" for="my-drawer-2">
+            <mat-icon class="text-black">menu</mat-icon>
+          </label>
+        </div>
+        <button (click)="toggleSide()" *ngIf="showSide"
+                class="hidden lg:block btn btn-ghost text-gray-5000 drawer-button relative -left-5">
+          <mat-icon class="text-black">menu</mat-icon>
+        </button>
+        <div class="flex flex-row justify-center items-center px-2 mx-2 {{showSide ? '' : 'lg:hidden'}} pl-8 sm:pl-0">
+          <a routerLink="/admin">
+            <img [style.width]="showSide ? '92px' : '75px'" alt="Dealersoft.de Black brand"
+                 src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 48px">
+          </a>
+        </div>
+      </div> -->
+
+      <div class="hidden  px-2 mx-2 navbar-start  lg:flex">
+        <h1 class="font-montserrat  border tracking-widest font-bold text-2xl text-gray-900">{{titlePage}}</h1>
       </div>
 
       <!-- <div class="hidden px-2 mx-2 navbar-center lg:flex">

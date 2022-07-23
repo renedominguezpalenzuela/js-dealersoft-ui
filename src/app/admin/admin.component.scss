@@ -7,8 +7,9 @@
   @apply ml-1
 }
 
+
 .animate__animated.animate__fadeInLeft {
-  --animate-duration: 350ms;
+ --animate-duration: 350ms;
 }
 
 
@@ -20,4 +21,11 @@
 .font-montserrat-trial{
   font-size: 0.9rem;
   font-family: "Montserrat-Regular"!important ;
+}
+
+.menu li>:where(a:active), .menu li>:where(button:active){
+  --tw-bg-opacity: 1;
+    background-color:#E8E9EB!important;
+    --tw-text-opacity: 1;
+    color: hsla(var(--pc) / var(--tw-text-opacity, 1));
 }
