@@ -82,16 +82,16 @@ export class MultipleInvoicesComponent implements OnInit {
 
   public OptionSettings: OptionSettings = {
     options: [
-      // {
-      //   icon: 'picture_as_pdf',
-      //   literal: 'PDF exportieren',
-      //   event: 'ExportPdf'
-      // },
-      // {
-      //   icon: 'info',
-      //   literal: 'Detail anzeigen',
-      //   event: 'Detail'
-      // }
+      {
+        icon: 'picture_as_pdf',
+        literal: 'PDF exportieren',
+        event: 'ExportPdf'
+      },
+      {
+        icon: 'info',
+        literal: 'Detail anzeigen',
+        event: 'Detail'
+      }
     ]
   };
 
@@ -151,15 +151,15 @@ export class MultipleInvoicesComponent implements OnInit {
   public catchEvent($event: OperationEvent) {
     switch ($event.type) {
       case 'ExportPdf':
-        this.requestService.downloadPDF(this.apiHelperService.pdfURL, {
-          type: ExportType.invoice,
-          invoiceId: $event.value.id
-        }).subscribe(res => {
-          const year = moment(($event.value as Invoice).attributes.createdAt).year();
-          const month = moment(($event.value as Invoice).attributes.createdAt).format('MMMM');
-          saveAs(new Blob([res], { type: 'application/pdf' }),
-            `Rechnung [${ month }, ${ year }] (${ moment().format('YYYY-MM-DD') }).pdf`);
-        });
+        // this.requestService.downloadPDF(this.apiHelperService.pdfURL, {
+        //   type: ExportType.invoice,
+        //   invoiceId: $event.value.id
+        // }).subscribe(res => {
+        //   const year = moment(($event.value as Invoice).attributes.createdAt).year();
+        //   const month = moment(($event.value as Invoice).attributes.createdAt).format('MMMM');
+        //   saveAs(new Blob([res], { type: 'application/pdf' }),
+        //     `Rechnung [${ month }, ${ year }] (${ moment().format('YYYY-MM-DD') }).pdf`);
+        // });
         break;
       case 'Detail':
         // this.requestService.Get(

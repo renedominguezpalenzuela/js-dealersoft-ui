@@ -948,4 +948,33 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //     if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
   //   });
   // }
+
+    
+  // public Test_loadPaginatedDataInvoice = () => {
+
+  //   const jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
+
+
+  //   forkJoin([
+  //     this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
+    
+
+      
+      
+  //   ]).subscribe((res:any) => {
+     
+  //     this.me = res[0];
+  //     let user_id = this.me.id;
+
+  //     let showLogo = false;
+  //     let image_url = '';
+
+  //     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
+  //       (dato)=>{
+  //         image_url=dato?.data[0].attributes.logo.data.attributes.url;                       
+  //         if (image_url)   showLogo = true;        
+  //       });
+
+  //   });
+  // }
 }

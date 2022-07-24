@@ -1,13 +1,14 @@
 
 
 
- <app-header-bill [client]="datosReportes.client" [me]="datosReportes.me" [imgPath]="datosReportes.imgPath"></app-header-bill>
+ <!-- <app-header-bill [client]="datosReportes.client" [me]="datosReportes.me" [imgPath]="datosReportes.imgPath"></app-header-bill> -->
 
+ <app-header-privado [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-privado>
 
 
 <div class="pt-3 px-20 ">
 
- 
+ <div>{{datosReportes.me.id}}</div>
    
     <app-fecha-bill [invoice_date]="datosReportes.invoice_date" [invoice_number]="datosReportes.invoice_number" 
     [user_city]="datosReportes.user_city">

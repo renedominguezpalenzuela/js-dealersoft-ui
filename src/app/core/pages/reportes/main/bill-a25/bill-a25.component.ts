@@ -61,10 +61,8 @@ export class BillA25Component {
 
   constructor(
     private readonly apiHelperService: ApiHelperService,
-    // private readonly requestService: RequestService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    // private readonly httpClient: HttpClient
     public readonly datosReportes: DatosReportesService
   ) {
     // this.month = environment.months[moment(this.beginDate).month()];
@@ -82,6 +80,8 @@ export class BillA25Component {
     this.id = +<number><unknown>this.activatedRoute.snapshot.queryParamMap.get('id');
 
     this.datosReportes.loadPaginatedDataInvoices(this.id, this.jwt);
+
+    
 
 
    

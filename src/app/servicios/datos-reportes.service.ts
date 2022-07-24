@@ -48,6 +48,23 @@ export class DatosReportesService {
     }
 
 
+
+
+  
+
+  private generateOptions = (jwt: any) => {
+    return {
+      params: this.query(),
+      headers: new HttpHeaders({ Authorization: `Bearer ${ jwt }` })
+    }
+  }
+ 
+  private query = () => this.requestService.generateQuery({
+    populate: ['owner', 'client', 'car', 'user', 'logo']
+  });
+  
+
+  
   public loadPaginatedData = (id: any, jwt: any, buyScreen:boolean) => {
     forkJoin([
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),           
@@ -73,21 +90,9 @@ export class DatosReportesService {
   }
 
 
-  
-
-  private generateOptions = (jwt: any) => {
-    return {
-      params: this.query(),
-      headers: new HttpHeaders({ Authorization: `Bearer ${ jwt }` })
-    }
-  }
- 
-  private query = () => this.requestService.generateQuery({
-    populate: ['owner', 'client', 'car', 'user', 'logo']
-  });
-  
   public loadPaginatedDataInvoices = (id: any, jwt: any) => {
     forkJoin([ 
+      
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
       this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/${ id }`, this.generateOptionsInvoice( id)),
     //  this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions(jwt)),
@@ -113,6 +118,7 @@ export class DatosReportesService {
         });
 
 
+      
 
 
  
