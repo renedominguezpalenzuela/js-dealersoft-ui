@@ -90,7 +90,7 @@ export class AdminComponent implements OnInit {
     {
       icon: 'receipt',
       img:'Neue_Rechnung.svg',
-      label: 'Neue Rechnung',
+      label: 'Diverse Rechnung',
       url: '/admin/new-invoice',
       type: 'link',
       up_space:true
