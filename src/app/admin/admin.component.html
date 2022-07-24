@@ -87,6 +87,8 @@
   </div>
 
   <div class="drawer-side">
+
+    
     <label class="drawer-overlay" for="my-drawer-2"></label>
     <ul #drawerSide
         class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content h-full animate__animated lg:animate__fadeInLeft">
@@ -98,6 +100,12 @@
           <mat-icon class="text-black">close</mat-icon>
         </button>
       </li>
+
+      <!-- <div (click)="toStripePayment()" class="lg:hidden  flex flex-col justify-center items-center"> -->
+        <li   class="w-1/4  ml-3 lg:hidden">    
+          <img  class="" alt="Dealersoft.de Black brand"  src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 38px">
+        </li>
+      <!-- </div>   -->
 
       <!-- Menu lateral -->
 
@@ -140,9 +148,9 @@
         
         <!-- Vista Mobil -->
         <div (click)="toStripePayment()" class="lg:hidden  flex flex-col justify-center items-center">
-          <div   class="w-1/4  cursor-pointer tooltip tooltip-top" data-tip="Abonnement abschließen">    
+          <!-- <div   class="w-1/4  cursor-pointer tooltip tooltip-top" data-tip="Abonnement abschließen">    
             <img  class="" alt="Dealersoft.de Black brand"  src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 38px">
-          </div>
+          </div> -->
 
             <div class="  w-[80%] h-14 shadow mx-5 ">                      
               <div  class=" {{days > 0 ? 'bg-[#8591AA]' : 'bg-orange-600'}} h-full w-full rounded px-2 ">
