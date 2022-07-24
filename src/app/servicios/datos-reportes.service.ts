@@ -92,11 +92,10 @@ export class DatosReportesService {
 
   public loadPaginatedDataInvoices = (id: any, jwt: any) => {
     forkJoin([ 
-      
+     
       this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
-      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/${ id }`, this.generateOptionsInvoice( id)),
-    //  this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions(jwt)),
-      //this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
+      this.httpClient.get<any>(`${  this.apiHelperService.invoicesURL }/${ id }`, this.generateOptionsInvoice( id, jwt)),
+
     ]).subscribe(res => {
 
 
@@ -108,7 +107,10 @@ export class DatosReportesService {
       this.invoice_date = this.bill_info.date;
       this.user_city = this.bill_info.owner.data.attributes.city
 
+      //this.client = this.bill_info.client.data.attributes;
+      
       this.client = this.bill_info.owner.data.attributes;
+      //this.client = this.bill_info;
 
 
       this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
@@ -132,11 +134,10 @@ export class DatosReportesService {
   }
 
   
-  private generateOptionsInvoice = (id: any) => {
+  private generateOptionsInvoice = (id: any, jwt: any) => {
     return {
       params: this.queryInvoice(id),
-      // headers: new HttpHeaders({ Authorization: `Bearer ${ this.jwt }` })
-   
+      headers: new HttpHeaders({ Authorization: `Bearer ${ jwt }` })
     }
   }
 

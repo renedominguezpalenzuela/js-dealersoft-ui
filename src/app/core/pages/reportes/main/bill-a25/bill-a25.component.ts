@@ -1,25 +1,9 @@
-// import { Component, OnInit } from '@angular/core';
 
-
-// import { CarBuy, CarSell } from '@core/interfaces';
-// import * as moment from 'moment';
-// import { ApiHelperService, RequestService } from '@core/services';
-// import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { forkJoin } from 'rxjs';
-// import { environment } from '../../../../../../environments/environment';
-
-// import {  FilterDeepOption } from '@core/interfaces';
-// import { FilterOperator } from '@core/interfaces/query-params';
 
 import { Component } from '@angular/core';
 import { ApiHelperService } from '@core/services';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DatosReportesService } from '../../../../../servicios/datos-reportes.service';
-//import { DatosReportesService } from '../../../../../../servicios/datos-reportes.service';
-
-
-
 
 
 @Component({
