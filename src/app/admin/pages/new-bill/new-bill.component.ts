@@ -721,43 +721,54 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     this.generateCancelInvoice_Number().subscribe((numero_invoice) => {
 
 
+
+      this.createInvoice.generateCancelInvoice_Number().subscribe((numero_cancelacion)=>{
+ 
+
+
+        let datosInvoice = {
+          ...this.invoice_data,
+          invoice_number: numero_invoice,
+          cancel_number: numero_cancelacion,
+          reference_invoice_number:
+            this.newInvoiceForm.get('invoice_number')?.value,
+          cancelled: false,
+          invoice_type: 2,
+          client: this.invoice_data?.client.data.id,
+          owner: this.invoice_data?.owner.data.id,
+          title: "Rechnungsnummer " +this.newInvoiceForm.get('invoice_number')?.value+ " stornieren"
+          // +this.invoice_data.title      
+        };
+  
+        this.createInvoice
+          .guardarInvoiceFromSellCar(datosInvoice)
+          .subscribe(() => {
+            //Creada nueva invoice
+  
+            this.requestService
+            .Put(this.apiHelperService.invoicesURL + '/' +this.invoice_id  , {
+              cancelled: true,            
+            }).subscribe(()=>{
+  
+              this.notificationService.riseNotification({
+                color: 'success',
+                data: 'Stornorechnung erstellt',
+              });
+              this.router.navigate(['/admin/list-invoices']);
+            }
+  
+            )
+  
+  
+            
+          });
+
+      }
+
+      )
    
 
-      let datosInvoice = {
-        ...this.invoice_data,
-        invoice_number: numero_invoice,
-        reference_invoice_number:
-          this.newInvoiceForm.get('invoice_number')?.value,
-        cancelled: false,
-        invoice_type: 2,
-        client: this.invoice_data?.client.data.id,
-        owner: this.invoice_data?.owner.data.id,
-        title: "Rechnungsnummer " +this.newInvoiceForm.get('invoice_number')?.value+ " stornieren"
-        // +this.invoice_data.title      
-      };
-
-      this.createInvoice
-        .guardarInvoiceFromSellCar(datosInvoice)
-        .subscribe(() => {
-          //Creada nueva invoice
-
-          this.requestService
-          .Put(this.apiHelperService.invoicesURL + '/' +this.invoice_id  , {
-            cancelled: true,            
-          }).subscribe(()=>{
-
-            this.notificationService.riseNotification({
-              color: 'success',
-              data: 'Stornorechnung erstellt',
-            });
-            this.router.navigate(['/admin/list-invoices']);
-          }
-
-          )
-
-
-          
-        });
+    
      
     });
   }

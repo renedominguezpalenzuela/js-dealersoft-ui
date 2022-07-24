@@ -28,6 +28,7 @@ export class CreateInvoiceService {
   // myInvoice: Invoice [] = [];
 
   last_invoice_number: number = 220000;
+  last_cancel_invoice_number: number = 0;
   public authUser: User | null = null;
   public isAuth: boolean = false;
 
@@ -77,6 +78,52 @@ export class CreateInvoiceService {
         
 
           observer.next(String(this.last_invoice_number));
+           observer.complete();
+        });
+
+      });
+
+      //buscar todas las ventas del usuario
+      //si no existe el invoice_number, se genera uno nuevo
+
+
+    });
+  }
+
+
+  
+  public generateCancelInvoice_Number(): Observable<any> {
+    this.last_cancel_invoice_number = 0;
+
+    return new Observable((observer) => {
+
+
+      this.authService.currentUser.subscribe((user) => {
+        this.isAuth = this.authService.isAuth;
+        this.authUser = user;
+
+        this.requestService
+        .Get(
+          this.apiHelperService.invoicesURL,
+          this.queryInvoices(this.authUser?.id)
+        )
+        .subscribe((res) => {
+          let datos = res.data;
+          //Busco el mayor invoice_number guardado
+
+          datos.map((unDato: any) => {
+            let numero_en_db = Number(unDato.attributes?.cancel_number?.substring(5));
+
+            if (numero_en_db > this.last_cancel_invoice_number) {
+              this.last_cancel_invoice_number = numero_en_db;
+            }
+          });
+
+          this.last_cancel_invoice_number = this.last_cancel_invoice_number + 1;
+
+        
+
+          observer.next('STRG '+String(this.last_cancel_invoice_number));
            observer.complete();
         });
 

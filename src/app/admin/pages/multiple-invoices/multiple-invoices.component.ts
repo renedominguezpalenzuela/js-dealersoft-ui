@@ -41,6 +41,14 @@ export class MultipleInvoicesComponent implements OnInit {
       ordenar: true
     },
 
+    {
+      column: 'attributes.cancel_number',
+      header: 'Cancel Num',
+      show: true,
+      type: ColumnType.Regular,
+      ordenar: true
+    },
+
 
     {
       column: 'attributes.title',

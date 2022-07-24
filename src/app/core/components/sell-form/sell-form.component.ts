@@ -1320,6 +1320,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       // Solo salvar, no imprimir
       this.salvarEImprimir(false, ExportType.none);
     });
+
+    
   }
 
 

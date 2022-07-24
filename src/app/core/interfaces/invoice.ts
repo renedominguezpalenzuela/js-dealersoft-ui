@@ -4,6 +4,7 @@ export interface Invoice {
   id: string,
   attributes: {
     invoice_number: number,
+    cancel_invoice_number: number,
     title: string,
     description: string,
     date: Date,
