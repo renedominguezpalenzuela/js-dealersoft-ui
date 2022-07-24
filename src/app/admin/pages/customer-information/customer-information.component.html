@@ -33,7 +33,8 @@
     <div class="mt-4">
       <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"
                          [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
-                         [displayedColumns]="displayedColumns"
+                           [showExtraOption]="true" [extraOption]="extraOption"
+                           [displayedColumns]="displayedColumns"
                          [endFieldSticky]="'op'" [filterQuery]="filterQuery" [pageCount]="pageCount"
                          [page]="currentPage" [startFieldSticky]="'attributes.first_name'" class="w-full">
       </app-dynamic-table>

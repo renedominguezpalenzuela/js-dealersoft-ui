@@ -7,10 +7,10 @@
   <ng-template #content>
 
     <div class="flex flex-col sm:flex-row justify-between w-full items-center p-2 sm:pl-4 bg-white shadow rounded-lg">
-      <a class="btn btn-ghost border-2 border-gray-400 mb-2 sm:mb-0" routerLink="/admin/new-invoice">
+      <!-- <a class="btn btn-ghost border-2 border-gray-400 mb-2 sm:mb-0" routerLink="/admin/new-invoice">
         <mat-icon class="mr-2">add</mat-icon>
         Neue Rechnung 
-      </a>
+      </a> -->
       <div class="flex w-full sm:w-1/2 space-x-3 justify-end items-center flex-row">
         <input [(ngModel)]="filterQuery" class="input-search" placeholder="Suchen..." type="search"/>
         <button (click)="loadPaginatedData(currentPage)" class="btn btn-ghost" type="button">

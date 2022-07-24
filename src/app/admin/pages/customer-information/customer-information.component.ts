@@ -1,19 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer, FilterDeepOption } from '@core/interfaces';
 import { FilterOperator } from '@core/interfaces/query-params';
-import {
-  Column,
-  ColumnType,
-  OperationEvent,
-  OptionSettings,
-} from '@core/lib/dynamic-table/utils/interfaces';
-import {
-  ApiHelperService,
-  LoadingService,
-  NotificationService,
-  RequestService,
-  AuthService,
-} from '@core/services';
+import {  Column,  ColumnType,  OperationEvent,  OptionSettings,} from '@core/lib/dynamic-table/utils/interfaces';
+import {  ApiHelperService,  LoadingService,  NotificationService,  RequestService,  AuthService,} from '@core/services';
 import { delay } from 'rxjs';
 import { SelectColumnsComponent } from '@core/components/select-columns/select-columns.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,14 +22,15 @@ import { User } from '@core/interfaces';
 export class CustomerInformationComponent implements OnInit {
   public authUser: User | null = null;
   public isAuth: boolean = false;
-
+  public extraOption: { event: string, icon: string } = { event: 'TO_DETAIL', icon: 'chevron_right' };
   public data: Customer[] = [];
+
   public displayedColumns: Column[] = [
 
     {
       column: 'attributes.title',
       header: 'Titel',
-      show: false,
+      show: true,
       type: ColumnType.Regular,
       ordenar: true
     },
@@ -53,7 +43,7 @@ export class CustomerInformationComponent implements OnInit {
     },
     {
       column: 'attributes.last_name',
-      header: 'Nachnames',
+      header: 'Nachname',
       show: true,
       type: ColumnType.Regular,
       ordenar: true
@@ -160,12 +150,15 @@ export class CustomerInformationComponent implements OnInit {
       );
     }
     this.noShowLoader = false;
-    // this.loadPaginatedData(this.currentPage);
+    
 
    
   }
 
   ngOnInit(): void {
+
+
+   
 
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
@@ -174,14 +167,17 @@ export class CustomerInformationComponent implements OnInit {
 
     this.loadPaginatedData(this.currentPage);
 
+ 
+   
 
+    if (this.dynamicTableService.hasUrl(this.router.url)) {
+         this.displayedColumns = <Column[]>(this.dynamicTableService.getData(this.router.url)); 
+      } else {
+         this.dynamicTableService.setUrl(this.router.url, this.displayedColumns);
+      } 
 
-    if (this.dynamicTableService.hasUrl(this.router.url))
-      this.displayedColumns = <Column[]>(
-        this.dynamicTableService.getData(this.router.url)
-      );
-    else
-      this.dynamicTableService.setUrl(this.router.url, this.displayedColumns);
+     
+  
 
     this.loadingService.loadingSub
       .pipe(delay(0))
@@ -190,7 +186,10 @@ export class CustomerInformationComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
       if (map.has('page'))
         this.currentPage = <number>(<unknown>map.get('page'));
+        
     });
+
+
   }
 
   public loadPaginatedData = ($event: number) => {
@@ -202,8 +201,6 @@ export class CustomerInformationComponent implements OnInit {
       .Get(this.apiHelperService.clientsURL, this.queryClients(this.authUser?.id))
       .subscribe((res) => {
         this.data = res.data;
-
-
         this.pageCount = res.meta.pagination.pageCount;
         this.router.navigate([], {
           relativeTo: this.activatedRoute,
@@ -216,7 +213,7 @@ export class CustomerInformationComponent implements OnInit {
 
   public openSelectColumnDialog() {
 
-    
+   
     this.matDialog
       .open(SelectColumnsComponent, {
         width: '450px',
@@ -275,6 +272,10 @@ export class CustomerInformationComponent implements OnInit {
       case 'Remove':
         this.removeCustomer($event.value);
         break;
+        case 'TO_DETAIL':
+          //this.router.navigate(['/admin/vehicle-form', $event.value.id], { queryParams: { tab: 1 } });
+          this.editCustomer($event.value);
+          break;
       default:
         break;
     }

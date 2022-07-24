@@ -80,6 +80,8 @@ export class DynamicTableComponent implements OnInit, AfterViewInit, OnChanges {
   private static filterColumns = (displayedColumns: Column[]): Column[] => displayedColumns.filter(elm => elm.show);
 
   public ngOnInit(): void {
+    console.log("SSS")
+    console.log(this.displayedColumns)
     this.dataSource.data = this.data;
 
     this.dataSource.filterPredicate = (data: Element, filter: string) => {
