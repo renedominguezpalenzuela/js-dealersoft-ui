@@ -36,7 +36,7 @@ export class AllVehiclesComponent implements OnInit {
     },
     {
       column: 'attributes.selled',
-      header: 'Verkauft',
+      header: 'Status',
       show: true,
       type: ColumnType.SellStatus,
       ordenar: true

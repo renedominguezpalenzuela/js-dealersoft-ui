@@ -135,22 +135,48 @@
 
       <!-- Icono de Stripe -->
       <li *ngIf="authUser?.active_until" class="">
-        <div class="flex  justify-center rounded-lg  w-[80%] h-14 shadow mx-5 mt-2">
-          <div (click)="toStripePayment()"  class="w-1/4 bg-[#E8E9EB] h-full rounded-l-lg flex items-center justify-center cursor-pointer tooltip tooltip-bottom" data-tip="Abonnement abschließen">
-    
 
-            <img  alt="Dealersoft.de Black brand"
-            src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 38px">
+ 
+        
+        <!-- Vista Mobil -->
+        <div (click)="toStripePayment()" class="lg:hidden  flex flex-col justify-center items-center">
+          <div   class="w-1/4  cursor-pointer tooltip tooltip-top" data-tip="Abonnement abschließen">    
+            <img  class="" alt="Dealersoft.de Black brand"  src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 38px">
           </div>
-          <div  class="w-3/4 {{days > 0 ? 'bg-[#8591AA]' : 'bg-orange-600'}} h-full rounded-r-lg flex flex-row justify-center items-center pl-2 py-1">
-            <p class="font-montserrat-trial text-white p-0 m-0">
-              <span>verbleibende Testphase</span>
-              <span class="ml-0.5 bg-transparent py-0.5 px-1 rounded text-gray-50">
-                {{days + ' Tage'}}
-              </span>
-            </p>
-          </div>
+
+            <div class="  w-[80%] h-14 shadow mx-5 ">                      
+              <div  class=" {{days > 0 ? 'bg-[#8591AA]' : 'bg-orange-600'}} h-full w-full rounded px-2 ">
+                <div class="font-montserrat-trial text-white p-0 m-0">
+                  <div>verbleibende Testphase</div>
+                  <div class="ml-0.5 bg-transparent py-0.5 px-1 rounded text-gray-50">
+                    {{days + ' Tage'}}
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
+
+        <!-- Vista PC -->
+        <div (click)="toStripePayment()" class="hidden lg:block">
+       
+          <div class="flex  justify-center rounded-lg  w-[80%] h-14 shadow mx-5 mt-2">            
+            <div (click)="toStripePayment()"  class="w-1/4 bg-[#E8E9EB] h-full rounded-l-lg flex items-center justify-center cursor-pointer tooltip tooltip-bottom" data-tip="Abonnement abschließen">    
+              <img  alt="Dealersoft.de Black brand"  src="assets/brand_logo/Dealersoft.de-black.svg" style="height: 38px">
+            </div>
+            <div  class="w-3/4 {{days > 0 ? 'bg-[#8591AA]' : 'bg-orange-600'}} h-full rounded-r-lg flex flex-row justify-center items-center pl-2 py-1">
+              <p class="font-montserrat-trial text-white p-0 m-0">
+                <span>verbleibende Testphase</span>
+                <span class="ml-0.5 bg-transparent py-0.5 px-1 rounded text-gray-50">
+                  {{days + ' Tage'}}
+                </span>
+              </p>
+            </div>
+          </div>
+      </div>
+
+
+
+
       </li>
     </ul>
 
