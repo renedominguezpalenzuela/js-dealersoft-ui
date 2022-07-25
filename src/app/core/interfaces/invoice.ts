@@ -3,8 +3,9 @@ import { Customer } from './customer';
 export interface Invoice {
   id: string,
   attributes: {
-    invoice_number: number,
-    cancel_invoice_number: number,
+    invoice_number: string,
+    cancel_invoice_number: string,
+    reference_invoice_number:string,
     title: string,
     description: string,
     date: Date,

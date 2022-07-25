@@ -689,6 +689,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return this.validationsService.hasRequiredError(this.carSellForm, input);
   };
 
+  //--------------------------------------------------------------------------------
+  //  CrearInvoice
+  //--------------------------------------------------------------------------------
+  // Crear tupla en tabla invoices, toma los datos desde el formulario
+  
   crearInvoice() {
     if (this.selected_tab == 0) {
       let precio = 0;

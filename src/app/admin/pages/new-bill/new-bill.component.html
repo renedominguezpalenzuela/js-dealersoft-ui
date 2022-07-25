@@ -8,18 +8,13 @@
 
         <mat-form-field appearance="outline" class="col-start-1 col-span-2 lg:col-span-1">
           <mat-label class="font-montserrat">Rechnungs Nr.</mat-label>
-          <input formControlName="invoice_number" matInput min="0" required type="number" class="font-montserrat">
+          <input formControlName="invoice_number" matInput  class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('invoice_number')">
             <b>Rechnungs Nr.</b> wird benötigt
           </mat-error>
         </mat-form-field>
 
         <div class="col-span-1 col-start-2 pt-2">
-          <!-- <mat-label class="btn btn-ghost text-gray-5000 drawer-button 	 " (click)="generateInvoice_Number()" [disabled]="boton_salvar_disabled">
-            <mat-icon class="text-black">gavel</mat-icon>
-
-          </mat-label> -->
-
           <button mat-icon-button [disabled]="boton_salvar_disabled" class="text-gray-5000 drawer-button"
             (click)="generateInvoice_Number()" type="button">
             <mat-icon class="text-black">gavel</mat-icon>
@@ -123,7 +118,7 @@
               <mat-form-field appearance="outline" class="col-span-5 ">
                 <mat-label class="font-montserrat">Artikel</mat-label>
                 <!-- <input formControlName="article" matInput required type="text"> -->
-                <textarea matInput placeholder="Bemerkungen" formControlName="article" rows="2" maxlength="240"
+                <textarea matInput placeholder="Artikel" formControlName="article" rows="2" maxlength="240"
                   (keydown)="keydown($event)" class="font-montserrat"> </textarea>
               </mat-form-field>
 
@@ -159,6 +154,7 @@
 
 
 
+        <!-- Imprimir -->
         <button class="btn bg-[#8591AA] border-[#8591AA] w-40 col-start-1" (click)="generatePdf()" type="button"
           *ngIf="mostrar_boton_imprimir">
           <span class="tracking-wide">Rechnung drucken</span>
@@ -166,14 +162,14 @@
 
 
 
-        <!-- Rechnung stornieren -->
+        <!-- Cancelar Invoice -->
         <button class="btn bg-[#8591AA] border-[#8591AA] w-41 col-start-2 " (click)="cancelInvoice()" [disabled]="!boton_salvar_disabled"
           *ngIf="mostrar_boton_imprimir"  type="button">
           <span class="tracking-wide">Storno Rechnung erstellen</span>
         </button>
 
 
-
+        <!-- Guardar -->
         <button class="btn bg-[#8591AA] border-[#8591AA] w-40 col-start-4 " type="submit" [disabled]="boton_salvar_disabled">
           <span class="tracking-wide">Rechnung erstellen</span>
         </button>

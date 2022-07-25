@@ -30,6 +30,7 @@ export class DatosReportesService {
 
   public bill_info: any;
   public invoice_number: any;
+  public reference_invoice_number: any;
   public invoice_date: any;
   public user_city: any; 
   public client: any; 
@@ -103,8 +104,19 @@ export class DatosReportesService {
       let user_id = this.me.id;
 
       this.bill_info = res[1].data.attributes;
-      this.invoice_number =  this.bill_info.invoice_number;
+
+      if (this.bill_info.invoice_type===2) {
+        this.invoice_number =  this.bill_info.cancel_number;
+        this.reference_invoice_number=  this.bill_info.reference_invoice_number;
+
+      } else {
+         this.invoice_number =  this.bill_info.invoice_number;
+      }
+
+
+
       this.invoice_date = this.bill_info.date;
+
       this.user_city = this.bill_info.owner.data.attributes.city
 
       //this.client = this.bill_info.client.data.attributes;

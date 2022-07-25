@@ -30,6 +30,9 @@ import { BuyCarIvaComponent } from './buy-car-iva/buy-car-iva.component';
 import { BillA25Component } from './bill-a25/bill-a25.component';
 import { BillIvaComponent } from './bill-iva/bill-iva.component';
 
+import { BillCancelA25Component } from './bill-cancel-a25/bill-cancel-a25.component';
+import { BillCancelIvaComponent } from './bill-cancel-iva/bill-cancel-iva.component';
+
 
 
  
@@ -65,6 +68,9 @@ const routes: Routes = [
    { path: 'bill/a25/:jwt', component: BillA25Component },
    { path: 'bill/iva/:jwt', component: BillIvaComponent },
 
+   { path: 'bill-cancel/a25/:jwt', component: BillCancelA25Component },
+   { path: 'bill-cancel/iva/:jwt', component: BillCancelIvaComponent },
+
 
     // { path: 'buy-car', component: BuyCarComponent },
 
@@ -94,6 +100,9 @@ const routes: Routes = [
          BuyCarIvaComponent,
          BillA25Component,
          BillIvaComponent,
+    
+         BillCancelA25Component,
+         BillCancelIvaComponent,
 
  
 

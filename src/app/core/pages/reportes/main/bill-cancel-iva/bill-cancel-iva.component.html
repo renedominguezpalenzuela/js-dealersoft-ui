@@ -1,0 +1,46 @@
+
+
+ <app-header-bill [client]="datosReportes.client"  [me]="this.datosReportes.me" [imgPath]="datosReportes.imgPath"></app-header-bill>
+
+
+
+ <div class="pt-3 px-20 ">
+ 
+ 
+     <!-- Contrato fecha -->
+     <app-fecha-bill-cancel [invoice_date]="datosReportes.invoice_date" [invoice_number]="datosReportes.invoice_number" [user_city]="datosReportes.user_city"  [reference_invoice_number]="datosReportes.reference_invoice_number">
+     </app-fecha-bill-cancel>
+ 
+     <p class="flex text-center mt-4 text-details  ">
+         Wir berechnen Ihnen hiermit gemäß Absprache folgende(n) Artikel
+ 
+     </p>
+ 
+     <div class="mt-10 text-contract-big">
+         Beschreibung
+     </div>
+ 
+     <div class="mt-4 ">
+         <app-precio-bill-iva [lista_articulos]="datosReportes.bill_info.places" ></app-precio-bill-iva>
+ 
+     </div>
+ 
+ 
+ 
+ 
+ 
+ 
+     <div class="mt-10 ">
+         <table class="" style="text-align: left">
+             <tr>
+                 <span class="pr-2 text-details-bold ">Lieferdatum: </span>
+                 <span class="text-details">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
+             </tr>
+ 
+         </table>
+     </div>
+ 
+ </div>
+ 
+ 
+ <app-footer-empresa [car_buy_data]="this.datosReportes.bill_info" [me]="this.datosReportes.me"></app-footer-empresa>

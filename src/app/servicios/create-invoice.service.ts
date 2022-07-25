@@ -66,7 +66,8 @@ export class CreateInvoiceService {
           //Busco el mayor invoice_number guardado
 
           datos.map((unDato: any) => {
-            let numero_en_db = Number(unDato.attributes.invoice_number);
+            
+            let numero_en_db = Number(unDato.attributes?.invoice_number?.substring(3));
 
             if (numero_en_db > this.last_invoice_number) {
               this.last_invoice_number = numero_en_db;
@@ -75,9 +76,11 @@ export class CreateInvoiceService {
 
           this.last_invoice_number = this.last_invoice_number + 1;
 
-        
+         
 
-          observer.next(String(this.last_invoice_number));
+           observer.next('RG '+String(this.last_invoice_number));
+           
+          
            observer.complete();
         });
 
@@ -93,7 +96,7 @@ export class CreateInvoiceService {
 
   
   public generateCancelInvoice_Number(): Observable<any> {
-    this.last_cancel_invoice_number = 0;
+    this.last_cancel_invoice_number = 220000;
 
     return new Observable((observer) => {
 

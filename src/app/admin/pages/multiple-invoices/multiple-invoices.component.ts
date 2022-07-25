@@ -223,11 +223,28 @@ export class MultipleInvoicesComponent implements OnInit {
     // this.Prueba();
 
     let tipo = '/';
+
+
+   
+    if (invoice_data?.invoice_type === 2) {
+      
+    if (invoice_data.a25) {
+      tipo = 'reports/bill-cancel/a25';
+    } else {
+      tipo = 'reports/bill-cancel/iva';
+    }
+    
+    } else {
+
+
+
+
     if (invoice_data.a25) {
       tipo = 'reports/bill/a25';
     } else {
       tipo = 'reports/bill/iva';
     }
+  }
 
     this.requestService
       .downloadPDF(this.apiHelperService.pdfURL, {
@@ -236,7 +253,7 @@ export class MultipleInvoicesComponent implements OnInit {
         id: id, //no es un car
       })
       .subscribe((res) => {
-        let nombre = `Storno Rechnung St.-Nr. ${invoice_data?.invoice_number} für Re Nr. ${invoice_data?.reference_invoice_number} .pdf`;
+        let nombre = `Storno Rechnung St.-Nr. ${invoice_data?.cancel_number} für Re Nr. ${invoice_data?.reference_invoice_number} .pdf`;
         if (invoice_data?.invoice_type === 1) {
           nombre = `Rechnung_${invoice_data?.invoice_number}_(${moment().format(
             'YYYY-MM-DD'
@@ -288,7 +305,8 @@ export class MultipleInvoicesComponent implements OnInit {
 
     
   public generateCancelInvoice_Number(): Observable<any> {
-    return this.createInvoice.generateInvoice_Number();
+    // return this.createInvoice.generateInvoice_Number();
+    return this.createInvoice.generateCancelInvoice_Number();
   }
 
   cancelInvoice(id: any, invoice_data: any) {
@@ -302,7 +320,6 @@ export class MultipleInvoicesComponent implements OnInit {
         color: 'warning',
         data: 'Eine stornierte Rechnung kann nicht storniert werden',
       });
-
       return;
     }
 
@@ -314,21 +331,20 @@ export class MultipleInvoicesComponent implements OnInit {
       return;
     }
 
-    this.generateCancelInvoice_Number().subscribe((numero_invoice: any) => {
+ 
       this.createInvoice
         .generateCancelInvoice_Number()
         .subscribe((numero_cancelacion: any) => {
           let datosInvoice = {
             ...invoice_data,
-            invoice_number: numero_invoice,
+            invoice_number: null,
             cancel_number: numero_cancelacion,
             reference_invoice_number: invoice_data.invoice_number,
             cancelled: false,
             invoice_type: 2,
             client: invoice_data?.client.data.id,
             owner: invoice_data?.owner.data.id,
-            title:
-              'Rechnungsnummer ' + invoice_data.invoice_number + ' stornieren',
+            title:  'Rechnungsnummer ' + invoice_data.invoice_number + ' stornieren',
             // +this.invoice_data.title
           };
 
@@ -336,7 +352,6 @@ export class MultipleInvoicesComponent implements OnInit {
             .guardarInvoiceFromSellCar(datosInvoice)
             .subscribe(() => {
               //Creada nueva invoice
-
               this.requestService
                 .Put(this.apiHelperService.invoicesURL + '/' + id, {
                   cancelled: true,
@@ -347,12 +362,10 @@ export class MultipleInvoicesComponent implements OnInit {
                     data: 'Stornorechnung erstellt',
                   });
                   window.location.reload()
-
-
 //                  this.router.navigate(['/admin/list-invoices']);
                 });
             });
         });
-    });
+    
   }
 }

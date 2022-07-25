@@ -109,6 +109,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   a25_activo = false;
 
+  cancel_bill = false;
+
   private readonly jwt: string;
 
   public clientsOptions: Customer[] = [];
@@ -468,6 +470,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    
+
     if (this.boton_salvar_disabled === true) {
       this.desHabilitarControles();
     }
@@ -491,6 +495,16 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
 
+      
+
+          if (data.invoice_type === 2) {
+            this.cancel_bill = true;
+          } else {
+            this.cancel_bill = false;
+          }
+
+          
+
           this.newInvoiceForm.patchValue({
             ...data,
           });
@@ -506,9 +520,12 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
+
+  //----------------------------------------------------------------------------
+  // Generate invoice 
+  //----------------------------------------------------------------------------
   public generateInvoice_Number() {
-    let valorFormularioInvoice_Number =
-      this.newInvoiceForm.get('invoice_number')!.value;
+    let valorFormularioInvoice_Number =  this.newInvoiceForm.get('invoice_number')!.value;
 
     if (valorFormularioInvoice_Number != null) {
       this.notificationService.riseNotification({
@@ -519,35 +536,23 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       return;
     }
 
-    let numero = this.createInvoice
-      .generateInvoice_Number()
-      .subscribe((datos: any) => {
-        this.newInvoiceForm.patchValue({
-          invoice_number: datos,
-          reference_invoice_number: datos,
-        });
+    let numero = this.createInvoice.generateInvoice_Number().subscribe((datos: any) => {
+       
+        
+         this.newInvoiceForm.patchValue({
+           invoice_number: datos,
+           reference_invoice_number: datos,
+         });
+
+        
+
       });
   }
 
   public generateCancelInvoice_Number(): Observable<any> {
-    // let valorFormularioInvoice_Number =
-    //   this.newInvoiceForm.get('invoice_number')!.value;
 
-    // if (valorFormularioInvoice_Number != null) {
-    //   this.notificationService.riseNotification({
-    //     color: 'warning',
-    //     data: 'Rechnungsnummer wurde bereits generiert, es kann keine neue erstellt werden',
-    //   });
-
-    //   return;
-    // }
-
-    return this.createInvoice.generateInvoice_Number();
-    // .subscribe((datos: any) => {
-    //   this.newInvoiceForm.patchValue({
-    //     reference_invoice_number: datos,
-    //   });
-    // });
+    return this.createInvoice.generateCancelInvoice_Number();
+   
   }
 
   public keydown(event: any) {
@@ -566,13 +571,31 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     // this.Prueba();
 
     let tipo = '/';
-    if (this.a25_activo) {
-      
-      tipo = 'reports/bill/a25';
+
+    
+
+
+
+    if (this.invoice_data?.invoice_type === 2) {
+      //invoice de cancelacion
+      if (this.a25_activo) {  
+        tipo = 'reports/bill-cancel/a25';
+      } else {        
+        tipo = 'reports/bill-cancel/iva';
+      }
     } else {
-      
-      tipo = 'reports/bill/iva';
+      //invoice normal
+      if (this.a25_activo) {  
+        tipo = 'reports/bill/a25';
+      } else {
+        
+        tipo = 'reports/bill/iva';
+      }
     }
+
+  
+   
+  
 
     this.requestService
       .downloadPDF(this.apiHelperService.pdfURL, {
@@ -582,7 +605,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       })
       .subscribe((res) => {
 
-        let nombre =   `Storno Rechnung St.-Nr. ${this.invoice_data?.invoice_number} für Re Nr. ${this.invoice_data?.reference_invoice_number} .pdf`;
+        let nombre =   `Storno Rechnung St.-Nr. ${this.invoice_data?.cancel_number} für Re Nr. ${this.invoice_data?.reference_invoice_number} .pdf`;
         if (this.invoice_data?.invoice_type===1) {
            nombre=  `Rechnung_${this.invoice_data?.invoice_number}_(${moment().format('YYYY-MM-DD')}).pdf`
         }
@@ -624,22 +647,6 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       //   this.me = res[3];
     });
   };
-
-  // this.requestService
-  // .Get(
-  //   this.apiHelperService.invoicesURL,
-  //   this.requestService.generateQuery({
-  //     populate: ['*'],
-  //     filters: [
-  //       {
-  //         field: '[id]',
-  //         operator: FilterOperator.$eq,
-  //         value: <string>this.invoice_data?.id,
-  //         option: FilterDeepOption.$and,
-  //       },
-  //     ],
-  //   })
-  // )
 
 
   
@@ -694,83 +701,56 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     //si el invoice a cancelar esta ya cancelada no se puede cancelar
     //Eine stornierte Rechnung kann nicht storniert werden
 
-
- 
-
-    if (this.invoice_data.cancelled) {
-      
+    if (this.invoice_data.cancelled) {  
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'Eine stornierte Rechnung kann nicht storniert werden',
       });
-
       return;
-
     }
 
-    if (this.invoice_data.invoice_type===2) {
-      
+    if (this.invoice_data.invoice_type===2) {    
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'Eine Stornorechnung kann nicht storniert werden',
       });
-      return;
-      
+      return; 
     }
 
-    
+    this.generateCancelInvoice_Number().subscribe((numero_cancelacion) => {
 
-    this.generateCancelInvoice_Number().subscribe((numero_invoice) => {
-
-
-
-      this.createInvoice.generateCancelInvoice_Number().subscribe((numero_cancelacion)=>{
- 
-
-
-        let datosInvoice = {
+      let datosInvoice = {
           ...this.invoice_data,
-          invoice_number: numero_invoice,
+          invoice_number: null,
           cancel_number: numero_cancelacion,
-          reference_invoice_number:
-            this.newInvoiceForm.get('invoice_number')?.value,
+          reference_invoice_number: this.newInvoiceForm.get('invoice_number')?.value,
           cancelled: false,
           invoice_type: 2,
           client: this.invoice_data?.client.data.id,
           owner: this.invoice_data?.owner.data.id,
           title: "Rechnungsnummer " +this.newInvoiceForm.get('invoice_number')?.value+ " stornieren"
+          
           // +this.invoice_data.title      
         };
-  
+
+      
         this.createInvoice
           .guardarInvoiceFromSellCar(datosInvoice)
           .subscribe(() => {
             //Creada nueva invoice
-  
             this.requestService
             .Put(this.apiHelperService.invoicesURL + '/' +this.invoice_id  , {
               cancelled: true,            
             }).subscribe(()=>{
-  
               this.notificationService.riseNotification({
                 color: 'success',
                 data: 'Stornorechnung erstellt',
               });
               this.router.navigate(['/admin/list-invoices']);
-            }
+            })
+      })
   
-            )
   
-  
-            
-          });
-
-      }
-
-      )
-   
-
-    
      
     });
   }
