@@ -7,6 +7,7 @@
   <ng-template #content>
 
     <div class="flex flex-col sm:flex-row justify-between w-full items-center p-2 sm:pl-4 bg-white shadow rounded-lg">
+     
       <!-- <a class="btn btn-ghost border-2 border-gray-400 mb-2 sm:mb-0" routerLink="/admin/new-invoice">
         <mat-icon class="mr-2">add</mat-icon>
         Neue Rechnung 
@@ -26,14 +27,22 @@
 <!--
 
 [endFieldSticky]="'op'" -->
-      <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"                         
+      <!-- <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"                         
                           [canSticky]="true" [data]="data"
-                          [showOptions]="false"
-                          [showExtraOption]="true"  [extraOption]="extraOption" 
+                          [showOptions]="false" [endFieldSticky]="'op'"
+                          [OptionSettings]="OptionSettings"  [showExtraOption]="true"  [extraOption]="extraOption" 
                          [displayedColumns]="displayedColumns"  [filterQuery]="filterQuery"
                          [pageCount]="pageCount" [startFieldSticky]="'attributes.invoice_number'" class="w-full"
                            >
-      </app-dynamic-table>
+      </app-dynamic-table> -->
+
+      <app-dynamic-table (operationEvent)="catchEvent($event)" 
+      (paginationEvent)="loadPaginatedData($event)"
+                              [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
+                              [displayedColumns]="displayedColumns" [endFieldSticky]="'op'" [extraOption]="extraOption"
+                              [filterQuery]="filterQuery" [pageCount]="pageCount" [page]="currentPage"
+                              [showExtraOption]="true" [startFieldSticky]="'attributes.invoice_number'" class="w-full">
+           </app-dynamic-table>
     </div>
 
   </ng-template>
