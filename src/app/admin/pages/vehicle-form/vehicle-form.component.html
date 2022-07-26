@@ -9,7 +9,9 @@
         </app-buy-form>
       </mat-tab>
       <mat-tab label="Verkauf" class="color-mat-tab  ">
+        <ng-template matTabContent>
         <app-sell-form   [car_data]="car" [carsOptions]="carsOptions" [clientsOptions]="clientsOptions" [boton_salvar_disabled]="!can_save"></app-sell-form>
+      </ng-template>
       </mat-tab>
     </mat-tab-group>
   </div>
