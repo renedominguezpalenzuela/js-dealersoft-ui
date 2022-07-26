@@ -5,7 +5,8 @@ import { FilterDeepOption } from '@core/interfaces';
 import { FilterOperator } from '@core/interfaces/query-params';
 import { User } from '@core/interfaces';
 
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, delay } from 'rxjs';
+
 
 import {
   ApiHelperService,
@@ -139,17 +140,31 @@ export class CreateInvoiceService {
     });
   }
 
-  guardarInvoiceFromSellCar(DatosInvoice: any): Observable<any> {
+  guardarInvoiceDatosEnBD(DatosInvoice: any): Observable<any> {
+
+   
   
     return this.requestService
       .Post(this.apiHelperService.invoicesURL, DatosInvoice)
-      // .subscribe(() => {
-      //   this.notificationService.riseNotification({
-      //     color: 'success',
-      //     data: 'Neue Rechnung gespeichert',
-      //   });
+
+  }
+
+
+  public carCancelInvoice(car_id:any, car_selled_id:any): Observable<any>{
+
+
+   return forkJoin([
+       this.requestService.Put(this.apiHelperService.carsURL + '/' + car_id, {
+           selled: false,
+           can_save: true,
+      }),
+    
+      this.requestService.Delete(this.apiHelperService.carsSellURL + '/' + car_selled_id)
+
+    ])
+   
+     
       
-      //   // this.router.navigate(['/admin/list-invoices']);
-      // });
+
   }
 }

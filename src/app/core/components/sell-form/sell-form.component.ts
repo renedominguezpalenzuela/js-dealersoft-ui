@@ -104,6 +104,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public selected_tab: number = 0;
 
+  car_selled_id: number = 0;
+
   selected_option_a25 = false;
   selected_option_MnSt = false;
   selected_option_Export = false;
@@ -581,6 +583,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         )
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
+          
+        
+          
 
           // if (data === undefined) {
           //   this.boton_salvar_disabled = false;
@@ -590,6 +595,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
           if (data != null) {
             this.existenDatosGuardadosenBD = true;
+            this.car_selled_id = res?.data[0].id;
           }
           this.actualizando_radio_buttons = true;
 
@@ -695,6 +701,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   // Crear tupla en tabla invoices, toma los datos desde el formulario
   
   crearInvoice() {
+
+
+
+
+
     if (this.selected_tab == 0) {
       let precio = 0;
       if (this.carSellForm.get('a25')!.value) {
@@ -735,10 +746,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             unit_price: precio,
           },
         ],
+        car_sell_data: this.car_selled_id,
+        car: this.car_data?.id
       };
 
       this.createInvoice
-        .guardarInvoiceFromSellCar(datosInvoice)
+        .guardarInvoiceDatosEnBD(datosInvoice)
         .subscribe(() => {
           // this.actualizarCarSelled(this.carSellForm.value.car, true);
           this.actualizarCarSelled(this.car_data?.id, true);
@@ -756,7 +769,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //*************************************************************************************************
   public submit() {
     
-    this.salvarEImprimir(false, ExportType.none);
+    this.salvarEImprimir(false, ExportType.none, false);
   }
 
   public actualizarCarSelled(carID: any, showMessage: boolean) {
@@ -938,7 +951,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public generatePdf(type: ExportType) {
     if (!this.boton_salvar_disabled) {
-      this.salvarEImprimir(true, type);
+      this.salvarEImprimir(true, type, false);
     } else {
       this.imprimir(type);
     }
@@ -1120,7 +1133,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return invalid;
   }
 
-  public salvarEImprimir(imprimir: any, type: ExportType) {
+  public salvarEImprimir(imprimir: any, type: ExportType, crear_invoice: boolean) {
     let xnet_sell: number = 0;
     let xiva_sell: number = 0;
     let xgross_sell: number = 0;
@@ -1208,8 +1221,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           //this.carSellForm.value
           this.requestService
             .Post(this.apiHelperService.carsSellURL, datos)
-            .subscribe(() => {
+            .subscribe((Datos_Salva) => {
               //Solo se elimina el carro cuando se crea el invoice number
+
+              
+              this.car_selled_id = Datos_Salva.data.id;
 
               let texto_mensaje = '';
               if (this.selected_tab == 0) {
@@ -1225,6 +1241,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 data: texto_mensaje,
               });
 
+              if (crear_invoice) {
+                this.crearInvoice()
+              }
+
               if (imprimir) {
                 this.imprimir(type);
               }
@@ -1235,6 +1255,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           //modificar tupla existente
 
           const id_venta = res?.data[0]?.id;
+          this.car_selled_id = id_venta;
 
           //this.carSellForm.value
           this.requestService
@@ -1256,6 +1277,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
                 color: 'success',
                 data: texto_mensaje,
               });
+
+              if (crear_invoice) {
+                this.crearInvoice()
+              }
 
               if (imprimir) {
                 this.imprimir(type);
@@ -1320,10 +1345,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       //this.desHabilitarControles();
       this.boton_salvar_disabled = true;
 
-      this.crearInvoice();
+      
 
       // Solo salvar, no imprimir
-      this.salvarEImprimir(false, ExportType.none);
+      this.salvarEImprimir(false, ExportType.none, true);
     });
 
     

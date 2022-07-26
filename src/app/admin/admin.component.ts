@@ -209,10 +209,10 @@ export class AdminComponent implements OnInit {
   public logOut() {
     this.authService.updateUser = null;
     this.authService.updateJWT = null;
-    this.notificationService.riseNotification({
-      color: 'success',
-      data: 'Sitzung erfolgreich geschlossen',
-    });
+    // this.notificationService.riseNotification({
+    //   color: 'success',
+    //   data: 'Sitzung erfolgreich geschlossen',
+    // });
     this.router.navigate(['/auth/login']);
   }
 

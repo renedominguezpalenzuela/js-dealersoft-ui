@@ -103,6 +103,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       [Validators.required, Validators.minLength(1)]
     ),
     owner: [null, [Validators.required]],
+    car_sell_data:[null],
+    car:[null]
   });
 
   total_decimales = 2;
@@ -200,6 +202,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
             this.queryInvoices(params['id'])
           )
           .subscribe((res) => {
+
+         
             this.invoice_data = res.data.attributes;
 
             this.newInvoiceForm.patchValue({
@@ -262,6 +266,10 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   public hasRequiredError = (input: string): boolean => {
     return this.validationsService.hasRequiredError(this.newInvoiceForm, input);
   };
+
+
+
+
 
   public submit() {
     if (this.newInvoiceForm.valid) {
@@ -495,6 +503,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         .subscribe((res) => {
           const data = res?.data[0]?.attributes;
 
+        
+
       
 
           if (data.invoice_type === 2) {
@@ -626,7 +636,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
       // this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
     ]).subscribe((res) => {
 
-      console.log(res[0]);
+      
       this.bill_info = res[0].data.attributes
      
 
@@ -638,7 +648,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
       //console.log("Client")
       //console.log(this.bill_info.client.data.attributes);
-      console.log(client);
+     
       //let owner = this.bill_info.attributes.owner.data.attributes;
 
       // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === this.id)[0];
@@ -728,25 +738,56 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           invoice_type: 2,
           client: this.invoice_data?.client.data.id,
           owner: this.invoice_data?.owner.data.id,
-          title: "Rechnungsnummer " +this.newInvoiceForm.get('invoice_number')?.value+ " stornieren"
+          title: "Rechnungsnummer " +this.newInvoiceForm.get('invoice_number')?.value+ " stornieren",
+          car: null,
+          car_sell_data:null
           
-          // +this.invoice_data.title      
+        
         };
+
+    
+        
+
+     
+
+       
 
       
         this.createInvoice
-          .guardarInvoiceFromSellCar(datosInvoice)
-          .subscribe(() => {
+          .guardarInvoiceDatosEnBD(datosInvoice)
+          .subscribe((datos) => {
+
+           
             //Creada nueva invoice
             this.requestService
             .Put(this.apiHelperService.invoicesURL + '/' +this.invoice_id  , {
               cancelled: true,            
             }).subscribe(()=>{
-              this.notificationService.riseNotification({
-                color: 'success',
-                data: 'Stornorechnung erstellt',
-              });
-              this.router.navigate(['/admin/list-invoices']);
+
+               if (this.invoice_data.car_sell_data.data && this.invoice_data.car.data) {
+                let car_id = this.invoice_data.car.data.id;
+                let car_selled_id = this.invoice_data.car_sell_data.data.id;
+
+              
+                // Eliminar
+                //car_id:any, car_selled_id:any
+                this.createInvoice.carCancelInvoice(car_id, car_selled_id).subscribe(()=>{
+                  this.notificationService.riseNotification({
+                    color: 'success',
+                    data: 'Stornorechnung erstellt',
+                  });
+                  this.router.navigate(['/admin/list-invoices']);
+
+                })
+               } else {
+                this.notificationService.riseNotification({
+                  color: 'success',
+                  data: 'Stornorechnung erstellt',
+                });
+                this.router.navigate(['/admin/list-invoices']);
+               }
+
+             
             })
       })
   

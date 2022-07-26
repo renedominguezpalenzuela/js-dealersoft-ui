@@ -335,6 +335,7 @@ export class MultipleInvoicesComponent implements OnInit {
       this.createInvoice
         .generateCancelInvoice_Number()
         .subscribe((numero_cancelacion: any) => {
+
           let datosInvoice = {
             ...invoice_data,
             invoice_number: null,
@@ -345,11 +346,13 @@ export class MultipleInvoicesComponent implements OnInit {
             client: invoice_data?.client.data.id,
             owner: invoice_data?.owner.data.id,
             title:  'Rechnungsnummer ' + invoice_data.invoice_number + ' stornieren',
-            // +this.invoice_data.title
+            car: null,
+            car_sell_data:null
+            
           };
 
           this.createInvoice
-            .guardarInvoiceFromSellCar(datosInvoice)
+            .guardarInvoiceDatosEnBD(datosInvoice)
             .subscribe(() => {
               //Creada nueva invoice
               this.requestService
@@ -357,11 +360,35 @@ export class MultipleInvoicesComponent implements OnInit {
                   cancelled: true,
                 })
                 .subscribe(() => {
-                  this.notificationService.riseNotification({
-                    color: 'success',
-                    data: 'Stornorechnung erstellt',
-                  });
-                  window.location.reload()
+
+                  if (invoice_data.car_sell_data.data && invoice_data.car.data) {
+                    let car_id = invoice_data.car.data.id;
+                    let car_selled_id = invoice_data.car_sell_data.data.id;
+    
+                  
+    
+                    // Eliminar
+                    //car_id:any, car_selled_id:any
+                    this.createInvoice.carCancelInvoice(car_id, car_selled_id).subscribe(()=>{
+                      this.notificationService.riseNotification({
+                        color: 'success',
+                        data: 'Stornorechnung erstellt',
+                      });
+                      //this.router.navigate(['/admin/list-invoices']);
+                      window.location.reload()
+    
+                    })
+                   } else {
+                    this.notificationService.riseNotification({
+                      color: 'success',
+                      data: 'Stornorechnung erstellt',
+                    });
+                    //this.router.navigate(['/admin/list-invoices']);
+                    window.location.reload()
+                   }
+
+                 
+                 
 //                  this.router.navigate(['/admin/list-invoices']);
                 });
             });
