@@ -9,7 +9,9 @@ export class PrecioBillA25Component implements OnInit {
 
 
   @Input() lista_articulos: any;
+  @Input() cancel_invoice: any;
   public total:any = 0;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -12,6 +12,8 @@ export class PrecioBillIvaComponent implements OnInit {
   public iva:any = 0;
   public brutto:any = 0;
 
+  @Input() cancel_invoice: any;
+
   constructor() { }
 
   ngOnInit(): void {

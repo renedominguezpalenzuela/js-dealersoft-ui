@@ -1,72 +1,82 @@
-<div class="grid grid-cols-6 gap-y-0 gap-x-2 w-full ">
-    <div class="row-start-1 row-end-1 col-start-1 w-full col-end-7 border-b border-black ">
+<div class="grid grid-cols-[45%_10%_20%_20%] gap-y-0 gap-x-2 w-full mr-5">
+    <div class="row-start-1 row-end-1 col-start-1 w-full col-end-5 border-b border-black ">
 
     </div>
 
-    <div class="row-start-1 col-start-1 text-details-bold mb-1 col-span-3   text-start">
+    <div class="row-start-1 col-start-1 text-details-bold mb-1    text-start">
         Artikel
     </div>
 
-    <div class="row-start-1 col-start-4 text-details-bold mb-1  text-center">
+    <div class="row-start-1 col-start-2 text-details-bold mb-1  text-center">
         Anzahl
     </div>
 
-    <div class="row-start-1 col-start-5 text-details-bold mb-1 text-right">
+    <div class="row-start-1 col-start-3 text-details-bold mb-1 text-right">
         Einzelpreis
     </div>
 
-    <div class="row-start-1 col-start-6  text-details-bold mb-1  text-right">
+    <div class="row-start-1 col-start-4  text-details-bold mb-1  text-right">
         Gesamt
     </div>
 
     <ng-container  *ngFor="let unArticulo of lista_articulos " class=" row">
-        <div class="break-all preserve-line-break w-97   col-start-1 text-details mb-1 col-span-3 mt-3  text-start">
+        <div class="break-all preserve-line-break w-97   col-start-1 text-details mb-1  mt-3  text-start">
             {{unArticulo.article }}
         </div>
 
-        <div class=" col-start-4 text-details mb-1  mt-3  mr-1 text-center">
+        <div class=" col-start-2 text-details mb-1  mt-3  mr-1 text-center">
             {{unArticulo.quantity }}
         </div>
 
-        <div class=" col-start-5 text-details mb-1   mt-3 mr-1  text-right">
-            {{unArticulo.unit_price || 0 | currency}}
+        <div class=" col-start-3 text-details mb-1   mt-3 mr-1  text-right">
+            <span *ngIf="cancel_invoice">-</span> {{unArticulo.unit_price || 0 | currency}}
         </div>
 
-        <div class=" col-start-6  text-details mb-1   mt-3 mr-1  text-right">
-            {{unArticulo.unit_price * unArticulo.quantity || 0 | currency}}
+        <div class=" col-start-4  text-details mb-1   mt-3 mr-1  text-right">
+            <span *ngIf="cancel_invoice">-</span>  {{unArticulo.unit_price * unArticulo.quantity || 0 | currency}}
         </div>
     </ng-container >
 
-    <div class="mt-5 col-start-1 w-full col-end-7 border-b border-black ">
+    
+
+    <div class=" col-start-1 w-full col-end-5 border-b border-black ">
 
     </div>
+   
 
-    <div class=" col-start-5  text-details    mt-3   text-right">
+
+
+    <div class=" col-start-3  text-details    mt-3   text-right">
         <span class="">Zwischensumme:</span> 
     </div>
 
-    <div class=" col-start-6  text-details   mt-3   text-right">
-        <span>{{total || 0 | currency}}</span> 
+    <div class=" col-start-4  text-details   mt-3   text-right">
+        <span *ngIf="cancel_invoice">- </span> <span>{{total || 0 | currency}}</span> 
     </div>
 
-    <div class=" col-start-5  text-details   mt-1   text-right">
+    <div class=" col-start-3  text-details   mt-1   text-right">
         <span class="">MwSt. 19%:</span> 
     </div>
     
-    <div class=" col-start-6  text-details    mt-1   text-right">
-        <span>{{iva || 0 | currency}}</span> 
+    <div class=" col-start-4  text-details    mt-1   text-right">
+        <span *ngIf="cancel_invoice">- </span>  <span>{{iva || 0 | currency}}</span> 
     </div>
-  
-    <div class=" col-start-5 w-full mt-1 col-end-7 border-b border-black ">
+
+
+    <div class=" col-start-3 w-[95%] justify-self-end pl-5 mt-5 col-end-5 border-b border-black ">
 
     </div>
 
-    <div class=" col-start-5  text-details-bold    mt-1   text-right">
+    <!-- <div class=" col-start-3 w-[95%] justify-self-end pl-5 mt-5 col-end-5 border-b border-black ">
+
+    </div> -->
+
+    <div class=" col-start-3  text-details-bold    mt-1   text-right">
         <span class="">Gesamtbetrag:</span> 
     </div>
 
-    <div class=" col-start-6  text-details-bold    mt-1   text-right">
-        <span>{{brutto || 0 | currency}}</span> 
+    <div class=" col-start-4  text-details-bold    mt-1   text-right">
+        <span *ngIf="cancel_invoice">- </span>  <span>{{brutto || 0 | currency}}</span> 
     </div>
 
 </div>
