@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterDeepOption, FilterOperator } from '@core/interfaces/query-params';
 import { Column, ColumnType } from '@core/lib/dynamic-table/utils/interfaces';
-import { ApiHelperService, LoadingService, RequestService } from '@core/services';
+import { ApiHelperService, LoadingService, RequestService, AuthService } from '@core/services';
 import { ExportType } from '@core/services/request.service';
 import * as saveAs from 'file-saver';
 import * as _ from 'lodash';
@@ -113,13 +113,20 @@ export class WinLoseComponent implements OnInit {
   public pageCount: number = 100;
   public currentPage: number = 1;
 
+  private currentUserId: number | undefined;
+
   constructor(
     private readonly apiHelperService: ApiHelperService,
     private readonly requestService: RequestService,
     private readonly loadingService: LoadingService,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly authService: AuthService
+    
   ) {
+
+    this.authService.currentUser.subscribe(user => this.currentUserId = user?.id);
+
     if (this.activatedRoute.snapshot.queryParamMap.has('page')) {
       this.currentPage = <number><unknown>this.activatedRoute.snapshot.queryParamMap.get('page');
     }
@@ -181,8 +188,15 @@ export class WinLoseComponent implements OnInit {
   private query = () => this.requestService.generateQuery({
     'pagination[pageSize]': 10,
     'pagination[page]': this.currentPage,
-    populate: ['car'],
-    filters: (!!this.year && !!this.month) ? this.filters() : []
+    populate: ['car','owner'],
+    filters: (!!this.year && !!this.month) ? this.filters() : [
+      {
+        field: '[car][owner][id]',
+        value: <number>this.currentUserId,
+        operator: FilterOperator.$eq,
+        option: FilterDeepOption.$and
+      }
+    ]
   });
 
   private filters = () => [
@@ -198,6 +212,12 @@ export class WinLoseComponent implements OnInit {
       value: `${ this.year }-${ this.month?.value }-${ moment(`${ this.year }-${ this.month?.value }-01`).daysInMonth() }`,
       option: FilterDeepOption.$and
     },
+    {
+      field: '[car][owner][id]',
+      value: <number>this.currentUserId,
+      operator: FilterOperator.$eq,
+      option: FilterDeepOption.$and
+    }
   ];
 
 }

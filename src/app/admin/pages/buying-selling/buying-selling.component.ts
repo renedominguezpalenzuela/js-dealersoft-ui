@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiHelperService, LoadingService, RequestService } from '@core/services';
+import { ApiHelperService, LoadingService, RequestService, AuthService } from '@core/services';
 import { delay, forkJoin } from 'rxjs';
 import { FilterDeepOption, FilterOperator } from '@core/interfaces/query-params';
 import * as moment from 'moment';
@@ -148,14 +148,19 @@ export class BuyingSellingComponent implements OnInit {
   public years = Array.from({ length: 6 }, (v, i) => moment().year() - 6 + i + 1);
   public noShowLoader = true;
 
+
+  private currentUserId: number | undefined;
+
   constructor(
     private readonly apiHelperService: ApiHelperService,
     private readonly requestService: RequestService,
     private readonly loadingService: LoadingService,
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly authService: AuthService
   ) {
     this.noShowLoader = false;
+    this.authService.currentUser.subscribe(user => this.currentUserId = user?.id);
     if (this.activatedRoute.snapshot.queryParamMap.has('pageBuy')) {
       this.currentPageBuy = <number><unknown>this.activatedRoute.snapshot.queryParamMap.get('pageBuy');
     }
@@ -225,15 +230,29 @@ export class BuyingSellingComponent implements OnInit {
   private queryBuy = () => this.requestService.generateQuery({
     'pagination[pageSize]': 10,
     'pagination[page]': this.currentPageBuy,
-    populate: ['car'],
-    filters: (!!this.year && !!this.month) ? this.filters() : []
+    populate: ['car','owner'],
+    filters: (!!this.year && !!this.month) ? this.filters() : [
+      {
+        field: '[car][owner][id]',
+        value: <number>this.currentUserId,
+        operator: FilterOperator.$eq,
+        option: FilterDeepOption.$and
+      }
+    ]
   });
 
   private querySell = () => this.requestService.generateQuery({
     'pagination[pageSize]': 10,
     'pagination[page]': this.currentPageSell,
-    populate: ['car'],
-    filters: (!!this.year && !!this.month) ? this.filters() : []
+    populate: ['car', 'owner'],
+    filters: (!!this.year && !!this.month) ? this.filters() : [
+      {
+        field: '[car][owner][id]',
+        value: <number>this.currentUserId,
+        operator: FilterOperator.$eq,
+        option: FilterDeepOption.$and
+      }
+    ]
   });
 
   private filters = () => [
@@ -249,6 +268,16 @@ export class BuyingSellingComponent implements OnInit {
       value: `${ this.year }-${ this.month?.value }-${ moment(`${ this.year }-${ this.month?.value }-01`).daysInMonth() }`,
       option: FilterDeepOption.$and
     },
+
+  
+      {
+        field: '[car][owner][id]',
+        value: <number>this.currentUserId,
+        operator: FilterOperator.$eq,
+        option: FilterDeepOption.$and
+      }
+    
+    
   ];
 
 }
