@@ -33,6 +33,7 @@ import { SecondBannerComponent } from './landing-page/second-banner/second-banne
 import { BannerBlackComponent } from './landing-page/banner-black/banner-black.component';
 import { SectionFunktionenComponent } from './landing-page/section-funktionen/section-funktionen.component';
 import { UberSectionComponent } from './landing-page/uber-section/uber-section.component';
+import { LandingRegisterComponent } from './landing-page/landing-register/landing-register.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { UberSectionComponent } from './landing-page/uber-section/uber-section.c
     SecondBannerComponent,
     BannerBlackComponent,
     SectionFunktionenComponent,
-    UberSectionComponent
+    UberSectionComponent,
+    LandingRegisterComponent
     
   ],
   imports: [
