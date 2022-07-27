@@ -2,18 +2,18 @@
   <h1 mat-dialog-title class="font-montserrat">Neuer Kunde</h1>
   <mat-divider></mat-divider>
   <div mat-dialog-content class="font-montserrat">
-    <div class="grid grid-cols-2 gap-x-3 gap-y-0 mt-2 max-h-96 overflow-y-auto px-2">
+    <div class="grid grid-cols-2 gap-x-3 gap-y-0 mt-2 max-h-96 overflow-y-auto px-2 flex justify-center">
 
 
      
  
-      <div class="col-start-1 my-3 flex justify-center ">
-        <input  class="toggle mr-2  self-center" id="company" name="company"  formControlName="company" type="checkbox">
+      <div class=" col-span-2 md:col-span-1 my-3 flex md:justify-center  ">
+        <input  class="toggle mr-2  md:self-center" id="company" name="company"  formControlName="company" type="checkbox">
         <label class="cursor-pointer   font-montserrat text-gray-500    " for="company">Firmenkunde</label>
       </div>
 
-      <div class="col-start-2 my-3 flex justify-center ">
-        <input  class="toggle mr-2  self-center" id="private" name="private"  formControlName="private" type="checkbox">
+      <div class=" col-span-2 md:col-span-1 my-3 flex md:justify-center ">
+        <input  class="toggle mr-2  md:self-center" id="private" name="private"  formControlName="private" type="checkbox">
         <label class="cursor-pointer   font-montserrat text-gray-500    " for="company">Privatperson</label>
       </div>
 
