@@ -51,11 +51,12 @@
     </div>
 
     <div class="mt-4">
+      <!-- [startFieldSticky]="'attributes.name'" -->
       <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"
                          [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
                          [displayedColumns]="displayedColumns" [endFieldSticky]="'op'" [extraOption]="extraOption"
                          [filterQuery]="filterQuery" [pageCount]="pageCount" [page]="currentPage"
-                         [showExtraOption]="true" [startFieldSticky]="'attributes.name'" class="w-full">
+                         [showExtraOption]="true"  class="w-full">
       </app-dynamic-table>
     </div>
 

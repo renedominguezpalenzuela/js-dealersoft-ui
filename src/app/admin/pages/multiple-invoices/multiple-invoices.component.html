@@ -26,22 +26,14 @@
 <!-- [OptionSettings]="OptionSettings" -->
 <!--
 
-[endFieldSticky]="'op'" -->
-      <!-- <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"                         
-                          [canSticky]="true" [data]="data"
-                          [showOptions]="false" [endFieldSticky]="'op'"
-                          [OptionSettings]="OptionSettings"  [showExtraOption]="true"  [extraOption]="extraOption" 
-                         [displayedColumns]="displayedColumns"  [filterQuery]="filterQuery"
-                         [pageCount]="pageCount" [startFieldSticky]="'attributes.invoice_number'" class="w-full"
-                           >
-      </app-dynamic-table> -->
 
+      <!-- [startFieldSticky]="'attributes.invoice_number'"  -->
       <app-dynamic-table (operationEvent)="catchEvent($event)" 
       (paginationEvent)="loadPaginatedData($event)"
                               [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
                               [displayedColumns]="displayedColumns" [endFieldSticky]="'op'" [extraOption]="extraOption"
                               [filterQuery]="filterQuery" [pageCount]="pageCount" [page]="currentPage"
-                              [showExtraOption]="true" [startFieldSticky]="'attributes.invoice_number'" class="w-full">
+                              [showExtraOption]="true" class="w-full">
            </app-dynamic-table>
     </div>
 

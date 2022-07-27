@@ -2,6 +2,9 @@
   <div class="card-body">
     <h1 *ngIf="!isUpdating" class="card-title text-2xl ">Fahrzeugdaten</h1>
     <mat-divider *ngIf="!isUpdating"></mat-divider>
+
+
+
     <form (ngSubmit)="submit()" [formGroup]="vehicleForm" (keydown.enter)="$event.preventDefault()">
       <div class="divider font-bold font-montserrat">Allgemeine Daten</div>
       <div class="w-full my-3 flex flex-col 2xl:flex-row">
@@ -52,7 +55,7 @@
             <mat-label class="font-montserrat">Farbe</mat-label>
             <input formControlName="color" matInput class="font-montserrat">
           </mat-form-field>
-          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1" >
             <mat-label class="font-montserrat">Anzahl der Vorbesitzer laut Brief</mat-label>
             <input formControlName="last_owner" matInput class="font-montserrat">
           </mat-form-field>
@@ -60,7 +63,7 @@
             <mat-label class="font-montserrat">HSN</mat-label>
             <input formControlName="hsn" matInput class="font-montserrat">
           </mat-form-field>
-          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1">
+          <mat-form-field appearance="outline" class="col-span-2 md:col-span-1" >
             <mat-label class="font-montserrat">TSN</mat-label>
             <input formControlName="tsn" matInput class="font-montserrat" >
           </mat-form-field>

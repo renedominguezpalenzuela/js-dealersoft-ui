@@ -29,14 +29,14 @@
         </div>
       </div>
     </div>
-
+    <!-- [startFieldSticky]="'attributes.first_name'" -->
     <div class="mt-4">
       <app-dynamic-table (operationEvent)="catchEvent($event)" (paginationEvent)="loadPaginatedData($event)"
                          [OptionSettings]="OptionSettings" [canSticky]="true" [data]="data"
                            [showExtraOption]="true" [extraOption]="extraOption"
                            [displayedColumns]="displayedColumns"
                          [endFieldSticky]="'op'" [filterQuery]="filterQuery" [pageCount]="pageCount"
-                         [page]="currentPage" [startFieldSticky]="'attributes.first_name'" class="w-full">
+                         [page]="currentPage"  class="w-full">
       </app-dynamic-table>
     </div>
 

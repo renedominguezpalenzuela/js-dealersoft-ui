@@ -58,12 +58,12 @@
         </div>
       </div>
     </div>
-
+    <!-- [startFieldSticky]="'attributes.buy_date'" -->
     <div class="mt-4">
       <app-dynamic-table (paginationEvent)="loadPaginatedData($event)" [canSticky]="true" [data]="data"
                          [displayedColumns]="displayedColumns" [endFieldSticky]="'net_profit'"
                          [filterQuery]="filterQuery" [pageCount]="pageCount" [page]="currentPage" [showOptions]="false"
-                         [startFieldSticky]="'attributes.buy_date'" class="w-full">
+                         class="w-full">
       </app-dynamic-table>
     </div>
 

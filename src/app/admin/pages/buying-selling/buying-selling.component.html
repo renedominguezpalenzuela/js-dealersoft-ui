@@ -53,11 +53,12 @@
         <h2 class="font-montserratfont-semibold pl-5 py-5 text-xl">
           Einkauf
         </h2>
+        <!-- [startFieldSticky]="'attributes.buy_date'" -->
         <app-dynamic-table (paginationEvent)="loadPaginatedData($event, currentPageSell)" [canSticky]="true"
                            [data]="dataBuy" [displayedColumns]="displayedColumnsBuy"
                            [endFieldSticky]="'attributes.gross_buy'" [pageCount]="pageCountBuy" [pageSize]="pageSizeBuy"
                            [page]="currentPageBuy" [showOptions]="false"
-                           [startFieldSticky]="'attributes.buy_date'" class="w-full">
+                           class="w-full">
         </app-dynamic-table>
       </div>
 
@@ -65,11 +66,12 @@
         <h2 class="font-montserratfont-semibold pl-5 py-5 text-xl">
           Verkauf
         </h2>
+        <!-- [startFieldSticky]="'attributes.invoice_date'" -->
         <app-dynamic-table (paginationEvent)="loadPaginatedData(currentPageBuy, $event)" [canSticky]="true"
                            [data]="dataSell" [displayedColumns]="displayedColumnsSell"
                            [endFieldSticky]="'attributes.gross_sell'"
                            [pageCount]="pageCountSell" [pageSize]="pageSizeSell" [page]="currentPageSell"
-                           [showOptions]="false" [startFieldSticky]="'attributes.invoice_date'" class="w-full">
+                           [showOptions]="false" class="w-full">
         </app-dynamic-table>
       </div>
 
