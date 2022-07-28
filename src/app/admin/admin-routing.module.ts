@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'my-stock',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'my-stock',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'new-vehicle',
     loadChildren: () => import('./pages/new-vehicle/new-vehicle.module').then(m => m.NewVehicleModule)

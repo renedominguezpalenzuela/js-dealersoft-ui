@@ -32,6 +32,7 @@
     "file-saver": "^2.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "ngx-cookie-service": "^14.0.1",
     "ngx-device-detector": "^3.0.0",
     "ngx-stripe": "^13.0.0",
     "rxjs": "~7.4.0",

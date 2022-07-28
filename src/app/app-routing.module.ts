@@ -21,15 +21,13 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  
   },
   {
     path: 'testimonials', //home, url sin nada
     pathMatch: 'full',
     component: TestimonialsComponent,
-    loadChildren: () =>
-      import('./testimonial/testimonials.module').then(
-        (m) => m.TestimonialsModule
-      ),
+    loadChildren: () => import('./testimonial/testimonials.module').then( (m) => m.TestimonialsModule ),
   },
   {
     path: 'register2', //home, url sin nada
@@ -50,11 +48,11 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-     canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-     canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+    // canActivate: [AuthGuard, TrialExpiredGuard],
+    // canActivateChild: [AuthGuard, TrialExpiredGuard],
 
-      // canActivate: [AuthGuard, TrialExpiredGuard],
-      // canActivateChild: [AuthGuard, TrialExpiredGuard],
+       canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+      canActivateChild: [AuthGuard, TrialExpiredGuard,  IsFullRegisteredGuard],
   },
   {
     path: 'export/my-stock/:jwt',

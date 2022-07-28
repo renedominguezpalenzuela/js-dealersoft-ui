@@ -13,6 +13,8 @@ import * as moment from 'moment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import {CookieService} from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-landing-register',
   templateUrl: './landing-register.component.html',
@@ -31,15 +33,16 @@ export class LandingRegisterComponent implements OnInit {
       null,
       [Validators.required, Validators.minLength(8)],
     ],
+    username: [null, [Validators.required]],
     email: [null, [Validators.required, Validators.email]],
   });
 
-  public logoImg: File | undefined;
-  public showLogo: boolean = false;
-  public logoImgSrc: string = '';
+  // public logoImg: File | undefined;
+  // public showLogo: boolean = false;
+  // public logoImgSrc: string = '';
   public isLoading: boolean = false;
 
-  public ImageError: boolean = false;
+  // public ImageError: boolean = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -48,7 +51,8 @@ export class LandingRegisterComponent implements OnInit {
     private readonly router: Router,
     private readonly validationsService: ValidationsService,
     private readonly notificationService: NotificationService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private cookies: CookieService
   ) {}
 
   ngOnInit(): void {}
@@ -62,20 +66,19 @@ export class LandingRegisterComponent implements OnInit {
       this.registerForm,
       input
     );
-
     return errror_input;
   };
 
-  public logoImageError() {
-    if (this.logoImg instanceof File) {
-      return false;
-    } else {
-      return true;
-    }
+  // public logoImageError() {
+  //   if (this.logoImg instanceof File) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
 
-    if (this.logoImg === undefined) return true;
-    else return false;
-  }
+  //   if (this.logoImg === undefined) return true;
+  //   else return false;
+  // }
 
   public hasMinLengthError = (input: string): boolean => {
     return this.validationsService.hasMinLengthError(this.registerForm, input);
@@ -88,43 +91,45 @@ export class LandingRegisterComponent implements OnInit {
   togglePwd = () => (this.showPassword = !this.showPassword);
   toggleTerm = () => (this.term = !this.term);
 
-  public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
-    let cabcera = new HttpHeaders({ Accept: 'application/json' });
+  // public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
+  //   let cabcera = new HttpHeaders({ Accept: 'application/json' });
 
-    return this.httpClient.post(url, files, {
-      headers: cabcera,
-      reportProgress: true,
-      observe: 'events',
-    });
-  };
+  //   return this.httpClient.post(url, files, {
+  //     headers: cabcera,
+  //     reportProgress: true,
+  //     observe: 'events',
+  //   });
+  // };
 
   public register() {
-    // if (this.logoImgSrc!=null) {
+    // if (this.logoImg instanceof File) {
     //   this.ImageError = false;
     // } else {
-
     //   this.ImageError = true;
     //   this.notificationService.riseNotification({
     //     color: 'warning',
     //     data: 'Bitte Firmenlogo Hochladen',
     //   });
-    //   return;
-
+    //   // return;
     // }
-    if (this.logoImg instanceof File) {
-      this.ImageError = false;
-    } else {
-      this.ImageError = true;
-      this.notificationService.riseNotification({
-        color: 'warning',
-        data: 'Bitte Firmenlogo Hochladen',
-      });
-      // return;
-    }
+
+    sessionStorage.clear();
+    localStorage.clear();
+    this.cookies.deleteAll();
+
+  //   if (localStorage.getItem('rememberMe'))  {localStorage.removeItem('rememberMe')}
+  //  if (localStorage.getItem('Auth-User'))  {localStorage.removeItem('Auth-User')}
+  //  if (localStorage.getItem('Auth-JWT'))  {localStorage.removeItem('Auth-JWT')}
+  //  if (sessionStorage.getItem('Auth-User'))  {sessionStorage.removeItem('Auth-User')}
+  //  if (sessionStorage.getItem('Auth-JWT'))  {sessionStorage.removeItem('Auth-JWT')}
+    
+
+  //   console.log("SSSS")
+  //   console.log(this.apiHelperService.registerURL)
 
     if (
       this.registerForm.valid &&
-      this.logoImg instanceof File &&
+      //this.logoImg instanceof File &&
       !this.isLoading
     ) {
       this.isLoading = true;
@@ -133,34 +138,34 @@ export class LandingRegisterComponent implements OnInit {
         active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
       };
 
-      const form = new FormData();
-      form.append('files', <File>this.logoImg);
+      this.requestService
+        .Post(this.apiHelperService.registerURL, newUser, false)
+        .subscribe(
+          (res) => {
+           
+            this.isLoading = false;
+            this.notificationService.riseNotification({
+              color: 'success',
+              data: 'Registrierung & Anmeldung erfolgreich',
+            });
 
-      this.POSTUpload2(this.apiHelperService.uploadFilesURL, form).subscribe(
-        (events) => {
-          if (events.type === HttpEventType.Response) {
-            // const data = { logo: events.body[0].id, user: res.user.id };
-            const data = { logo: events.body[0].id };
+            sessionStorage.clear();
+            localStorage.clear();
+            this.cookies.deleteAll();
 
-            this.requestService
-              .Post(this.apiHelperService.logosURL, data)
-              .subscribe((respuesta) => {
-                newUser.logo = respuesta.data.id;
-                this.requestService
-                  .Post(this.apiHelperService.registerURL, newUser, false)
-                  .subscribe((res) => {
-                    this.isLoading = false;
-                    this.notificationService.riseNotification({
-                      color: 'success',
-                      data: 'Registrierung & Anmeldung erfolgreich',
-                    });
-                  });
-
-                // this.router.navigate(['/admin']);
-              });
+            //this.router.navigate(['']);
+           // window.location.reload()
+            
+          },
+          (error) => {
+            console.log("ERROR REGISTERING")
+           
+            this.isLoading = false;
+            sessionStorage.clear();
+    localStorage.clear();
+    this.cookies.deleteAll();
           }
-        }
-      );
+        );
     } else {
       this.registerForm.updateValueAndValidity();
 
@@ -194,102 +199,12 @@ export class LandingRegisterComponent implements OnInit {
     }
   }
 
-  // public register2() {
+  // public previewLogo($event: any) {
+  //   const file: File = $event.target.files[0];
+  //   this.logoImg = file;
+  //   this.logoImgSrc = window.URL.createObjectURL(file);
+  //   this.showLogo = true;
+  //   this.ImageError = false;
 
-  //   if (
-  //     this.registerForm.valid &&
-  //     this.logoImg instanceof File &&
-  //     !this.isLoading &&
-  //     this.registerForm.valid &&
-  //     this.logoImg instanceof File &&
-  //     !this.isLoading
-  //   ) {
-  //     this.isLoading = true;
-  //     const newUser = {
-  //       ...this.registerForm.value,
-  //       active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
-  //     };
-  //     this.requestService
-  //       .Post(this.apiHelperService.registerURL, newUser, false)
-  //       .subscribe((res) => {
-  //         const form = new FormData();
-  //         form.append('files', <File>this.logoImg);
-
-  //         this.POSTUpload2(
-  //           this.apiHelperService.uploadFilesURL,
-  //           form
-  //         ).subscribe((events) => {
-  //           if (events.type === HttpEventType.Response) {
-  //             const data = { logo: events.body[0].id, user: res.user.id };
-  //             this.requestService
-  //               .Post(this.apiHelperService.logosURL, data)
-  //               .subscribe(() => {
-  //                 this.isLoading = false;
-  //                 this.notificationService.riseNotification({
-  //                   color: 'success',
-  //                   data: 'Registrierung & Anmeldung erfolgreich',
-  //                 });
-  //                 // this.router.navigate(['/admin']);
-  //               });
-  //           }
-  //         });
-  //       });
-  //   }
   // }
-
-  // public registerOLD() {
-  //   if (this.registerForm.valid && !this.isLoading) {
-  //     // if (this.registerForm.valid && this.logoImg instanceof File && !this.isLoading) {
-  //     this.isLoading = true;
-  //     const newUser = {
-  //       ...this.registerForm.value,
-  //       active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
-  //     };
-
-  //     this.requestService
-  //       .Post(this.apiHelperService.registerURL, newUser, false)
-  //       .subscribe((res) => {
-  //         const form = new FormData();
-
-  //         form.append('files', <File>this.logoImg);
-
-  //         this.requestService
-  //           .POSTUpload(this.apiHelperService.uploadFilesURL, form)
-  //           .subscribe((events) => {
-  //             if (events.type === HttpEventType.Response) {
-  //               const data = { logo: events.body[0].id, user: res.user.id };
-
-  //               this.requestService
-  //                 .Post(this.apiHelperService.logosURL, data)
-  //                 .subscribe(() => {
-  //                   this.isLoading = false;
-  //                   this.notificationService.riseNotification({
-  //                     color: 'success',
-  //                     data: 'Registrierung & Anmeldung erfolgreich',
-  //                   });
-  //                 });
-  //             }
-  //           });
-  //       });
-  //   } else {
-  //     this.isLoading = false;
-  //     this.notificationService.riseNotification({
-  //       color: 'error',
-  //       data: 'Data Errors!!!',
-  //     });
-  //   }
-  // }
-
-  public previewLogo($event: any) {
-    const file: File = $event.target.files[0];
-    this.logoImg = file;
-    this.logoImgSrc = window.URL.createObjectURL(file);
-    this.showLogo = true;
-    this.ImageError = false;
-    // if (this.logoImg instanceof File) {
-    //   this.ImageError = false;
-    // } else {
-    //   this.ImageError = true;
-    // }
-  }
 }
