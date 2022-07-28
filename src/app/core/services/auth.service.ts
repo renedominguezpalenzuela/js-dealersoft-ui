@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces';
 import * as moment from 'moment';
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { ApiHelperService, RequestService } from '@core/services';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private AuthUser: BehaviorSubject<User | null> =
-    new BehaviorSubject<User | null>(null);
+  private AuthUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   private AuthJWT: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
+  // private readonly httpClient: HttpClient,
+  //   private readonly apiHelperService: ApiHelperService,
+  //   private readonly requestService: RequestService, 
   constructor() {
     this.loadRememberMe();
     this.loadAuthUser();
@@ -63,6 +67,34 @@ export class AuthService {
     return moment(this.AuthUser.getValue()?.active_until).diff(moment(), 'days');
   }
 
+
+  // private generateOptions = () => {
+  //   return {
+  
+  //     headers: new HttpHeaders({ Authorization: `Bearer ${ this.AuthJWT.getValue() }` })
+  //   }
+  // }
+
+  
+
+  
+
+
+  get isFullRegistered(): boolean {
+
+     const isFullRegistered = <boolean>this.AuthUser.getValue()?.full_registration
+     return isFullRegistered;
+
+    //  if (isFullRegistered) {
+    //   return true;
+    //  } else {
+    //    this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()).subscribe(()=>{
+    //     return false;
+    //    })
+    //  }
+     
+  }
+
   public loadRememberMe = () => {
     if (localStorage.getItem('rememberMe')) {
       this.updateRememberMe =
@@ -72,6 +104,7 @@ export class AuthService {
       localStorage.setItem('rememberMe', 'FALSE');
     }
   };
+
 
   public loadAuthUser = () => {
     if (this.rememberMe) {

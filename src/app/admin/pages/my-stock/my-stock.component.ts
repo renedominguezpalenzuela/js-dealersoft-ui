@@ -193,6 +193,9 @@ export class MyStockComponent implements OnInit {
     this.authService.currentUser.subscribe(user => this.currentUserId = user?.id);
     this.noShowLoader = false;
     this.loadPaginatedData(this.currentPage);
+
+    
+ 
   }
 
   ngOnInit(): void {
@@ -201,6 +204,8 @@ export class MyStockComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe((map: ParamMap) => {
       if (map.has('page')) this.currentPage = <number><unknown>map.get('page');
     });
+
+  
   }
 
   public loadPaginatedData = ($event: number) => {

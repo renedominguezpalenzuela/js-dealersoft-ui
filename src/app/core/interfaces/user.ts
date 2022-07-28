@@ -25,5 +25,6 @@ export interface User {
   syke_iban: string,
   bic_swift_code_2: string,
   hrb_walsrode: string,
-  city: string
+  city: string,
+  full_registration: boolean
 }
