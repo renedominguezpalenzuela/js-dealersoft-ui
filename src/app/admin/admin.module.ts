@@ -47,8 +47,11 @@ export class AdminModule {
     private readonly apiHelperService: ApiHelperService,
     private readonly authService: AuthService,
     private readonly router: Router
+    
   ) {
     var tiempo_parcial_ini = new Date().getTime();
+
+    console.log("ADDMN MODULE")
 
     this.requestService.Get(this.apiHelperService.meURL)
       .subscribe(
@@ -56,15 +59,18 @@ export class AdminModule {
 
           var end = new Date().getTime();
           var time = end - tiempo_parcial_ini;
-          console.log("Calling: "+this.apiHelperService.meURL)
+          console.log("Calling Admin module: "+this.apiHelperService.meURL)
           console.log('Execution time: ' + time);
+         
+
+        
         
          
         },
         error => {
           this.authService.updateUser = null;
-          this.authService.updateJWT = null;
-          this.router.navigate(['/auth/login']);
+          this.authService.updateJWT = null;          
+          this.router.navigate(['/']);
         }
       );
   }

@@ -8,6 +8,7 @@ import { Register2Component } from './register2/register2.component';
 
 
 import { AuthGuard } from '@core/guards';
+import {IsFullRegisteredGuard} from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
 const routes: Routes = [
@@ -46,8 +47,11 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-     canActivate: [AuthGuard, TrialExpiredGuard],
-     canActivateChild: [AuthGuard, TrialExpiredGuard],
+     canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+     canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+
+      // canActivate: [AuthGuard, TrialExpiredGuard],
+      // canActivateChild: [AuthGuard, TrialExpiredGuard],
   },
   {
     path: 'export/my-stock/:jwt',

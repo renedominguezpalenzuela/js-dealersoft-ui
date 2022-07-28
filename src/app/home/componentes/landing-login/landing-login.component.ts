@@ -81,7 +81,11 @@ export class LandingLoginComponent implements OnInit {
           var time = end - this.globales.tiempo;
           console.log('Calling: ' + this.apiHelperService.loginURL);
           console.log('Execution time: ' + time);
-          if (datos.full_registration) {            
+
+          console.log("Login:")
+          console.log(datos.user)
+          
+          if (datos.user.full_registration) {            
             this.router.navigate([this.returnURL]);
           } else {
             this.router.navigate(['/register2']);

@@ -145,6 +145,8 @@ export class AdminComponent implements OnInit {
 
       this.days = moment(this.authUser?.active_until).diff(moment(), 'days');
       if (this.authUser && this.isAuth) {
+
+       
         // this.requestService.Get(this.apiHelperService.usersURL, this.queryLogo(this.authUser?.id))
 
         let aquery = this.queryLogo(this.authUser?.id);
@@ -204,6 +206,8 @@ export class AdminComponent implements OnInit {
       .pipe(delay(0))
       .subscribe((loading) => (this.loading = loading));
     this.breakPoints();
+
+    
   }
 
   public logOut() {
