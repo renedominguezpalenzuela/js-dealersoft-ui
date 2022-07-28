@@ -213,7 +213,8 @@ export class AdminComponent implements OnInit {
     //   color: 'success',
     //   data: 'Sitzung erfolgreich geschlossen',
     // });
-    this.router.navigate(['/auth/login']);
+    // this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 
   public toStripePayment = () => this.router.navigate(['/stripe-payment']);

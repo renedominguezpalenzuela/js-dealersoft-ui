@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"),
+    url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "OpenSans", sans-serif;
+}
+
+.mat-tab-label {
+  padding: 5px;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  padding: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+  background-color: white !important;
+}

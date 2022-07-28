@@ -1,0 +1,94 @@
+<div class="flex justify-center" >
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm"
+    class="flex flex-col justify-center items-center lg:w-[40%] md:w-[60%] mx-auto">
+    <!-- <div class="h-[550px] overflow-y-auto grid grid-cols-2 gap-x-2 w-full md:w-[32rem]"> -->
+    <div class="relative w-full">
+      <input autocomplete="username" class="input pl-4 w-full rounded-lg h-14 bg-transparent {{
+          hasError('identifier') ? 'input-error' : 'input-primary'
+        }}" formControlName="identifier" placeholder="E-MAIL" required type="email" />
+
+      <span *ngIf="hasRequiredError('identifier')" class="label-text-alt text-red-400 pl-2">
+        Bitte überprüfen Sie Ihre Eingabe
+      </span>
+    </div>
+    <div class="relative mt-6 w-full">
+      <input [type]="showPassword ? 'text' : 'password'" autocomplete="current-password" class="input pl-4 rounded-lg w-full h-14 bg-transparent {{
+          hasError('password') ? 'input-error' : 'input-primary'
+        }}" formControlName="password" minlength="8" placeholder="Passwort" required />
+
+      <span *ngIf="hasRequiredError('password')" class="label-text-alt text-red-400 pl-2">
+        Bitte überprüfen Sie Ihre Eingabe
+      </span>
+      <span *ngIf="hasMinLengthError('password')" class="label-text-alt text-red-400 pl-2">
+        Passwort muss mindestens 8 Zeichen lang sein
+      </span>
+    </div>
+    <div class="w-full justify-start pl-4 mt-6">
+      <div (click)="checkRememberMe()" class="flex space-x-4 w-full items-center hover:cursor-pointer">
+        <span class="border border-[#505050] h-5 w-5 rounded-sm relative">
+          <div id="tick-mark" *ngIf="rememberMe"></div>
+        </span>
+        <span class="text-white">Passwort anzeigen</span>
+      </div>
+    </div>
+    <div class="w-full mb-6 pl-4">
+      <div class="flex justify-between items-end w-full">
+        <a class="text-blue-10 text-sm hover:cursor-pointer font-bold" routerLink="/auth/recovery-account">Passwort
+          vergessen</a>
+
+        <button class="btn w-40 bg-blue-10 px-4 rounded-lg" type="submit">
+          <span class="tracking-wide">Anmelden</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- 
+          
+          
+            
+          <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="mt-6 transition-all ease-in-out">
+            <div class="relative mt-3">
+              <input autocomplete="username"
+                     class="input pl-12 w-full {{hasError('identifier') ? 'input-error' : 'input-primary'}}"
+                     formControlName="identifier" placeholder="E-MAIL" required type="email">
+              <div class="absolute left-0 top-3 flex items-center">
+                <img alt="user_img" class="ml-4" src="https://img.icons8.com/material-outlined/24/000000/email.png"/>
+              </div>
+              <span *ngIf="hasRequiredError('identifier')" class="label-text-alt text-red-400 pl-2">
+                Bitte überprüfen Sie Ihre Eingabe
+              </span>
+            </div>
+            <div class="relative mt-3">
+              <input [type]="showPassword ? 'text' : 'password'" autocomplete="current-password"
+                     class="input pl-12 w-full {{hasError('password') ? 'input-error' : 'input-primary'}}"
+                     formControlName="password" minlength="8" placeholder="Passwort" required>
+              <div class="absolute left-0 top-3 flex items-center">
+                <img (click)="togglePwd()" *ngIf="showPassword" alt="show_password_img" class="ml-4 cursor-pointer"
+                     src="https://img.icons8.com/small/24/000000/show-password.png"/>
+                <img (click)="togglePwd()" *ngIf="!showPassword" alt="password_img" class="ml-4 cursor-pointer"
+                     src="https://img.icons8.com/material-outlined/24/000000/password.png"/>
+              </div>
+              <span *ngIf="hasRequiredError('password')" class="label-text-alt text-red-400 pl-2">
+                Bitte überprüfen Sie Ihre Eingabe
+              </span>
+              <span *ngIf="hasMinLengthError('password')" class="label-text-alt text-red-400 pl-2">
+                Passwort muss mindestens 8 Zeichen lang sein
+              </span>
+            </div>
+            <div class="mt-4 flex items-center justify-between text-gray-500 px-4">
+              <div class="flex justify-start items-center">
+                <input (change)="checkRememberMe()" class="mr-3 rounded focus:ring-0" id="remember" name="remember"
+                       type="checkbox">
+                <label class="cursor-pointer font-medium dark:text-white" for="remember">Eingeloggt bleiben</label>
+              </div>
+              <a class="font-medium" routerLink="/auth/recovery-account">Passwort vergessen?</a>
+            </div>
+            <div class="flex items-center justify-center mt-8">
+              <button class="btn bg-black w-40" type="submit">
+                <span class="tracking-wide">EINLOGGEN</span>
+              </button>
+            </div>
+          </form>
+           -->

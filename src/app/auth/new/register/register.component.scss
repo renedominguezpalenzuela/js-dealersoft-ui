@@ -1,18 +1,11 @@
-.mycolor {
-    border-color:#1E253E;
-    color: white;
-   
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    opacity: 1; /* Firefox */
-  }
-
-
-  input[type="checkbox"] {
-    width: 1rem;                         /* Set width */
-     height: 1rem;                       /* Set height */
-    clip-path: circle(46% at 50% 50%);   /* Set the clip path of circle*/
- 
-  }
+input[type="checkbox"] {
+  width: 1rem; /* Set width */
+  height: 1rem; /* Set height */
+  clip-path: circle(46% at 50% 50%); /* Set the clip path of circle*/
+}

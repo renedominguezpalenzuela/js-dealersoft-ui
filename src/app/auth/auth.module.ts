@@ -27,6 +27,13 @@ import { SaveDom2Pipe } from './../save-dom2.pipe';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { RouterModule } from '@angular/router';
+// import { NavbarComponent } from './landing-page/navbar/navbar.component';
+// import { BannerMainComponent } from './landing-page/banner-main/banner-main.component';
+// import { SecondBannerComponent } from './landing-page/second-banner/second-banner.component';
+// import { BannerBlackComponent } from './landing-page/banner-black/banner-black.component';
+// import { SectionFunktionenComponent } from './landing-page/section-funktionen/section-funktionen.component';
+// import { UberSectionComponent } from './landing-page/uber-section/uber-section.component';
+// import { LandingRegisterComponent } from './landing-page/landing-register/landing-register.component';
 
 
 @NgModule({
@@ -44,7 +51,14 @@ import { RouterModule } from '@angular/router';
     MainbuttonComponent,
     MaincarruselimgComponent,
     MainfooterComponent,
-    SaveDom2Pipe
+    SaveDom2Pipe,
+    // NavbarComponent,
+    // BannerMainComponent,
+    // SecondBannerComponent,
+    // BannerBlackComponent,
+    // SectionFunktionenComponent,
+    // UberSectionComponent,
+    // LandingRegisterComponent
     
   ],
   imports: [
