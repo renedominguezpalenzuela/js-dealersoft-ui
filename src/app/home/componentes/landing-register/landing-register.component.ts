@@ -5,6 +5,7 @@ import {
   NotificationService,
   RequestService,
   ValidationsService,
+  AuthService
 } from '@core/services';
 import { Router } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
@@ -52,6 +53,7 @@ export class LandingRegisterComponent implements OnInit {
     private readonly validationsService: ValidationsService,
     private readonly notificationService: NotificationService,
     private httpClient: HttpClient,
+    private readonly authService: AuthService,
     private cookies: CookieService
   ) {}
 
@@ -152,6 +154,9 @@ export class LandingRegisterComponent implements OnInit {
             sessionStorage.clear();
             localStorage.clear();
             this.cookies.deleteAll();
+            this.authService.updateUser = null;
+            this.authService.updateJWT = null;
+   
 
             //this.router.navigate(['']);
            // window.location.reload()
@@ -159,7 +164,9 @@ export class LandingRegisterComponent implements OnInit {
           },
           (error) => {
             console.log("ERROR REGISTERING")
-           
+            this.authService.updateUser = null;
+    this.authService.updateJWT = null;
+    
             this.isLoading = false;
             sessionStorage.clear();
     localStorage.clear();
