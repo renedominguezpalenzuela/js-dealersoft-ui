@@ -6,7 +6,6 @@ import { HomeComponent } from './home/home.component';
 import { TestimonialsComponent } from './testimonial/testimonials.component';
 import { Register2Component } from './register2/register2.component';
 
-
 import { AuthGuard } from '@core/guards';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
@@ -17,26 +16,30 @@ const routes: Routes = [
   //   redirectTo: 'auth',
   // },
   {
-    path: '',             //home, url sin nada
+    path: '', //home, url sin nada
     pathMatch: 'full',
     component: HomeComponent,
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'testimonials',             //home, url sin nada
+    path: 'testimonials', //home, url sin nada
     pathMatch: 'full',
     component: TestimonialsComponent,
-    loadChildren: () => import('./testimonial/testimonials.module').then(m => m.TestimonialsModule)
+    loadChildren: () =>
+      import('./testimonial/testimonials.module').then(
+        (m) => m.TestimonialsModule
+      ),
   },
   {
-    path: 'register2',             //home, url sin nada
+    path: 'register2', //home, url sin nada
     pathMatch: 'full',
     component: Register2Component,
-    loadChildren: () => import('./register2/register2.module').then(m => m.Register2Module),
-    canActivate: [AuthGuard, TrialExpiredGuard],
-     canActivateChild: [AuthGuard, TrialExpiredGuard],
+    loadChildren: () =>
+      import('./register2/register2.module').then((m) => m.Register2Module),
+    // canActivate: [AuthGuard, TrialExpiredGuard],
+    // canActivateChild: [AuthGuard, TrialExpiredGuard],
   },
- 
+
   // {
   //   path: 'auth',
   //   component: AuthComponent,
@@ -45,21 +48,31 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-     canActivate: [AuthGuard, TrialExpiredGuard],
-     canActivateChild: [AuthGuard, TrialExpiredGuard],
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard, TrialExpiredGuard],
+    canActivateChild: [AuthGuard, TrialExpiredGuard],
   },
   {
     path: 'export/my-stock/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/my-stock-export/my-stock-export.module').then(m => m.MyStockExportModule)
+    loadChildren: () =>
+      import(
+        './core/pages/tables-export/my-stock-export/my-stock-export.module'
+      ).then((m) => m.MyStockExportModule),
   },
   {
     path: 'export/buy-sell/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/buy-sell-export/buy-sell-export.module').then(m => m.BuySellExportModule)
+    loadChildren: () =>
+      import(
+        './core/pages/tables-export/buy-sell-export/buy-sell-export.module'
+      ).then((m) => m.BuySellExportModule),
   },
   {
     path: 'export/win-lose/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/win-lose-export/win-lose-export.module').then(m => m.WinLoseExportModule)
+    loadChildren: () =>
+      import(
+        './core/pages/tables-export/win-lose-export/win-lose-export.module'
+      ).then((m) => m.WinLoseExportModule),
   },
   // {
   //   path: 'export/invoice/:jwt',
@@ -85,35 +98,46 @@ const routes: Routes = [
   //   path: 'export/private/:jwt',
   //   loadChildren: () => import('./core/pages/tables-export/private/private.module').then(m => m.PrivateExportModule)
   // },
-   // Rutas de Reportes nuevos
+  // Rutas de Reportes nuevos
   {
     path: 'export/reports',
-    loadChildren: () => import('./core/pages/reportes/main/main.module').then(m => m.MainModule)
+    loadChildren: () =>
+      import('./core/pages/reportes/main/main.module').then(
+        (m) => m.MainModule
+      ),
   },
   {
     path: 'stripe-payment',
-    loadChildren: () => import('./core/pages/stripe-payment/stripe-payment.module').then(m => m.StripePaymentModule),
+    loadChildren: () =>
+      import('./core/pages/stripe-payment/stripe-payment.module').then(
+        (m) => m.StripePaymentModule
+      ),
     canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard]
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'stripe-payment-mobile/:jwt',
-    loadChildren: () => import('./core/pages/stripe-payment-mobile/stripe-payment-mobile.module').then(m => m.StripePaymentMobileModule)
+    loadChildren: () =>
+      import(
+        './core/pages/stripe-payment-mobile/stripe-payment-mobile.module'
+      ).then((m) => m.StripePaymentMobileModule),
   },
   {
     path: '**',
     redirectTo: '404',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '404',
-    loadChildren: () => import('./core/pages/not-found/not-found.module').then(m => m.NotFoundModule)
-  }
+    loadChildren: () =>
+      import('./core/pages/not-found/not-found.module').then(
+        (m) => m.NotFoundModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
