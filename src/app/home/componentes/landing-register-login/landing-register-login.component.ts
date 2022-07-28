@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-landing-register-login',
@@ -6,8 +6,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./landing-register-login.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LandingRegisterLoginComponent implements OnInit {
+export class LandingRegisterLoginComponent implements OnInit, OnChanges {
   constructor() {}
 
-  ngOnInit(): void {}
+ @Input() selectedTab:any = null;
+  ngOnInit(): void {
+    
+  }
+
+  ngOnChanges(){
+    console.log("Onchanges")
+   
+    console.log(this.selectedTab)
+
+  }
 }

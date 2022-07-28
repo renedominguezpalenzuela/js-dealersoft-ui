@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  public selectedTab:any=1;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  receiveMessage(msg:any){
+    this.selectedTab=msg;
+    console.log("SSS")
+    //alert(msg);
+}
+
 
 }

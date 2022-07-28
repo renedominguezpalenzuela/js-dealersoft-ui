@@ -1,11 +1,7 @@
-<div class="w-full">
-  <mat-tab-group
-    mat-align-tabs="center"
-    [selectedIndex]="0"
-    animationDuration="100ms"
-    class="lg:mb-20 md:mb-8 lg:mt-12 md:mt-0 flex justify-center"
-  >
-    <mat-tab label="Registrieren" class="text-white md:text-lg">
+<div class="w-full" >
+  <mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab" animationDuration="100ms"
+    class="lg:mb-20 md:mb-8 lg:mt-12 md:mt-0 flex justify-center" id='login-register'>
+    <mat-tab label="Registrieren" class="text-white md:text-lg" >
       <div class="lg:mt-12 md:mt-1 p-5">
         <app-landing-register></app-landing-register>
       </div>

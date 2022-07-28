@@ -1,5 +1,5 @@
 <div class="">
-  <app-navbar></app-navbar>
+  <app-navbar (mensaje)="receiveMessage($event)"></app-navbar>
   <app-banner-main></app-banner-main>
   <app-second-banner></app-second-banner>
   <app-banner-black></app-banner-black>
@@ -19,7 +19,7 @@
         Dealersoft <br />
         jederzeit und von überall
       </h1>
-      <app-landing-register-login></app-landing-register-login>
+      <app-landing-register-login [selectedTab]="selectedTab"></app-landing-register-login>
     </div>
     <div
       class="flex items-center space-x-3 absolute lg:bottom-24 md:bottom-20 z-10"
