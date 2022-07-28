@@ -15,6 +15,7 @@ import { LandingLoginComponent } from './componentes/landing-login/landing-login
 import { LandingRegisterLoginComponent } from './componentes/landing-register-login/landing-register-login.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LandingFooterComponent } from './componentes/landing-footer/landing-footer.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -28,6 +29,7 @@ import { LandingFooterComponent } from './componentes/landing-footer/landing-foo
     LandingLoginComponent,
     LandingRegisterLoginComponent,
     LandingFooterComponent,
+    
   ],
   imports: [
     CommonModule,

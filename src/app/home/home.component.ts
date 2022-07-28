@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   receiveMessage(msg:any){
     this.selectedTab=msg;
-    console.log("SSS")
+    
     //alert(msg);
 }
 

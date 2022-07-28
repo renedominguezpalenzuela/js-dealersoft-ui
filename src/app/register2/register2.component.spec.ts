@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingRegisterComponent } from './landing-register.component';
+import { Register2Component } from './register2.component';
 
-describe('LandingRegisterComponent', () => {
-  let component: LandingRegisterComponent;
-  let fixture: ComponentFixture<LandingRegisterComponent>;
+describe('Register2Component', () => {
+  let component: Register2Component;
+  let fixture: ComponentFixture<Register2Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LandingRegisterComponent ]
+      declarations: [ Register2Component ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingRegisterComponent);
+    fixture = TestBed.createComponent(Register2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

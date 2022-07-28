@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
+import { TestimonialsComponent } from './testimonial/testimonials.component';
+import { Register2Component } from './register2/register2.component';
+
+
 import { AuthGuard } from '@core/guards';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
@@ -19,10 +23,25 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'auth',
-    component: AuthComponent,
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: 'testimonials',             //home, url sin nada
+    pathMatch: 'full',
+    component: TestimonialsComponent,
+    loadChildren: () => import('./testimonial/testimonials.module').then(m => m.TestimonialsModule)
   },
+  {
+    path: 'register2',             //home, url sin nada
+    pathMatch: 'full',
+    component: Register2Component,
+    loadChildren: () => import('./register2/register2.module').then(m => m.Register2Module),
+    canActivate: [AuthGuard, TrialExpiredGuard],
+     canActivateChild: [AuthGuard, TrialExpiredGuard],
+  },
+ 
+  // {
+  //   path: 'auth',
+  //   component: AuthComponent,
+  //   loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  // },
   {
     path: 'admin',
     component: AdminComponent,
@@ -42,30 +61,30 @@ const routes: Routes = [
     path: 'export/win-lose/:jwt',
     loadChildren: () => import('./core/pages/tables-export/win-lose-export/win-lose-export.module').then(m => m.WinLoseExportModule)
   },
-  {
-    path: 'export/invoice/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/invoice-export/invoice-export.module').then(m => m.InvoiceExportModule)
-  },
-  {
-    path: 'export/vehicle/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/vehicle/vehicle.module').then(m => m.VehicleExportModule)
-  },
-  {
-    path: 'export/net-export/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/net-export/net-export.module').then(m => m.NetExportModule)
-  },
-  {
-    path: 'export/net-ue-export/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/net-ue-export/net-ue-export.module').then(m => m.NetUeExportModule)
-  },
-  {
-    path: 'export/business/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/business/business.module').then(m => m.BusinessExportModule)
-  },
-  {
-    path: 'export/private/:jwt',
-    loadChildren: () => import('./core/pages/tables-export/private/private.module').then(m => m.PrivateExportModule)
-  },
+  // {
+  //   path: 'export/invoice/:jwt',
+  //   loadChildren: () => import('./core/pages/tables-export/invoice-export/invoice-export.module').then(m => m.InvoiceExportModule)
+  // },
+  // {
+  //   path: 'export/vehicle/:jwt',
+  //   loadChildren: () => import('./core/pages/tables-export/vehicle/vehicle.module').then(m => m.VehicleExportModule)
+  // },
+  // {
+  //   path: 'export/net-export/:jwt',
+  //   loadChildren: () => import('./core/pages/tables-export/net-export/net-export.module').then(m => m.NetExportModule)
+  // },
+  // {
+  //   path: 'export/net-ue-export/:jwt',
+  //   loadChildren: () => import('./core/pages/tables-export/net-ue-export/net-ue-export.module').then(m => m.NetUeExportModule)
+  // },
+  // {
+  //   path: 'export/business/:jwt',
+  //   loadChildren: () => import('./core/pages/tables-export/business/business.module').then(m => m.BusinessExportModule)
+  // },
+  // {
+  //   path: 'export/private/:jwt',
+  //   loadChildren: () => import('./core/pages/tables-export/private/private.module').then(m => m.PrivateExportModule)
+  // },
    // Rutas de Reportes nuevos
   {
     path: 'export/reports',
