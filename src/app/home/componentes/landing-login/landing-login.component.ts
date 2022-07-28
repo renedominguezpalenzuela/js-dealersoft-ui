@@ -76,18 +76,23 @@ export class LandingLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.requestService
         .Post(this.apiHelperService.loginURL, this.loginForm.value, false)
-        .subscribe(() => {
+        .subscribe((datos) => {
           var end = new Date().getTime();
           var time = end - this.globales.tiempo;
           console.log('Calling: ' + this.apiHelperService.loginURL);
           console.log('Execution time: ' + time);
+          if (datos.full_registration) {            
+            this.router.navigate([this.returnURL]);
+          } else {
+            this.router.navigate(['/register2']);
+          }
 
           // this.notificationService.riseNotification({
           //   color: 'success',
           //   data: 'Protokollierung erfolgreich',
           // });
 
-          this.router.navigate([this.returnURL]);
+          
         });
     }
   }
