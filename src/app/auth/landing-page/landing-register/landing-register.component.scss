@@ -3,9 +3,21 @@
   color: white;
   opacity: 1; /* Firefox */
 }
-
+.input {
+  color: white !important;
+}
 input[type="checkbox"] {
   width: 1rem; /* Set width */
   height: 1rem; /* Set height */
   clip-path: circle(46% at 50% 50%); /* Set the clip path of circle*/
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"),
+    url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "OpenSans", sans-serif;
 }

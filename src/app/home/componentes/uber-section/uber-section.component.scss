@@ -1,0 +1,15 @@
+.contenerdor_texto {
+  width: 90%;
+  margin: auto;
+  position: relative;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"),
+    url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "OpenSans", sans-serif;
+}

@@ -1,0 +1,54 @@
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+.input {
+  color: white !important;
+}
+input[type="checkbox"] {
+  width: 1rem; /* Set width */
+  height: 1rem; /* Set height */
+  clip-path: circle(46% at 50% 50%); /* Set the clip path of circle*/
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: local("OpenSans-Regular"),
+    url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "OpenSans", sans-serif;
+}
+
+#tick-mark {
+  position: absolute;
+  display: inline-block;
+  width: 13.5px;
+  height: 13.5px;
+}
+
+#tick-mark::before {
+  position: absolute;
+  left: -2.6px;
+  top: 50%;
+  height: 50%;
+  width: 3px;
+  background-color: white;
+  content: "";
+  transform: translateX(10px) rotate(-45deg);
+  transform-origin: left bottom;
+}
+
+#tick-mark::after {
+  position: absolute;
+  left: -2.6px;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  content: "";
+  transform: translateX(10px) rotate(-45deg);
+  transform-origin: left bottom;
+}

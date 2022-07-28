@@ -1,0 +1,52 @@
+<div class="flex items-center justify-between lg:px-14 w-full">
+  <a>
+    <img src="assets/landing/logoB.png" alt="" class="lg:w-56" />
+  </a>
+
+  <div class="lg:flex space-x-6 text-base md:hidden">
+    <a
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Home
+    </a>
+
+    <a
+      (click)="navigationSection('funktionen')"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Funktionen
+    </a>
+
+    <a
+      (click)="navigationSection('uber')"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Über uns
+    </a>
+
+    <a
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Kontakt
+    </a>
+
+    <a
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Kundenstimmen
+    </a>
+  </div>
+  <div class="flex lg:space-x-8">
+    <a
+      class="focus:border-gray-10 hover:cursor-pointer hover:text-white hover:bg-gray-15 transition-all ease-linear duration-200 flex justify-center items-center lg:w-36 lg:h-14 rounded-md border border-gray-10 text-gray-15"
+    >
+      Registrieren
+    </a>
+
+    <a
+      class="focus:border-gray-10 hover:cursor-pointer hover:text-gray-15 hover:bg-white hover:border-gray-10 transition-all ease-linear duration-200 flex justify-center items-center lg:w-36 lg:h-14 rounded-md border border-gray-15 bg-gray-15 text-white"
+    >
+      Anmelden
+    </a>
+  </div>
+</div>

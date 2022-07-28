@@ -2,14 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '@core/guards';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
 const routes: Routes = [
+  // {
+  //   path: '',             //home, url sin nada
+  //   pathMatch: 'full',
+  //   redirectTo: 'auth',
+  // },
   {
     path: '',             //home, url sin nada
     pathMatch: 'full',
-    redirectTo: 'auth',
+    component: HomeComponent,
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'auth',
