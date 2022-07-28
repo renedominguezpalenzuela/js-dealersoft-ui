@@ -31,7 +31,7 @@ input[type="checkbox"] {
 
 #tick-mark::before {
   position: absolute;
-  left: -2.6px;
+  left: -2.8px;
   top: 50%;
   height: 50%;
   width: 3px;
@@ -43,7 +43,7 @@ input[type="checkbox"] {
 
 #tick-mark::after {
   position: absolute;
-  left: -2.6px;
+  left: -2.8px;
   bottom: -1px;
   height: 3px;
   width: 100%;

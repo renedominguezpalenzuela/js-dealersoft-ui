@@ -11,9 +11,10 @@ import { UberSectionComponent } from './componentes/uber-section/uber-section.co
 import { LandingRegisterComponent } from './componentes/landing-register/landing-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-
-
+import { LandingLoginComponent } from './componentes/landing-login/landing-login.component';
+import { LandingRegisterLoginComponent } from './componentes/landing-register-login/landing-register-login.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LandingFooterComponent } from './componentes/landing-footer/landing-footer.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -23,13 +24,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BannerBlackComponent,
     SectionFunktionenComponent,
     UberSectionComponent,
-    LandingRegisterComponent
+    LandingRegisterComponent,
+    LandingLoginComponent,
+    LandingRegisterLoginComponent,
+    LandingFooterComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
-  ]
+    MatProgressSpinnerModule,
+    MatTabsModule,
+  ],
 })
-export class HomeModule { }
+export class HomeModule {}

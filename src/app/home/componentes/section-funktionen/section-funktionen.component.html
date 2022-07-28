@@ -1,35 +1,35 @@
-<div class="lg:py-20">
+<div class="lg:py-20 md:py-14">
   <div class="flex justify-center">
-    <img src="assets/landing/funktionen.png" alt="" class="lg:w-56" />
+    <img src="assets/landing/funktionen.png" alt="" class="lg:w-56 md:w-52" />
   </div>
-  <h2 class="lg:text-5xl font-bold text-center lg:mb-4">
+  <h2 class="lg:text-5xl md:text-4xl font-bold text-center lg:mb-4 md:mb-3">
     Funtionen von <br />
     Dealersoft
   </h2>
 
-  <p class="text-lg text-center">
+  <p class="lg:text-lg md:text-base text-center">
     Dealersoft entlastet und beschleunigt alle Prozesse Ihres Autohandels
     <br />
     - von Einkauf bis Verkauf, von Fahrzeugverwaltung bis Kaufvertrag.
   </p>
 
-  <div class="lg:py-20" *ngFor="let data of cards">
+  <div class="lg:py-20 md:py-10" *ngFor="let data of cards">
     <div
       [ngClass]="data.position ? 'flex-row-reverse' : 'flex-row'"
       class="w-full flex justify-center items-center"
     >
-      <div class="w-1/2 flex justify-center text-lg">
-        <div class="lg:max-w-xl">
+      <div class="lg:w-1/2 md:w-[65%] flex justify-center text-lg">
+        <div class="lg:max-w-xl md:max-w-[20rem] mx-auto">
           <h2 class="lg:text-5xl font-bold lg:mb-4">{{ data.title }}</h2>
 
           <p *ngFor="let el of data.text">{{ el }}</p>
 
-          <a href="{{data.link}" class="flex lg:mt-6">
+          <a href="{{data.link}" class="flex lg:mt-6 md:mt-4">
             <span>{{ data.nameLink }}</span>
             <img
               src="assets/landing/uil_arrow-up-right.png"
               alt=""
-              class="w-7"
+              class="lg:w-7 md:w-6"
             />
           </a>
         </div>
@@ -38,7 +38,7 @@
       <img
         src="assets/landing/{{ data.path }}"
         alt=""
-        class="lg:w-3/6"
+        class="lg:w-1/2 md:w-[50%]"
         [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
       />
     </div>

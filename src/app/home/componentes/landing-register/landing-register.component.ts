@@ -20,6 +20,8 @@ import { Observable } from 'rxjs';
 })
 export class LandingRegisterComponent implements OnInit {
   public showPassword = false;
+  public term = false;
+
   public registerForm = this.formBuilder.group({
     first_name: [null, [Validators.required]],
     last_name: [null, [Validators.required]],
@@ -84,6 +86,7 @@ export class LandingRegisterComponent implements OnInit {
   };
 
   togglePwd = () => (this.showPassword = !this.showPassword);
+  toggleTerm = () => (this.term = !this.term);
 
   public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
     let cabcera = new HttpHeaders({ Accept: 'application/json' });
