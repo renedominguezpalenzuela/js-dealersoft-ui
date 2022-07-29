@@ -1,4 +1,52 @@
 .input {
   border: 1px solid #c6c7c8 !important;
-  height: 3.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  .input {
+    height: 3.5rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .input {
+    height: 3rem !important;
+  }
+}
+
+@media (max-width: 766px) {
+  .input {
+    height: 2.8rem !important;
+  }
+}
+
+#tick-mark {
+  position: absolute;
+  display: inline-block;
+  width: 13.5px;
+  height: 13.5px;
+}
+
+#tick-mark::before {
+  position: absolute;
+  left: -2.6px;
+  top: 50%;
+  height: 50%;
+  width: 3px;
+  background-color: #505050;
+  content: "";
+  transform: translateX(10px) rotate(-45deg);
+  transform-origin: left bottom;
+}
+
+#tick-mark::after {
+  position: absolute;
+  left: -2.6px;
+  bottom: -1px;
+  height: 3px;
+  width: 100%;
+  background-color: #505050;
+  content: "";
+  transform: translateX(10px) rotate(-45deg);
+  transform-origin: left bottom;
 }

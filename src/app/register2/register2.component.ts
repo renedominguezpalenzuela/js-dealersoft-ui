@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 })
 export class Register2Component implements OnInit {
   public showPassword = false;
+  public AGB = false;
   public registerForm = this.formBuilder.group({
     first_name: [null, [Validators.required]],
     last_name: [null, [Validators.required]],
@@ -51,11 +52,7 @@ export class Register2Component implements OnInit {
 
   public ImageError: boolean = false;
 
-  
-
-AuthUser:any = null;
-
-
+  AuthUser: any = null;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -102,6 +99,7 @@ AuthUser:any = null;
   };
 
   togglePwd = () => (this.showPassword = !this.showPassword);
+  toogleAGB = () => (this.AGB = !this.AGB);
 
   public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
     let cabcera = new HttpHeaders({ Accept: 'application/json' });
@@ -165,10 +163,7 @@ AuthUser:any = null;
                   .Post(this.apiHelperService.registerURL, newUser, false)
                   .subscribe((res) => {
                     this.isLoading = false;
-                    this.actualizarLocalUser()
-
-                    
-
+                    this.actualizarLocalUser();
 
                     this.notificationService.riseNotification({
                       color: 'success',
@@ -194,26 +189,21 @@ AuthUser:any = null;
     }
   }
 
+  actualizarLocalUser() {
+    //si todo ok actualizar el flag: "full_registration" para poder acceder a las otras rutas
+    if (sessionStorage.getItem('Auth-User')) {
+      this.AuthUser = JSON.parse(<string>sessionStorage.getItem('Auth-User'));
+      this.AuthUser.full_registration = true;
+      sessionStorage.setItem('Auth-User', JSON.stringify(this.AuthUser));
+      console.log(this.AuthUser);
+    }
 
-  
-
-actualizarLocalUser(){
-  //si todo ok actualizar el flag: "full_registration" para poder acceder a las otras rutas
-  if (sessionStorage.getItem('Auth-User')) {
-    this.AuthUser  =   JSON.parse(<string>sessionStorage.getItem('Auth-User'));
-    this.AuthUser.full_registration=true;
-    sessionStorage.setItem('Auth-User', JSON.stringify(this.AuthUser));
-    console.log(this.AuthUser)
-  } 
-
-  
-  if (localStorage.getItem('Auth-User')){
-    this.AuthUser  =   JSON.parse(<string>localStorage.getItem('Auth-User'));
-    this.AuthUser.full_registration=true;
-    localStorage.setItem('Auth-User', JSON.stringify(this.AuthUser));
+    if (localStorage.getItem('Auth-User')) {
+      this.AuthUser = JSON.parse(<string>localStorage.getItem('Auth-User'));
+      this.AuthUser.full_registration = true;
+      localStorage.setItem('Auth-User', JSON.stringify(this.AuthUser));
+    }
   }
-  
-}
   public findInvalidControls() {
     const invalid = [];
     const controls = this.registerForm.controls;
