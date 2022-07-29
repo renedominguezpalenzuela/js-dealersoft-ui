@@ -1,8 +1,10 @@
-<div id="top">
+<div id="top" class="overflow-x-hidden">
   <app-navbar (mensaje)="receiveMessage($event)"></app-navbar>
   <app-banner-main></app-banner-main>
   <app-second-banner></app-second-banner>
-  <app-banner-black></app-banner-black>
+  <div class="md:block hidden">
+    <app-banner-black></app-banner-black>
+  </div>
   <div id="funktionen">
     <app-section-funktionen></app-section-funktionen>
   </div>
@@ -10,15 +12,22 @@
     <app-uber-section></app-uber-section>
   </div>
   <div
-    class="bg-[#202124] relative lg:py-20 md:py-14 flex flex-col items-center justify-center"
+    class="bg-[#202124] relative lg:py-20 md:py-14 py-10 flex flex-col items-center justify-center"
   >
     <img
       src="assets/landing/top-register.png"
       alt=""
-      class="lg:w-[70%] mx-auto"
+      class="lg:w-[70%] mx-auto md:bolck hidden"
+    />
+    <img
+      src="assets/landing/topmovil.png"
+      alt=""
+      class="mx-auto md:hidden block w-[90%]"
     />
     <div class="w-full lg:py-10">
-      <h1 class="text-white lg:text-5xl md:text-4xl text-center">
+      <h1
+        class="text-white lg:text-5xl md:text-4xl text-2xl text-center font-semibold"
+      >
         Dealersoft <br />
         jederzeit und von überall
       </h1>
@@ -32,17 +41,24 @@
         (click)="navigationTop()"
         class="flex space-x-3 items-center absolute z-10 hover:cursor-pointer"
       >
-        <span class="text-white md:text-lg">Zurück nach oben</span>
+        <span class="text-white md:text-[20px] font-semibold text-sm"
+          >Zurück nach oben</span
+        >
         <img
           src="assets/landing/Vector.png"
           alt=""
-          class="lg:w-5 md:w-4 lg:h-5"
+          class="lg:w-5 w-5 h-5 lg:h-5"
         />
       </div>
       <img
         src="assets/landing/bottom-register.png"
         alt=""
-        class="lg:w-[70%] mx-auto"
+        class="lg:w-[70%] mx-auto md:block hidden"
+      />
+      <img
+        src="assets/landing/bottommovil.png"
+        alt=""
+        class="w-[40%] md:hidden block mr-auto pl-5"
       />
     </div>
   </div>

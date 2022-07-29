@@ -13,6 +13,7 @@ export class SectionFunktionenComponent implements OnInit {
         'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
       ],
       path: '1.png',
+      pathmovil: '1movil.png',
       link: '/',
       position: false,
       nameLink: 'Jetzt registrieren',
@@ -23,6 +24,8 @@ export class SectionFunktionenComponent implements OnInit {
         'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
       ],
       path: '2.png',
+      pathmovil: '2movil.png',
+
       link: '/',
       position: true,
       nameLink: 'Jetzt registrieren',
@@ -34,6 +37,8 @@ export class SectionFunktionenComponent implements OnInit {
         'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
       ],
       path: '3.png',
+      pathmovil: '3movil.png',
+
       link: '/',
       position: false,
       nameLink: 'Jetzt registrieren',
@@ -46,6 +51,8 @@ export class SectionFunktionenComponent implements OnInit {
         '- Sekunden PDF Verträge und Rechnungen erstellen.',
       ],
       path: '4.png',
+      pathmovil: '4movil.png',
+
       link: '/',
       position: true,
       nameLink: 'Jetzt registrieren',
@@ -57,6 +64,8 @@ export class SectionFunktionenComponent implements OnInit {
         'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
       ],
       path: '5.png',
+      pathmovil: '5movil.png',
+
       link: '/',
       position: false,
       nameLink: 'Learn more about encryption',
