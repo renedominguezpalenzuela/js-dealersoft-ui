@@ -10,15 +10,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { SaveDom2Pipe } from './../save-dom2.pipe';
+// import { SaveDom2Pipe } from './../save-dom2.pipe';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { Register2Component } from './register2.component';
 
 @NgModule({
-  declarations: [Register2Component, SaveDom2Pipe],
+  declarations: [Register2Component],
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,

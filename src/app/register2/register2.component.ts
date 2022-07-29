@@ -22,17 +22,16 @@ export class Register2Component implements OnInit {
   public showPassword = false;
   public AGB = false;
   public registerForm = this.formBuilder.group({
-    first_name: [null, [Validators.required]],
-    last_name: [null, [Validators.required]],
-    company_name: [null, [Validators.required]],
-    password: [null, [Validators.required, Validators.minLength(8)]],
-    email: [null, [Validators.required, Validators.email]],
-    employees_number: [null, Validators.required],
+    //first_name: [null, [Validators.required]],
+    //last_name: [null, [Validators.required]],
+    //company_name: [null, [Validators.required]],
+    //password: [null, [Validators.required, Validators.minLength(8)]],
+    //email: [null, [Validators.required, Validators.email]],
     street: [null, [Validators.required]],
+    employees_number: [null, Validators.required],   
     house_number: [null, [Validators.required]],
     city: [null, [Validators.required]],
     postal_code: [null, [Validators.required]],
-
     phone: [null, [Validators.required]],
     website: [null],
     steuer_nr: [null, [Validators.required]],
@@ -42,7 +41,7 @@ export class Register2Component implements OnInit {
     bic_swift_code: [null, [Validators.required]],
     hrb_walsrode: [null, [Validators.required]],
     bank_name: [null, [Validators.required]],
-    username: [null, [Validators.required]],
+    //username: [null, [Validators.required]],
   });
 
   public logoImg: File | undefined;
@@ -99,7 +98,11 @@ export class Register2Component implements OnInit {
   };
 
   togglePwd = () => (this.showPassword = !this.showPassword);
-  toogleAGB = () => (this.AGB = !this.AGB);
+  toogleAGB = () => {
+    
+    this.AGB = !this.AGB
+ 
+  };
 
   public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
     let cabcera = new HttpHeaders({ Accept: 'application/json' });
@@ -111,7 +114,7 @@ export class Register2Component implements OnInit {
     });
   };
 
-  public register() {
+  public register2() {
     // if (this.logoImgSrc!=null) {
     //   this.ImageError = false;
     // } else {
@@ -171,7 +174,7 @@ export class Register2Component implements OnInit {
                     });
                   });
 
-                // this.router.navigate(['/admin']);
+                 this.router.navigate(['/admin']);
               });
           }
         }
