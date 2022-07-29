@@ -73,7 +73,7 @@
           class="{{
             hasError('company_name') ? 'input-error' : 'input-primary'
           }}
-      input lg:pl-4 w-full rounded-lg bg-transparent h-14 col-span-1 "
+      input lg:pl-4 w-full rounded-lg bg-transparent h-14 md:col-span-1 col-span-2"
           formControlName="company_name"
           placeholder="Firmenname"
           type="text"
@@ -230,7 +230,10 @@
     </div>
     <div class="col-span-2 justify-center pl-4 text-lg my-2">
       <div class="flex justify-between items-end">
-        <p class="text-blue-10 text-sm font-bold hover:cursor-pointer">
+        <p
+          (click)="naviagateToTab('login')"
+          class="text-blue-10 text-sm font-bold hover:cursor-pointer"
+        >
           Stattdessen anmelden
         </p>
 

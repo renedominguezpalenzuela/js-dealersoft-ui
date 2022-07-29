@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  Input,
+  OnChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-landing-register-login',
@@ -9,15 +15,12 @@ import { Component, OnInit, ViewEncapsulation, Input, OnChanges } from '@angular
 export class LandingRegisterLoginComponent implements OnInit, OnChanges {
   constructor() {}
 
- @Input() selectedTab:any = null;
-  ngOnInit(): void {
-    
-  }
+  @Input() selectedTab: any = null;
+  ngOnInit(): void {}
 
-  ngOnChanges(){
-    console.log("Onchanges")
-   
-    console.log(this.selectedTab)
+  ngOnChanges() {
+    console.log('Onchanges');
 
+    console.log(this.selectedTab);
   }
 }
