@@ -1,5 +1,46 @@
-<div id="top" class="overflow-x-hidden">
+<div id="top" class="overflow-x-hidden relative">
+  <!--
+
+  <div
+    class="flex flex-col w-64 absolute h-screen right-0 z-40 bg-gray-10 pl-6 pt-10 font-bold"
+  >
+    <div class="z-50 absolute top-4 right-6 text-white">
+      <img src="assets/landing/cancel.png" alt="" class="w-6" />
+    </div>
+    <a
+      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Home
+    </a>
+
+    <a
+      class="py-2 pl-3 pr-4 lg:first-letter:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Funktionen
+    </a>
+
+    <a
+      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Über uns
+    </a>
+
+    <a
+      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Kontakt
+    </a>
+
+    <a
+      href="testimonials"
+      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Kundenstimmen
+    </a>
+  </div>
+  -->
   <app-navbar (mensaje)="receiveMessage($event)"></app-navbar>
+
   <app-banner-main></app-banner-main>
   <app-second-banner></app-second-banner>
   <div class="md:block hidden">
@@ -10,6 +51,15 @@
   </div>
   <div id="uber">
     <app-uber-section></app-uber-section>
+  </div>
+  <div class="lg:w-[60%] w-[90%] mx-auto lg:py-20 md:py-14 py-10">
+    <h1
+      class="text-center font-extrabold lg:text-5xl md:text-4xl text-3xl after:flex lg:mb-8 md:mb-6 mb-4"
+    >
+      Lerne mehr über <br />
+      Dealersoft
+    </h1>
+    <app-acordion></app-acordion>
   </div>
   <div
     class="bg-[#202124] relative lg:py-20 md:py-14 py-10 flex flex-col items-center justify-center"
@@ -39,7 +89,7 @@
     <div class="w-full relative flex items-center justify-center">
       <div
         (click)="navigationTop()"
-        class="flex space-x-3 items-center absolute z-10 hover:cursor-pointer"
+        class="flex space-x-3 items-center absolute z-10 hover:cursor-pointer bottom-0"
       >
         <span class="text-white md:text-[20px] font-semibold text-sm"
           >Zurück nach oben</span
@@ -62,6 +112,7 @@
       />
     </div>
   </div>
+
   <div class="lg:w-[70%] mx-auto px-6">
     <app-landing-footer></app-landing-footer>
   </div>
