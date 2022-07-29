@@ -12,15 +12,15 @@
   padding: 5px;
   font-size: 20px;
   color: white !important;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* Styles for the active tab label */
-.mat-tab-label.mat-tab-label-active {
+.mat-tab-label .mat-tab-label-active {
   padding: 5px;
   color: white !important;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* Styles for the ink bar */
@@ -30,11 +30,11 @@
 
 @media (max-width: 766px) {
   .mat-tab-label {
-    font-weight: normal !important;
+    font-weight: 400 !important;
     font-size: 16px;
   }
   .mat-tab-label.mat-tab-label-active {
-    font-weight: normal !important;
+    font-weight: 400 !important;
     font-size: 16px;
   }
 }
