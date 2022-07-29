@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public selectedTab: any = 1;
+  public selectedTab: any = 0;
   public navigationTop() {
     let x = document.getElementById('top');
     if (x) {
@@ -20,6 +20,6 @@ export class HomeComponent implements OnInit {
   receiveMessage(msg: any) {
     this.selectedTab = msg;
 
-    //alert(msg);
+    alert(msg);
   }
 }

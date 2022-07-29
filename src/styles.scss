@@ -8,6 +8,17 @@ body {
   scroll-behavior: smooth;
 }
 
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 400;
+  src: url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSans";
+  font-weight: 800;
+
+  src: url("/assets/fonts/OpenSans-ExtraBold.ttf") format("truetype");
+}
 
 @font-face {
   font-family: "Montserrat-Regular";
@@ -149,7 +160,6 @@ iframe {
   background-color: #121a34 !important;
 }
 
-
 /*
 @font-face {
   font-family: "HelveticaLTStd-Bold";
@@ -197,14 +207,13 @@ iframe {
 }
 
 .header-logo {
- width: 100%;
-/*  height: auto;*/
+  width: 100%;
+  /*  height: auto;*/
   object-fit: contain;
-  height:auto;
+  height: auto;
 
-  
-  max-width: 200px; 
-  max-height: 150px
+  max-width: 200px;
+  max-height: 150px;
 }
 
 .text-contract-big {
@@ -230,8 +239,6 @@ iframe {
   font-family: "Montserrat-Regular" !important;
 }
 
-
-
 .text-details {
   font-size: 0.8rem !important; /* 14px */
   line-height: 0.9rem !important;
@@ -244,13 +251,11 @@ iframe {
   font-family: "Montserrat-ExtraBold" !important;
 }
 
-
 .text-details-firma {
   font-size: 0.9rem !important; /* 14px */
   line-height: 1.9rem !important;
   font-family: "Montserrat-Regular" !important;
 }
-
 
 .text-car-details {
   font-size: 0.85rem !important; /* 14px */
@@ -277,26 +282,20 @@ iframe {
   font-family: "Montserrat-ExtraBold" !important;
 }
 
-
 // Salto de linea
 .new-page {
   page-break-before: always;
 }
 
-
-.font-montserrat{
-  font-family: "Montserrat-Regular"!important ;
+.font-montserrat {
+  font-family: "Montserrat-Regular" !important ;
 }
 
 .font-montserrat-bold {
-  font-family: "Montserrat-ExtraBold"!important ;
+  font-family: "Montserrat-ExtraBold" !important ;
 }
 
-
-
-
 @media print {
-
   // #second_page {
   //   position:relative
   // }
@@ -305,8 +304,6 @@ iframe {
   //    width: 8.5in;
   //    height: 11in;
   //  }
-
-
 
   .myfooter1 {
     // position: fixed; //show footer on every page
@@ -326,26 +323,21 @@ iframe {
 }
 
 @page {
-   size: letter;
-    margin: 0.1in;
-
-   
+  size: letter;
+  margin: 0.1in;
 
   // @bottom-right {
   //   content: counter(page) ' of ' counter(pages);
   // }
-//  #total_paginas:after {
-//   content: 'Seite ' counter(page) ' / ' counter(pages);
-//  }
-
-
+  //  #total_paginas:after {
+  //   content: 'Seite ' counter(page) ' / ' counter(pages);
+  //  }
 }
 
 // @page {
 //   size: A4;
 //   margin: 11mm 17mm 17mm 17mm;
 // }
-
 
 // footer {
 //   position:fixed;
@@ -362,10 +354,8 @@ iframe {
 //   content:  counter(page_number);
 // }
 
-
-
 .text-recovery-pass {
   font-size: 1.3rem !important;
   font-family: "Montserrat-ExtraBold" !important;
-color: white;
+  color: white;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   ApiHelperService,
@@ -24,6 +24,22 @@ import {CookieService} from 'ngx-cookie-service';
 export class LandingRegisterComponent implements OnInit {
   public showPassword = false;
   public term = false;
+
+  @Output() message = new EventEmitter<string>();
+
+  public naviagateToTab(tab_name: any) {
+    let x = document.getElementById('login-register');
+
+    if (tab_name === 'login') {
+      this.message.emit('1');
+    } else {
+      this.message.emit('0');
+    }
+
+    if (x) {
+      x.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   public registerForm = this.formBuilder.group({
     first_name: [null, [Validators.required]],

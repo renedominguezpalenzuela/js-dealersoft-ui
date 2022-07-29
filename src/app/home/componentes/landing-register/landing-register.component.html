@@ -62,10 +62,21 @@
       class="relative lg:mt-8 md:mt-6 mt-5 col-span-2 lg:col-span-2 grid grid-cols-2 gap-x-6"
     >
       <div>
-        <input autocomplete="company_name" class="{{hasError('company_name') ? 'input-error' : 'input-primary' }}
-      input lg:pl-4 w-full rounded-lg bg-transparent h-14 col-span-1 " formControlName="company_name"
-          placeholder="Firmenname" type="text" required />
-        <span *ngIf="hasRequiredError('company_name')" class="label-text-alt text-red-400 pl-2">
+        <input
+          autocomplete="company_name"
+          class="{{
+            hasError('company_name') ? 'input-error' : 'input-primary'
+          }}
+      input lg:pl-4 w-full rounded-lg bg-transparent h-14 md:col-span-1 col-span-2"
+          formControlName="company_name"
+          placeholder="Firmenname"
+          type="text"
+          required
+        />
+        <span
+          *ngIf="hasRequiredError('company_name')"
+          class="label-text-alt text-red-400 pl-2"
+        >
           <b>Firma</b> wird benötigt
         </span>
       </div>
@@ -202,7 +213,10 @@
     </div>
     <div class="col-span-2 justify-center pl-4 text-lg my-2">
       <div class="flex justify-between items-end">
-        <p class="text-blue-10 text-sm font-bold hover:cursor-pointer">
+        <p
+          (click)="naviagateToTab('login')"
+          class="text-blue-10 text-sm font-bold hover:cursor-pointer"
+        >
           Stattdessen anmelden
         </p>
 
