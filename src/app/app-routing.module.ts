@@ -7,8 +7,10 @@ import { TestimonialsComponent } from './testimonial/testimonials.component';
 import { Register2Component } from './register2/register2.component';
 
 import { AuthGuard } from '@core/guards';
-import {IsFullRegisteredGuard} from '@core/guards/is-full-registered.guard';
+import { IsFullRegisteredGuard } from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
+import { DatenschutComponent } from './testimonial/components/datenschut/datenschut.component';
+import { ImpressumComponent } from './testimonial/components/impressum/impressum.component';
 
 const routes: Routes = [
   // {
@@ -21,13 +23,33 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-  
   },
   {
     path: 'testimonials', //home, url sin nada
     pathMatch: 'full',
     component: TestimonialsComponent,
-    loadChildren: () => import('./testimonial/testimonials.module').then( (m) => m.TestimonialsModule ),
+    loadChildren: () =>
+      import('./testimonial/testimonials.module').then(
+        (m) => m.TestimonialsModule
+      ),
+  },
+  {
+    path: 'datenschutz', //home, url sin nada
+    pathMatch: 'full',
+    component: DatenschutComponent,
+    loadChildren: () =>
+      import('./testimonial/testimonials.module').then(
+        (m) => m.TestimonialsModule
+      ),
+  },
+  {
+    path: 'impressum', //home, url sin nada
+    pathMatch: 'full',
+    component: ImpressumComponent,
+    loadChildren: () =>
+      import('./testimonial/testimonials.module').then(
+        (m) => m.TestimonialsModule
+      ),
   },
   {
     path: 'register2', //home, url sin nada
@@ -47,12 +69,13 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
     // canActivate: [AuthGuard, TrialExpiredGuard],
     // canActivateChild: [AuthGuard, TrialExpiredGuard],
 
-       canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-      canActivateChild: [AuthGuard, TrialExpiredGuard,  IsFullRegisteredGuard],
+    canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+    canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
   },
   {
     path: 'export/my-stock/:jwt',
