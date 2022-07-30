@@ -28,7 +28,12 @@ export class LandingRegisterComponent implements OnInit {
   @Output() message = new EventEmitter<string>();
 
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register');
+    let x = document.getElementById('login-register-div');
+
+    
+    if (x) {
+      x.scrollIntoView({ behavior: 'smooth' });
+    }
 
     if (tab_name === 'login') {
       this.message.emit('1');
@@ -36,9 +41,6 @@ export class LandingRegisterComponent implements OnInit {
       this.message.emit('0');
     }
 
-    if (x) {
-      x.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 
   public registerForm = this.formBuilder.group({

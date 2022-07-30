@@ -8,19 +8,39 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class NavbarComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
 
+  
+
   public naviagateToTab(tab_name: any) {
     let x = document.getElementById('login-register');
 
     if (tab_name === 'register') {
-      console.log(this.mensaje);
-      this.mensaje.emit('0');
-    } else {
-      this.mensaje.emit('1');
+      
+      
+      if (x) {
+        x.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      const timeoutId = setTimeout(()=>{
+        this.mensaje.emit('0');
+    }, 700);
+    
+    //clearTimeout(timeoutId);
+      
+     
     }
 
-    if (x) {
-      x.scrollIntoView({ behavior: 'smooth' });
+    if  (tab_name === 'login-reg')  {
+     
+      if (x) {
+        x.scrollIntoView({ behavior: 'smooth' });
+      }
+      const timeoutId = setTimeout(()=>{
+        this.mensaje.emit('1');
+    }, 700);
+      
     }
+
+  
   }
 
   public navigationSection(link: any) {
