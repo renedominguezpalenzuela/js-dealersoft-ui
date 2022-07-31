@@ -50,8 +50,8 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [AuthGuard, TrialExpiredGuard],
-    canActivateChild: [AuthGuard, TrialExpiredGuard],
+    canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+    canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
 
   //  canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
   //  canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],

@@ -5,6 +5,7 @@ import {
   NotificationService,
   RequestService,
   ValidationsService,
+  AuthService
   
 } from '@core/services';
 import { Router } from '@angular/router';
@@ -72,11 +73,19 @@ export class Register2Component implements OnInit {
     private readonly router: Router,
     private readonly validationsService: ValidationsService,
     private readonly notificationService: NotificationService,
-    private httpClient: HttpClient
-  ) {  }
+    private httpClient: HttpClient,
+    private readonly authService: AuthService,
+  ) {
+
+    this.authService.currentUser.subscribe((user) => {
+      this.isAuth = this.authService.isAuth;
+      this.authUser = user;
+    });
+
+    }
 
   ngOnInit(): void {
-    console.log("SSSSSS")
+ 
   }
 
   public hasError = (input: string): boolean => {
@@ -130,18 +139,10 @@ export class Register2Component implements OnInit {
 
   public register2() {
 
-    this.router.navigate(['/admin/my-stock']);
-    return; 
-    if ( !this.AGB) {
+ 
 
-      this.notificationService.riseNotification({
-        color: 'warning',
-        data: 'You must accept the AGB',
-      });
-      
-      
-      return
-    }
+
+ 
     console.log(this.userID);
 
     
@@ -174,12 +175,26 @@ export class Register2Component implements OnInit {
       
       !this.isLoading
     ) {
+
+      
+    if ( !this.AGB) {
+
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'You must accept the AGB',
+      });
+      
+      
+      return
+    }
+
+
       this.isLoading = true;
       
       this.requestService.Put(this.apiHelperService.meURL, newUser)
         .subscribe((respuesta) => {
 
-          //this.actualizarLocalUser() ;
+          this.actualizarLocalUser() ;
 
         
           this.isLoading = false;
@@ -203,6 +218,7 @@ export class Register2Component implements OnInit {
                    // console.log("sss")
                    
                     this.router.navigate(['/admin/my-stock']);
+                    
                     
                   });
               }
@@ -235,15 +251,12 @@ export class Register2Component implements OnInit {
     if (sessionStorage.getItem('Auth-User')) {
       this.authUserLocalStorage = JSON.parse(<string>sessionStorage.getItem('Auth-User'));
       this.authUserLocalStorage.full_registration = true;
-  
-      sessionStorage.setItem('Auth-User', JSON.stringify(this.authUserLocalStorage));
-      console.log(this.authUserLocalStorage);
+      sessionStorage.setItem('Auth-User', JSON.stringify(this.authUserLocalStorage)); 
     }
 
     if (localStorage.getItem('Auth-User')) {
       this.authUserLocalStorage = JSON.parse(<string>localStorage.getItem('Auth-User'));
-      this.authUserLocalStorage.full_registration = true;
-    
+      this.authUserLocalStorage.full_registration = true;    
       localStorage.setItem('Auth-User', JSON.stringify(this.authUserLocalStorage));
     }
   }

@@ -87,7 +87,7 @@ export class AuthService {
      let isFullRegistered = <boolean>this.AuthUser.getValue()?.full_registration
 
      if (!isFullRegistered) {
-      //this.loadAuthUser();
+      this.loadAuthUser();
       isFullRegistered = <boolean>this.AuthUser.getValue()?.full_registration
      }
 
