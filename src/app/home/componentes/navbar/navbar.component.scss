@@ -1,9 +1,11 @@
 @font-face {
-  font-family: "OpenSans";
+  font-family: "OpenSans-Regular";
   src: local("OpenSans-Regular"),
     url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
-* {
-  font-family: "OpenSans", sans-serif;
+@font-face {
+  font-family: "OpenSans-ExtraBold";
+  src: local("OpenSans-ExtraBold"),
+    url("/assets/fonts/OpenSans-ExtraBold.ttf") format("truetype");
 }
