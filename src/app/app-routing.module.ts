@@ -9,6 +9,8 @@ import { Register2Component } from './register2/register2.component';
 import { AuthGuard } from '@core/guards';
 import { IsFullRegisteredGuard } from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
+import { DatenschutComponent } from './testimonial/components/datenschut/datenschut.component';
+import { ImpressumComponent } from './testimonial/components/impressum/impressum.component';
 
 const routes: Routes = [
   // {

@@ -7,9 +7,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
+  public openSide = false;
 
-  
-
+  toggleOpen = () => {
+    this.openSide = !this.openSide;
+  };
   public naviagateToTab(tab_name: any) {
     let x = document.getElementById('login-register');
 

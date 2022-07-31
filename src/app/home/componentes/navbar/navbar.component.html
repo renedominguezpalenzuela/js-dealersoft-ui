@@ -1,12 +1,59 @@
 <div
+  id="sideBar"
+  *ngIf="openSide"
+  data-aos="fade-left"
+  data-aos-easing="llinear"
+  data-aos-duration="500"
+  [ngClass]="openSide ? 'overflow-y-hidden' : 'overflow-y-auto'"
+  class="md:hidden flex flex-col w-64 absolute h-screen right-0 z-40 bg-gray-30 pl-6 pt-10 font-bold"
+>
+  <div class="z-50 absolute top-4 right-6 text-white" (click)="toggleOpen()">
+    <img src="assets/landing/cancel.png" alt="" class="w-6" />
+  </div>
+  <a
+    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+  >
+    Home
+  </a>
+
+  <a
+    class="py-2 pl-3 pr-4 lg:first-letter:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+  >
+    Funktionen
+  </a>
+
+  <a
+    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+  >
+    Über uns
+  </a>
+
+  <a
+    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+  >
+    Kontakt
+  </a>
+
+  <a
+    href="testimonials"
+    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+  >
+    Kundenstimmen
+  </a>
+</div>
+<div
   class="flex items-center justify-between lg:px-14 w-full md:px-6 px-4"
   data-aos="fade-down"
   data-aos-delay="300"
   data-aos-easing="ease-in"
   data-aos-duration="1000"
 >
-  <a>
-    <img src="assets/landing/logoB.png" alt="" class="lg:w-56 md:w-32 w-24" />
+  <a href="/">
+    <img
+      src="assets/landing/logoB.png"
+      alt=""
+      class="lg:w-52 md:w-32 w-24 hover:cursor-pointer"
+    />
   </a>
 
   <div
@@ -56,6 +103,11 @@
   </div>
 
   <div class="md:hidden flex">
-    <img src="assets/landing/bars.png" alt="" class="w-5" />
+    <img
+      src="assets/landing/bars.png"
+      alt=""
+      class="w-5"
+      (click)="toggleOpen()"
+    />
   </div>
 </div>
