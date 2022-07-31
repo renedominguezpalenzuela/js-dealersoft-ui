@@ -1,263 +1,155 @@
-<div
-  class="lg:mx-24 my-6 mb-6 mx-4 md:mx-10 border border-[#C6C7C8] rounded-lg"
->
+<div class="lg:mx-24 my-3 mb-6 mx-4 md:mx-10 border border-[#C6C7C8] rounded-lg">
   <div class="flex flex-wrap">
+
     <div class="lg:w-full md:w-2/3 w-full lg:px-[6.66%] md:pl-[11%] px-6 mb-4">
       <a href="/">
-        <img
-          src="assets/landing/logoB.png"
-          alt=""
-          class="lg:w-48 md:w-36 w-[130px] hover:cursor-pointer"
-        />
+        <img src="assets/landing/logoB.png" alt="" class="md:block hidden mt-2 w-[10vw] hover:cursor-pointer" />
       </a>
-      <div class="md:hidden block mr-auto my-4">
-        <img src="assets/landing/shield.png" alt="" class="w-[55%] mr-auto" />
+      <div class="md:hidden block mr-auto my-1">
+         <img src="assets/landing/shield.png" alt="" class="w-[25vw]  mt-5 mr-auto" /> 
       </div>
-      <h1 class="text-[24px] mb-2">Herzlich willkommen bei Dealersoft!</h1>
-      <p class="lg:text-[15px] text-[12px]">
+
+      <h1 class="text-[20px] mb-1">Herzlich willkommen bei Dealersoft!</h1>
+      <p class="lg:text-[12px] text-[10px]">
         Vielen Dank, dass Sie sich für Dealersoft entschieden haben, um ein
         personalisiertes Profil, Kaufverträge und Rechnungen erstellen zu können
         benötigen wir einige weitere Informationen zu Ihrem Unternehmen.
       </p>
     </div>
+
     <div class="lg:hidden md:block hidden md:w-1/3 mx-auto text-center pt-4">
       <img src="assets/landing/shield.png" alt="" class="md:w-[55%] mx-auto" />
     </div>
+<!-- text-[5px] -->
     <div class="lg:w-2/3 md:w-full md:mx-auto mx-6 w-full">
-      <form
-        (ngSubmit)="register2()"
-        [formGroup]="registerForm"
-        class="flex flex-col justify-center items-center"
-      >
-        <div class="grid grid-cols-2 gap-x-8 w-full md:w-[80%]">
+      <form (ngSubmit)="register2()" [formGroup]="registerForm" class="flex flex-col justify-center items-center">
+        <div class="grid grid-cols-2 gap-x-8 gap-y-0 w-full md:w-[80%]  ">
 
-          <div class="relative col-span-2 sm:col-span-1">
-            <input
-              class="{{
-                hasError('street') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="street"
-              placeholder="Straße"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('street')"
-              class="label-text-alt text-red-400 pl-2"
-            >
-
+          <div class=" col-span-2 sm:col-span-1">
+            <input class="{{hasError('street') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  " formControlName="street" placeholder="Straße" required type="text"/>
+            <span *ngIf="hasRequiredError('street')" class="label-text-alt text-red-400 pl-2">
               <b>Straße</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative col-span-2 sm:col-span-1 md:mt-0 mt-4">
-            <input
-              class="{{
-                hasError('house_number') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="house_number"
-              placeholder="Hausnummer"
-              required
-              type="text"
-            />
-
+          <div class="relative col-span-2 sm:col-span-1">
+            <input class="{{hasError('house_number') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  " formControlName="house_number" placeholder="Hausnummer" required type="text" />
             <div class="absolute left-0 top-3 flex items-center"></div>
-            <span
-              *ngIf="hasRequiredError('house_number')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+            <span *ngIf="hasRequiredError('house_number')" class="label-text-alt text-red-400 pl-2">
               <b>Hausnummer</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
-                hasError('postal_code') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="postal_code"
-              placeholder="Postleitzahl"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('postal_code')"
-              class="label-text-alt text-red-400 pl-2"
-            >
-
+          <div class="relative col-span-2 sm:col-span-1 mt-1">
+            <input class="{{hasError('postal_code') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  " formControlName="postal_code" placeholder="Postleitzahl" required  type="text" />
+            <span *ngIf="hasRequiredError('postal_code')" class="label-text-alt text-red-400 pl-2">
               <b>Postleitzahl</b> wird benötigt
             </span>
           </div>
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
-                hasError('city') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="city"
-              placeholder="Stadt"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('city')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{hasError('city') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  " formControlName="city" placeholder="Stadt" required type="text" />
+            <span *ngIf="hasRequiredError('city')" class="label-text-alt text-red-400 pl-2">
 
               <b>Stadt</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('phone') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="phone"
-              placeholder="Telefon"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('phone')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="phone" placeholder="Telefon" required
+              type="text" />
+            <span *ngIf="hasRequiredError('phone')" class="label-text-alt text-red-400 pl-2">
 
               <b>Telefon</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('website') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="website"
-              placeholder="Website"
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('website')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="website" placeholder="Website" type="text" />
+            <span *ngIf="hasRequiredError('website')" class="label-text-alt text-red-400 pl-2">
 
               <b>Website</b> wird benötigt
             </span>
           </div>
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('steuer_nr') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="steuer_nr"
-              placeholder="Steuer Nr."
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('steuer_nr')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="steuer_nr" placeholder="Steuer Nr." required
+              type="text" />
+            <span *ngIf="hasRequiredError('steuer_nr')" class="label-text-alt text-red-400 pl-2">
 
               <b>Steuer Nr.</b> wird benötigt
             </span>
           </div>
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('ust_Idnr') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="ust_Idnr"
-              placeholder="USt. ID"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('ust_Idnr')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="ust_Idnr" placeholder="USt. ID" required
+              type="text" />
+            <span *ngIf="hasRequiredError('ust_Idnr')" class="label-text-alt text-red-400 pl-2">
 
               <b>USt. ID</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('geschaftsfuhrer') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="geschaftsfuhrer"
-              placeholder="Geschäftsführer"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('geschaftsfuhrer')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="geschaftsfuhrer" placeholder="Geschäftsführer"
+              required type="text" />
+            <span *ngIf="hasRequiredError('geschaftsfuhrer')" class="label-text-alt text-red-400 pl-2">
 
               <b>Ansprechpartner</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('iban') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="iban"
-              placeholder="IBAN"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('iban')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="iban" placeholder="IBAN" required type="text" />
+            <span *ngIf="hasRequiredError('iban')" class="label-text-alt text-red-400 pl-2">
 
               <b>IBAN</b> wird benötigt
             </span>
           </div>
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input
-              class="{{
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input class="{{
                 hasError('bank_name') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  "
-              formControlName="bank_name"
-              placeholder="Name der Bank"
-              required
-              type="text"
-            />
-            <span
-              *ngIf="hasRequiredError('bank_name')"
-              class="label-text-alt text-red-400 pl-2"
-            >
+              }} input lg:pl-4 w-full rounded-lg  " formControlName="bank_name" placeholder="Name der Bank" required
+              type="text" />
+            <span *ngIf="hasRequiredError('bank_name')" class="label-text-alt text-red-400 pl-2">
 
               <b>Name der Bank</b> wird benötigt
             </span>
           </div>
 
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input class="{{hasError('bic_swift_code') ? 'input-error' : 'input-primary' }} input lg:pl-4 w-full rounded-lg  "
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input
+              class="{{hasError('bic_swift_code') ? 'input-error' : 'input-primary' }} input lg:pl-4 w-full rounded-lg  "
               formControlName="bic_swift_code" placeholder="BIC/SWIFT-Code" required type="text" />
             <span *ngIf="hasRequiredError('bic_swift_code')" class="label-text-alt text-red-400 pl-2">
               <b>BIC/SWIFT-Code</b> wird benötigt
             </span>
           </div>
 
-          <div class="relative mt-4 col-span-2 sm:col-span-1">
-            <input class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  "
-              formControlName="hrb_walsrode" placeholder="HRB Nummer"  required  type="text"   />
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input
+              class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  "
+              formControlName="hrb_walsrode" placeholder="HRB Nummer" required type="text" />
             <span *ngIf="hasRequiredError('hrb_walsrode')" class="label-text-alt text-red-400 pl-2">
 
               <b>HRB Nummer</b> wird benötigt
@@ -265,79 +157,19 @@
           </div>
 
 
-          <div class="relative lg:mt-6 mt-4 col-span-2 sm:col-span-1">
+          <div class="relative  mt-1 col-span-2 sm:col-span-1">
             <input
-                class="{{hasError('employees_number') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg"
-                formControlName="employees_number" placeholder="Mitarbeiterzahl" required type="number">
-           
-              <span *ngIf="hasRequiredError('employees_number')" class="label-text-alt text-red-400 pl-2">
-                <b>Mitarbeiterzahl</b> wird benötigt
-              </span>
-            </div>
+              class="{{hasError('employees_number') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg"
+              formControlName="employees_number" placeholder="Mitarbeiterzahl" required type="number">
 
-            <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
-              <input
-                class="{{hasError2('employees_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full"
-                formControlName="employees_number" placeholder="Mitarbeiterzahl" required type="number">
-              <div class="absolute left-0 top-3 flex items-center">
-                <img class="ml-4"
-                  src="assets/person.png">
-              </div>
-              <span *ngIf="hasRequiredError2('employees_number')" class="label-text-alt text-red-400 pl-2">
-                <b>Mitarbeiterzahl</b> wird benötigt
-              </span>
-            </div> -->
-
-
-
-          <!-- <div class="relative lg:mt-6 mt-4 col-span-2 sm:col-span-1">
-            <input class="{{ hasError('bic_swift_code') ? 'input-error' : 'input-primary'
-              }} input lg:pl-4 w-full rounded-lg  " formControlName="hrb_walsrode" placeholder="BIC/SWIFT-Code"
-              required type="text" />
-
-
-            <span
-              *ngIf="hasRequiredError('bic_swift_code')"
-              class="label-text-alt text-red-400 pl-2"
-            >
-              <b>BIC/SWIFT-Code</b> wird benötigt
+            <span *ngIf="hasRequiredError('employees_number')" class="label-text-alt text-red-400 pl-2">
+              <b>Mitarbeiterzahl</b> wird benötigt
             </span>
-          </div> -->
+          </div>
 
+         
 
-          <!-- <div class="hover:cursor-pointer relative lg:mt-6 mt-4 col-span-2 sm:col-span-1 input lg:pl-4 w-full items-center rounded-lg flex">
-            <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file" />
-
-          <div
-            class="hover:cursor-pointer relative lg:mt-6 mt-4 col-span-2 sm:col-span-1 input lg:pl-4 w-full items-center rounded-lg flex"
-          >
-            <input
-              (change)="previewLogo($event)"
-              autofocus
-              class="hidden"
-              id="logo"
-              type="file"
-            />
-
-            <label class="text-[#6D6D6D] font-bold text-[15px]" for="logo">
-              Firmenlogo hochladen
-            </label>
-
-            <div class="absolute lg:-right-4 md:right-1 top-2 right-2">
-              <img
-                src="assets/landing/file.png"
-                alt=""
-                class="lg:w-[98px] md:w-[64px] w-[60px]"
-              />
-            </div>
-
-
-            <span *ngIf="ImageError" class="label-text-alt text-red-400 pl-2 mt-1">
-              Bitte Firmenlogo Hochladen
-            </span>
-          </div> -->
-
-          <div class=" relative lg:mt-6 mt-4 col-span-2 sm:col-span-1 input lg:pl-4 w-full items-center rounded-lg flex">
+          <div class=" relative  mt-1 col-span-2 sm:col-span-1 input lg:pl-4 w-full items-center rounded-lg flex">
 
             <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file" />
 
@@ -345,26 +177,18 @@
               Firmenlogo hochladen
             </label>
 
-            <!-- <div class="absolute lg:-right-4 md:right-1 top-2 right-2">
-              <img src="assets/landing/file.png" alt="" class="lg:w-[98px] md:w-[64px] w-[60px]" />
-            </div> -->
-
-            <!-- lg:-right-4 md:right-1 top-2 right-2 -->
             <div class="absolute top-[0.5vw] right-[-2.5vw] ">
-              <!-- lg:w-[90px] md:w-[64px] w-[60px] -->
-              <!-- lg:w-[10vw] md:w-[10vw] w-[20vw] -->
-            
-            <img alt="user-profile-picture" src="assets/landing/file.png" class="  md:w-[10vw] w-[20vw]" />
-            <img *ngIf="showLogo" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom4"
-             class="absolute md:top-[0.5vw] md:left-[3.5vw] md:w-[5.7vw] md:h-[4.5vw] top-[1.3vw] left-[7.1vw] w-[11vw] h-[9vw]  ">
-               <!-- <ng-template #defaultImg>
-                <img alt="user-profile-picture" src="assets/landing/file.png" class="lg:w-[98px] md:w-[64px] w-[60px]" />
-            </ng-template> -->
-          </div> 
+
+
+              <img alt="user-profile-picture" src="assets/landing/file.png" class="  md:w-[10vw] w-[20vw]" />
+              <img *ngIf="showLogo" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom4"
+                class="absolute md:top-[0.5vw] md:left-[3.5vw] md:w-[5.7vw] md:h-[4.5vw] top-[1.3vw] left-[7.1vw] w-[11vw] h-[9vw]  ">
+    
+            </div>
 
 
 
-            
+
             <span *ngIf="ImageError" class="label-text-alt text-red-400 pl-2 mt-1">
 
               Bitte Firmenlogo Hochladen
@@ -372,25 +196,20 @@
           </div>
 
 
-          <div class="relative lg:mt-6 mt-4 col-span-2 sm:col-span-1 lg:pl-4 items-center flex">
+          <div class="relative  mt-1 col-span-2 sm:col-span-1 lg:pl-4 items-center flex">
             <div (click)="toogleAGB()" class="flex space-x-4 w-full items-center hover:cursor-pointer">
 
               <span class="border border-[#505050] h-5 w-5 rounded-sm relative">
                 <div id="tick-mark" *ngIf="AGB"></div>
               </span>
-              <span class="text-[#6D6D6D] md:text-base text-[12px]"
-                >Ich stimme den AGBs zu.</span
-              >
+              <span class="text-[#6D6D6D] md:text-base text-[12px]">Ich stimme den AGBs zu.</span>
             </div>
           </div>
 
           <div class="flex w-full justify-end lg:my-6 my-4 col-span-2">
 
-            <button
-              class="btn border-transparent border w-32 bg-blue-10 rounded-lg max-h-[2.6rem]"
-              type="submit"
-            >
-            <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>
+            <button class="btn border-transparent border w-32 bg-blue-10 rounded-lg max-h-[2.6rem]" type="submit">
+              <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>
 
               <span class="tracking-wide">Weiter</span>
             </button>
@@ -404,9 +223,7 @@
   </div>
 </div>
 <div class="lg:mb-10 lg:mx-24 md:px-16 mb-4">
-  <div
-    class="flex text-[#505050] lg:text-[15px] lg:space-x-6 space-x-4 w-full justify-end lg:px-10 px-5 text-[10px]"
-  >
+  <div class="flex text-[#505050] lg:text-[15px] lg:space-x-6 space-x-4 w-full justify-end lg:px-10 px-5 text-[10px]">
     <a class="hover:cursor-pointer">Hilfe</a>
     <a class="hover:cursor-pointer">Datenschutz</a>
     <a class="hover:cursor-pointer">Nutzungsbedingungen</a>
