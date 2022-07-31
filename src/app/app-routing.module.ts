@@ -41,11 +41,11 @@ const routes: Routes = [
   
   },
 
-  // {
-  //   path: 'auth',
-  //   component: AuthComponent,
-  //   loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  // },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
   {
     path: 'admin',
     component: AdminComponent,
@@ -104,11 +104,11 @@ const routes: Routes = [
     path: 'stripe-payment-mobile/:jwt',
     loadChildren: () =>import('./core/pages/stripe-payment-mobile/stripe-payment-mobile.module').then((m) => m.StripePaymentMobileModule),
   },
-  {
-    path: '**',
-    redirectTo: '404',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '404',
+  //   pathMatch: 'full',
+  // },
   {
     path: '404',
     loadChildren: () =>

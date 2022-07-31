@@ -44,6 +44,7 @@ import { BillCancelIvaComponent } from './bill-cancel-iva/bill-cancel-iva.compon
 //TODO: error si se pasa cualquier cosa como JWT abre
 
 const routes: Routes = [
+
   { path: 'gewerbe/a25/:jwt', component: A25Component },
 
   //Private 
@@ -64,6 +65,9 @@ const routes: Routes = [
    //buy car
     { path: 'buy-car/a25/:jwt', component: BuyCarA25Component },
     { path: 'buy-car/iva/:jwt', component: BuyCarIvaComponent },
+
+    // { path: 'buy-car/a25', component: BuyCarA25Component },
+    // { path: 'buy-car/iva', component: BuyCarIvaComponent },
 
    
   
