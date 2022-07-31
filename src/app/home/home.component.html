@@ -15,53 +15,24 @@
   <div class="lg:w-[60%] w-[90%] mx-auto md:py-14 py-10">
     <app-acordion></app-acordion>
   </div>
-  <div
-    class="bg-[#202124] relative md:py-10 py-6 flex flex-col items-center justify-center"
-  >
-    <img
-      src="assets/landing/top-register.png"
-      alt=""
-      class="lg:w-[60%] mx-auto md:block hidden md:h-[60%]"
-    />
-    <img
-      src="assets/landing/topmovil.png"
-      alt=""
-      class="mx-auto md:hidden block w-[90%]"
-    />
-    <div class="w-full lg:py-3">
-      <h1
-        class="text-white lg:text-5xl md:text-4xl text-2xl text-center font-semibold"
-      >
+  <div class="bg-[#202124] relative md:py-10 py-6 flex flex-col items-center justify-center">
+    <img src="assets/landing/top-register.png" alt="" class="lg:w-[60%] mx-auto md:block hidden md:h-[60%]" />
+    <img src="assets/landing/topmovil.png" alt="" class="mx-auto md:hidden block w-[90%]" />
+    <div class="w-full lg:py-1">
+      <h1 class="text-white lg:text-4xl md:text-3xl text-2xl text-center font-semibold">
         Dealersoft <br />
         jederzeit und von überall
       </h1>
-      <app-landing-register-login
-        [selectedTab]="selectedTab"
-      ></app-landing-register-login>
+      <app-landing-register-login [selectedTab]="selectedTab"></app-landing-register-login>
     </div>
 
     <div class="w-full relative flex items-center justify-center">
-      <div
-        (click)="navigationTop()"
-        class="flex space-x-3 items-center absolute z-10 hover:cursor-pointer bottom-0"
-      >
+      <div (click)="navigationTop()" class="flex space-x-3 items-center absolute z-10 hover:cursor-pointer bottom-0">
         <span class="text-white md:text-lg text-sm">Zurück nach oben</span>
-        <img
-          src="assets/landing/Vector.png"
-          alt=""
-          class="lg:w-5 w-5 h-5 lg:h-5"
-        />
+        <img src="assets/landing/Vector.png" alt="" class="lg:w-5 w-5 h-5 lg:h-5" />
       </div>
-      <img
-        src="assets/landing/bottom-register.png"
-        alt=""
-        class="lg:w-[70%] mx-auto md:block hidden h-[50%]"
-      />
-      <img
-        src="assets/landing/bottommovil.png"
-        alt=""
-        class="w-[40%] md:hidden block mr-auto pl-5"
-      />
+      <img src="assets/landing/bottom-register.png" alt="" class="lg:w-[70%] mx-auto md:block hidden h-[50%]" />
+      <img src="assets/landing/bottommovil.png" alt="" class="w-[40%] md:hidden block mr-auto pl-5" />
     </div>
   </div>
 

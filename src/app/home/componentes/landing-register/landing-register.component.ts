@@ -23,7 +23,7 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class LandingRegisterComponent implements OnInit {
   public showPassword = false;
-  public term = false;
+  public agb = false;
 
   @Output() message = new EventEmitter<string>();
 
@@ -109,7 +109,7 @@ export class LandingRegisterComponent implements OnInit {
   };
 
   togglePwd = () => (this.showPassword = !this.showPassword);
-  toggleTerm = () => (this.term = !this.term);
+  toggleagb = () => (this.agb = !this.agb);
 
   // public POSTUpload2 = (url: string, files: FormData): Observable<any> => {
   //   let cabcera = new HttpHeaders({ Accept: 'application/json' });
@@ -152,6 +152,20 @@ export class LandingRegisterComponent implements OnInit {
       //this.logoImg instanceof File &&
       !this.isLoading
     ) {
+
+          
+    if ( !this.agb) {
+      this.isLoading = false;
+
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'You must accept the AGB',
+      });
+      
+      
+      return
+    }
+
       this.isLoading = true;
       const newUser = {
         ...this.registerForm.value,

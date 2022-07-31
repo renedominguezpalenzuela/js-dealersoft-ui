@@ -179,6 +179,7 @@ export class Register2Component implements OnInit {
       
     if ( !this.AGB) {
 
+      this.isLoading = false;
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'You must accept the AGB',
