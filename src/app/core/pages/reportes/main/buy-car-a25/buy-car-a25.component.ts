@@ -63,6 +63,7 @@ export class BuyCarA25Component  {
     this.currentUrl = `${ window.location.hostname }/export/vehicle`;
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
 
+
   
     if (this.activatedRoute.snapshot.queryParamMap.has('id'))
     this.id = +<number><unknown>this.activatedRoute.snapshot.queryParamMap.get('id');

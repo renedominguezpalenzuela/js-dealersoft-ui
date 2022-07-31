@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
   ApiHelperService,
   NotificationService,
   RequestService,
   ValidationsService,
+  
 } from '@core/services';
 import { Router } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
@@ -12,6 +13,9 @@ import * as moment from 'moment';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { Logo } from '@core/interfaces/logo';
+import { User } from '@core/interfaces';
 
 @Component({
   selector: 'app-register2',
@@ -41,9 +45,11 @@ export class Register2Component implements OnInit {
     bic_swift_code: [null, [Validators.required]],
     hrb_walsrode: [null, [Validators.required]],
     bank_name: [null, [Validators.required]],
+    
     //username: [null, [Validators.required]],
   });
 
+  
   public logoImg: File | undefined;
   public showLogo: boolean = false;
   public logoImgSrc: string = '';
@@ -51,7 +57,13 @@ export class Register2Component implements OnInit {
 
   public ImageError: boolean = false;
 
-  AuthUser: any = null;
+  public authUser: User | null = null;
+  public isAuth: boolean = false;
+  public userID!: number | undefined;
+
+  public logo: Logo | undefined;
+
+  authUserLocalStorage: any = null;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -61,9 +73,11 @@ export class Register2Component implements OnInit {
     private readonly validationsService: ValidationsService,
     private readonly notificationService: NotificationService,
     private httpClient: HttpClient
-  ) {}
+  ) {  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("SSSSSS")
+  }
 
   public hasError = (input: string): boolean => {
     return this.validationsService.hasError(this.registerForm, input);
@@ -115,98 +129,126 @@ export class Register2Component implements OnInit {
   };
 
   public register2() {
-    // if (this.logoImgSrc!=null) {
-    //   this.ImageError = false;
-    // } else {
 
-    //   this.ImageError = true;
-    //   this.notificationService.riseNotification({
-    //     color: 'warning',
-    //     data: 'Bitte Firmenlogo Hochladen',
-    //   });
-    //   return;
+    this.router.navigate(['/admin/my-stock']);
+    return; 
+    if ( !this.AGB) {
 
-    // }
-    if (this.logoImg instanceof File) {
-      this.ImageError = false;
-    } else {
-      this.ImageError = true;
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'Bitte Firmenlogo Hochladen',
+        data: 'You must accept the AGB',
       });
-      // return;
+      
+      
+      return
     }
+    console.log(this.userID);
+
+    
+
+    if (!this.isAuth) {
+      console.log('User not authorized');
+
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: 'User not authorized',
+      });
+      
+
+
+      return;
+    }
+
+    const newUser = {
+       ...this.registerForm.value,
+      full_registration: true
+    };
+
+
+   
+ 
+
 
     if (
       this.registerForm.valid &&
-      this.logoImg instanceof File &&
+      
       !this.isLoading
     ) {
       this.isLoading = true;
-      const newUser = {
-        ...this.registerForm.value,
-        active_until: moment().add(30, 'days').format('YYYY-MM-DD'),
-      };
+      
+      this.requestService.Put(this.apiHelperService.meURL, newUser)
+        .subscribe((respuesta) => {
 
-      const form = new FormData();
-      form.append('files', <File>this.logoImg);
+          //this.actualizarLocalUser() ;
 
-      this.POSTUpload2(this.apiHelperService.uploadFilesURL, form).subscribe(
-        (events) => {
-          if (events.type === HttpEventType.Response) {
-            // const data = { logo: events.body[0].id, user: res.user.id };
-            const data = { logo: events.body[0].id };
+        
+          this.isLoading = false;
+         const form = new FormData();
+         form.append('files', <File>this.logoImg);
 
-            this.requestService
-              .Post(this.apiHelperService.logosURL, data)
-              .subscribe((respuesta) => {
-                newUser.logo = respuesta.data.id;
+          if (this.logoImg instanceof File) {
+          this.requestService
+            .POSTUpload(this.apiHelperService.uploadFilesURL, form)
+            .subscribe((events) => {
+              if (events.type === HttpEventType.Response) {
+                const data = { logo: events.body[0].id, user: this.userID };
                 this.requestService
-                  .Post(this.apiHelperService.registerURL, newUser, false)
-                  .subscribe((res) => {
+                  .Post(this.apiHelperService.logosURL, data)
+                  .subscribe(() => {
                     this.isLoading = false;
-                    this.actualizarLocalUser();
-
                     this.notificationService.riseNotification({
                       color: 'success',
-                      data: 'Registrierung & Anmeldung erfolgreich',
+                      data: 'gespeichert',
                     });
+                   // console.log("sss")
+                   
+                    this.router.navigate(['/admin/my-stock']);
+                    
                   });
-
-                 this.router.navigate(['/admin']);
-              });
+              }
+            });
+          } else {
+            this.isLoading = false;
+            this.notificationService.riseNotification({
+              color: 'success',
+              data: 'gespeichert',
+            });
+            //window.location.reload();
           }
-        }
-      );
+        });
     } else {
-      this.registerForm.updateValueAndValidity();
-
-      this.markAsTouchedAllControls();
-      //    let errores = this.findInvalidControls();
+      const errores = this.findInvalidControls();
+      console.log(errores)
 
       this.notificationService.riseNotification({
         color: 'warning',
         data: 'fehlende Angaben',
       });
+
     }
   }
+
+  //TODO: Borrar todos aas cosas
 
   actualizarLocalUser() {
     //si todo ok actualizar el flag: "full_registration" para poder acceder a las otras rutas
     if (sessionStorage.getItem('Auth-User')) {
-      this.AuthUser = JSON.parse(<string>sessionStorage.getItem('Auth-User'));
-      this.AuthUser.full_registration = true;
-      sessionStorage.setItem('Auth-User', JSON.stringify(this.AuthUser));
-      console.log(this.AuthUser);
+      this.authUserLocalStorage = JSON.parse(<string>sessionStorage.getItem('Auth-User'));
+      this.authUserLocalStorage.full_registration = true;
+  
+      sessionStorage.setItem('Auth-User', JSON.stringify(this.authUserLocalStorage));
+      console.log(this.authUserLocalStorage);
     }
 
     if (localStorage.getItem('Auth-User')) {
-      this.AuthUser = JSON.parse(<string>localStorage.getItem('Auth-User'));
-      this.AuthUser.full_registration = true;
-      localStorage.setItem('Auth-User', JSON.stringify(this.AuthUser));
+      this.authUserLocalStorage = JSON.parse(<string>localStorage.getItem('Auth-User'));
+      this.authUserLocalStorage.full_registration = true;
+    
+      localStorage.setItem('Auth-User', JSON.stringify(this.authUserLocalStorage));
     }
   }
+
+
   public findInvalidControls() {
     const invalid = [];
     const controls = this.registerForm.controls;
@@ -324,5 +366,22 @@ export class Register2Component implements OnInit {
     // } else {
     //   this.ImageError = true;
     // }
+  }
+
+  
+ 
+  get imgPath(): string {
+    const logo_url = this.logo?.attributes.logo.data.attributes.url;
+
+    if (isDevMode()) {
+      let inicio_url = logo_url?.substring(0, 4);     
+      if (inicio_url==="http") {
+        return `${logo_url}`;
+      } else {
+        return `${this.apiHelperService.hostUrl}${logo_url}`;
+      }       
+    } else {      
+     return `${logo_url}`;
+    }
   }
 }

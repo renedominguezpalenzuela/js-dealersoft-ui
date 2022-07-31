@@ -82,7 +82,17 @@ export class AuthService {
 
   get isFullRegistered(): boolean {
 
-     const isFullRegistered = <boolean>this.AuthUser.getValue()?.full_registration
+   
+
+     let isFullRegistered = <boolean>this.AuthUser.getValue()?.full_registration
+
+     if (!isFullRegistered) {
+      //this.loadAuthUser();
+      isFullRegistered = <boolean>this.AuthUser.getValue()?.full_registration
+     }
+
+    //  console.log("USuario")
+    //  console.log(this.AuthUser)
      return isFullRegistered;
 
     //  if (isFullRegistered) {

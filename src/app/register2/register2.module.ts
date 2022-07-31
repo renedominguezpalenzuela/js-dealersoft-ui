@@ -16,8 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { Register2Component } from './register2.component';
 
+import { SaveDom4Pipe } from './../save-dom4.pipe';
+
 @NgModule({
-  declarations: [Register2Component],
+  declarations: [Register2Component, SaveDom4Pipe    ],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,7 +27,8 @@ import { Register2Component } from './register2.component';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatInputModule,
-    RouterModule,
+    RouterModule
+   
   ],
 })
 export class Register2Module {}

@@ -7,7 +7,7 @@ import { TestimonialsComponent } from './testimonial/testimonials.component';
 import { Register2Component } from './register2/register2.component';
 
 import { AuthGuard } from '@core/guards';
-import {IsFullRegisteredGuard} from '@core/guards/is-full-registered.guard';
+import { IsFullRegisteredGuard } from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
 const routes: Routes = [
@@ -16,27 +16,29 @@ const routes: Routes = [
   //   pathMatch: 'full',
   //   redirectTo: 'auth',
   // },
+
   {
     path: '', //home, url sin nada
     pathMatch: 'full',
     component: HomeComponent,
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-  
+  },
+  {
+    path: 'export/reports',
+    loadChildren: () => import('./core/pages/reportes/main/main.module').then( (m) => m.MainModule ),
   },
   {
     path: 'testimonials', //home, url sin nada
     pathMatch: 'full',
     component: TestimonialsComponent,
-    loadChildren: () => import('./testimonial/testimonials.module').then( (m) => m.TestimonialsModule ),
+    loadChildren: () =>import('./testimonial/testimonials.module').then((m) => m.TestimonialsModule),
   },
   {
     path: 'register2', //home, url sin nada
     pathMatch: 'full',
     component: Register2Component,
-    loadChildren: () =>
-      import('./register2/register2.module').then((m) => m.Register2Module),
-    // canActivate: [AuthGuard, TrialExpiredGuard],
-    // canActivateChild: [AuthGuard, TrialExpiredGuard],
+    loadChildren: () => import('./register2/register2.module').then((m) => m.Register2Module),
+  
   },
 
   // {
@@ -47,33 +49,24 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    // canActivate: [AuthGuard, TrialExpiredGuard],
-    // canActivateChild: [AuthGuard, TrialExpiredGuard],
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard, TrialExpiredGuard],
+    canActivateChild: [AuthGuard, TrialExpiredGuard],
 
-       canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-      canActivateChild: [AuthGuard, TrialExpiredGuard,  IsFullRegisteredGuard],
+  //  canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+  //  canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
   },
   {
     path: 'export/my-stock/:jwt',
-    loadChildren: () =>
-      import(
-        './core/pages/tables-export/my-stock-export/my-stock-export.module'
-      ).then((m) => m.MyStockExportModule),
+    loadChildren: () =>import('./core/pages/tables-export/my-stock-export/my-stock-export.module').then((m) => m.MyStockExportModule),
   },
   {
     path: 'export/buy-sell/:jwt',
-    loadChildren: () =>
-      import(
-        './core/pages/tables-export/buy-sell-export/buy-sell-export.module'
-      ).then((m) => m.BuySellExportModule),
+    loadChildren: () =>import('./core/pages/tables-export/buy-sell-export/buy-sell-export.module').then((m) => m.BuySellExportModule),
   },
   {
     path: 'export/win-lose/:jwt',
-    loadChildren: () =>
-      import(
-        './core/pages/tables-export/win-lose-export/win-lose-export.module'
-      ).then((m) => m.WinLoseExportModule),
+    loadChildren: () =>import('./core/pages/tables-export/win-lose-export/win-lose-export.module').then((m) => m.WinLoseExportModule),
   },
   // {
   //   path: 'export/invoice/:jwt',
@@ -100,28 +93,16 @@ const routes: Routes = [
   //   loadChildren: () => import('./core/pages/tables-export/private/private.module').then(m => m.PrivateExportModule)
   // },
   // Rutas de Reportes nuevos
-  {
-    path: 'export/reports',
-    loadChildren: () =>
-      import('./core/pages/reportes/main/main.module').then(
-        (m) => m.MainModule
-      ),
-  },
+
   {
     path: 'stripe-payment',
-    loadChildren: () =>
-      import('./core/pages/stripe-payment/stripe-payment.module').then(
-        (m) => m.StripePaymentModule
-      ),
+    loadChildren: () => import('./core/pages/stripe-payment/stripe-payment.module').then((m) => m.StripePaymentModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
   {
     path: 'stripe-payment-mobile/:jwt',
-    loadChildren: () =>
-      import(
-        './core/pages/stripe-payment-mobile/stripe-payment-mobile.module'
-      ).then((m) => m.StripePaymentMobileModule),
+    loadChildren: () =>import('./core/pages/stripe-payment-mobile/stripe-payment-mobile.module').then((m) => m.StripePaymentMobileModule),
   },
   {
     path: '**',

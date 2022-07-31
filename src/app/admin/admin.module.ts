@@ -51,11 +51,13 @@ export class AdminModule {
   ) {
     var tiempo_parcial_ini = new Date().getTime();
 
-    console.log("ADDMN MODULE")
+
 
     this.requestService.Get(this.apiHelperService.meURL)
       .subscribe(
         result => {
+
+      
 
           var end = new Date().getTime();
           var time = end - tiempo_parcial_ini;
@@ -68,6 +70,8 @@ export class AdminModule {
          
         },
         error => {
+          console.log("Error")
+          console.log(error)
           this.authService.updateUser = null;
           this.authService.updateJWT = null;          
           this.router.navigate(['/']);

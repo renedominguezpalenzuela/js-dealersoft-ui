@@ -62,8 +62,11 @@ const routes: Routes = [
 
 
    //buy car
-   { path: 'buy-car/a25/:jwt', component: BuyCarA25Component },
-   { path: 'buy-car/iva/:jwt', component: BuyCarIvaComponent },
+    { path: 'buy-car/a25/:jwt', component: BuyCarA25Component },
+    { path: 'buy-car/iva/:jwt', component: BuyCarIvaComponent },
+
+   
+  
 
    { path: 'bill/a25/:jwt', component: BillA25Component },
    { path: 'bill/iva/:jwt', component: BillIvaComponent },

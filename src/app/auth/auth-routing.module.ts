@@ -13,11 +13,11 @@ import {MainPageComponent} from './new/main-page/main-page.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'login',
+  //   pathMatch: 'full'
+  // },
 
   // {
   //   path:'main',

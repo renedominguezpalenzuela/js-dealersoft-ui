@@ -17,6 +17,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LandingFooterComponent } from './componentes/landing-footer/landing-footer.component';
 import { AcordionComponent } from './componentes/acordion/acordion.component';
 import { MatIconModule } from '@angular/material/icon';
+
+
+
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -31,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     LandingRegisterLoginComponent,
     LandingFooterComponent,
     AcordionComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -40,6 +45,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTabsModule,
     MatExpansionModule,
     MatIconModule,
+    
   ],
 })
 export class HomeModule {}

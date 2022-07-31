@@ -180,7 +180,7 @@ export class AdminComponent implements OnInit {
   get imgPath(): string {
 
  
-    const logo_url =  this.logo?.attributes.logo.data.attributes.formats.small?.url;
+    const logo_url =  this.logo?.attributes.logo.data.attributes.formats.thumbnail?.url;
 
 
     if (isDevMode()) {
