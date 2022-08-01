@@ -33,6 +33,7 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     BrowserAnimationsModule,
     CoreModule,
     MatTabsModule,
+   
   ],
   providers: [
     CreateInvoiceService,

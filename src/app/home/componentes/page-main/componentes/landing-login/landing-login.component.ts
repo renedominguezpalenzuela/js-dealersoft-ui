@@ -9,7 +9,7 @@ import {
   ValidationsService,
 } from '@core/services';
 
-import { Globals } from '../../../globales';
+import { Globals } from '../../../../../globales';
 
 @Component({
   selector: 'app-landing-login',

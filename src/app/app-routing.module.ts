@@ -26,6 +26,16 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'admin',
+    component: AdminComponent,
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+    canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+
+  //  canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+  //  canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
+  },
+  {
     path: 'export/reports',
     loadChildren: () => import('./core/pages/reportes/main/main.module').then( (m) => m.MainModule ),
   },
@@ -48,16 +58,7 @@ const routes: Routes = [
     component: AuthComponent,
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-    canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-
-  //  canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-  //  canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-  },
+ 
   {
     path: 'export/my-stock/:jwt',
     loadChildren: () =>import('./core/pages/tables-export/my-stock-export/my-stock-export.module').then((m) => m.MyStockExportModule),
@@ -106,11 +107,11 @@ const routes: Routes = [
     path: 'stripe-payment-mobile/:jwt',
     loadChildren: () =>import('./core/pages/stripe-payment-mobile/stripe-payment-mobile.module').then((m) => m.StripePaymentMobileModule),
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '404',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '**',
+    redirectTo: '404',
+    pathMatch: 'full',
+  },
   {
     path: '404',
     loadChildren: () =>
