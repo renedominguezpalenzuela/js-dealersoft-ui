@@ -15,13 +15,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { Register2Component } from './register2.component';
+import { CoreModule } from '@core/core.module';
 
-import { SaveDom4Pipe } from './../save-dom4.pipe';
+//import { SaveDom4Pipe } from './../save-dom4.pipe';
 
 @NgModule({
-  declarations: [Register2Component, SaveDom4Pipe    ],
+  declarations: [Register2Component/*, SaveDom4Pipe */   ],
   imports: [
     CommonModule,
+    CoreModule,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,

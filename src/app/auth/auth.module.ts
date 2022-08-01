@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CoreModule } from '@core/core.module';
 import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -22,7 +23,7 @@ import { MainfooterComponent } from './new/components/mainfooter/mainfooter.comp
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { SaveDom2Pipe } from './../save-dom2.pipe';
+// import { SaveDom2Pipe } from './../save-dom2.pipe';
 
 import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -51,7 +52,7 @@ import { RouterModule } from '@angular/router';
     MainbuttonComponent,
     MaincarruselimgComponent,
     MainfooterComponent,
-    SaveDom2Pipe,
+    // SaveDom2Pipe,
     // NavbarComponent,
     // BannerMainComponent,
     // SecondBannerComponent,
@@ -62,6 +63,7 @@ import { RouterModule } from '@angular/router';
     
   ],
   imports: [
+    CoreModule,
     CommonModule,
     AuthRoutingModule,
     MatToolbarModule,

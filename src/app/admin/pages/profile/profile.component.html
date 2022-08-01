@@ -25,7 +25,7 @@
         
               <div class="avatar mt-2 ">
                 <div class="w-24 h-24 mask mask-squircle ring ring-gray">
-                  <img *ngIf="showLogo else defaultImg" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom3">
+                  <img *ngIf="showLogo else defaultImg" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom">
                   <ng-template #defaultImg>
                     <img alt="user-profile-picture" src="assets/user-male-circle-reg.png" />
                   </ng-template>
