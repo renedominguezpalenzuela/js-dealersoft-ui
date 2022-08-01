@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         open: ["OpenSans"],
+        work: ["WorkSans-Regular"],
       },
       colors: {
         gray: {

@@ -16,38 +16,31 @@ export class NavbarComponent implements OnInit {
     let x = document.getElementById('login-register');
 
     if (tab_name === 'register') {
-      
-      
       if (x) {
         x.scrollIntoView({ behavior: 'smooth' });
       }
 
-      const timeoutId = setTimeout(()=>{
+      const timeoutId = setTimeout(() => {
         this.mensaje.emit('0');
-    }, 700);
-    
-    //clearTimeout(timeoutId);
-      
-     
+      }, 700);
+
+      //clearTimeout(timeoutId);
     }
 
-    if  (tab_name === 'login-reg')  {
-     
+    if (tab_name === 'login-reg') {
       if (x) {
         x.scrollIntoView({ behavior: 'smooth' });
       }
-      const timeoutId = setTimeout(()=>{
+      const timeoutId = setTimeout(() => {
         this.mensaje.emit('1');
-    }, 700);
-      
+      }, 700);
     }
-
-  
   }
-
+  public activeLink: string = 'home';
   public navigationSection(link: any) {
     let x = document.getElementById(link);
     if (x) {
+      this.activeLink = link;
       x.scrollIntoView({ behavior: 'smooth' });
     }
   }

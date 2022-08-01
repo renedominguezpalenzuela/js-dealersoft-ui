@@ -5,14 +5,14 @@
   data-aos-easing="llinear"
   data-aos-duration="500"
   [ngClass]="openSide ? 'overflow-y-hidden' : 'overflow-y-auto'"
-  class="md:hidden flex flex-col w-64 absolute h-screen right-0 z-40 bg-gray-30 pl-6 pt-10 font-bold"
+  class="md:hidden font-work flex flex-col w-64 absolute h-screen right-0 z-40 bg-gray-30 pl-6 pt-10 font-bold"
 >
   <div class="z-50 absolute top-4 right-6 text-white" (click)="toggleOpen()">
     <img src="assets/landing/cancel.png" alt="" class="w-6" />
   </div>
   <a
     href=""
-    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Home
   </a>
@@ -25,26 +25,27 @@
   </a>
 
   <a
-    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Über uns
   </a>
 
   <a
-    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Kontakt
   </a>
 
   <a
     href="testimonials"
-    class="py-2 pl-3 pr-4 lg:text-lg hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Kundenstimmen
   </a>
 </div>
 <div
-  class="flex items-center justify-between lg:px-14 w-full md:px-6 px-4"
+  id="navbar"
+  class="flex items-center font-work text-base justify-between lg:px-14 w-full md:px-6 px-4"
   data-aos="fade-down"
   data-aos-delay="300"
   data-aos-easing="ease-in"
@@ -63,32 +64,34 @@
   >
     <a
       href="/"
-      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Home
     </a>
 
     <a
-      class="py-2 pl-3 pr-4 lg:first-letter:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Funktionen
     </a>
 
     <a
-      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Über uns
     </a>
 
     <a
-      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Kontakt
     </a>
 
     <a
       href="testimonials"
-      class="py-2 pl-3 pr-4 lg:text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      routerLink="testimonials"
+      routerLinkActive="font-bold"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Kundenstimmen
     </a>

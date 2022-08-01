@@ -9,7 +9,8 @@ export class TestimonialsComponent implements OnInit {
   public testimonialCol1: any = [
     {
       text: [
-        'Möchte mich recht herzlich bei Ihrem Unternehmen bedanken. Dank der großartigen Mühe von Ihrer kompetenten Frau Uhlig Mitarbeiterin, die ein tolles zwischen Menschliches Feingefühl in Ihrer Stimme und Ihren Worten hat. Sie hat sich so engagiert, weil Sie genau wusste wo mein Problem liegt und Dank Ihrer Berichterstattung per Email, konnte mein Lachen im Gesicht ganz schnell wieder hergestellt, da mein Zahnarzt dadurch schon die Zahnbehandlung abgeschlossen hat, obwohl der Betrag noch nicht auf meinen Konto zu Verfügung stand.',
+        'Möchte mich recht herzlich bei Ihrem Unternehmen bedanken. ',
+        'Dank der großartigen Mühe von Ihrer kompetenten Frau Uhlig Mitarbeiterin, die ein tolles zwischen Menschliches Feingefühl in Ihrer Stimme und Ihren Worten hat. Sie hat sich so engagiert, weil Sie genau wusste wo mein Problem liegt und Dank Ihrer Berichterstattung per Email, konnte mein Lachen im Gesicht ganz schnell wieder hergestellt, da mein Zahnarzt dadurch schon die Zahnbehandlung abgeschlossen hat, obwohl der Betrag noch nicht auf meinen Konto zu Verfügung stand.',
         'Das zeigt mir selbst, als freundlich netter herzlicher Mensch es gibt genauso tolle Menschen die Ihren job lieben. Sie haben in Frau Uhlig eine ganz tolle Persönlichkeit in Ihrem Unternehmen und ich als zufriedene Kundin, weiß Ihre Mitarbeitern sehr zu schätzen, hoffe Sie tun dies auch.',
         'Werde Ihr Unternehmen weiter empfehlen .',
       ],

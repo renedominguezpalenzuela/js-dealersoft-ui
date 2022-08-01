@@ -1,7 +1,7 @@
-<div class="relative overflow-x-hidden">
+<div id="testimonial" class="relative overflow-x-hidden">
   <app-navbar></app-navbar>
   <div class="lg:px-24 lg:py-10 md:px-10 md:py-8 px-6 py-6">
-    <h1 class="lg:text-[48px] font-bold">Kundenstimmen</h1>
+    <h1 class="lg:text-5xl font-black">Kundenstimmen</h1>
     <div
       class="lg:my-10 md:my-8 my-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:space-x-6 space-x-0"
     >
@@ -11,8 +11,8 @@
           *ngFor="let card of testimonialCol1"
         >
           <p
-            *ngFor="let parr of card.text"
-            [ngClass]="{ 'mt-2': card.id >= '3' }"
+            *ngFor="let parr of card.text; index as i"
+            [ngClass]="{ 'mt-2': i > 1 }"
           >
             {{ parr }}
           </p>
@@ -33,8 +33,8 @@
           *ngFor="let card of testimonialCol2"
         >
           <p
-            *ngFor="let parr of card.text"
-            [ngClass]="{ 'mt-2': card.id >= '3' }"
+            *ngFor="let parr of card.text; index as i"
+            [ngClass]="{ 'mt-2': i < 1 }"
           >
             {{ parr }}
           </p>
@@ -57,8 +57,8 @@
           *ngFor="let card of testimonialCol3"
         >
           <p
-            *ngFor="let parr of card.text"
-            [ngClass]="{ 'mt-2': card.id >= '3' }"
+            *ngFor="let parr of card.text; index as i"
+            [ngClass]="{ 'mt-2': i > 1 }"
           >
             {{ parr }}
           </p>
@@ -83,8 +83,8 @@
         *ngFor="let card of testimonialCol3"
       >
         <p
-          *ngFor="let parr of card.text"
-          [ngClass]="{ 'mt-2': card.id >= '3' }"
+          *ngFor="let parr of card.text; index as i"
+          [ngClass]="{ 'mt-2': i > 1 }"
         >
           {{ parr }}
         </p>

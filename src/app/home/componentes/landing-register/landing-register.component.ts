@@ -5,7 +5,7 @@ import {
   NotificationService,
   RequestService,
   ValidationsService,
-  AuthService
+  AuthService,
 } from '@core/services';
 import { Router } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
@@ -14,7 +14,7 @@ import * as moment from 'moment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-landing-register',
@@ -25,22 +25,30 @@ export class LandingRegisterComponent implements OnInit {
   public showPassword = false;
   public agb = false;
 
-  @Output() message = new EventEmitter<string>();
-
+  @Output() mensaje = new EventEmitter<string>();
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register-div');
+    let x = document.getElementById('login-register');
 
-    
-    if (x) {
-      x.scrollIntoView({ behavior: 'smooth' });
+    if (tab_name === 'register') {
+      if (x) {
+        x.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      const timeoutId = setTimeout(() => {
+        this.mensaje.emit('0');
+      }, 700);
+
+      //clearTimeout(timeoutId);
     }
 
-    if (tab_name === 'login') {
-      this.message.emit('1');
-    } else {
-      this.message.emit('0');
+    if (tab_name === 'login-reg') {
+      if (x) {
+        x.scrollIntoView({ behavior: 'smooth' });
+      }
+      const timeoutId = setTimeout(() => {
+        this.mensaje.emit('1');
+      }, 700);
     }
-
   }
 
   public registerForm = this.formBuilder.group({
@@ -137,34 +145,30 @@ export class LandingRegisterComponent implements OnInit {
     localStorage.clear();
     this.cookies.deleteAll();
 
-  //   if (localStorage.getItem('rememberMe'))  {localStorage.removeItem('rememberMe')}
-  //  if (localStorage.getItem('Auth-User'))  {localStorage.removeItem('Auth-User')}
-  //  if (localStorage.getItem('Auth-JWT'))  {localStorage.removeItem('Auth-JWT')}
-  //  if (sessionStorage.getItem('Auth-User'))  {sessionStorage.removeItem('Auth-User')}
-  //  if (sessionStorage.getItem('Auth-JWT'))  {sessionStorage.removeItem('Auth-JWT')}
-    
+    //   if (localStorage.getItem('rememberMe'))  {localStorage.removeItem('rememberMe')}
+    //  if (localStorage.getItem('Auth-User'))  {localStorage.removeItem('Auth-User')}
+    //  if (localStorage.getItem('Auth-JWT'))  {localStorage.removeItem('Auth-JWT')}
+    //  if (sessionStorage.getItem('Auth-User'))  {sessionStorage.removeItem('Auth-User')}
+    //  if (sessionStorage.getItem('Auth-JWT'))  {sessionStorage.removeItem('Auth-JWT')}
 
-  //   console.log("SSSS")
-  //   console.log(this.apiHelperService.registerURL)
+    //   console.log("SSSS")
+    //   console.log(this.apiHelperService.registerURL)
 
     if (
       this.registerForm.valid &&
       //this.logoImg instanceof File &&
       !this.isLoading
     ) {
+      if (!this.agb) {
+        this.isLoading = false;
 
-          
-    if ( !this.agb) {
-      this.isLoading = false;
+        this.notificationService.riseNotification({
+          color: 'warning',
+          data: 'You must accept the AGB',
+        });
 
-      this.notificationService.riseNotification({
-        color: 'warning',
-        data: 'You must accept the AGB',
-      });
-      
-      
-      return
-    }
+        return;
+      }
 
       this.isLoading = true;
       const newUser = {
@@ -176,7 +180,6 @@ export class LandingRegisterComponent implements OnInit {
         .Post(this.apiHelperService.registerURL, newUser, false)
         .subscribe(
           (res) => {
-           
             this.isLoading = false;
             this.notificationService.riseNotification({
               color: 'success',
@@ -188,21 +191,19 @@ export class LandingRegisterComponent implements OnInit {
             this.cookies.deleteAll();
             this.authService.updateUser = null;
             this.authService.updateJWT = null;
-   
 
             //this.router.navigate(['']);
-           // window.location.reload()
-            
+            // window.location.reload()
           },
           (error) => {
-            console.log("ERROR REGISTERING")
+            console.log('ERROR REGISTERING');
             this.authService.updateUser = null;
-    this.authService.updateJWT = null;
-    
+            this.authService.updateJWT = null;
+
             this.isLoading = false;
             sessionStorage.clear();
-    localStorage.clear();
-    this.cookies.deleteAll();
+            localStorage.clear();
+            this.cookies.deleteAll();
           }
         );
     } else {
