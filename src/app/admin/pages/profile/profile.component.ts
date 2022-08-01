@@ -58,6 +58,8 @@ export class ProfileComponent implements OnInit {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
       this.userID = this.authUser?.id;
+
+   
     });
 
     //hace que se muestre la ventana de recuperar accunt mediante email
@@ -177,31 +179,49 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.registerForm.patchValue({
-      ...this.authUser,
-    });
+    this.requestService.Get(this.apiHelperService.meURL).subscribe((usuario)=>{
+      console.log("Usuario")
+      console.log(usuario)
 
-    
-    let aquery = this.queryLogo(this.authUser?.id);
-     
-    this.requestService
-      .Get(this.apiHelperService.logosURL, aquery)
-      .subscribe((logos) => {
-        
-        this.logo = logos.data[0];
-       
-      
-       
-        if (this.logo?.attributes.logo.data.attributes.url) {
-          this.logoImgSrc = this.imgPath;
-          this.showLogo = true;
-        }
-          
+      this.registerForm.patchValue({
+        ...usuario,
       });
 
 
+      //let aquery = this.queryLogo(this.authUser?.id);
+      let aquery = this.queryLogo(this.authUser?.id);
+     
+      this.requestService
+        .Get(this.apiHelperService.logosURL, aquery)
+        .subscribe((logos) => {
+          
+          this.logo = logos.data[0];
+         
+        
+         
+          if (this.logo?.attributes.logo.data.attributes.url) {
+            this.logoImgSrc = this.imgPath;
+            this.showLogo = true;
+          }
+            
+        });
+  
+  
+  
+      this.registerForm.updateValueAndValidity();
 
-    this.registerForm.updateValueAndValidity();
+
+
+    })
+    //   .subscribe(
+
+
+    
+
+   
+
+    
+   
   }
 
   public hasError = (input: string): boolean => {

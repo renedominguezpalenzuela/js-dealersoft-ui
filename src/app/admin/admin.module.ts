@@ -53,29 +53,29 @@ export class AdminModule {
 
 
 
-    this.requestService.Get(this.apiHelperService.meURL)
-      .subscribe(
-        result => {
+    // this.requestService.Get(this.apiHelperService.meURL)
+    //   .subscribe(
+    //     result => {
 
       
 
-          var end = new Date().getTime();
-          var time = end - tiempo_parcial_ini;
-          console.log("Calling Admin module: "+this.apiHelperService.meURL)
-          console.log('Execution time: ' + time);
+    //       var end = new Date().getTime();
+    //       var time = end - tiempo_parcial_ini;
+    //       console.log("Calling Admin module: "+this.apiHelperService.meURL)
+    //       console.log('Execution time: ' + time);
          
 
         
         
          
-        },
-        error => {
-          console.log("Error")
-          console.log(error)
-          this.authService.updateUser = null;
-          this.authService.updateJWT = null;          
-          this.router.navigate(['/']);
-        }
-      );
+    //     },
+    //     error => {
+    //       console.log("Error")
+    //       console.log(error)
+    //       this.authService.updateUser = null;
+    //       this.authService.updateJWT = null;          
+    //       this.router.navigate(['/']);
+    //     }
+    //   );
   }
 }

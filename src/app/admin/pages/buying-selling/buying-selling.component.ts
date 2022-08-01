@@ -202,16 +202,28 @@ export class BuyingSellingComponent implements OnInit {
   };
 
   public sumNetBuy = () =>
-    _.sum(this.dataBuy.filter(elm => !_.isNaN(elm.attributes.net_buy)).map(buy => buy.attributes.net_buy));
+    {
+      const t = _.sum(this.dataBuy.filter(elm => !_.isNaN(elm.attributes.net_buy)).map(buy => buy.attributes.net_buy));
+      if (t>0) return t; else return 0;
 
-  public sumNetSell = () =>
-    _.sum(this.dataSell.filter(elm => !_.isNaN(elm.attributes.net_sell)).map(buy => buy.attributes.net_sell));
+    
+    }
 
-  public sumIvaBuy = () =>
-    _.sum(this.dataBuy.filter(elm => !_.isNaN(elm.attributes.iva_buy)).map(buy => buy.attributes.iva_buy));
+  public sumNetSell = () => {
+   const t =  _.sum(this.dataSell.filter(elm => !_.isNaN(elm.attributes.net_sell)).map(buy => buy.attributes.net_sell));
+   if (t>0) return t; else return 0;
+  }
 
-  public sumIvaSell = () =>
-    _.sum(this.dataSell.filter(elm => !_.isNaN(elm.attributes.iva_sell)).map(buy => buy.attributes.iva_sell));
+  public sumIvaBuy = () => {
+
+    const t = _.sum(this.dataBuy.filter(elm => !_.isNaN(elm.attributes.iva_buy)).map(buy => buy.attributes.iva_buy));
+    if (t>0) return t; else return 0;
+  }
+
+  public sumIvaSell = () => {
+   const t= _.sum(this.dataSell.filter(elm => !_.isNaN(elm.attributes.iva_sell)).map(buy => buy.attributes.iva_sell));
+   if (t>0) return t; else return 0;
+  }    
 
   public generatePdf() {
     const baseDate = `${ this.year ?? moment().year() }-${ this.month.value }`;
