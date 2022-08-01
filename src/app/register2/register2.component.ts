@@ -80,6 +80,7 @@ export class Register2Component implements OnInit {
     this.authService.currentUser.subscribe((user) => {
       this.isAuth = this.authService.isAuth;
       this.authUser = user;
+      this.userID = user?.id;
     });
 
     }
@@ -142,8 +143,6 @@ export class Register2Component implements OnInit {
  
 
 
- 
-    console.log(this.userID);
 
     
 
