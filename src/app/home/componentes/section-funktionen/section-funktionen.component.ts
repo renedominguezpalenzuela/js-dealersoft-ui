@@ -76,6 +76,8 @@ export class SectionFunktionenComponent implements OnInit {
         'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
       ],
       path: '6.png',
+      pathmovil: '6movil.png',
+
       link: '/',
       position: true,
       nameLink: 'Learn more about encryption',
