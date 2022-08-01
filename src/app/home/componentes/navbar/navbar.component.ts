@@ -12,12 +12,19 @@ export class NavbarComponent implements OnInit {
   toggleOpen = () => {
     this.openSide = !this.openSide;
   };
-  public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register');
+  id: string = 'sectionregister';
+  yOffset:number =0; 
+ 
+  
 
+  public naviagateToTab(tab_name: any) {
+    let x = document.getElementById('sectionregister');
+    let y:any;
+    if(x)  y = x.getBoundingClientRect().top + window.pageYOffset + this.yOffset;
     if (tab_name === 'register') {
       if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
+        window.scrollTo({top: y, behavior: 'smooth'});
+        
       }
 
       const timeoutId = setTimeout(() => {
@@ -29,7 +36,7 @@ export class NavbarComponent implements OnInit {
 
     if (tab_name === 'login-reg') {
       if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
+        window.scrollTo({top: y, behavior: 'smooth'});
       }
       const timeoutId = setTimeout(() => {
         this.mensaje.emit('1');
