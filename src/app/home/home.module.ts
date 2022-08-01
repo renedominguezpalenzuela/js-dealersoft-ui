@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
- import { HomeComponent } from './home.component';
- import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home.component';
+import { RouterModule, Routes } from '@angular/router';
 // import { MatExpansionModule } from '@angular/material/expansion';
- import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
 // import { BannerMainComponent } from './componentes/banner-main/banner-main.component';
 // import { SecondBannerComponent } from './componentes/second-banner/second-banner.component';
 // import { BannerBlackComponent } from './componentes/banner-black/banner-black.component';
@@ -18,15 +18,12 @@ import { CommonModule } from '@angular/common';
 import { LandingFooterComponent } from './componentes/landing-footer/landing-footer.component';
 // import { AcordionComponent } from './componentes/acordion/acordion.component';
 // import { MatIconModule } from '@angular/material/icon';
-import {HomeRoutingModule} from './home-routing.module';
-
-
-
+import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
-     NavbarComponent,
+    NavbarComponent,
     //  BannerMainComponent,
     // SecondBannerComponent,
     // BannerBlackComponent,
@@ -37,19 +34,17 @@ import {HomeRoutingModule} from './home-routing.module';
     // LandingRegisterLoginComponent,
     LandingFooterComponent,
     // AcordionComponent,
-    
   ],
   imports: [
     CommonModule,
     RouterModule,
-    HomeRoutingModule
+    HomeRoutingModule,
     // FormsModule,
     // ReactiveFormsModule,
     // MatProgressSpinnerModule,
     // MatTabsModule,
     // MatExpansionModule,
     // MatIconModule,
-    
   ],
 })
 export class HomeModule {}
