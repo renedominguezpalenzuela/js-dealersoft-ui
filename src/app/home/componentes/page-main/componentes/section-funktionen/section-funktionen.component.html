@@ -1,77 +1,43 @@
 <div class="md:py-12 py-10">
   <div class="flex justify-center">
-    <img
-      src="assets/landing/funktionen.png"
-      alt=""
-      class="lg:w-56 md:w-44 w-32 md:block hidden"
-    />
+    <img src="assets/landing/funktionen.png" alt="" class="lg:w-56 md:w-44 w-32 md:block hidden" />
     <img src="assets/landing/fmovil.png" alt="" class="w-40 md:hidden block" />
   </div>
-  <h2
-    class="lg:text-5xl text-black md:text-4xl text-3xl font-bold text-center lg:mb-4 mb-3"
-  >
-    Funtionen von <br />
-    Dealersoft
+  <h2 class="lg:text-5xl text-black md:text-4xl text-3xl font-bold text-center lg:mb-4 mb-3 ">
+    Funktionen von <br />
+    Dealersoft:
   </h2>
 
-  <p class="lg:text-lg md:text-base text-sm text-center md:px-0 px-4">
-    Dealersoft entlastet und beschleunigt alle Prozesse Ihres Autohandels
-    <br />
-    - von Einkauf bis Verkauf, von Fahrzeugverwaltung bis Kaufvertrag.
+  <p class="lg:text-lg md:text-base text-sm text-center md:px-0 px-4 ">
+    Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss<br>
+    des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkausprozess
   </p>
 
   <div class="md:py-10 md:px-0 px-6" *ngFor="let data of cards">
-    <div
-      [ngClass]="data.position ? 'md:flex-row-reverse' : 'md:flex-row'"
-      class="w-full flex justify-center items-center md:flex-nowrap flex-wrap-reverse md:space-y-0 space-y-8 md:mt-0 mt-6"
-    >
-      <div
-        class="lg:w-1/2 md:w-[65%] flex justify-center md:text-lg md:mt-0 mt-4"
-      >
+    <div [ngClass]="data.position ? 'md:flex-row-reverse' : 'md:flex-row'"
+      class="w-full flex justify-center items-center md:flex-nowrap flex-wrap-reverse md:space-y-0 space-y-8 md:mt-0 mt-6">
+      <div class="lg:w-1/2 md:w-[65%] flex justify-center md:text-lg md:mt-0 mt-4">
         <div class="lg:max-w-xl md:max-w-[20rem] mx-auto">
-          <h2
-            class="md:text-4xl text-3xl font-extrabold mb-4 md:mt-0 mt-2 text-black"
-          >
+          <h2 class="md:text-4xl text-3xl font-extrabold mb-4 md:mt-0 mt-2 text-black">
             {{ data.title }}
           </h2>
 
-          <p
-            *ngFor="let el of data.text"
-            class="text-base lg:w-2/3"
-            [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
-          >
+          <p *ngFor="let el of data.text" class="text-base lg:w-2/3" [ngClass]="data.position ? 'mr-auto' : 'ml-auto'">
             {{ el }}
           </p>
 
-          <a
-            href="{{data.link}"
-            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center"
-            [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
-          >
-            <span
-              class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15"
-              >{{ data.nameLink }}</span
-            >
-            <img
-              src="assets/landing/uil_arrow-up-right.png"
-              alt=""
-              class="w-5 h-5 translate-y-1"
-            />
+          <a href="{{data.link}" class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center"
+            [ngClass]="data.position ? 'mr-auto' : 'ml-auto'">
+            <span class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15">{{ data.nameLink
+              }}</span>
+            <img src="assets/landing/uil_arrow-up-right.png" alt="" class="w-5 h-5 translate-y-1" />
           </a>
         </div>
       </div>
 
-      <img
-        src="assets/landing/{{ data.path }}"
-        alt=""
-        class="lg:w-1/2 md:w-[50%] md:block hidden"
-        [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
-      />
-      <img
-        src="assets/landing/{{ data.pathmovil }}"
-        alt=""
-        class="md:hidden block mx-auto"
-      />
+      <img src="assets/landing/{{ data.path }}" alt="" class="lg:w-1/2 md:w-[50%] md:block hidden"
+        [ngClass]="data.position ? 'mr-auto' : 'ml-auto'" />
+      <img src="assets/landing/{{ data.pathmovil }}" alt="" class="md:hidden block mx-auto" />
     </div>
   </div>
 </div>
