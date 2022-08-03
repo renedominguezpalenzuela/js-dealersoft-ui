@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
     this.openSide = !this.openSide;
   };
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register');
+    let x = document.getElementById('section-login-register');
 
     if (tab_name === 'register') {
       if (x) {

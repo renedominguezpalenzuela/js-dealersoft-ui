@@ -6,6 +6,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  resolution = window.screen.width
   public selectedTab: any = 1;
   scroll:any = 0
   public navigationTop() {
@@ -35,19 +36,21 @@ export class HomeComponent implements OnInit {
 
   onScroll(e:any) {
    
-    this.offset = window.pageYOffset;
-    this.scroll = e.scrollingElement.scrollTop
-    this.el.style.transform = 'translateY(' + this.offset * 0.5 + 'px)' 
-    this.el1.style.transform = 'translateY(' + this.offset * 0.59 + 'px)' 
-    this.el2.style.transform = 'translateY(' + this.offset * 0.3 + 'px)'  
-    this.el3.style.transform = 'translateY(' + this.offset * 0.21 + 'px)'   
-    this.main_text.style.transform = 'translateY(' + this.offset * 0.1 + 'px)' 
+    if(this.resolution > 1024){
+      this.offset = window.pageYOffset;
+      this.scroll = e.scrollingElement.scrollTop
+      this.el.style.transform = 'translateY(' + this.offset * 0.5 + 'px)' 
+      this.el1.style.transform = 'translateY(' + this.offset * 0.59 + 'px)' 
+      this.el2.style.transform = 'translateY(' + this.offset * 0.3 + 'px)'  
+      this.el3.style.transform = 'translateY(' + this.offset * 0.21 + 'px)'   
+      this.main_text.style.transform = 'translateY(' + this.offset * 0.1 + 'px)' 
 
-    if(this.getPositionY(this.text_secondB) - this.offset <=100){
-      this.text_secondB.style.transform = 'translateY(' + (this.offset - this.getPositionY(this.text_secondB)) * 0.1 + 'px)' 
-    }
-    if(this.getPositionY(this.right_second) - this.offset <=100){
-      this.right_second.style.transform = 'translateY(' + (this.offset - this.getPositionY(this.right_second)) * 0.08 + 'px)' 
+      if(this.getPositionY(this.text_secondB) - this.offset <=100){
+        this.text_secondB.style.transform = 'translateY(' + (this.offset - this.getPositionY(this.text_secondB)) * 0.1 + 'px)' 
+      }
+      if(this.getPositionY(this.right_second) - this.offset <=100){
+        this.right_second.style.transform = 'translateY(' + (this.offset - this.getPositionY(this.right_second)) * 0.08 + 'px)' 
+      }
     }
     
   }

@@ -38,15 +38,15 @@
           <p
             *ngFor="let el of data.text"
             class="text-base lg:w-2/3"
-            [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
+            class="mr-auto"
           >
             {{ el }}
           </p>
 
           <a
             href="{{data.link}"
-            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center"
-            [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
+            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center mr-auto"
+            
           >
             <span
               class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15"
