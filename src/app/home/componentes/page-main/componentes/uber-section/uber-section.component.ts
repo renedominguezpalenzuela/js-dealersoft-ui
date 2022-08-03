@@ -9,7 +9,7 @@ export class UberSectionComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
   
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('section-login-register');
+    let x = document.getElementById('login-register-div');
 
     if (tab_name === 'register') {
       if (x) {

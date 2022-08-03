@@ -30,11 +30,13 @@ export class HomeComponent implements OnInit {
   text_secondB:any;
   right_second:any;
   offset:any;
+  element:any;
 
+  
   @HostListener('window:scroll', ['$event.target'])
 
   onScroll(e:any) {
-   
+    console.log(this.element?.getBoundingClientRect());
     if(this.resolution > 1024){
       this.offset = window.pageYOffset;
       this.scroll = e.scrollingElement.scrollTop
@@ -63,7 +65,7 @@ export class HomeComponent implements OnInit {
     this.main_text = document.getElementById("main_text")
     this.text_secondB = document.getElementById("text_secondbanner")
     this.right_second = document.getElementById("left_second")
-
+    this.element = document.getElementById("login-register-div");
   }
 
   

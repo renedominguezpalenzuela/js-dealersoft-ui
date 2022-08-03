@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SecondBannerComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('section-login-register');
+    let x = document.getElementById('login-register-div');
 
     if (tab_name === 'register') {
       if (x) {
@@ -31,7 +31,7 @@ export class SecondBannerComponent implements OnInit {
       }, 700);
     }
   }
-  
+
   constructor() {}
 
   ngOnInit(): void {}

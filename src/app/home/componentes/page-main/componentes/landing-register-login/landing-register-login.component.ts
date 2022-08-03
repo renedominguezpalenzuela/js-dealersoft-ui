@@ -20,7 +20,6 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     console.log('Onchanges');
-
-    console.log(this.selectedTab);
+   
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +12,18 @@ export class NavbarComponent implements OnInit {
   toggleOpen = () => {
     this.openSide = !this.openSide;
   };
+  offset:any;
+  @HostListener('window:scroll', ['$event.target'])
+    onScroll(e:any) {
+      this.offset = window.pageXOffset;
+      console.log("offset" + this.offset)
+      
+    }
+
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('section-login-register');
+    let x = document.getElementById('login-register-div');
+    
+    
 
     if (tab_name === 'register') {
       if (x) {
