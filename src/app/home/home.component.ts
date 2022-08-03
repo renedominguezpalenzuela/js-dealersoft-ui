@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   @HostListener('window:scroll', ['$event.target'])
 
   onScroll(e:any) {
-    console.log(this.element?.getBoundingClientRect());
+    
     if(this.resolution > 1024){
       this.offset = window.pageYOffset;
       this.scroll = e.scrollingElement.scrollTop

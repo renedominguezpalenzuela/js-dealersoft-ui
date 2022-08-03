@@ -12,17 +12,7 @@ export class NavbarComponent implements OnInit {
   toggleOpen = () => {
     this.openSide = !this.openSide;
   };
-  offset:any;
   x:any;
-  coords:any;
-  @HostListener('window:scroll', ['$event.target'])
-    onScroll(e:any) {
-      this.offset = window.scrollY;
-      this.coords = this.x.getBoundingClientRect()
-      console.log("offset" + this.offset + " " + this.coords)
-      
-    }
-
   public naviagateToTab(tab_name: any) {
     
     if (tab_name === 'register') {

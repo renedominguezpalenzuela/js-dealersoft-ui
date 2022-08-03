@@ -26,7 +26,7 @@
         Dealersoft <br />
         jederzeit und von überall
       </h1>
-      <app-landing-register-login [selectedTab]="selectedTab"></app-landing-register-login>
+      <app-landing-register-login [selectedTab]="selectedTab" (mensaje)="receiveMessage($event)"></app-landing-register-login>
     </div>
 
     <div class="w-full relative flex items-center justify-center">

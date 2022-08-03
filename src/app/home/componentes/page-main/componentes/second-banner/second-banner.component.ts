@@ -7,24 +7,25 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SecondBannerComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
+
+  x:any;
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register-div');
 
     if (tab_name === 'register') {
-      if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      const timeoutId = setTimeout(() => {
+      if (this.x) {
         this.mensaje.emit('0');
-      }, 700);
+      }
+      
+      const timeoutId = setTimeout(() => {
+        this.x.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
 
       //clearTimeout(timeoutId);
     }
 
     if (tab_name === 'login-reg') {
-      if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
+      if (this.x) {
+        this.x.scrollIntoView({ behavior: 'smooth' });
       }
       const timeoutId = setTimeout(() => {
         this.mensaje.emit('1');
@@ -34,5 +35,8 @@ export class SecondBannerComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.x = document.getElementById('login-register-div');
+
+  }
 }
