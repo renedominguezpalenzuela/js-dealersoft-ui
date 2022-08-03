@@ -13,6 +13,13 @@
             <p>{{car_buy_data?.client?.title}}</p>
             <p>{{car_buy_data?.client?.first_name}}
                 {{car_buy_data?.client?.last_name}}</p>
+        
+
+                <p *ngIf="car_buy_data?.client?.company_name">    
+                    {{car_buy_data?.client?.company_name}}
+                </p>
+
+
             <p><span>{{car_buy_data?.client?.street}}</span>
                 <span class="pl-1">{{car_buy_data?.client?.house_number}}</span>
             </p>
