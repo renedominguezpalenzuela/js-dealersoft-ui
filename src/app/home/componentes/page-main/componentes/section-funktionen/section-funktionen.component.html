@@ -44,18 +44,37 @@
           </p>
 
           <a
-            href="{{data.link}"
-            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center mr-auto"
+            *ngIf="data.nameLink == 'Jetzt registrieren'"
+            (click)="naviagateToTab('register')"
+            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center mr-auto hover:cursor-pointer"
             
           >
             <span
+            
               class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15"
               >{{ data.nameLink }}</span
             >
             <img
               src="assets/landing/uil_arrow-up-right.png"
               alt=""
-              class="w-5 h-5 translate-y-1"
+              class="w-5 h-5 md:translate-y-2 translate-y-1"
+            />
+          </a>
+          <a
+            *ngIf="data.nameLink == 'Learn more about encryption'"
+            (click)="naviagateToTab('login-reg')"
+            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center mr-auto hover:cursor-pointer"
+            
+          >
+            <span
+            
+              class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15"
+              >{{ data.nameLink }}</span
+            >
+            <img
+              src="assets/landing/uil_arrow-up-right.png"
+              alt=""
+              class="w-5 h-5 md:translate-y-2 translate-y-1"
             />
           </a>
         </div>

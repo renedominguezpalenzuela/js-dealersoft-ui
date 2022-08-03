@@ -10,11 +10,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PageMainComponent implements OnInit {
 
-  @Input() selectedTab: any;
+  public selectedTab: any = 1;
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   //public selectedTab: any = 1;
@@ -25,5 +26,9 @@ export class PageMainComponent implements OnInit {
       x.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  receiveMessage(msg: any) {
+    this.selectedTab = msg;
 
+    //alert(msg);
+  }
 }

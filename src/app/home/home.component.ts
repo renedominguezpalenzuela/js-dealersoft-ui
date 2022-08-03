@@ -7,7 +7,6 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   resolution = window.screen.width
-  public selectedTab: any = 1;
   scroll:any = 0
   public navigationTop() {
     let x = document.getElementById('top');
@@ -67,9 +66,5 @@ export class HomeComponent implements OnInit {
 
   }
 
-  receiveMessage(msg: any) {
-    this.selectedTab = msg;
-
-    //alert(msg);
-  }
+  
 }
