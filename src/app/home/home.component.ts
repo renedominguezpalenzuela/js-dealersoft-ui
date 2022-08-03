@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
   offset:any;
   element:any;
 
-  
   @HostListener('window:scroll', ['$event.target'])
 
   onScroll(e:any) {
