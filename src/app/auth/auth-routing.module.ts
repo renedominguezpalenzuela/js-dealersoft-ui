@@ -15,25 +15,34 @@ import {MainPageComponent} from './new/main-page/main-page.component';
 const routes: Routes = [
   // {
   //   path: '',
-  //   redirectTo: 'login',
+  //   redirectTo: 'reset-password',
   //   pathMatch: 'full'
   // },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./new/change-password/change-password.module').then((m) => m.ChangePasswordModule)
+  },
+  {
+    path: 'recovery-account',
+    loadChildren: () => import('./new/recovery-account/recovery-account.module').then((m) => m.RecoveryAccountModule)
+  },
+
 
   // {
   //   path:'main',
   //   component: MainPageComponent
   // },
-  {
-    path:'login',
-    component: LoginRegisterComponent
-    // loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+  // {
+  //   path:'login',
+  //   component: LoginRegisterComponent
+  //   // loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
 
-  },
-    {
-     path: 'register',
-      component: RegisterLoginComponent
-    // loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
-   },
+  // },
+  //   {
+  //    path: 'register',
+  //     component: RegisterLoginComponent
+  //   // loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
+  //  },
   // {
   //   path: 'login',
   //   loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
@@ -42,14 +51,7 @@ const routes: Routes = [
   //   path: 'register',
   //   loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule)
   // },
-  {
-    path: 'recovery-account',
-    loadChildren: () => import('./new/recovery-account/recovery-account.module').then((m) => m.RecoveryAccountModule)
-  },
-  {
-    path: 'reset-password',
-    loadChildren: () => import('./new/change-password/change-password.module').then((m) => m.ChangePasswordModule)
-  }
+ 
 ];
 
 @NgModule({

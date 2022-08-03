@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 //  import {PruebaComponent} from './componentes/prueba/prueba.component';
 
@@ -39,6 +41,7 @@ import { MatIconModule } from '@angular/material/icon';
     LandingRegisterLoginComponent,
     LandingFooterComponent,
     AcordionComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -49,6 +52,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatTabsModule,
     MatExpansionModule,
     MatIconModule,
+    RouterModule
+    
   ],
   exports: [],
 })

@@ -74,7 +74,7 @@ export class ChangePasswordComponent implements OnInit {
 
     if (this.changePasswordForm.valid)
       this.requestService.Post(this.apiHelperService.resetPasswordURL, this.changePasswordForm.value, false)
-        .subscribe(() => this.router.navigate(['/auth/login']));
+        .subscribe(() => this.router.navigate(['/']));
   }
 
 }
