@@ -39,7 +39,7 @@ export class SectionFunktionenComponent implements OnInit {
         //'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
         'Perfekt auf Thren Autohandel abgestimmt: Pfiegen Sie alle relevanten Daten des Fahrzeuges in die Datenbank ein. Schnell&Unkompliziert von überall'
       ],
-      path: '1.png',
+      path: '1.webp',
       pathmovil: '1movil.png',
       link: '/',
       position: false,
@@ -52,7 +52,7 @@ export class SectionFunktionenComponent implements OnInit {
        // 'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
        'Behalten Sie den überblick über Ihren aktuellen Bestand und speichern verkaufte Fahrzeuge sicher in Ihrer eigenen Fahrzeug-Datenbank. Informieren Sie sich auf einen Blick über Ihren Bestandswert oder Standtage. Drucken Sie sich gezielt Bestandslisten beliebiger Monte aus - mit einem Klick'
       ],
-      path: '2.png',
+      path: '2.webp',
       pathmovil: '2movil.png',
 
       link: '/',
@@ -67,7 +67,7 @@ export class SectionFunktionenComponent implements OnInit {
         //'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
         'Pflegen Sie Ihre Kundendaten gut strukturiert in Ihre Datenbank ein und ordnen Sie diese dem An- oder Verkauf Ihrer Fahrzeuge zu.'
       ],
-      path: '3.png',
+      path: '3.webp',
       pathmovil: '3movil.png',
 
       link: '/',
@@ -83,7 +83,7 @@ export class SectionFunktionenComponent implements OnInit {
        // '- Sekunden PDF Verträge und Rechnungen erstellen.',
        'Egal ob per App oder im Browser: Dealersoft ermöglicht Ihnen die Erstellung von Kaufverträgen und Rechnungen per Knopfdruck. Und das immer im gleichen Format, inklusive Firmenlogo blitzschnell per PDF aufs Handy oder den PC.'
       ],
-      path: '4.png',
+      path: '4.webp',
       pathmovil: '4movil.png',
 
       link: '/',
@@ -99,7 +99,7 @@ export class SectionFunktionenComponent implements OnInit {
         'Generieren Sie mit einem Klick eine fortlaufende Rechnungsnummer und erstellen Sie Ihre PDF   Rechnung. Egal ob Netto Export, $25A oder inkl mwst, Dealersoft ist Ihr Tool für einen schnellen,  einfachen Verkaufsprozess.'
         
       ],
-      path: '5.png',
+      path: '5.webp',
       pathmovil: '5movil.png',
 
       link: '/',
@@ -113,7 +113,7 @@ export class SectionFunktionenComponent implements OnInit {
         //'Vom Anlegen eines neuen Fahrzeugprofils bis zum Abschluss des Kaufvertrags: Dealersoft begleitet Sie im gesamten Verkaufsprozess.',
         ''
       ],
-      path: '6.png',
+      path: '6.webp',
       pathmovil: '6movil.png',
 
       link: '/',
