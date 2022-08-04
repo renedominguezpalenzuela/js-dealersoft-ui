@@ -22,22 +22,62 @@
             {{ data.title }}
           </h2>
 
-          <p *ngFor="let el of data.text" class="text-base lg:w-2/3" [ngClass]="data.position ? 'mr-auto' : 'ml-auto'">
+          <p
+            *ngFor="let el of data.text"
+            class="text-base lg:w-2/3"
+            class="mr-auto"
+          >
             {{ el }}
           </p>
 
-          <a href="{{data.link}" class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center"
-            [ngClass]="data.position ? 'mr-auto' : 'ml-auto'">
-            <span class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15">{{ data.nameLink
-              }}</span>
-            <img src="assets/landing/uil_arrow-up-right.png" alt="" class="w-5 h-5 translate-y-1" />
+          <a
+            *ngIf="data.nameLink == 'Jetzt registrieren'"
+            (click)="naviagateToTab('register')"
+            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center mr-auto hover:cursor-pointer"
+            
+          >
+            <span
+            
+              class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15"
+              >{{ data.nameLink }}</span
+            >
+            <img
+              src="assets/landing/uil_arrow-up-right.png"
+              alt=""
+              class="w-5 h-5 md:translate-y-2 translate-y-1"
+            />
+          </a>
+          <a
+            *ngIf="data.nameLink == 'Learn more about encryption'"
+            (click)="naviagateToTab('login-reg')"
+            class="flex lg:mt-6 md:mt-4 lg:w-2/3 items-center mr-auto hover:cursor-pointer"
+            
+          >
+            <span
+            
+              class="md:text-base text-sm mt-4 mr-1 md:translate-y-0 -translate-y-1 text-blue-15"
+              >{{ data.nameLink }}</span
+            >
+            <img
+              src="assets/landing/uil_arrow-up-right.png"
+              alt=""
+              class="w-5 h-5 md:translate-y-2 translate-y-1"
+            />
           </a>
         </div>
       </div>
 
-      <img src="assets/landing/{{ data.path }}" alt="" class="lg:w-1/2 md:w-[50%] md:block hidden"
-        [ngClass]="data.position ? 'mr-auto' : 'ml-auto'" />
-      <img src="assets/landing/{{ data.pathmovil }}" alt="" class="md:hidden block mx-auto" />
+      <img
+        src="assets/landing/{{ data.path }}"
+        alt=""
+        class="lg:w-1/2 md:w-[50%] md:block hidden"
+        [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
+      />
+      <img
+        src="assets/landing/{{ data.pathmovil }}"
+        alt=""
+        class="md:hidden block mx-auto"
+      />
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-section-funktionen',
@@ -6,6 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-funktionen.component.scss'],
 })
 export class SectionFunktionenComponent implements OnInit {
+  @Output() mensaje = new EventEmitter<string>();
+
+  x:any;
+  public naviagateToTab(tab_name: any) {
+
+    if (tab_name === 'register') {
+      if (this.x) {
+        this.mensaje.emit('0');
+      }
+      
+      const timeoutId = setTimeout(() => {
+        this.x.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+
+      //clearTimeout(timeoutId);
+    }
+
+    if (tab_name === 'login-reg') {
+      if (this.x) {
+        this.x.scrollIntoView({ behavior: 'smooth' });
+      }
+      const timeoutId = setTimeout(() => {
+        this.mensaje.emit('1');
+      }, 700);
+    }
+  }
   public cards: any = [
     {
       title: 'Fahrzeuge detailiert ins System einpflegen',
@@ -97,5 +123,8 @@ export class SectionFunktionenComponent implements OnInit {
   ];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.x = document.getElementById('login-register-div');
+
+  }
 }

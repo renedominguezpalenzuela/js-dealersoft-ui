@@ -2,7 +2,7 @@
   id="sideBar"
   *ngIf="openSide"
   data-aos="fade-left"
-  data-aos-easing="llinear"
+  data-aos-easing="linear"
   data-aos-duration="500"
   [ngClass]="openSide ? 'overflow-y-hidden' : 'overflow-y-auto'"
   class="md:hidden flex flex-col w-64 absolute h-screen right-0 z-40 bg-gray-30 pl-6 pt-10 font-bold"
@@ -17,12 +17,14 @@
   </a>
 
   <a
+  (click)="navigationSection('funktionen')"
     class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Funktionen
   </a>
 
   <a
+  (click)="navigationSection('uber')"
     class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Über uns

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 // import { MatExpansionModule } from '@angular/material/expansion';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
+
 // import { BannerMainComponent } from './componentes/banner-main/banner-main.component';
 // import { SecondBannerComponent } from './componentes/second-banner/second-banner.component';
 // import { BannerBlackComponent } from './componentes/banner-black/banner-black.component';
@@ -23,7 +23,7 @@ import { HomeRoutingModule } from './home-routing.module';
 @NgModule({
   declarations: [
     HomeComponent,
-    NavbarComponent,
+    
     //  BannerMainComponent,
     // SecondBannerComponent,
     // BannerBlackComponent,

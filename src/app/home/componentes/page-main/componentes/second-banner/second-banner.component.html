@@ -1,7 +1,7 @@
 <div
   class="bg-gray-5 w-full grid md:grid-cols-3 items-center justify-items-center lg:px-14 md:px-6 md:py-14 py-10"
 >
-  <div class="w-full mr-auto ml-10 md:mb-0 mb-4">
+  <div class="w-full mr-auto ml-10 md:mb-0 mb-4" id="text_secondbanner">
     <h2
       class="font-extrabold lg:text-5xl text-black md:text-4xl text-3xl after:flex lg:mb-4 mb-3"
     >
@@ -14,9 +14,10 @@
     </p>
   </div>
   <div class="md:block flex md:w-auto w-full justify-start md:px-0 px-6">
-    <img src="assets/landing/main2.png" alt="" class="lg:w-72 w-52" />
+    <img src="assets/landing/main2.webp" alt="" class="lg:w-[20rem] w-52 md:-translate-y-[50%]" id="phone2"[ngClass]="{'phone_mock': animation == true}"/>
   </div>
   <div
+  id="left_second"
     class="text-lg text-gray-20 flex flex-col lg:space-y-5 space-y-3 md:pr-10 md:pl-0 pr-6 pl-6 md:mt-0 mt-6"
   >
     <div class="flex items-center space-x-3">
@@ -41,7 +42,7 @@
         </p>
 
         <a
-          (click)="naviagateToTab('login-reg')"
+          (click)="naviagateToTab('register')"
           class="text-blue-10 md:font-semibold underline underline-blue-10 hover:cursor-pointer md:text-base text-sm"
         >
           Jetzt 30 Tage testen

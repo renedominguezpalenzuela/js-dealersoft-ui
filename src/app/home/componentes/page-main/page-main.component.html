@@ -1,24 +1,24 @@
 
-
+  <app-navbar (mensaje)="receiveMessage($event)"></app-navbar>
  <app-banner-main></app-banner-main>
 
  
-  <app-second-banner></app-second-banner>
+  <app-second-banner (mensaje)="receiveMessage($event)" [animation]="startAnimation"></app-second-banner>
  
   <div class="md:block hidden">
-    <app-banner-black></app-banner-black>
+    <app-banner-black (mensaje)="receiveMessage($event)"></app-banner-black>
   </div>
 
   <div id="funktionen">
-    <app-section-funktionen></app-section-funktionen>
+    <app-section-funktionen (mensaje)="receiveMessage($event)"></app-section-funktionen>
   </div>
   <div id="uber">
-    <app-uber-section></app-uber-section>
+    <app-uber-section (mensaje)="receiveMessage($event)"></app-uber-section>
   </div>
   <div class="lg:w-[60%] w-[90%] mx-auto md:py-14 py-10">
     <app-acordion></app-acordion>
   </div>
-  <div class="bg-[#202124] relative md:py-10 py-6 flex flex-col items-center justify-center">
+  <div id="login-register-div" class="bg-[#202124] relative md:py-10 py-6 flex flex-col items-center justify-center">
     <img src="assets/landing/top-register.png" alt="" class="lg:w-[60%] mx-auto md:block hidden md:h-[60%]" />
     <img src="assets/landing/topmovil.png" alt="" class="mx-auto md:hidden block w-[90%]" />
     <div class="w-full lg:py-1">
@@ -26,7 +26,7 @@
         Dealersoft <br />
         jederzeit und von überall
       </h1>
-      <app-landing-register-login [selectedTab]="selectedTab"></app-landing-register-login>
+      <app-landing-register-login [selectedTab]="selectedTab" (mensaje)="receiveMessage($event)"></app-landing-register-login>
     </div>
 
     <div class="w-full relative flex items-center justify-center">

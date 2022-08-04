@@ -24,6 +24,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LandingFooterComponent } from './componentes/landing-footer/landing-footer.component';
 import { AcordionComponent } from './componentes/acordion/acordion.component';
 import { MatIconModule } from '@angular/material/icon';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
     UberSectionComponent,
     LandingRegisterComponent,
      LandingLoginComponent,
+     NavbarComponent,
     LandingRegisterLoginComponent,
     LandingFooterComponent,
     AcordionComponent,

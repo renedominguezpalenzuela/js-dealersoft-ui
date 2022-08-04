@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -12,24 +12,24 @@ export class NavbarComponent implements OnInit {
   toggleOpen = () => {
     this.openSide = !this.openSide;
   };
+  x:any;
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register');
-
+    
     if (tab_name === 'register') {
-      if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      const timeoutId = setTimeout(() => {
+      if (this.x) {
         this.mensaje.emit('0');
-      }, 700);
+      }
+      
+      const timeoutId = setTimeout(() => {
+        this.x.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
 
       //clearTimeout(timeoutId);
     }
 
     if (tab_name === 'login-reg') {
-      if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
+      if (this.x) {
+        this.x.scrollIntoView({ behavior: 'smooth' });
       }
       const timeoutId = setTimeout(() => {
         this.mensaje.emit('1');
@@ -41,11 +41,16 @@ export class NavbarComponent implements OnInit {
     let x = document.getElementById(link);
     if (x) {
       this.activeLink = link;
+      if(this.openSide){
+        this.openSide = false;
+      }
       x.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.x = document.getElementById('login-register-div');
+  }
 }

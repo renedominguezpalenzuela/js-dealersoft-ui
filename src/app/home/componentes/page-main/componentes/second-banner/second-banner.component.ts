@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-second-banner',
@@ -7,31 +7,46 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SecondBannerComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
+  
+  @Input() animation:boolean = false;
+
+  x:any;
+  phone:any;
+  
+
   public naviagateToTab(tab_name: any) {
-    let x = document.getElementById('login-register');
 
     if (tab_name === 'register') {
-      if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      const timeoutId = setTimeout(() => {
+      if (this.x) {
         this.mensaje.emit('0');
-      }, 700);
+      }
+      
+      const timeoutId = setTimeout(() => {
+        this.x.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
 
       //clearTimeout(timeoutId);
     }
 
     if (tab_name === 'login-reg') {
-      if (x) {
-        x.scrollIntoView({ behavior: 'smooth' });
+      if (this.x) {
+        this.x.scrollIntoView({ behavior: 'smooth' });
       }
       const timeoutId = setTimeout(() => {
         this.mensaje.emit('1');
       }, 700);
     }
   }
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.x = document.getElementById('login-register-div');
+    this.phone = document.getElementById('phone2');
+
+  }
+
+  ngOnChanges(): void{
+    console.log(this.animation)
+  }
 }
