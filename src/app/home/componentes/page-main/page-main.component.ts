@@ -27,7 +27,7 @@ export class PageMainComponent implements OnInit {
       this.currentScroll = window.pageYOffset;
       
 
-      if(this.heightPhone < this.currentScroll){
+      if(this.heightPhone < this.currentScroll && this.morePhone){
         this.startAnimation = true
       }
   }
@@ -36,7 +36,7 @@ export class PageMainComponent implements OnInit {
 
   ngOnInit(): void {
     this.phone = document.getElementById("phone2")
-    this.heightPhone = this.getPositionY(this.phone).height;
+    this.heightPhone = this.getPositionY(this.phone).height + 40;
   }
 
   //public selectedTab: any = 1;
