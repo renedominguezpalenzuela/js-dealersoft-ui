@@ -100,11 +100,12 @@
   @keyframes fade-in-left {
     0% {
       opacity: 0.5;
-      rigth:5%;
+      right:5%;
+      
     }
     100% {
       opacity: 1;
-      rigth:15%;
+      right:15%;
     }
   }
 }
@@ -127,11 +128,11 @@
   @keyframes fade-in-left {
     0% {
       opacity: 0.5;
-      rigth:0%;
+      right:0%;
     }
     100% {
       opacity: 1;
-      rigth:3%;
+      right:3%;
     }
   }
 }

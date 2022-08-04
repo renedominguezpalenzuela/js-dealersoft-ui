@@ -41,6 +41,9 @@ export class NavbarComponent implements OnInit {
     let x = document.getElementById(link);
     if (x) {
       this.activeLink = link;
+      if(this.openSide){
+        this.openSide = false;
+      }
       x.scrollIntoView({ behavior: 'smooth' });
     }
   }
