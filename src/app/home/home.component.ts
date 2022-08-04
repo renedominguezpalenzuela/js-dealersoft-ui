@@ -6,7 +6,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  resolution = window.screen.width
+  resolution:any;
   scroll:any = 0
   public navigationTop() {
     let x = document.getElementById('top');
@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
       this.el1.style.transform = 'translateY(' + this.offset * 0.59 + 'px)' 
       this.el2.style.transform = 'translateY(' + this.offset * 0.3 + 'px)'  
       this.el3.style.transform = 'translateY(' + this.offset * 0.21 + 'px)'   
-      this.main_text.style.transform = 'translateY(' + this.offset * 0.1 + 'px)' 
 
       if(this.getPositionY(this.text_secondB) - this.offset <=100){
         this.text_secondB.style.transform = 'translateY(' + (this.offset - this.getPositionY(this.text_secondB)) * 0.1 + 'px)' 
@@ -56,12 +55,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.resolution = window.screen.width;
     this.el = document.getElementById("elipsi");
     this.el1 = document.getElementById("elipsi1");
     this.el2 = document.getElementById("elipsi2");
     this.el3 = document.getElementById("elipsi3");
-    this.main_text = document.getElementById("main_text")
+    
     this.text_secondB = document.getElementById("text_secondbanner")
     this.right_second = document.getElementById("left_second")
     this.element = document.getElementById("login-register-div");

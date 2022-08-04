@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-second-banner',
@@ -7,8 +7,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SecondBannerComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
+  
+  @Input() animation:boolean = false;
 
   x:any;
+  phone:any;
+  
+
   public naviagateToTab(tab_name: any) {
 
     if (tab_name === 'register') {
@@ -37,6 +42,11 @@ export class SecondBannerComponent implements OnInit {
 
   ngOnInit(): void {
     this.x = document.getElementById('login-register-div');
+    this.phone = document.getElementById('phone2');
 
+  }
+
+  ngOnChanges(): void{
+    console.log(this.animation)
   }
 }
