@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar (mensaje)="receiveMessage($event)"></app-navbar>
 
     <div class="lg:mx-[10rem] md:mx-14 mx-10 lg:mt-20 md:mt-14 mt-10">
         <div class="grid md:grid-cols-2 grid-col-1 justify-between lg:gap-x-10 md:gap-x-8">
@@ -77,7 +77,7 @@
                 <div class="mt-6 space-x-4 w-full flex">
                     <div class="w-5 mt-[4px]">
                         <span (click)="toggleABG()" class="hover:cursor-pointer border border-[#505050] w-5 h-5  mr-2 rounded-sm relative flex items-center justify-center">
-                            <div id="tick-mark" *ngIf="ABG"></div>                
+                            <div id="tick-mark" class="-translate-x-[1px] -translate-y-[1.5px]" *ngIf="ABG"></div>                
                         </span>
                     </div>
                     <span class="text-black text-[0.8rem] text-left">Ich stimme zu, dass meine Angaben zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an info@dealersoft.de widerrufen.</span>
