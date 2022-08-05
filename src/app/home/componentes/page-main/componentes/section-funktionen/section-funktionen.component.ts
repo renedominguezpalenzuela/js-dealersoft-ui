@@ -40,7 +40,7 @@ export class SectionFunktionenComponent implements OnInit {
         'Perfekt auf Thren Autohandel abgestimmt: Pfiegen Sie alle relevanten Daten des Fahrzeuges in die Datenbank ein. Schnell&Unkompliziert von überall'
       ],
       path: '1.webp',
-      pathmovil: '1movil.png',
+      pathmovil: '1movil.webp',
       link: '/',
       position: false,
       nameLink: 'Jetzt registrieren',
@@ -53,7 +53,7 @@ export class SectionFunktionenComponent implements OnInit {
        'Behalten Sie den überblick über Ihren aktuellen Bestand und speichern verkaufte Fahrzeuge sicher in Ihrer eigenen Fahrzeug-Datenbank. Informieren Sie sich auf einen Blick über Ihren Bestandswert oder Standtage. Drucken Sie sich gezielt Bestandslisten beliebiger Monte aus - mit einem Klick'
       ],
       path: '2.webp',
-      pathmovil: '2movil.png',
+      pathmovil: '2movil.webp',
 
       link: '/',
       position: true,
@@ -68,7 +68,7 @@ export class SectionFunktionenComponent implements OnInit {
         'Pflegen Sie Ihre Kundendaten gut strukturiert in Ihre Datenbank ein und ordnen Sie diese dem An- oder Verkauf Ihrer Fahrzeuge zu.'
       ],
       path: '3.webp',
-      pathmovil: '3movil.png',
+      pathmovil: '3movil.webp',
 
       link: '/',
       position: false,
@@ -84,7 +84,7 @@ export class SectionFunktionenComponent implements OnInit {
        'Egal ob per App oder im Browser: Dealersoft ermöglicht Ihnen die Erstellung von Kaufverträgen und Rechnungen per Knopfdruck. Und das immer im gleichen Format, inklusive Firmenlogo blitzschnell per PDF aufs Handy oder den PC.'
       ],
       path: '4.webp',
-      pathmovil: '4movil.png',
+      pathmovil: '4movil.webp',
 
       link: '/',
       position: true,
@@ -100,7 +100,7 @@ export class SectionFunktionenComponent implements OnInit {
         
       ],
       path: '5.webp',
-      pathmovil: '5movil.png',
+      pathmovil: '5movil.webp',
 
       link: '/',
       position: false,
@@ -114,7 +114,7 @@ export class SectionFunktionenComponent implements OnInit {
         ''
       ],
       path: '6.webp',
-      pathmovil: '6movil.png',
+      pathmovil: '6movil.webp',
 
       link: '/',
       position: true,

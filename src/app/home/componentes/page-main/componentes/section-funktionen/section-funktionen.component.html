@@ -67,12 +67,14 @@
         </div>
       </div>
 
-      <img
-        src="assets/landing/{{ data.path }}"
-        alt=""
-        class="lg:w-1/2 md:w-[50%] md:block hidden"
-        [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
-      />
+      <div class="md:block hidden w-[55%] overflow-hidden">
+        <img
+          src="assets/landing/{{ data.path }}"
+          alt=""
+          class="Object-center object-cover w-full"
+          [ngClass]="data.position ? 'mr-auto' : 'ml-auto'"
+        />
+      </div>
       <img
         src="assets/landing/{{ data.pathmovil }}"
         alt=""
