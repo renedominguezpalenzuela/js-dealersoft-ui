@@ -1,0 +1,77 @@
+.form_input{
+    background: rgba($color: #C6BEBE, $alpha: 0.42);
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #C1B3CA ;
+    width: 100%;
+    padding: .8rem 1rem;
+    border-radius: 2px;
+}
+
+.form_input:focus + .form_label, .form_input:not(:placeholder-shown) + .form_label{
+    transform: translateY(-1.2rem) translatex(-0.8rem) scale(0.9);
+    transform-origin:top left;
+    color: #2C2F30;
+    font-weight: 500;
+}
+
+.form-group{
+    position: relative;
+    width: 100%;
+}
+
+.form_label{
+    color: black;
+    position: absolute;
+    top:0;
+    left: 1rem;
+    transform: translateY(0.8rem);
+    transition: transform .5s, color .3s, font-weight .3s;
+}
+
+.form_line{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #2C2F30;
+    transform: scale(0);
+    transform-origin: left bottom;
+    transition: 0.4s;
+}
+
+.form_input:focus ~ .form_line, .form_input:not(:placeholder-shown) ~ .form_line{
+    transform: scale(1);
+}
+
+#tick-mark {
+    position: absolute;
+    display: inline-block;
+    width: 13.5px;
+    height: 13.5px;
+  }
+  
+  #tick-mark::before {
+    position: absolute;
+    left: -4.1px;
+    top: 50%;
+    height: 50%;
+    width: 3px;
+    background-color: black;
+    content: "";
+    transform: translateX(10px) rotate(-45deg);
+    transform-origin: left bottom;
+  }
+  
+  #tick-mark::after {
+    position: absolute;
+    left: -4.1px;
+    bottom: -1px;
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    content: "";
+    transform: translateX(10px) rotate(-45deg);
+    transform-origin: left bottom;
+  }
