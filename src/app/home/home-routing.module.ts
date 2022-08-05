@@ -5,19 +5,30 @@ import { RouterModule, Routes } from '@angular/router';
 // import { HomeComponent } from './home/home.component';
 // import { TestimonialsComponent } from './testimonial/testimonials.component';
 import { PageMainComponent } from './componentes/page-main/page-main.component';
+import { ContactComponent } from './componentes/page-main/contact/contact.component';
+
 
 import { AuthGuard } from '@core/guards';
 import { IsFullRegisteredGuard } from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 
-const routes: Routes = [
+ const routes: Routes = [
 
   {
     path: '',
     component: PageMainComponent,
+    pathMatch: 'full',
     loadChildren: () => import('./componentes/page-main/page-main.module').then((m) => m.PageMainModule),
   },
-];
+  {
+    path: 'contact',
+    pathMatch: 'full',
+    component: ContactComponent,
+    loadChildren: () => import('./componentes/page-main/page-main.module').then((m) => m.PageMainModule),
+  },
+
+
+ ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

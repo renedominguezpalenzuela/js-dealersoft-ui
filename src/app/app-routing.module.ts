@@ -12,6 +12,7 @@ import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
 import { DatenschutComponent } from './testimonial/components/datenschut/datenschut.component';
 import { ImpressumComponent } from './testimonial/components/impressum/impressum.component';
 
+
 const routes: Routes = [
   // {
   //   path: '',             //home, url sin nada
@@ -21,10 +22,12 @@ const routes: Routes = [
 
   {
     path: '', //home, url sin nada
-    pathMatch: 'full',
+    // pathMatch: 'full'/,
     component: HomeComponent,
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+   
+
   {
     path: 'admin',
     component: AdminComponent,

@@ -17,6 +17,7 @@ import { CreateInvoiceService } from './servicios/create-invoice.service';
 
 
 
+
 // import { SaveDom2Pipe } from './save-dom2.pipe';
 
 registerLocaleData(localeEnDe, localeEnDeExtra);
@@ -32,7 +33,7 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    MatTabsModule,
+    MatTabsModule
    
   ],
   providers: [

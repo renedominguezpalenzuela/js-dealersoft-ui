@@ -25,6 +25,7 @@ import { LandingFooterComponent } from './componentes/landing-footer/landing-foo
 import { AcordionComponent } from './componentes/acordion/acordion.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     LandingRegisterLoginComponent,
     LandingFooterComponent,
     AcordionComponent,
+    ContactComponent,
     
   ],
   imports: [
