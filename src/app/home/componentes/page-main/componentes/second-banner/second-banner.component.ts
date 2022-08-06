@@ -47,6 +47,6 @@ export class SecondBannerComponent implements OnInit {
   }
 
   ngOnChanges(): void{
-    console.log(this.animation)
+    
   }
 }
