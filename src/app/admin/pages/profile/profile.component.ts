@@ -180,8 +180,7 @@ export class ProfileComponent implements OnInit {
 
 
     this.requestService.Get(this.apiHelperService.meURL).subscribe((usuario)=>{
-      console.log("Usuario")
-      console.log(usuario)
+
 
       this.registerForm.patchValue({
         ...usuario,

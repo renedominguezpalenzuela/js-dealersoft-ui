@@ -67,10 +67,10 @@
             <mat-option *ngFor="let option of filteredOptions" [value]="option.id" class="font-montserrat">    
 
               <ng-container *ngIf="option.attributes?.company_name">
-                {{option.attributes?.company_name}}
+                {{option?.attributes?.company_name}}
               </ng-container>
               <ng-container *ngIf="!option.attributes?.company_name">
-                {{option.attributes?.first_name}} {{option.attributes?.last_name}}
+                {{option?.attributes?.first_name}} {{option?.attributes?.last_name}}
               </ng-container>    
 
             </mat-option>
@@ -129,7 +129,7 @@
 
               <mat-form-field appearance="outline" class="col-span-5 lg:col-span-3">
                 <mat-label class="font-montserrat">Einzelpreis</mat-label>
-                <input formControlName="unit_price" matInput min="0" required type="number" class="font-montserrat">
+                <input formControlName="unit_price" matInput min="0" required type="currency"  lang="de-DE" class="font-montserrat"  (blur)="actualizarValor($event)">
               </mat-form-field>
 
               <div class="col-span-1 flex items-center justify-start">

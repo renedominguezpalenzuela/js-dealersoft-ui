@@ -14,6 +14,10 @@ export class CalculosService {
 
    
     if (!numero) return null;
+
+    if (this.is_german_number(numero)) { 
+      return numero;
+    }
    
 
 
@@ -49,6 +53,12 @@ export class CalculosService {
   // 3) contiene punto y coma 1,000.00 y la punto esta despues ---> numero usa
 
   is_german_number(numero: any): boolean {
+
+    if (typeof numero != 'string') {
+      numero = numero.toString();
+    }
+
+
     let has_punto = false;
     let has_comma = false;
     let coma_before_punto = false;
@@ -63,20 +73,24 @@ export class CalculosService {
 
     // 1) contiene una sola coma 1,00 y no contiene  punto ---> numero aleman
     if (pos_coma >= 0 && pos_punto < 0) {
+    
       return true;
     }
 
     // 2) contiene un solo punto 1.00 y no contiene  coma ---> numero usa
     if (pos_coma < 0 && pos_punto >= 0) {
+     
       return false;
     }
 
     if (pos_coma >= 0 && pos_punto >= 0) {
       // 3) contiene punto y coma 1.000,00 y la coma esta despues ---> numero aleman
       if (pos_coma > pos_punto) {
+       
         return true;
       } else {
         // 3) contiene punto y coma 1,000.00 y la punto esta despues ---> numero usa
+        
         return false;
       }
     }
@@ -94,11 +108,12 @@ export class CalculosService {
       if (this.is_german_number(number)) {
         number = number
           .split('.')
-          .join('_')
+          .join('')
           .split(',')
           .join('.')
-          .split('_')
-          .join(',');
+       
+
+  
        
         return parseFloat(number);
       } else {

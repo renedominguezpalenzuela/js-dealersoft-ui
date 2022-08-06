@@ -28,10 +28,10 @@
             <mat-option *ngFor="let option of filteredOptions" [value]="option.id"  class="font-montserrat">
              
               <ng-container *ngIf="option.attributes?.company_name">
-                {{option.attributes?.company_name}}
+                {{option?.attributes?.company_name}}
               </ng-container>
               <ng-container *ngIf="!option.attributes?.company_name">
-                {{option.attributes?.first_name}} {{option.attributes?.last_name}}
+                {{option?.attributes?.first_name}} {{option?.attributes?.last_name}}
               </ng-container>                        
      
 
@@ -83,7 +83,7 @@
       <div class="flex flex-col xl:flex-row justify-start gap-x-8 w-full xl:w-9/12 my-3">
         <mat-form-field appearance="outline">
           <mat-label class="font-montserrat">Mehrwertsteuer in €</mat-label>
-          <input class="font-montserrat" formControlName="iva_sell" matInput min="0" type="number" name="iva_sell"
+          <input class="font-montserrat" formControlName="iva_sell" matInput min="0" type="currency"  lang="de-DE" name="iva_sell"
             (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" >
           <mat-error *ngIf="hasRequiredError('iva_sell')">
             <b>Mehrwertsteuer in €</b> wird benötigt
@@ -91,7 +91,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label class="font-montserrat">Netto in €</mat-label>
-          <input class="font-montserrat" formControlName="net_sell" matInput min="0" type="number" name="net_sell"
+          <input class="font-montserrat" formControlName="net_sell" matInput min="0" type="currency"  lang="de-DE" name="net_sell"
             (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" >
           <mat-error *ngIf="hasRequiredError('net_sell')">
             <b>Netto in €</b> wird benötigt
@@ -101,7 +101,7 @@
           <mat-label class="font-montserrat">Brutto in €</mat-label>
 
 
-          <input class="font-montserrat" formControlName="gross_sell" matInput min="0" type="number" name="gross_sell"
+          <input class="font-montserrat" formControlName="gross_sell" matInput min="0" type="currency"  lang="de-DE" name="gross_sell"
             (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)">
           <mat-error *ngIf="hasRequiredError('gross_sell')" >
             <b>Brutto in €</b> wird benötigt

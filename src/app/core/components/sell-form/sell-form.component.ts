@@ -51,6 +51,9 @@ import {  ParamMap } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 
+import {CalculosService} from './../../../servicios/calculos.service';
+
+
 
 
 @Component({
@@ -81,6 +84,7 @@ import { forkJoin } from 'rxjs';
     },
   ],
 })
+
 export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   public authUser: User | null = null;
   public isAuth: boolean = false;
@@ -130,10 +134,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     net_sell: [null, [Validators.required, Validators.min(0)]],
     iva_sell: [{ value: null, disabled: true }, [Validators.min(0)]],
-    gross_sell: [
-      { value: null, disabled: true },
-      [Validators.required, Validators.min(0)],
-    ],
+    gross_sell: [{ value: null, disabled: true }, [Validators.required, Validators.min(0)], ],
 
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
@@ -184,6 +185,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly httpClient: HttpClient,
     
     private readonly activatedRoute: ActivatedRoute,
+    private readonly calculos: CalculosService
   ) {
     this.route = route;
 
@@ -208,32 +210,50 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
 
-    // this.tabGroup.realignInkBar();
+   
   }
 
   public calcularIVA() {
-    let vNet_sell: number = this.carSellForm.get('net_sell')!.value;
-    let vGross_sell: number = this.carSellForm.get('gross_sell')!.value;
-    let vIva: number = this.carSellForm.get('iva')!.value;
 
-    if (vNet_sell != null && vNet_sell != 0) {
-      vIva = Number(vNet_sell * this.factorIva);
-      vGross_sell = Number(vNet_sell) + vIva;
-      this.carSellForm.patchValue({
-        iva_sell: vIva.toFixed(this.total_decimales),
-        gross_sell: vGross_sell.toFixed(this.total_decimales),
-      });
-    } else {
-      if (vGross_sell != null && vGross_sell != 0) {
-        vNet_sell = vGross_sell / (1 + this.factorIva);
-        vIva = vGross_sell - vNet_sell;
-        this.carSellForm.patchValue({
-          iva_sell: vIva.toFixed(this.total_decimales),
-          net_sell: vNet_sell.toFixed(this.total_decimales),
-        });
-      }
-    }
+    let vGross_sell: number =this.calculos.parseGermanNumber(this.carSellForm.get('gross_sell')!.value);
+    let vNet_sell: number =this.calculos.parseGermanNumber(this.carSellForm.get('net_sell')!.value);
+    let vIva_sell: number = this.calculos.parseGermanNumber(this.carSellForm.get('iva_sell')!.value);
+
+
+    const respuesta = this.calculos.calcularIVA(vNet_sell, vGross_sell, vIva_sell);
+
+ 
+    this.carSellForm.patchValue({ 
+      net_sell: this.calculos.createGermmanNumber(respuesta.net),
+      gross_sell:this.calculos.createGermmanNumber( respuesta.gross),
+      iva_sell:this.calculos.createGermmanNumber( respuesta.iva)
+    })
+
     this.carSellForm.updateValueAndValidity();
+
+
+    // let vNet_sell: number = this.carSellForm.get('net_sell')!.value;
+    // let vGross_sell: number = this.carSellForm.get('gross_sell')!.value;
+    // let vIva: number = this.carSellForm.get('iva')!.value;
+
+    // if (vNet_sell != null && vNet_sell != 0) {
+    //   vIva = Number(vNet_sell * this.factorIva);
+    //   vGross_sell = Number(vNet_sell) + vIva;
+    //   this.carSellForm.patchValue({
+    //     iva_sell: vIva.toFixed(this.total_decimales),
+    //     gross_sell: vGross_sell.toFixed(this.total_decimales),
+    //   });
+    // } else {
+    //   if (vGross_sell != null && vGross_sell != 0) {
+    //     vNet_sell = vGross_sell / (1 + this.factorIva);
+    //     vIva = vGross_sell - vNet_sell;
+    //     this.carSellForm.patchValue({
+    //       iva_sell: vIva.toFixed(this.total_decimales),
+    //       net_sell: vNet_sell.toFixed(this.total_decimales),
+    //     });
+    //   }
+    // }
+    // this.carSellForm.updateValueAndValidity();
   }
 
   public activarIVA() {
@@ -372,7 +392,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.actualizando_radio_buttons = false;
 
-      this.printOptions('a25 on change');
+      
     });
 
     this.carSellForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
@@ -397,7 +417,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.actualizando_radio_buttons = false;
 
-      this.printOptions('iva on change');
+      
     });
 
     this.carSellForm
@@ -418,16 +438,22 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.actualizando_radio_buttons = false;
 
-        this.printOptions('export on change');
+        
       });
+
+       //--------------------------------------------------------------------------------------------------
+    //  Calculos
+    //--------------------------------------------------------------------------------------------------
+
 
     this.carSellForm.get('net_sell')!.valueChanges.subscribe(() => {
       if (this.boton_salvar_disabled) return;
 
       if (this.focus_net_sell) {
-        const value: number = this.carSellForm.get('net_sell')!.value;
+        const value: number = this.calculos.parseGermanNumber(this.carSellForm.get('net_sell')!.value);
+        
 
-        let vIva = value * this.factorIva;
+        let vIva = value * this.calculos.factorIva;
         let vGross_sell = value + vIva;
 
         if (!this.isIvaActive) {
@@ -436,8 +462,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carSellForm.patchValue({
-          iva_sell: vIva.toFixed(this.total_decimales),
-          gross_sell: vGross_sell.toFixed(this.total_decimales),
+          iva_sell:this.calculos.createGermmanNumber(vIva),
+          gross_sell: this.calculos.createGermmanNumber(vGross_sell),
         });
         this.carSellForm.updateValueAndValidity();
       }
@@ -448,8 +474,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       // if (!this.isIvaActive) {
       if (this.focus_gross_sell) {
-        const value: number = this.carSellForm.get('gross_sell')!.value;
-        const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+        const value: number = this.calculos.parseGermanNumber(this.carSellForm.get('gross_sell')!.value);
+        const iva: number = (value * this.calculos.factorIva) / (1 + this.calculos.factorIva);
 
         let vNet_sell = value - iva;
         let vIva = iva;
@@ -461,8 +487,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carSellForm.patchValue({
-          iva_sell: vIva.toFixed(this.total_decimales),
-          net_sell: vNet_sell.toFixed(this.total_decimales),
+          iva_sell: this.calculos.createGermmanNumber(vIva),
+          net_sell: this.calculos.createGermmanNumber(vNet_sell)
         });
         this.carSellForm.updateValueAndValidity();
       }
@@ -473,8 +499,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       // if (!this.isIvaActive) {
       if (this.focus_iva) {
-        const value: number = this.carSellForm.get('iva_sell')!.value;
-        let netto: number = value / this.factorIva;
+        const value: number =this.calculos.parseGermanNumber(this.carSellForm.get('iva_sell')!.value);
+        let netto: number = value / this.calculos.factorIva;
 
         let vGross_sell = netto + value;
         let vNetto = netto;
@@ -485,8 +511,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carSellForm.patchValue({
-          gross_sell: vGross_sell.toFixed(this.total_decimales),
-          net_sell: vNetto.toFixed(this.total_decimales),
+          gross_sell: this.calculos.createGermmanNumber(vGross_sell),
+          net_sell: this.calculos.createGermmanNumber(vNetto)
         });
         this.carSellForm.updateValueAndValidity();
       }
@@ -530,6 +556,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   //Se actualiza el formulario con los datos de la BD
   ngOnChanges(changes: SimpleChanges): void {
+
+
+
     if (this.car_data?.attributes.can_save) {
       //this.boton_salvar_disabled=false;
       this.habilitarControles();
@@ -603,9 +632,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             ...data,
             car: this.car_data?.id,
             client: data?.client.data.id,
-            gross_sell: data?.gross_sell?.toFixed(this.total_decimales),
-            net_sell: data?.net_sell?.toFixed(this.total_decimales),
-            iva_sell: data?.iva_sell?.toFixed(this.total_decimales),
+            gross_sell: this.calculos.createGermmanNumber(data?.gross_sell),
+            net_sell: this.calculos.createGermmanNumber(data?.net_sell),
+            iva_sell: this.calculos.createGermmanNumber(data?.iva_sell)
           });
 
           // this.carSellForm.patchValue({
@@ -636,16 +665,13 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  printOptions(lugar: any) {
-
-  }
 
   ngAfterViewInit(): void {
     this.selected_option_a25 = this.carSellForm.get('a25')!.value;
     this.selected_option_MnSt = this.carSellForm.get('iva')!.value;
     this.selected_option_Export = this.carSellForm.get('export')!.value;
 
-    this.printOptions('AfterViewInit');
+
 
     fromEvent(this.autoComplete!.nativeElement, 'input')
       .pipe(distinctUntilChanged(), debounceTime(150))
@@ -708,17 +734,25 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     if (this.selected_tab == 0) {
       let precio = 0;
-      if (this.carSellForm.get('a25')!.value) {
-        precio = this.carSellForm.get('gross_sell')!.value;
+      if (this.carSellForm.get('a25')!.value===true) {
+     
+        precio =this.calculos.parseGermanNumber(this.carSellForm.get('gross_sell')!.value);
       }
 
-      if (this.carSellForm.get('iva')!.value) {
-        precio = this.carSellForm.get('gross_sell')!.value;
+      if (this.carSellForm.get('iva')!.value===true) {
+        
+        precio = this.calculos.parseGermanNumber(this.carSellForm.get('net_sell')!.value);
       }
 
-      if (this.carSellForm.get('export')!.value) {
-        precio = this.carSellForm.get('net_sell')!.value;
+      if (this.carSellForm.get('export')!.value===true) {
+       
+        precio = this.calculos.parseGermanNumber(this.carSellForm.get('net_sell')!.value);
       }
+
+
+     
+
+    
 
       let datosInvoice = {
         invoice_number: this.carSellForm.get('invoice_number')!.value,
@@ -969,7 +1003,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   };
 
   private updateCosts = () => {
-    const value: number = this.carSellForm.get('gross_sell')!.value;
+   // const value: number = this.carSellForm.get('gross_sell')!.value;
     // this.carSellForm.patchValue({
     //   net_sell: value * this.factorNet,
     //   iva_sell: value * this.factorIva
@@ -1022,7 +1056,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   focusOutFunction(event: any) {
     var value = event.target.value!;
 
-    var strvalue = parseFloat(value).toFixed(2);
+    //var strvalue = parseFloat(value).toFixed(2);
+
+    var strvalue1 = this.calculos.parseGermanNumber(value);
+    var strvalue =this.calculos.createGermmanNumber(strvalue1)
 
     switch (event.target.name) {
       case 'net_sell':
@@ -1056,6 +1093,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  //Evitar que sean mas de 4 lineas en los comentarios
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -1134,34 +1172,46 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public salvarEImprimir(imprimir: any, type: ExportType, crear_invoice: boolean) {
-    let xnet_sell: number = 0;
-    let xiva_sell: number = 0;
-    let xgross_sell: number = 0;
+    // let xnet_sell: number = 0;
+    // let xiva_sell: number = 0;
+    // let xgross_sell: number = 0;
   
-    if (this.carSellForm.get('net_sell')?.value === null) {
-      xnet_sell = 0;
-    } else {
-      xnet_sell = Number(this.carSellForm.get('net_sell')?.value);
-    }
+    // if (this.carSellForm.get('net_sell')?.value === null) {
+    //   xnet_sell = 0;
+    // } else {
+    //   xnet_sell = Number(this.carSellForm.get('net_sell')?.value);
+    // }
 
-    if (this.carSellForm.get('iva_sell')?.value === null) {
-      xiva_sell = 0;
-    } else {
-      xiva_sell = Number(this.carSellForm.get('iva_sell')?.value);
-    }
+    // if (this.carSellForm.get('iva_sell')?.value === null) {
+    //   xiva_sell = 0;
+    // } else {
+    //   xiva_sell = Number(this.carSellForm.get('iva_sell')?.value);
+    // }
 
-    if (this.carSellForm.get('gross_sell')?.value === null) {
-      xgross_sell = 0;
-    } else {
-      xgross_sell = Number(this.carSellForm.get('gross_sell')?.value);
-    }
+    // if (this.carSellForm.get('gross_sell')?.value === null) {
+    //   xgross_sell = 0;
+    // } else {
+    //   xgross_sell = Number(this.carSellForm.get('gross_sell')?.value);
+    // }
+
+    // const datos = {
+    //   ...this.carSellForm.value,
+    //   gross_sell: xgross_sell.toFixed(this.total_decimales),
+    //   net_sell: xnet_sell.toFixed(this.total_decimales),
+    //   iva_sell: xiva_sell.toFixed(this.total_decimales),
+    // };
+
 
     const datos = {
       ...this.carSellForm.value,
-      gross_sell: xgross_sell.toFixed(this.total_decimales),
-      net_sell: xnet_sell.toFixed(this.total_decimales),
-      iva_sell: xiva_sell.toFixed(this.total_decimales),
+      gross_sell:this.calculos.parseGermanNumber(this.carSellForm.get('gross_sell')?.value),
+      net_sell: this.calculos.parseGermanNumber(this.carSellForm.get('net_sell')?.value),
+      iva_sell: this.calculos.parseGermanNumber(this.carSellForm.get('iva_sell')?.value),
     };
+
+ 
+
+
 
     const id = this.car_data?.id;
 
@@ -1169,7 +1219,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.focus_gross_sell = false;
     this.focus_iva = false;
 
-    this.carSellForm.updateValueAndValidity();
+    //this.carSellForm.updateValueAndValidity();
 
     if (!this.carSellForm.valid) {
       console.log('Error in form: carSellForm');
@@ -1185,8 +1235,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     //Invoice number
-    const valorFormularioInvoice_Number =
-      this.carSellForm.get('invoice_number')!.value;
+    const valorFormularioInvoice_Number = this.carSellForm.get('invoice_number')!.value;
+
+    //console.log("Invoice number nulo")
     if (this.selected_tab == 0) {
       //  if (valorFormularioInvoice_Number === null) {
       //  this.notificationService.riseNotification({
@@ -1219,26 +1270,24 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         //2 --- si no existe creo tupla nueva en carSellData si existe lo modifico
         if (data === undefined) {
           //this.carSellForm.value
-          this.requestService
-            .Post(this.apiHelperService.carsSellURL, datos)
-            .subscribe((Datos_Salva) => {
+          this.requestService.Post(this.apiHelperService.carsSellURL, datos).subscribe((Datos_Salva) => {
               //Solo se elimina el carro cuando se crea el invoice number
 
               
               this.car_selled_id = Datos_Salva.data.id;
 
-              let texto_mensaje = '';
-              if (this.selected_tab == 0) {
-                // texto_mensaje = 'Neuwagen eingelagert verkauft';
-              } else {
-                // texto_mensaje = 'Kaufvertrag erstellt';
-              }
+              // let texto_mensaje = '';
+              // if (this.selected_tab == 0) {
+              //   // texto_mensaje = 'Neuwagen eingelagert verkauft';
+              // } else {
+              //   // texto_mensaje = 'Kaufvertrag erstellt';
+              // }
 
-              texto_mensaje = 'gespeichert';
+              // texto_mensaje = 'gespeichert';
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: texto_mensaje,
+                data: 'gespeichert',
               });
 
               if (crear_invoice) {
@@ -1264,18 +1313,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
               //Actualizar el carro -- campo selled = true
               this.actualizarCarSelled(this.carSellForm.value.car, false);
 
-              let texto_mensaje = '';
-              if (this.selected_tab == 0) {
-                //  texto_mensaje = 'Fahrzeug verkauft';
-              } else {
-                //  texto_mensaje = 'Kaufvertrag erstellt';
-              }
+              // let texto_mensaje = '';
+              // if (this.selected_tab == 0) {
+              //   //  texto_mensaje = 'Fahrzeug verkauft';
+              // } else {
+              //   //  texto_mensaje = 'Kaufvertrag erstellt';
+              // }
 
-              texto_mensaje = 'gespeichert';
+              // texto_mensaje = 'gespeichert';
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: texto_mensaje,
+                data: 'gespeichert',
               });
 
               if (crear_invoice) {

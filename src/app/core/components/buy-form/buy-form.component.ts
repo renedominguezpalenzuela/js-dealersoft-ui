@@ -80,6 +80,7 @@ import {CalculosService} from './../../../servicios/calculos.service';
     },
   ],
 })
+
 export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_net_buy = false;
   focus_gross_buy = false;
@@ -388,15 +389,12 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         
 
-        console.log('IVA');
-        console.log(value);
+     
 
         let vGross_buy = netto + value;
         let vNetto = netto;
 
-        console.log('Brutto');
-        console.log(vGross_buy);
-
+    
         if (!this.isIvaActive) {
           netto = this.carBuyForm.get('net_buy')?.value;
           vGross_buy = 0;
@@ -638,7 +636,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       iva_buy: this.calculos.parseGermanNumber(this.carBuyForm.get('iva_buy')!.value),
     }  
 
-    console.log(datos_formulario)
+    //console.log(datos_formulario)
 
 
     //-------0) Actualizar IVA y A25 en CAR con valores del formulario
@@ -885,9 +883,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         var strvalue =this.calculos.createGermmanNumber(strvalue1)
          //parseFloat(strvalue1).toFixed(2);
 
-     console.log("Ss")
-     console.log(value)
-     console.log(strvalue)
+
      
 
     switch (event.target.name) {

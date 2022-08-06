@@ -49,6 +49,8 @@ import {
 
 import 'moment/locale/de';
 
+import {CalculosService} from './../../../servicios/calculos.service';
+
 @Component({
   selector: 'app-new-bill',
   templateUrl: './new-bill.component.html',
@@ -98,10 +100,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     client: [null, [Validators.required]],
     a25: [true, [Validators.required]],
     iva: [false, [Validators.required]],
-    places: this.formBuilder.array(
-      [],
-      [Validators.required, Validators.minLength(1)]
-    ),
+    places: this.formBuilder.array([], [Validators.required, Validators.minLength(1)] ),
     owner: [null, [Validators.required]],
     car_sell_data:[null],
     car:[null]
@@ -143,7 +142,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
     private readonly createInvoice: CreateInvoiceService,
     private readonly httpClient: HttpClient,
     private _adapter: DateAdapter<any>,
-    @Inject(MAT_DATE_LOCALE) private _locale: string
+    @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private readonly calculos: CalculosService
   ) {
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
   }
@@ -213,6 +213,8 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
             //Adicionando nuevos articulo
             this.invoice_data.places.map((unDato: any) => {
+          
+
               this.addArticlesWidtData(unDato);
             });
 
@@ -273,8 +275,28 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
   public submit() {
     if (this.newInvoiceForm.valid) {
+
+      let datosInvoice = {
+        ...this.newInvoiceForm.value,
+      }
+
+      let articulos:any=[];
+
+      datosInvoice.places.map((unArticulo:any)=>{
+
+        unArticulo.unit_price = this.calculos.parseGermanNumber( unArticulo.unit_price);
+        articulos.push(unArticulo);
+      });
+      
+
+      datosInvoice.places = articulos;
+     
+
+
+
+
       this.requestService
-        .Post(this.apiHelperService.invoicesURL, this.newInvoiceForm.value)
+        .Post(this.apiHelperService.invoicesURL, datosInvoice)
         .subscribe((datos) => {
           this.notificationService.riseNotification({
             color: 'success',
@@ -424,8 +446,10 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.articles.push(articleForm);
 
+
+
     if (datos) {
-      articleForm.patchValue({ ...datos });
+      articleForm.patchValue({ ...datos, unit_price: this.calculos.createGermmanNumber(datos.unit_price) });
     }
   };
 
@@ -468,11 +492,11 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           ...data,
           client: data?.client?.data?.id,
         });
-        this.newInvoiceForm.patchValue({
-          gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
-          net_buy: data?.net_buy?.toFixed(this.total_decimales),
-          iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
-        });
+        // this.newInvoiceForm.patchValue({
+        //   gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
+        //   net_buy: data?.net_buy?.toFixed(this.total_decimales),
+        //   iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
+        // });
         this.newInvoiceForm.updateValueAndValidity();
       });
   }
@@ -794,5 +818,20 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
   
      
     });
+  }
+
+
+  public actualizarValor(event:any) {
+
+    this.articles.controls.map((unFormulario:any)=>{
+
+      const datos = unFormulario.value; 
+      
+      unFormulario.patchValue({ ...datos, unit_price: this.calculos.createGermmanNumber(datos.unit_price) });
+      
+
+    })
+
+   
   }
 }

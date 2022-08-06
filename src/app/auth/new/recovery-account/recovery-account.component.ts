@@ -24,7 +24,7 @@ export class RecoveryAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("SSSS")
+    
   }
 
   public hasError = (input: string): boolean => {
