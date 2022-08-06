@@ -12,7 +12,7 @@ import localeEnDeExtra from '@angular/common/locales/extra/en-DE';
 import { registerLocaleData } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CreateInvoiceService } from './servicios/create-invoice.service';
-import { NumerosService } from './servicios/numeros.service';
+import { CalculosService } from './servicios/calculos.service';
 
 
 
@@ -39,7 +39,7 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
   ],
   providers: [
     CreateInvoiceService,
-    NumerosService,
+    CalculosService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,

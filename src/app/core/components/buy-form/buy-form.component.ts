@@ -41,7 +41,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 
-import {NumerosService} from './../../../servicios/numeros.service';
+import {CalculosService} from './../../../servicios/calculos.service';
 
 
 
@@ -118,7 +118,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   // public factorIva: number = 0.1597;
 
   //public factorNrutto: number = 0.81;
-  public factorIva: number = 0.19;
+ 
   @Input() public carsOptions: Car[] = [];
   @Input() public clientsOptions: Customer[] = [];
   public filteredOptions: Customer[] = [];
@@ -139,7 +139,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly httpClient: HttpClient,
-    private readonly numeros: NumerosService
+    private readonly calculos: CalculosService
   ) {
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
   }
@@ -159,35 +159,61 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public calcularIVA() {
-    let vNet_buy: number = this.carBuyForm.get('net_buy')!.value;
-    let vGross_buy: number = this.carBuyForm.get('gross_buy')!.value;
-    let vIva: number = this.carBuyForm.get('iva')!.value;
 
-    if (vNet_buy != null && vNet_buy != 0) {
-      vIva = Number(vNet_buy * this.factorIva);
-      vGross_buy = Number(vNet_buy) + vIva;
-      this.carBuyForm.patchValue({
-        //iva_buy: vIva.toFixed(this.total_decimales),
-        //gross_buy: vGross_buy.toFixed(this.total_decimales),
-        // this.numeros.createGermmanNumber
 
-        iva_buy: this.numeros.createGermmanNumber(vIva),
-        gross_buy: this.numeros.createGermmanNumber(vGross_buy)
+    //  let vNet_buy: number =Number(this.calculos.parseGermanNumber(this.carBuyForm.get('net_buy')!.value));
+    //  let vGross_buy: number =Number(this.calculos.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value));
+    //  let vIva: number = Number(this.calculos.parseGermanNumber(this.carBuyForm.get('iva')!.value));
 
-      });
-    } else {
-      if (vGross_buy != null && vGross_buy != 0) {
-        vNet_buy = vGross_buy / (1 + this.factorIva);
-        vIva = vGross_buy - vNet_buy;
-        this.carBuyForm.patchValue({
-          // iva_buy: vIva.toFixed(this.total_decimales),
-          // net_buy: vNet_buy.toFixed(this.total_decimales),
-          iva_buy: this.numeros.createGermmanNumber(vIva),
-          net_buy: this.numeros.createGermmanNumber(vNet_buy)
-        });
-      }
-    }
+    let vGross_buy: number =this.calculos.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value);
+    let vNet_buy: number =this.calculos.parseGermanNumber(this.carBuyForm.get('net_buy')!.value);
+    let vIva: number = this.calculos.parseGermanNumber(this.carBuyForm.get('iva_buy')!.value);
+
+
+    const respuesta = this.calculos.calcularIVA(vNet_buy, vGross_buy, vIva);
+
+ 
+    this.carBuyForm.patchValue({ 
+      net_buy: this.calculos.createGermmanNumber(respuesta.net),
+      gross_buy:this.calculos.createGermmanNumber( respuesta.gross),
+      iva_buy:this.calculos.createGermmanNumber( respuesta.iva)
+    })
+
     this.carBuyForm.updateValueAndValidity();
+
+
+    // let vNet_buy: number =Number(this.calculos.parseGermanNumber(this.carBuyForm.get('net_buy')!.value));
+    // let vGross_buy: number =Number(this.calculos.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value));
+    // let vIva: number = Number(this.calculos.parseGermanNumber(this.carBuyForm.get('iva')!.value));
+
+    // console.log("Calcular IVA")
+    // console.log(vNet_buy)
+
+    // if (vNet_buy != null && vNet_buy != 0) {
+    //   vIva = vNet_buy * this.factorIva);
+    //   vGross_buy = Number(vNet_buy) + vIva;
+    //   this.carBuyForm.patchValue({
+    //     //iva_buy: vIva.toFixed(this.total_decimales),
+    //     //gross_buy: vGross_buy.toFixed(this.total_decimales),
+    //     // this.calculos.createGermmanNumber
+
+    //     iva_buy: this.calculos.createGermmanNumber(vIva),
+    //     gross_buy: this.calculos.createGermmanNumber(vGross_buy)
+
+    //   });
+    // } else {
+    //   if (vGross_buy != null && vGross_buy != 0) {
+    //     vNet_buy = vGross_buy / (1 + this.factorIva);
+    //     vIva = vGross_buy - vNet_buy;
+    //     this.carBuyForm.patchValue({
+    //       // iva_buy: vIva.toFixed(this.total_decimales),
+    //       // net_buy: vNet_buy.toFixed(this.total_decimales),
+    //       iva_buy: this.calculos.createGermmanNumber(vIva),
+    //       net_buy: this.calculos.createGermmanNumber(vNet_buy)
+    //     });
+    //   }
+    // }
+    //this.carBuyForm.updateValueAndValidity();
   }
 
   public activarIVA() {
@@ -285,11 +311,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         // const value: number = this.carBuyForm.get('net_buy')!.value;
         //const value = this.carBuyForm.get('net_buy')!.value;
 
-        const value: number = this.numeros.parseGermanNumber(this.carBuyForm.get('net_buy')!.value);
+        const value: number = this.calculos.parseGermanNumber(this.carBuyForm.get('net_buy')!.value);
 
         
 
-        let vIva = value * this.factorIva;
+        let vIva = value * this.calculos.factorIva;
         let vGross_buy = value + vIva;
 
         if (!this.isIvaActive) {
@@ -301,8 +327,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           // iva_buy: vIva.toFixed(this.total_decimales),
           // gross_buy: vGross_buy.toFixed(this.total_decimales),
 
-          iva_buy: this.numeros.createGermmanNumber(vIva),
-          gross_buy: this.numeros.createGermmanNumber(vGross_buy),
+          iva_buy: this.calculos.createGermmanNumber(vIva),
+          gross_buy: this.calculos.createGermmanNumber(vGross_buy),
 
         });
 
@@ -321,8 +347,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         //  const iva  = (value * this.factorIva) / (1 + this.factorIva);
 
 
-         const value: number = this.numeros.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value);
-         const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+         const value: number = this.calculos.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value);
+         const iva: number = (value * this.calculos.factorIva) / (1 + this.calculos.factorIva);
 
          
 
@@ -335,8 +361,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carBuyForm.patchValue({
-          iva_buy:this.numeros.createGermmanNumber(vIva),
-          net_buy:this.numeros.createGermmanNumber(vNet_buy)
+          iva_buy:this.calculos.createGermmanNumber(vIva),
+          net_buy:this.calculos.createGermmanNumber(vNet_buy)
 
           // iva_buy: vIva.toFixed(this.total_decimales),
           // net_buy: vNet_buy.toFixed(this.total_decimales),
@@ -357,8 +383,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
         
 
-         const value: number = this.numeros.parseGermanNumber(this.carBuyForm.get('iva_buy')?.value);
-         let netto: number = value / this.factorIva;
+         const value: number = this.calculos.parseGermanNumber(this.carBuyForm.get('iva_buy')?.value);
+         let netto: number = value / this.calculos.factorIva;
 
         
 
@@ -377,8 +403,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carBuyForm.patchValue({
-          gross_buy:this.numeros.createGermmanNumber(vGross_buy),
-          net_buy: this.numeros.createGermmanNumber(vNetto)
+          gross_buy:this.calculos.createGermmanNumber(vGross_buy),
+          net_buy: this.calculos.createGermmanNumber(vNetto)
 
           // gross_buy: vGross_buy.toFixed(this.total_decimales),
           // net_buy: vNetto.toFixed(this.total_decimales),
@@ -443,9 +469,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             // net_buy: data?.net_buy?.toFixed(this.total_decimales),
             // iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
 
-            gross_buy: this.numeros.createGermmanNumber(data?.gross_buy),
-            net_buy: this.numeros.createGermmanNumber(data?.net_buy),
-            iva_buy: this.numeros.createGermmanNumber(data?.iva_buy),
+            gross_buy: this.calculos.createGermmanNumber(data?.gross_buy),
+            net_buy: this.calculos.createGermmanNumber(data?.net_buy),
+            iva_buy: this.calculos.createGermmanNumber(data?.iva_buy),
 
           });
 
@@ -599,17 +625,17 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     //   net_buy: Number(this.carBuyForm.get('net_buy')!.value),
     //   iva_buy: Number(this.carBuyForm.get('iva_buy')!.value),
 
-    //   // gross_buy: this.numeros.createGermmanNumber(this.carBuyForm.get('gross_buy')!.value),
-    //   // net_buy: this.numeros.createGermmanNumber(this.carBuyForm.get('net_buy')!.value),
-    //   // iva_buy: this.numeros.createGermmanNumber(this.carBuyForm.get('iva_buy')!.value),
+    //   // gross_buy: this.calculos.createGermmanNumber(this.carBuyForm.get('gross_buy')!.value),
+    //   // net_buy: this.calculos.createGermmanNumber(this.carBuyForm.get('net_buy')!.value),
+    //   // iva_buy: this.calculos.createGermmanNumber(this.carBuyForm.get('iva_buy')!.value),
       
     // });
 
     const datos_formulario =  { 
       ...this.carBuyForm.value,
-      gross_buy: this.numeros.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value),
-      net_buy: this.numeros.parseGermanNumber(this.carBuyForm.get('net_buy')!.value),
-      iva_buy: this.numeros.parseGermanNumber(this.carBuyForm.get('iva_buy')!.value),
+      gross_buy: this.calculos.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value),
+      net_buy: this.calculos.parseGermanNumber(this.carBuyForm.get('net_buy')!.value),
+      iva_buy: this.calculos.parseGermanNumber(this.carBuyForm.get('iva_buy')!.value),
     }  
 
     console.log(datos_formulario)
@@ -855,8 +881,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     
 
     // var strvalue = parseFloat(value).toFixed(2);
-     var strvalue1 = this.numeros.parseGermanNumber(value);
-        var strvalue =this.numeros.createGermmanNumber(strvalue1)
+     var strvalue1 = this.calculos.parseGermanNumber(value);
+        var strvalue =this.calculos.createGermmanNumber(strvalue1)
          //parseFloat(strvalue1).toFixed(2);
 
      console.log("Ss")
