@@ -5413,6 +5413,11 @@ parent-module@^1.0.0:
   dependencies:
     callsites "^3.0.0"
 
+parse-decimal-number@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/parse-decimal-number/-/parse-decimal-number-1.0.0.tgz#f9d48399ae98f207935fd13dcbbc87654d865a2f"
+  integrity sha512-EwPYS1ZGFGan8TFZaQSlaoxEdNrdPR+3lO2Ie8ZW0wb9ZUWGXQwR4chzYfTc2qq4SsB8isGIlp5gPKENFMLIgw==
+
 parse-json@^5.0.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-5.2.0.tgz#c76fc66dee54231c962b22bcc8a72cf2f99753cd"

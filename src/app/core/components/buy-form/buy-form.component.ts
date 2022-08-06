@@ -24,21 +24,24 @@ import { ExportType } from '@core/services/request.service';
 import * as saveAs from 'file-saver';
 import * as moment from 'moment';
 
-import { Inject} from '@angular/core';
+import { Inject } from '@angular/core';
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import 'moment/locale/de';
-
 
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 
-
+import {NumerosService} from './../../../servicios/numeros.service';
 
 
 
@@ -50,7 +53,7 @@ import { forkJoin } from 'rxjs';
   providers: [
     // The locale would typically be provided on the root module of your application. We do it at
     // the component level here, due to limitations of our example generation script.
-    {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
 
     // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
     // `MatMomentDateModule` in your applications root module. We provide it at the component level
@@ -76,8 +79,6 @@ import { forkJoin } from 'rxjs';
       },
     },
   ],
-
-
 })
 export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_net_buy = false;
@@ -95,24 +96,8 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() public car_data: Car | undefined;
   actualizando_radio_buttons = false;
 
-  
   @Input() public boton_salvar_disabled!: Boolean | undefined;
 
-  /*
-  campo del formulario car_name
-  en html:
-     <input formControlName="car_name" matInput readonly="true" >
-
-  car_name: [null, [Validators.required]],
-     null --- valor inicial?
-     [Validators.required] --- campo obligatorio
-
-  a25: [true, [Validators.required]],
-  true -- -valor inicial = true
-
-  [Validators.min(0)]  --- valor minimo que acepta el campo
-
-*/
   public carBuyForm = this.formBuilder.group({
     car_name: [null, [Validators.required]],
     car: [null, [Validators.required]],
@@ -123,10 +108,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     iva_buy: [{ value: null, disabled: true }, [Validators.min(0)]],
     net_buy: [{ value: null, disabled: false }, [Validators.min(0)]],
     gross_buy: [{ value: null, disabled: true }, [Validators.min(0)]],
-    // net_buy_adjustment: [null, [Validators.required, Validators.min(0)]],
-    //  net_buy_adjustment: [null, [ Validators.min(0)]],
-    //year_interest_rate: [null, [Validators.required, Validators.min(0)]],
-    // total: [null, [Validators.required, Validators.min(0)]],
+
     buy_date: [null, [Validators.required]],
     a25: [true, [Validators.required]], //Check Box
     iva: [false, [Validators.required]], //Check Box
@@ -156,50 +138,25 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly httpClient: HttpClient
-
+    private readonly httpClient: HttpClient,
+    private readonly numeros: NumerosService
   ) {
-
     this.jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
-
-
-    
   }
 
-  // public calcularIVA() {
-
-  //   const vNet_buy: number = this.carBuyForm.get('net_buy')!.value;
-
-  //   let vIva: number = Number(vNet_buy * this.factorIva);
-  //   let vGross_buy: number =0;
-  //   vGross_buy =  Number(vNet_buy) + vIva;
-
-  //   if (!this.isIvaActive) {
-  //     vIva = 0;
-  //     vGross_buy = 0;
-  //   }
-
-  //   this.carBuyForm.patchValue({
-  //     iva_buy: vIva.toFixed(this.total_decimales),
-  //     gross_buy: vGross_buy.toFixed(this.total_decimales),
-  //   });
-
-  //   this.carBuyForm.updateValueAndValidity();
-  // }
-
   desHabilitarControles() {
-    for (const field in this.carBuyForm.controls) { // 'field' is a string
+    for (const field in this.carBuyForm.controls) {
+      // 'field' is a string
       this.carBuyForm.controls[field].disable();
     }
-	}
+  }
 
-  
   habilitarControles() {
-    for (const field in this.carBuyForm.controls) { // 'field' is a string
+    for (const field in this.carBuyForm.controls) {
+      // 'field' is a string
       this.carBuyForm.controls[field].enable();
     }
   }
-
 
   public calcularIVA() {
     let vNet_buy: number = this.carBuyForm.get('net_buy')!.value;
@@ -210,16 +167,23 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       vIva = Number(vNet_buy * this.factorIva);
       vGross_buy = Number(vNet_buy) + vIva;
       this.carBuyForm.patchValue({
-        iva_buy: vIva.toFixed(this.total_decimales),
-        gross_buy: vGross_buy.toFixed(this.total_decimales),
+        //iva_buy: vIva.toFixed(this.total_decimales),
+        //gross_buy: vGross_buy.toFixed(this.total_decimales),
+        // this.numeros.createGermmanNumber
+
+        iva_buy: this.numeros.createGermmanNumber(vIva),
+        gross_buy: this.numeros.createGermmanNumber(vGross_buy)
+
       });
     } else {
       if (vGross_buy != null && vGross_buy != 0) {
         vNet_buy = vGross_buy / (1 + this.factorIva);
         vIva = vGross_buy - vNet_buy;
         this.carBuyForm.patchValue({
-          iva_buy: vIva.toFixed(this.total_decimales),
-          net_buy: vNet_buy.toFixed(this.total_decimales),
+          // iva_buy: vIva.toFixed(this.total_decimales),
+          // net_buy: vNet_buy.toFixed(this.total_decimales),
+          iva_buy: this.numeros.createGermmanNumber(vIva),
+          net_buy: this.numeros.createGermmanNumber(vNet_buy)
         });
       }
     }
@@ -272,9 +236,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     this._locale = 'de';
     this._adapter.setLocale(this._locale);
 
-   
- 
-
     //Cambios en el valor del checkbox a25
     this.carBuyForm.get('iva')!.valueChanges.subscribe((change: boolean) => {
       if (this.boton_salvar_disabled) return;
@@ -301,7 +262,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       if (change) {
         this.a25_activo = true;
         this.desactivarIVA();
-        this.carBuyForm.patchValue({ iva: false, net_buy: null, iva_buy: null });
+        this.carBuyForm.patchValue({
+          iva: false,
+          net_buy: null,
+          iva_buy: null,
+        });
       } else {
         this.activarIVA();
         this.carBuyForm.patchValue({ iva: true });
@@ -310,13 +275,19 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.actualizando_radio_buttons = false;
     });
 
+    //--------------------------------------------------------------------------------------------------
+    //  Calculos
+    //--------------------------------------------------------------------------------------------------
     this.carBuyForm.get('net_buy')!.valueChanges.subscribe(() => {
       if (this.boton_salvar_disabled) return;
-      
-     
 
       if (this.focus_net_buy) {
-        const value: number = this.carBuyForm.get('net_buy')!.value;
+        // const value: number = this.carBuyForm.get('net_buy')!.value;
+        //const value = this.carBuyForm.get('net_buy')!.value;
+
+        const value: number = this.numeros.parseGermanNumber(this.carBuyForm.get('net_buy')!.value);
+
+        
 
         let vIva = value * this.factorIva;
         let vGross_buy = value + vIva;
@@ -327,8 +298,12 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carBuyForm.patchValue({
-          iva_buy: vIva.toFixed(this.total_decimales),
-          gross_buy: vGross_buy.toFixed(this.total_decimales),
+          // iva_buy: vIva.toFixed(this.total_decimales),
+          // gross_buy: vGross_buy.toFixed(this.total_decimales),
+
+          iva_buy: this.numeros.createGermmanNumber(vIva),
+          gross_buy: this.numeros.createGermmanNumber(vGross_buy),
+
         });
 
         this.carBuyForm.updateValueAndValidity();
@@ -337,11 +312,19 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.carBuyForm.get('gross_buy')!.valueChanges.subscribe(() => {
       if (this.boton_salvar_disabled) return;
-      
 
       if (this.focus_gross_buy) {
-        const value: number = this.carBuyForm.get('gross_buy')!.value;
-        const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+        // const value: number = this.carBuyForm.get('gross_buy')!.value;
+        // const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+
+        //  const value  = this.carBuyForm.get('gross_buy')!.value;
+        //  const iva  = (value * this.factorIva) / (1 + this.factorIva);
+
+
+         const value: number = this.numeros.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value);
+         const iva: number = (value * this.factorIva) / (1 + this.factorIva);
+
+         
 
         let vNet_buy = value - iva;
         let vIva = iva;
@@ -352,8 +335,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carBuyForm.patchValue({
-          iva_buy: vIva.toFixed(this.total_decimales),
-          net_buy: vNet_buy.toFixed(this.total_decimales),
+          iva_buy:this.numeros.createGermmanNumber(vIva),
+          net_buy:this.numeros.createGermmanNumber(vNet_buy)
+
+          // iva_buy: vIva.toFixed(this.total_decimales),
+          // net_buy: vNet_buy.toFixed(this.total_decimales),
         });
         this.carBuyForm.updateValueAndValidity();
       }
@@ -361,14 +347,29 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.carBuyForm.get('iva_buy')!.valueChanges.subscribe(() => {
       if (this.boton_salvar_disabled) return;
-      
 
       if (this.focus_iva) {
-        const value: number = this.carBuyForm.get('iva_buy')?.value;
-        let netto: number = value / this.factorIva;
+        // const value: number = this.carBuyForm.get('iva_buy')?.value;
+        // let netto: number = value / this.factorIva;
+
+        //  const value =this.carBuyForm.get('iva_buy')?.value;       
+        //  let netto = value / this.factorIva;
+
+        
+
+         const value: number = this.numeros.parseGermanNumber(this.carBuyForm.get('iva_buy')?.value);
+         let netto: number = value / this.factorIva;
+
+        
+
+        console.log('IVA');
+        console.log(value);
 
         let vGross_buy = netto + value;
         let vNetto = netto;
+
+        console.log('Brutto');
+        console.log(vGross_buy);
 
         if (!this.isIvaActive) {
           netto = this.carBuyForm.get('net_buy')?.value;
@@ -376,8 +377,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         this.carBuyForm.patchValue({
-          gross_buy: vGross_buy.toFixed(this.total_decimales),
-          net_buy: vNetto.toFixed(this.total_decimales),
+          gross_buy:this.numeros.createGermmanNumber(vGross_buy),
+          net_buy: this.numeros.createGermmanNumber(vNetto)
+
+          // gross_buy: vGross_buy.toFixed(this.total_decimales),
+          // net_buy: vNetto.toFixed(this.total_decimales),
         });
 
         this.carBuyForm.updateValueAndValidity();
@@ -394,29 +398,18 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-
-    
-   
     // this.boton_salvar_disabled=true;
-   if (this.car_data?.attributes.can_save) {
-//    this.boton_salvar_disabled=false;
-    this.habilitarControles();
-   } else { 
-  //  this.boton_salvar_disabled=true; 
-    this.desHabilitarControles()
-   }
+    if (this.car_data?.attributes.can_save) {
+      //    this.boton_salvar_disabled=false;
+      this.habilitarControles();
+    } else {
+      //  this.boton_salvar_disabled=true;
+      this.desHabilitarControles();
+    }
 
-   if ( this.boton_salvar_disabled===true ) {
-    this.desHabilitarControles()
-   }
-
-
-
- 
-
-
-
+    if (this.boton_salvar_disabled === true) {
+      this.desHabilitarControles();
+    }
 
     if (changes?.['car_data'] && this.car_data) {
       //Actualizar el nombre del carro en el formulario  a partir del valor recibido desde el parent
@@ -446,21 +439,19 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           });
 
           this.carBuyForm.patchValue({
-            gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
-            net_buy: data?.net_buy?.toFixed(this.total_decimales),
-            iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
+            // gross_buy: data?.gross_buy?.toFixed(this.total_decimales),
+            // net_buy: data?.net_buy?.toFixed(this.total_decimales),
+            // iva_buy: data?.iva_buy?.toFixed(this.total_decimales),
+
+            gross_buy: this.numeros.createGermmanNumber(data?.gross_buy),
+            net_buy: this.numeros.createGermmanNumber(data?.net_buy),
+            iva_buy: this.numeros.createGermmanNumber(data?.iva_buy),
+
           });
 
           this.carBuyForm.updateValueAndValidity();
 
           this.a25_activo = this.carBuyForm.get('a25')?.value;
-
-          // this.carBuyForm.patchValue({
-          //   iva_buy: data.iva_buy.toFixed(this.total_decimales),
-          //   gross_buy: vGross_buy.toFixed(this.total_decimales),
-          //   net_buy: vNetto.toFixed(this.total_decimales),
-          // });
-
         });
     }
 
@@ -501,7 +492,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
                 operator: FilterOperator.$contains,
                 value: $event.target.value,
                 option: FilterDeepOption.$or,
-              }
+              },
             ],
           });
           this.requestService
@@ -523,12 +514,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //*************************************************************************************************
   public submit() {
     //Solo salvar, no imprimir
-    
-    
+
     this.salvarEImprimir(false);
   }
-
-  
 
   public addCustomer = ($event: MouseEvent) => {
     $event.preventDefault();
@@ -542,8 +530,6 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe((out: boolean | { body: any }) => {
         if (typeof out !== 'boolean' && typeof out !== 'undefined') {
           const subscription = (res: any) => {
-
-            
             //New customer saved
             this.notificationService.riseNotification({
               color: 'success',
@@ -551,8 +537,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             });
             this.clientsOptions.push(res.data);
             //this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
-            this.autoComplete!.nativeElement.value =res.data.attributes.company_name? res.data.attributes.company_name : `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
-  
+            this.autoComplete!.nativeElement.value = res.data.attributes
+              .company_name
+              ? res.data.attributes.company_name
+              : `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
+
             this.carBuyForm.patchValue({ client: res.data.id });
           };
 
@@ -570,37 +559,21 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       );
       if (customer)
         //return `${customer.attributes.first_name} ${customer.attributes.last_name}`;
-        return  customer.attributes.company_name? customer.attributes.company_name : `${customer.attributes.first_name} ${customer.attributes.last_name}`;
+        return customer.attributes.company_name
+          ? customer.attributes.company_name
+          : `${customer.attributes.first_name} ${customer.attributes.last_name}`;
       else return '';
     }
     return '';
   };
 
   private salvarEImprimir(imprimir: any) {
-    //Tengo el id del carro en la tabla cars, no es el mismo
-
-    const id = this.car_data?.id;
+   
 
   
+  
 
-    //Convirtiendo a 2 valores decimales
-    this.focus_net_buy = false;
-    this.focus_gross_buy = false;
-    this.focus_iva = false;
-
-    this.carBuyForm.patchValue({
-      gross_buy: Number(this.carBuyForm.get('gross_buy')!.value).toFixed(
-        this.total_decimales
-      ),
-      net_buy: Number(this.carBuyForm.get('net_buy')!.value).toFixed(
-        this.total_decimales
-      ),
-      iva_buy: Number(this.carBuyForm.get('iva_buy')!.value).toFixed(
-        this.total_decimales
-      ),
-    });
-
-    this.carBuyForm.updateValueAndValidity();
+  //  this.carBuyForm.updateValueAndValidity();
 
     if (!this.carBuyForm.valid) {
       //Error en datos
@@ -613,8 +586,41 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
 
-    //-------0) Actualizar IVA y A25 en CAR con valores del formulario   
-    this.actualizarCarIVA_A25(this.car_data?.id, this.a25_activo, !this.a25_activo)
+     //Tengo el id del carro en la tabla cars, no es el mismo
+    const id = this.car_data?.id;
+
+    //Convirtiendo a 2 valores decimales
+    this.focus_net_buy = false;
+    this.focus_gross_buy = false;
+    this.focus_iva = false;
+
+    // this.carBuyForm.patchValue({
+    //   gross_buy: Number(this.carBuyForm.get('gross_buy')!.value),
+    //   net_buy: Number(this.carBuyForm.get('net_buy')!.value),
+    //   iva_buy: Number(this.carBuyForm.get('iva_buy')!.value),
+
+    //   // gross_buy: this.numeros.createGermmanNumber(this.carBuyForm.get('gross_buy')!.value),
+    //   // net_buy: this.numeros.createGermmanNumber(this.carBuyForm.get('net_buy')!.value),
+    //   // iva_buy: this.numeros.createGermmanNumber(this.carBuyForm.get('iva_buy')!.value),
+      
+    // });
+
+    const datos_formulario =  { 
+      ...this.carBuyForm.value,
+      gross_buy: this.numeros.parseGermanNumber(this.carBuyForm.get('gross_buy')!.value),
+      net_buy: this.numeros.parseGermanNumber(this.carBuyForm.get('net_buy')!.value),
+      iva_buy: this.numeros.parseGermanNumber(this.carBuyForm.get('iva_buy')!.value),
+    }  
+
+    console.log(datos_formulario)
+
+
+    //-------0) Actualizar IVA y A25 en CAR con valores del formulario
+    this.actualizarCarIVA_A25(
+      this.car_data?.id,
+      this.a25_activo,
+      !this.a25_activo
+    );
 
     //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
     let query = this.requestService.generateQuery({
@@ -637,7 +643,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         //2 --- si no existe creo uno nuevo si existe lo modifico
         if (data === undefined) {
           this.requestService
-            .Post(this.apiHelperService.carsBuyURL, this.carBuyForm.value)
+            .Post(this.apiHelperService.carsBuyURL, datos_formulario)
             .subscribe(() => {
               if (imprimir) {
                 this.imprimir();
@@ -657,22 +663,19 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
           //Si ya existe una tupla y a25, debe setearse a null los campos no usados
 
           let datos = {
-            ...this.carBuyForm.value,          
-          }
-          
+            ...datos_formulario,
+          };
+
           if (this.a25_activo) {
             datos = {
               ...datos,
-              net_buy: null, 
-              iva_buy: null
-            }
-         }     
-      
+              net_buy: null,
+              iva_buy: null,
+            };
+          }
+
           this.requestService
-            .Put(
-              this.apiHelperService.carsBuyURL + '/' + id_compra,
-              datos
-            )
+            .Put(this.apiHelperService.carsBuyURL + '/' + id_compra, datos)
             .subscribe(() => {
               if (imprimir) {
                 this.imprimir();
@@ -696,104 +699,80 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       });
   }
 
-
-  
   private generateOptions_TEST = () => {
-    let myjwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTQsImlhdCI6MTY1ODE1OTAyMiwiZXhwIjoxNjYwNzUxMDIyfQ.YmxqFRX7VUgDEkY9YjPZcLu74tfKVyvs6IvO47ese1M"
+    let myjwt =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTQsImlhdCI6MTY1ODE1OTAyMiwiZXhwIjoxNjYwNzUxMDIyfQ.YmxqFRX7VUgDEkY9YjPZcLu74tfKVyvs6IvO47ese1M';
     return {
       params: this.query_user(),
-      headers: new HttpHeaders({ Authorization: `Bearer ${ myjwt }` })
-    }
-  }
+      headers: new HttpHeaders({ Authorization: `Bearer ${myjwt}` }),
+    };
+  };
 
-  
-  private query_user = () => this.requestService.generateQuery({
-    populate: ['logo','user']
-  });
+  private query_user = () =>
+    this.requestService.generateQuery({
+      populate: ['logo', 'user'],
+    });
 
-  private query = () => this.requestService.generateQuery({
-    populate: ['owner', 'client', 'car', 'user', 'logo']
-  });
-
+  private query = () =>
+    this.requestService.generateQuery({
+      populate: ['owner', 'client', 'car', 'user', 'logo'],
+    });
 
   public car_info: any;
   public car_buy_data: any;
-  public logo:any;
-  public me:any;
-  
-  public loadPaginatedData_TEST = (id:any) => {
+  public logo: any;
+  public me: any;
+
+  public loadPaginatedData_TEST = (id: any) => {
     forkJoin([
-
-      this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions_TEST()),           
+      this.httpClient.get<any>(
+        this.apiHelperService.meURL,
+        this.generateOptions_TEST()
+      ),
       // this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ id }`),
-       this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/${ id }`),
+      this.httpClient.get<any>(`${this.apiHelperService.carsURL}/${id}`),
       //this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions_TEST()),
-      
-    ]).subscribe((res:any) => {
-     // this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
-     // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
-     
+    ]).subscribe((res: any) => {
+      // this.car_info = res[0].data2.filter((item: any) => item.id === id)[0];
+      // this.car_buy_data = res[1].data.filter((item: any) => item.attributes.car.data.id === id)[0];
 
-     //if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
+      //if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
 
-     this.me = res[0];
-     let user_id = this.me.id;
+      this.me = res[0];
+      let user_id = this.me.id;
 
+      // this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === user_id)[0];
 
-    // this.logo = res[1].data.filter((item: any) => item.attributes.user.data.id === user_id)[0];
+      this.car_info = res[1];
 
+      this.car_buy_data = this.car_info.data.attributes.buy;
 
+      //http://localhost:1337/api/logos?filters[user][id][$eq]=55&populate=logo
 
-     this.car_info = res[1];
+      this.httpClient
+        .get<any>(
+          `${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`
+        )
+        .subscribe((dato) => {
+          this.logo = dato;
 
-   
-
-
-     this.car_buy_data = this.car_info.data.attributes.buy;
- 
-
-     //http://localhost:1337/api/logos?filters[user][id][$eq]=55&populate=logo
-
-     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
-      (dato)=>{
-       
-        
-
-        this.logo = dato;
-
-   
-    
-
-       // this.image_url=this.logo?.attributes.logo.data.attributes.url;
-       // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
-
-      }
-     )
-
-
+          // this.image_url=this.logo?.attributes.logo.data.attributes.url;
+          // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
+        });
     });
-  }
-
-
+  };
 
   public generatePdf() {
-
     //this.loadPaginatedData_TEST(94);
 
-    
-    if (!this.boton_salvar_disabled) {    
+    if (!this.boton_salvar_disabled) {
       this.salvarEImprimir(true);
     } else {
       this.imprimir();
     }
-
   }
 
   private imprimir = () => {
-
- 
-
-
     let tipo = '/';
     if (this.a25_activo) {
       tipo = 'reports/buy-car/a25';
@@ -833,7 +812,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         option.attributes.first_name.toLowerCase().includes(filterValue) ||
         option.attributes.last_name.toLowerCase().includes(filterValue) ||
         option.attributes.email.toLowerCase().includes(filterValue) ||
-        option.attributes.company_name.toLowerCase().includes(filterValue) 
+        option.attributes.company_name.toLowerCase().includes(filterValue)
     );
   }
 
@@ -869,32 +848,38 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   focusOutFunction(event: any) {
-    var value = event.target.value!;
+    var value:number  = event.target.value!;
 
-    var strvalue = parseFloat(value).toFixed(2);
+
+
+    
+
+    // var strvalue = parseFloat(value).toFixed(2);
+     var strvalue1 = this.numeros.parseGermanNumber(value);
+        var strvalue =this.numeros.createGermmanNumber(strvalue1)
+         //parseFloat(strvalue1).toFixed(2);
+
+     console.log("Ss")
+     console.log(value)
+     console.log(strvalue)
+     
 
     switch (event.target.name) {
       case 'net_buy':
         this.focus_net_buy = false;
-        this.carBuyForm.patchValue({
-          net_buy: strvalue,
-        });
+        this.carBuyForm.patchValue({  net_buy: strvalue });
         break;
 
       case 'gross_buy':
         this.focus_gross_buy = false;
 
-        this.carBuyForm.patchValue({
-          gross_buy: strvalue,
-        });
+        this.carBuyForm.patchValue({  gross_buy: strvalue });
         break;
 
       case 'iva_buy':
         this.focus_iva = false;
 
-        this.carBuyForm.patchValue({
-          iva_buy: strvalue,
-        });
+        this.carBuyForm.patchValue({ iva_buy: strvalue  });
         break;
 
       default:
@@ -917,64 +902,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-
-
   //  this.actualizarCarIVA_A25(this.carSellForm.value.car, true, false);
-  public actualizarCarIVA_A25(carID: any, a25:boolean,  iva: boolean) {
-
+  public actualizarCarIVA_A25(carID: any, a25: boolean, iva: boolean) {
     this.requestService
       .Put(this.apiHelperService.carsURL + '/' + carID, { iva: iva, a25: a25 })
-      .subscribe(() => {
-    
-      });
+      .subscribe(() => {});
   }
 
-
-
-  
-  // public Test_loadPaginatedData = () => {
-  //   forkJoin([
-  //     this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions()),
-  //     this.httpClient.get<any>(`${ this.apiHelperService.carsURL }/?id=${ this.id }`, this.generateOptions()),
-  //     this.httpClient.get<any>(this.apiHelperService.carsBuyURL, this.generateOptions()),
-  //     this.httpClient.get<any>(this.apiHelperService.logosURL, this.generateOptions()),
-      
-  //   ]).subscribe((res:any) => {
-  //     this.me = res[0];
-  //     this.car_info = res[1].data2.filter((item: any) => item.id === this.id)[1];
-     
-  //     this.car_buy_data = res[2].data.filter((item: any) => item.attributes.car.data.id === this.id)[1];
-  //     this.logo = res[3].data.filter((item: any) => item.attributes.user.data.id === res[0].id)[1];
-  //     if (this.logo?.attributes.logo.data.attributes.url) this.showLogo = true;
-  //   });
-  // }
-
-    
-  // public Test_loadPaginatedDataInvoice = () => {
-
-  //   const jwt = <string>this.activatedRoute.snapshot.paramMap.get('jwt');
-
-
-  //   forkJoin([
-  //     this.httpClient.get<any>(this.apiHelperService.meURL, this.generateOptions(jwt)),
-    
-
-      
-      
-  //   ]).subscribe((res:any) => {
-     
-  //     this.me = res[0];
-  //     let user_id = this.me.id;
-
-  //     let showLogo = false;
-  //     let image_url = '';
-
-  //     this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
-  //       (dato)=>{
-  //         image_url=dato?.data[0].attributes.logo.data.attributes.url;                       
-  //         if (image_url)   showLogo = true;        
-  //       });
-
-  //   });
-  // }
 }
