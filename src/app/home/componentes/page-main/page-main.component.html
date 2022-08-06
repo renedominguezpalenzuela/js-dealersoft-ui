@@ -3,14 +3,14 @@
  <app-banner-main></app-banner-main>
 
  
-  <app-second-banner (mensaje)="receiveMessage($event)" [animation]="startAnimation"></app-second-banner>
+  <app-second-banner (mensaje)="receiveMessage($event)" [animation]="startAnimation" [animation_up]="startAnimationUp"></app-second-banner>
  
   <div class="md:block hidden">
     <app-banner-black (mensaje)="receiveMessage($event)"></app-banner-black>
   </div>
 
   <div id="funktionen">
-    <app-section-funktionen (mensaje)="receiveMessage($event)"></app-section-funktionen>
+    <app-section-funktionen (mensaje)="receiveMessage($event)" [rotate]="rotateAnimation"></app-section-funktionen>
   </div>
   <div id="uber">
     <app-uber-section (mensaje)="receiveMessage($event)"></app-uber-section>

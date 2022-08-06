@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="relative mt-6 w-full">
-      <input [type]="showPassword ? 'text' : 'password'" autocomplete="current-password" class="input pl-4 rounded-lg w-full h-14 bg-transparent {{
+      <input autocomplete="current-password" class="input pl-4 rounded-lg w-full h-14 bg-transparent {{
           hasError('password') ? 'input-error' : 'input-primary'
         }}" formControlName="password" minlength="8" placeholder="Passwort" required />
 
@@ -24,7 +24,7 @@
       </span>
     </div>
     <div class="w-full justify-start pl-4 mt-6">
-      <div (click)="togglePwd()" class="flex space-x-4 w-full items-center hover:cursor-pointer">
+      <div (click)="toggleRemember()" class="flex space-x-4 w-full items-center hover:cursor-pointer">
         <span class="border border-[#505050] h-5 w-5 rounded-sm relative">
           <div id="tick-mark" *ngIf="rememberMe"></div>
         </span>
@@ -36,9 +36,6 @@
         <!-- this.router.navigate(['/auth/recovery-account']) -->
          <a class="text-blue-10 text-sm hover:cursor-pointer font-semibold" routerLink="/auth/recovery-account">Passwort
           vergessen</a> 
-
-         
-
         <button class="btn md:w-40 w-28 bg-blue-10 px-4 font-normal rounded-lg md:text-base text-sm" type="submit">
           <span class="tracking-wide">Anmelden</span>
         </button>

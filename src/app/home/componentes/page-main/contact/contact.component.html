@@ -1,2 +1,127 @@
+<app-navbar (mensaje)="receiveMessage($event)"></app-navbar>
 
-<app-banner-main></app-banner-main>
+    <div class="lg:mx-[10rem] md:mx-14 mx-10 lg:mt-20 md:mt-14 mt-10">
+        <div class="grid md:grid-cols-2 grid-col-1 justify-between lg:gap-x-10 md:gap-x-8">
+          <div>
+            <div>
+              <div class="lg:pl-5">
+                <h1 class="lg:text-5xl md:text-3xl text-2xl lg:mb-5 md:mb-3 font-extrabold">MELDE DICH</h1>
+                <h1 class="lg:text-5xl md:text-3xl text-2xl lg:mb-5 md:mb-3 font-extrabold">BEI UNS</h1>
+              </div>
+              <p class="mt-3">
+                Vielen Dank für Dein Interesse an Dealersoft! Wir freuen uns darauf, von Dir Deiner Frage zu hören. Bitte fülle das nebenstehende Formular aus und wir werden melden uns innerhalb der nächsten 24 Stunden bei Dir.
+              </p>
+            </div>
+  
+            <div class="mt-6">
+              <h3 class="lg:text-xl lg:mb-5 md:mb-3 font-extrabold">DEALERSOFT</h3>
+              <p>Zollpfad 4, 28217 Bremen</p>
+            </div>
+  
+            <div class="mt-6">
+              <h3 class="lg:text-xl lg:mb-5 md:mb-3 font-extrabold">MAIL</h3>
+              <a class="hover:cursor-pointer">info@dealersoft.de</a>
+            </div>
+  
+            <div class="mt-6">
+              <h3 class="lg:text-xl lg:mb-5 md:mb-3 font-extrabold">WEB</h3>
+              <a class="hover:cursor-pointer">www.dealersoft.de</a>
+            </div>
+  
+            <div class="mt-6">
+              <h3 class="lg:text-xl lg:mb-5 md:mb-3 font-extrabold">SOCIAL MEDIA</h3>
+              <p>Besuch uns auf unseren Online-Kanälen</p>
+              <div class="flex items-center space-x-4 mt-5">
+                <a class="hover:cursor-pointer" href="#">
+                    <img src="assets/landing/face.png" alt="" class="w-[1.5rem]">
+                </a>
+                <a class="hover:cursor-pointer" href="#">
+                    <img src="assets/landing/insta.png" alt="" class="w-[1.5rem]">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center lg:pt-20 md:pt-14 pt-10">
+  
+            <h3 class="lg:text-2xl md:text-xl text-2xl lg:mb-5 md:mb-3 font-extrabold">Kontaktformular</h3>
+            <p class="text-center">Bitte fülle das Formular möglichst vollständig aus, wir melden uns umgehend bei dir zurück.</p>
+  
+            <form class="mx-auto text-center my-8 w-[90%]">
+                <div class="grid gap-y-6">
+                    <div class="form-group">
+                        <input id="vorname" class="form_input" type="text" name="vorname" placeholder=" ">
+                        <label class="form_label" for="vorname">Vorname</label>
+                        <div class="form_line"></div>
+                    </div>
+                    <div class="form-group">
+                        <input id="nachname" class="form_input" type="text" name="nachname" placeholder=" ">
+                        <label class="form_label" for="nachname">Nachname</label>
+                        <div class="form_line"></div>
+                    </div>
+                    <div class="form-group">
+                        <input id="email" class="form_input" type="email" name="email" placeholder=" ">
+                        <label class="form_label" for="email">Email</label>
+                        <div class="form_line"></div>
+                    </div>
+                    <div class="form-group">
+                        <input id="telefon" class="form_input" type="number" name="telefon" placeholder=" ">
+                        <label class="form_label" for="telefon">Telefon</label>
+                        <div class="form_line"></div>
+                    </div>
+                    <div class="form-group flex">
+                        <textarea id="nachricht" class="form_input resize-none" rows="5" type="text" name="Nachricht" placeholder=" "></textarea>
+                        <label class="form_label" for="nachricht">Nachricht</label>
+                        <div class="form_line"></div>
+                    </div>
+                </div>
+                <div class="mt-6 space-x-4 w-full flex">
+                    <div class="w-5 mt-[4px]">
+                        <span (click)="toggleABG()" class="hover:cursor-pointer border border-[#505050] w-5 h-5  mr-2 rounded-sm relative flex items-center justify-center">
+                            <div id="tick-mark" class="-translate-x-[1px] -translate-y-[1.5px]" *ngIf="ABG"></div>                
+                        </span>
+                    </div>
+                    <span class="text-black text-[0.8rem] text-left">Ich stimme zu, dass meine Angaben zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an info@dealersoft.de widerrufen.</span>
+                </div>
+
+                <button
+                    class="mt-6 text-semibold text-black hover:text-white bg-blue-10 px-6 py-3.5 rounded-full border-none outline-none transition-all ease-linear duration-200"
+                    type="submit"
+                    >
+          
+                Nachricht Senden
+            </button>
+            </form>
+          </div>
+        </div>
+        <div class="lg:my-20 md:my-14 my-10">
+            <app-acordion></app-acordion>
+        </div>
+        
+    </div>
+    
+  
+
+  
+  <div id="login-register-div" class="bg-[#202124] relative md:py-10 py-6 flex flex-col items-center justify-center">
+    <img src="assets/landing/top-register.png" alt="" class="lg:w-[60%] mx-auto md:block hidden md:h-[60%]" />
+    <img src="assets/landing/topmovil.png" alt="" class="mx-auto md:hidden block w-[90%]" />
+    <div class="w-full lg:py-1">
+      <h1 class="text-white lg:text-4xl md:text-3xl text-2xl text-center font-semibold">
+        Dealersoft <br />
+        jederzeit und von überall
+      </h1>
+      <app-landing-register-login [selectedTab]="selectedTab" (mensaje)="receiveMessage($event)"></app-landing-register-login>
+    </div>
+
+    <div class="w-full relative flex items-center justify-center">
+      <div (click)="navigationTop()" class="flex space-x-3 items-center absolute z-10 hover:cursor-pointer bottom-0">
+        <span class="text-white md:text-lg text-sm">Zurück nach oben</span>
+        <img src="assets/landing/Vector.png" alt="" class="lg:w-5 w-5 h-5 lg:h-5" />
+      </div>
+      <img src="assets/landing/bottom-register.png" alt="" class="lg:w-[70%] mx-auto md:block hidden h-[50%]" />
+      <img src="assets/landing/bottommovil.png" alt="" class="w-[40%] md:hidden block mr-auto pl-5" />
+    </div>
+  </div> 
+
+
+

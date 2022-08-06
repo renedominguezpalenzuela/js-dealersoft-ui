@@ -20,8 +20,6 @@ import { Globals } from '../../../../../globales';
   // encapsulation: ViewEncapsulation.None
 })
 export class LandingLoginComponent implements OnInit {
-  public showPassword = false;
-
   public loginForm = this.formBuilder.group({
     identifier: [null, [Validators.required]],
     password: [null, [Validators.required, Validators.minLength(8)]],
@@ -57,7 +55,7 @@ export class LandingLoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  togglePwd = () => (this.showPassword = !this.showPassword);
+  toggleRemember = ()=>(this.rememberMe = !this.rememberMe);
 
   public hasError = (input: string): boolean => {
     return this.validationsService.hasError(this.loginForm, input);

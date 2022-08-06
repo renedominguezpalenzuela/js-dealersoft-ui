@@ -11,6 +11,7 @@
     <img src="assets/landing/cancel.png" alt="" class="w-6" />
   </div>
   <a
+    [routerLink]="['/']"
     class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Home
@@ -31,13 +32,14 @@
   </a>
 
   <a
+    [routerLink]="['/contact']"
     class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Kontakt
   </a>
 
   <a
-    href="testimonials"
+    [routerLink]="['/testimonials']"
     class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
   >
     Kundenstimmen
@@ -46,7 +48,7 @@
 <div
   class="flex font-work text-base items-center justify-between lg:px-14 w-full md:px-6 px-4"
 >
-  <a href="/" class="md:w-1/4">
+  <a [routerLink]="['/']" class="md:w-1/4">
     <img
       src="assets/landing/logoB.png"
       alt=""
@@ -58,6 +60,7 @@
     class="md:flex lg:space-x-6 md:space-x-4 lg:text-base md:text-sm hidden text-gray-25"
   >
     <a
+      [routerLink]="['/']"
       class="{{
         activeLink == 'home' ? 'font-bold' : 'font-normal'
       }} py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
@@ -84,14 +87,14 @@
     </a>
 
     <a
+      [routerLink]="['/contact']"
       class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Kontakt
     </a>
 
     <a
-      href="testimonials"
-      routerLink="testimonials"
+      [routerLink]="['/testimonials']"
       routerLinkActive="font-bold"
       class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
