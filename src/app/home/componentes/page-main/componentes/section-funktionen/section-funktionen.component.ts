@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-section-funktionen',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SectionFunktionenComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
+  @Input() rotate:boolean = false;
 
   x:any;
   public naviagateToTab(tab_name: any) {

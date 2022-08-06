@@ -10,7 +10,7 @@
   </div>
 
   <div id="funktionen">
-    <app-section-funktionen (mensaje)="receiveMessage($event)"></app-section-funktionen>
+    <app-section-funktionen (mensaje)="receiveMessage($event)" [rotate]="rotateAnimation"></app-section-funktionen>
   </div>
   <div id="uber">
     <app-uber-section (mensaje)="receiveMessage($event)"></app-uber-section>
