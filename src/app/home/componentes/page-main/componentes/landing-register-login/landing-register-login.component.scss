@@ -24,6 +24,10 @@
   background-color: white !important;
 }
 
+#tab1 > div > div, #tab2 > div > div{
+  color:white !important;
+}
+
 @media (max-width: 766px) {
   .mat-tab-label {
     font-weight: 400 !important;
