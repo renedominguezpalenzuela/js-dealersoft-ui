@@ -12,7 +12,7 @@ export class PageMainComponent implements OnInit {
   
   public selectedTab: any = 1;
   startAnimation:boolean = false;
-  startAnimationUp:boolean = false;
+  startAnimationUp:boolean = true;
   rotateAnimation:boolean = false;
   currentScroll:any = 0;
   text_banner1:any;
