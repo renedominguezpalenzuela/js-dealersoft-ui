@@ -10,7 +10,11 @@ export class CalculosService {
 
   //Convierte formato americano a formato aleman con dos valores decimales
   // 234.4  ---  234,34
-  public createGermmanNumber(numero: any): string {
+  public createGermmanNumber(numero: any) {
+
+   
+    if (!numero) return null;
+   
 
 
     
@@ -20,6 +24,8 @@ export class CalculosService {
       minimumFractionDigits: 2,
     });
     var strvalue = formatter.format(numero);
+
+    
    
     return strvalue;
   }
