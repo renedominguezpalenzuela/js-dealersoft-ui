@@ -9,7 +9,7 @@ export class SecondBannerComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
   
   @Input() animation:boolean = false;
-
+  @Input() animation_up:boolean = false;
   x:any;
   phone:any;
   
