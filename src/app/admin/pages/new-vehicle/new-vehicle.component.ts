@@ -276,6 +276,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
 
 
+
     if (this.vehicleForm.valid && this.comments.length > 0) {
       //Se adicionan los comentarios al formulario
     const  formValue = {
@@ -341,22 +342,36 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
 
         //Stored new car
         //Neuwagen eingelagert
-        const subscription = () => {
+        const subscription = (datos:any) => {
           this.notificationService.riseNotification({ color: 'success', data: 'gespeichert' });
-          this.router.navigate(['/admin/all-vehicles']);
+          this.router.navigate([`/admin/vehicle-form/${datos.data.id}`], {queryParams: {tab:2}});
+
+          this.notificationService.riseNotification({ color: 'success', data: 'gespeichert' });
+                //this.router.navigate(['/admin/all-vehicles']);    
+                console.log(datos.data.id)
+                //http://localhost:4200/admin/vehicle-form/122?tab=3
+
+          //http://localhost:4200/admin/vehicle-form/122?tab=3
+          
         }
+
+
         if (this.imgSrcList.length > 0) {
           const form = new FormData();
           this.imgSrcList.forEach(elm => form.append('files', <File>elm!.file));
           this.requestService.POSTUpload(this.apiHelperService.uploadFilesURL, form).subscribe((events) => {
             if (events.type === HttpEventType.Response) {
               const data = { ...formValue, pictures: (events.body as Array<any>).map(elm => elm.id) };
-              this.requestService.Post(this.apiHelperService.carsURL, data).subscribe(() => subscription);
+              this.requestService.Post(this.apiHelperService.carsURL, data).subscribe((datos) => {
+                subscription(datos)
+                
+              }
+              );
             }
           });
         } else { //Salvando nuevo carro
        
-          this.requestService.Post(this.apiHelperService.carsURL, formValue).subscribe(subscription);
+          this.requestService.Post(this.apiHelperService.carsURL, formValue).subscribe((datos)=>subscription(datos));
         }
       }
      
