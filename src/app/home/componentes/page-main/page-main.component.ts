@@ -53,7 +53,7 @@ export class PageMainComponent implements OnInit {
         this.startAnimationUp = false
       }
 
-      if(this.isInViewport(this.logo_funktionen)){
+      if(this.isInViewport(this.logo_funktionen) && this.morePhone){
         this.rotateAnimation = true;
       }
 
