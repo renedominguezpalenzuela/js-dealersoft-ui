@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-
+import {CookieService} from "ngx-cookie-service"
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     return item.getBoundingClientRect().top;
   }
 
-  constructor() {};
+  constructor(public cookie:CookieService) {};
   
   el:any;
   el1:any;
