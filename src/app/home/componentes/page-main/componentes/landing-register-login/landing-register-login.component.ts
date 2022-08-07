@@ -32,7 +32,7 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
       if (this.x) {
         this.mensaje.emit('0');
       }
-      this.x.scrollIntoView({ behavior: 'smooth' });
+      this.x?.scrollIntoView({ behavior: 'smooth' });
    
 
       //clearTimeout(timeoutId);
@@ -43,7 +43,7 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
         this.mensaje.emit('1');
       }
       
-      this.x.scrollIntoView({ behavior: 'smooth' });
+      this.x?.scrollIntoView({ behavior: 'smooth' });
       
     }
   }
@@ -64,8 +64,7 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    
-   
+    this.x.scrollIntoView({ behavior: 'smooth' });   
   }
 
   ngAfterViewInit() {
@@ -75,6 +74,6 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
   receiveMessage(msg: any) {
     this.selectedTab = msg;
 
-    //alert(msg);
+
   }
 }

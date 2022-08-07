@@ -26,7 +26,5 @@ export class ContactComponent implements OnInit {
   }
   receiveMessage(msg: any) {
     this.selectedTab = msg;
-
-    //alert(msg);
   }
 }
