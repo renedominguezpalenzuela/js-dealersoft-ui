@@ -12,7 +12,7 @@
     height: -moz-calc(34vw);
     height: calc(34vw);
     right: 6vw;
-    bottom: 7vh;
+    bottom: 5vh;
     z-index: 9999;
     cursor: pointer;
     background-color: #fff;
@@ -22,6 +22,7 @@
         height: -webkit-calc(45vw);
         height: -moz-calc(45vw);
         height: calc(45vw); 
+        bottom:0.5vh;
         width:65vw;
     }
     .boton-form-cookies {
@@ -33,6 +34,7 @@
   @media (max-width: 583.98px) and (min-width: 490px) {
     .modalformcookie {
         height: -webkit-calc(34vw);
+        bottom:0.5vh;
 height: -moz-calc(34vw);
 height: calc(34vw); 
       width: 65vw !important;
@@ -45,9 +47,10 @@ height: calc(34vw);
   }
   @media (max-width: 489px) {
     .modalformcookie {
-        height: -webkit-calc(34vw * 2.5);
-        height: -moz-calc(34vw * 2.5);
-        height: calc(34vw * 2.5); 
+        height: -webkit-calc(34vw * 2.85);
+        height: -moz-calc(34vw * 2.85);
+        bottom:0.5vh;
+        height: calc(34vw * 2.85); 
       width: 65vw !important;
     }
     .boton-form-cookies {
