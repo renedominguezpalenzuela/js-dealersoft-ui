@@ -9,9 +9,26 @@ export class NavbarComponent implements OnInit {
   @Output() mensaje = new EventEmitter<string>();
   public openSide = false;
 
+  overlay: any = null;
   toggleOpen = () => {
     this.openSide = !this.openSide;
+    
+    if(this.openSide == true){
+      this.overlay.style.display = 'block';
+      document.body.style.overflow = 'hidden'
+    }
+    else{
+      document.body.style.overflow = 'auto'
+      this.overlay.style.display = 'none';
+    }
   };
+
+  offOpenSide(){
+    this.openSide = false
+    document.body.style.overflow = 'auto'
+    this.overlay.style.display = 'none';
+  }
+
   x:any;
   public naviagateToTab(tab_name: any) {
     
@@ -51,6 +68,8 @@ export class NavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.overlay = document.getElementById('overlay');
+
     this.x = document.getElementById('login-register-div');
   }
 }
