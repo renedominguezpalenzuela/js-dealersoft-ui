@@ -4,7 +4,7 @@
     url("/assets/fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
-.mat-tab-label {
+.mat-tab-label, .mat-tab-link {
   padding: 5px;
   font-size: 20px;
   color: white !important;
@@ -24,13 +24,21 @@
   background-color: white !important;
 }
 
+#tab1 > div > div, #tab2 > div > div{
+  color:white !important;
+}
+
 @media (max-width: 766px) {
   .mat-tab-label {
     font-weight: 400 !important;
+    color: white !important;
+
     font-size: 16px;
   }
   .mat-tab-label.mat-tab-label-active {
     font-weight: 400 !important;
+    color: white !important;
+
     font-size: 16px;
   }
 }

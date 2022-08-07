@@ -26,6 +26,7 @@ export class LandingRegisterComponent implements OnInit {
   public agb = false;
 
   @Output() mensaje = new EventEmitter<string>();
+  selectedTab:any = null;
   public naviagateToTab(tab_name: any) {
     let x = document.getElementById('login-register-div');
 
@@ -239,6 +240,7 @@ export class LandingRegisterComponent implements OnInit {
     }
   }
 
+ 
   // public previewLogo($event: any) {
   //   const file: File = $event.target.files[0];
   //   this.logoImg = file;

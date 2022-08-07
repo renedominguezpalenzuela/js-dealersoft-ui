@@ -1,0 +1,114 @@
+:root {
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+    --ratio: 2.483;
+}
+
+.modalformcookie {
+    position: fixed;
+    width: 29vw;
+    height: -webkit-calc(34vw);
+    height: -moz-calc(34vw);
+    height: calc(34vw);
+    right: 6vw;
+    bottom: 7vh;
+    z-index: 9999;
+    cursor: pointer;
+    background-color: #fff;
+  }
+  @media (max-width: 915px) and (min-width: 584px) {
+    .modalformcookie {
+        height: -webkit-calc(45vw);
+        height: -moz-calc(45vw);
+        height: calc(45vw); 
+        width:65vw;
+    }
+    .boton-form-cookies {
+      width: 18vw !important;
+      margin-bottom: 4px;
+      font-size: 1.4vw !important;
+    }
+  }
+  @media (max-width: 583.98px) and (min-width: 490px) {
+    .modalformcookie {
+        height: -webkit-calc(34vw);
+height: -moz-calc(34vw);
+height: calc(34vw); 
+      width: 65vw !important;
+    }
+    .boton-form-cookies {
+      width: 30vw !important;
+      margin-bottom: 4px;
+      font-size: 2vw !important;
+    }
+  }
+  @media (max-width: 489px) {
+    .modalformcookie {
+        height: -webkit-calc(34vw * 2.5);
+        height: -moz-calc(34vw * 2.5);
+        height: calc(34vw * 2.5); 
+      width: 65vw !important;
+    }
+    .boton-form-cookies {
+      width: 30vw !important;
+      margin-bottom: 4px;
+      font-size: 2.3vw !important;
+    }
+  }
+  .mostrar {
+    display: block;
+  }
+  .ocultar {
+    display: none;
+  }
+  
+  .animate__animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-duration: var(--animate-duration);
+    animation-duration: var(--animate-duration);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  .animate__fadeInUpBig {
+    -webkit-animation-name: fadeInUpBig;
+    animation-name: fadeInUpBig;
+  }
+
+  @-webkit-keyframes fadeInUpBig {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 2000px, 0);
+      transform: translate3d(0, 2000px, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes fadeInUpBig {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 2000px, 0);
+      transform: translate3d(0, 2000px, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  :host ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #000000 !important;
+}
+
+:host ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: #2C2F30 !important;
+}

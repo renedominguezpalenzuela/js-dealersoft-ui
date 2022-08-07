@@ -12,7 +12,6 @@ export class PageMainComponent implements OnInit {
   
   public selectedTab: any = 1;
   startAnimation:boolean = false;
-  startAnimationUp:boolean = false;
   rotateAnimation:boolean = false;
   currentScroll:any = 0;
   text_banner1:any;
@@ -21,6 +20,7 @@ export class PageMainComponent implements OnInit {
   height_device:any;
   phone:any;
   morePhone:boolean = window.screen.width > 992;
+  startAnimationUp:boolean = window.screen.width > 992 ? true : false;
 
   getPositionY(item:any){
     

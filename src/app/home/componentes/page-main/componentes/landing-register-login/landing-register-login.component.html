@@ -4,10 +4,10 @@
     <mat-tab label="Registrieren" class="text-white md:text-lg" id="tab1">
       
       <div class="px-5">
-        <app-landing-register ></app-landing-register>
+        <app-landing-register (mensaje)="receiveMessage($event)" ></app-landing-register>
       </div>
     </mat-tab>
-    <mat-tab label="Anmelden" class="text-white text-lg" (click)="naviagateToTab('login-reg')">
+    <mat-tab label="Anmelden" class="text-white text-lg" (click)="naviagateToTab('login-reg')" id="tab2">
       <div class="md:mt-6 mt-5 px-5">
         <app-landing-login></app-landing-login>
       </div>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 // import { MatExpansionModule } from '@angular/material/expansion';
-
+import { CookieService } from 'ngx-cookie-service';
 // import { BannerMainComponent } from './componentes/banner-main/banner-main.component';
 // import { SecondBannerComponent } from './componentes/second-banner/second-banner.component';
 // import { BannerBlackComponent } from './componentes/banner-black/banner-black.component';
@@ -19,6 +19,11 @@ import { LandingFooterComponent } from './componentes/landing-footer/landing-foo
 // import { AcordionComponent } from './componentes/acordion/acordion.component';
 // import { MatIconModule } from '@angular/material/icon';
 import { HomeRoutingModule } from './home-routing.module';
+import { CookieComponent } from './componentes/cookie/cookie.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -33,12 +38,18 @@ import { HomeRoutingModule } from './home-routing.module';
     // LandingLoginComponent,
     // LandingRegisterLoginComponent,
     LandingFooterComponent,
+          CookieComponent,
+
     // AcordionComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     HomeRoutingModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSlideToggleModule
     // FormsModule,
     // ReactiveFormsModule,
     // MatProgressSpinnerModule,
@@ -46,5 +57,9 @@ import { HomeRoutingModule } from './home-routing.module';
     // MatExpansionModule,
     // MatIconModule,
   ],
+
+  providers :[
+    CookieService,
+  ]
 })
 export class HomeModule {}

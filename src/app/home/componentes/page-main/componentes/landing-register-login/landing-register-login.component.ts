@@ -20,6 +20,7 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
   constructor() {}
 
   @Input() selectedTab: any = null;
+
   @Output() mensaje = new EventEmitter<string>();
   x:any;
   @ViewChild('tabGroup') tabGroup:any;
@@ -31,21 +32,19 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
       if (this.x) {
         this.mensaje.emit('0');
       }
-      
-      const timeoutId = setTimeout(() => {
-        this.x.scrollIntoView({ behavior: 'smooth' });
-      }, 200);
+      this.x.scrollIntoView({ behavior: 'smooth' });
+   
 
       //clearTimeout(timeoutId);
     }
 
     if (tab_name === 'login-reg') {
       if (this.x) {
-        this.x.scrollIntoView({ behavior: 'smooth' });
-      }
-      const timeoutId = setTimeout(() => {
         this.mensaje.emit('1');
-      }, 700);
+      }
+      
+      this.x.scrollIntoView({ behavior: 'smooth' });
+      
     }
   }
 
@@ -71,5 +70,11 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
 
   ngAfterViewInit() {
     
+  }
+
+  receiveMessage(msg: any) {
+    this.selectedTab = msg;
+
+    //alert(msg);
   }
 }

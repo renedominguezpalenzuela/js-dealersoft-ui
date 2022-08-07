@@ -1,0 +1,54 @@
+<div 
+*ngIf="novisited"
+class="text-gray-25 animate__animated animate__fadeInUpBig modalformcookie  w-2/6 p-4 border-2 rounded-md border-black-80 hover:cursor-auto absolute  bg-gray-200">
+      <h1 class="text-lg md:text-xl font-bold mb-4">
+        Wir verwenden Cookies
+      </h1>
+      <p class="mb-3 text-sm hidden md:block">
+        Um Ihnen die bestmögliche Nutzung zu ermöglichen. Neben technisch
+        unbedingt erforderlichen Cookies werden mit Ihrer Einwilligung auch
+        weitere Cookies angesteuert, um zusätzliche Dienste und Funktionen
+        einzubinden. Wir verarbeiten Daten zu den Zwecken „Analyse und
+        Performance“ und „Marketing" nur, soweit Sie uns durch Klicken auf
+        „Alles akzeptieren“ oder unter „Einstellungen“ Ihre freiwillige
+        Einwilligung geben. Sie können Ihre jeweilige Einwilligung jederzeit mit
+        Wirkung für die Zukunft widerrufen.
+      </p>
+      <div class="flex sm:space-x-4 flex-wrap sm:flex-nowrap space-x-0 space-y-4 sm:space-y-0">
+          <mat-slide-toggle (change)="changed()"  disabled="true" checked="true">Notwendig</mat-slide-toggle>    
+          <mat-slide-toggle  [(ngModel)]="performance">Performance</mat-slide-toggle>
+      </div>
+      <div class="my-4">
+        <mat-slide-toggle  [(ngModel)]="funktional">Funktional</mat-slide-toggle>
+      </div>
+      <div class="row flex flex-col md:flex-row gap-0 justify-content mt-4 space-y-3 md:space-y-0 md:space-x-4">
+        <div class="md:w-1/2  flex  justify-content-center">
+          <button
+            (click)="aceptCookie()"
+            type="button"
+            class="bg-black text-white w-full text-white-80 px-4 py-3 rounded-md"
+          
+          >
+            Akzeptieren
+          </button>
+        </div>
+        <div class="md:w-1/2  flex  justify-content-center">
+          <button
+            type="button"
+            (click)="declineCookie()"
+            class="bg-black text-white w-full text-white-80 px-4 py-3 rounded-md"
+          >
+            Ablehnen
+          </button>
+        </div>
+      </div>
+      <div class="flex gap-0  mt-3 pb-2 md:justify-content-start justify-content-center space-x-2 font-semibold">
+        <a href="/datenschutz">
+          <a class="hover:text-green-80">Datenschutz</a>
+        </a>
+        <div> | </div>
+        <a href="/impressum">
+          <a class="hover:text-green-80">Impressum</a>
+        </a>
+      </div>
+    </div>

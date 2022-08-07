@@ -25,6 +25,7 @@ export class LandingLoginComponent implements OnInit {
     password: [null, [Validators.required, Validators.minLength(8)]],
   });
 
+  public showPassword = false;
   public rememberMe = false;
   public version: any = '';
 
@@ -55,7 +56,7 @@ export class LandingLoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  toggleRemember = ()=>(this.rememberMe = !this.rememberMe);
+  togglePwd = () => (this.showPassword = !this.showPassword);
 
   public hasError = (input: string): boolean => {
     return this.validationsService.hasError(this.loginForm, input);
