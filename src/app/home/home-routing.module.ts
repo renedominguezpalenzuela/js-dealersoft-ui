@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageMainComponent } from './componentes/page-main/page-main.component';
 import { ContactComponent } from './componentes/page-main/contact/contact.component';
 import {ImpressumComponent} from './componentes/page-main/impressum/impressum.component'
-
+import {TestimonialsComponent} from './componentes/page-main/testimonials/testimonials.component'
 import { AuthGuard } from '@core/guards';
 import { IsFullRegisteredGuard } from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
@@ -32,7 +32,12 @@ import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
     component: ImpressumComponent,
     loadChildren: () => import('./componentes/page-main/page-main.module').then((m) => m.PageMainModule),
   },
-
+  {
+    path: 'testimonials',
+    pathMatch: 'full',
+    component: TestimonialsComponent,
+    loadChildren: () => import('./componentes/page-main/page-main.module').then((m) => m.PageMainModule),
+  },
  ];
 
 @NgModule({

@@ -32,7 +32,7 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
       if (this.x) {
         this.mensaje.emit('0');
       }
-      this.x?.scrollIntoView({ behavior: 'smooth' });
+      this.x.scrollIntoView({ behavior: 'smooth' });
    
 
       //clearTimeout(timeoutId);
@@ -64,7 +64,8 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.x.scrollIntoView({ behavior: 'smooth' });   
+    if(this.x != null || this.x != undefined)
+      this.x.scrollIntoView({ behavior: 'smooth' });   
   }
 
   ngAfterViewInit() {

@@ -9,3 +9,107 @@
   src: local("WorkSans-Bold"),
     url("/assets/fonts/WorkSans-Bold.ttf") format("truetype");
 }
+
+.hamburguer{
+  position: relative;
+  width: 30px;
+  height: 3.5px;
+  background-color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 23;
+}
+
+.hamburguer::after, .hamburguer::before{
+  content: "";
+  position: absolute;
+  height: 3.5px;
+  border-radius: 10px;
+  background-color: black;
+  right: 0;
+}
+
+.hamburguer::before{
+  width: 20px;
+  top:-10px;
+}
+
+.navigationBar input:checked ~ .hamburguer{
+  background-color: transparent;
+}
+
+.navigationBar input:checked ~ .hamburguer::before{
+  top:0;
+  transform: rotate(45deg);
+  width: 30px;
+  transition: 0.3s;
+}
+
+.navigationBar input:checked ~ .hamburguer::after{
+  top:0;
+  transform: rotate(-45deg);
+  width: 30px;
+  transition: 0.3s;
+}
+
+.togglemenu{
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  opacity: 0;
+  z-index: -1;
+}
+
+.hamburguer::after{
+  width: 25px;
+  top:10px;
+}
+
+.menu{
+  transform: translateY(-2000px);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(-2000px);
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -200%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.inUp{
+
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.inDown{
+   animation-name: fadeInDown;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
