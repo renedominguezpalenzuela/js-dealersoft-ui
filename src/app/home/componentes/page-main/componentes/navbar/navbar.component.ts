@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
         
         const timeoutId = setTimeout(() => {
           this.x.scrollIntoView({ behavior: 'smooth' });
-        }, 200);
+        }, 700);
 
         //clearTimeout(timeoutId);
       }
@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
         }
         const timeoutId = setTimeout(() => {
           this.mensaje.emit('1');
-        }, 200);
+        }, 700);
       }
     }
     else{
@@ -66,9 +66,8 @@ export class NavbarComponent implements OnInit {
             
             const timeoutId = setTimeout(() => {
               this.x.scrollIntoView({ behavior: 'smooth' });
-            }, 200);
-    
-            //clearTimeout(timeoutId);
+            }, 700);
+  
           }
     
           if (tab_name === 'login-reg') {
@@ -77,7 +76,7 @@ export class NavbarComponent implements OnInit {
             }
             const timeoutId = setTimeout(() => {
               this.mensaje.emit('1');
-            }, 200);
+            }, 700);
           }
         }, 200)
       
