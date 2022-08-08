@@ -19,7 +19,6 @@ export class CookieComponent implements OnInit {
 
   changed(){
     this.notwending = true;
-    console.log("cambioss")
   }
 
   aceptCookie(){
@@ -42,7 +41,6 @@ export class CookieComponent implements OnInit {
 
   ngOnInit(): void {
     this.novisited = this.cookie.get('visited') == undefined || this.cookie.get('visited') == "";
-    console.log("hola" + this.cookie.get('visited'))
   }
 
 }

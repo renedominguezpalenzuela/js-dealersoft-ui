@@ -74,7 +74,6 @@ export class LandingRegisterLoginComponent implements OnInit, OnChanges {
 
   receiveMessage(msg: any) {
     this.selectedTab = msg;
-
-
+    console.log(this.selectedTab)
   }
 }

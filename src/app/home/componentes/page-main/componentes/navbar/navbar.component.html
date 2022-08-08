@@ -34,7 +34,7 @@
     </a>
 
     <a
-      [routerLink]="['/contact']"
+      href="/contact"
       routerLinkActive="font-bold"
       class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
@@ -76,6 +76,7 @@
   <div class="flex flex-col divide-y-2 border-white border-t-2 border-b-2">
     <a
       [routerLink]="['/']"
+      (click)="offOpenSide()"
       class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Home
@@ -83,6 +84,7 @@
 
     <a
       (click)="navigationSection('funktionen')"
+      (click)="offOpenSide()"
       class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Funktionen
@@ -90,6 +92,7 @@
 
     <a
       (click)="navigationSection('uber')"
+      (click)="offOpenSide()"
       class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Über uns
@@ -98,6 +101,7 @@
     <a
       [routerLink]="['/contact']"
       routerLinkActive="font-bold"
+      (click)="offOpenSide()"
       class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Kontakt
@@ -106,17 +110,18 @@
     <a
       [routerLink]="['/testimonials']"
       routerLinkActive="font-bold"
+      (click)="offOpenSide()"
       class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Kundenstimmen
     </a>
   </div>
 
-  <div class="left-3 absolute bottom-[8%] flex items-center space-x-10">
+  <div class="left-3 absolute bottom-0 -translate-y-full flex items-center space-x-10">
     <div class="flex space-x-4 w-full items-center justify-start">
       <a href="https://www.facebook.com/dealersoft/"><img src="assets/landing/facebook.svg" alt="" class="w-10 "></a>
       <a href="https://instagram.com/dealersoft.de?igshid=YmMyMTA2M2Y="><img src="assets/landing/instagram.svg" alt="" class="w-9"></a>
     </div>
-    <a href="/impressum" class="text-white font-semibold text-lg">Impressum</a>
+    <a (click)="offOpenSide()" href="/impressum" class="text-white font-semibold text-lg">Impressum</a>
   </div>
 </div>
