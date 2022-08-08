@@ -40,7 +40,7 @@ export class MultipleInvoicesComponent implements OnInit {
   public displayedColumns: Column[] = [
     {
       column: 'attributes.invoice_number',
-      header: 'Number',
+      header: 'NUMMER',
       show: true,
       type: ColumnType.Regular,
       ordenar: true,
@@ -48,7 +48,7 @@ export class MultipleInvoicesComponent implements OnInit {
 
     {
       column: 'attributes.reference_invoice_number',
-      header: 'Ref Number',
+      header: 'REF NUMMER',
       show: true,
       type: ColumnType.Regular,
       ordenar: true,
@@ -56,7 +56,7 @@ export class MultipleInvoicesComponent implements OnInit {
 
     {
       column: 'attributes.cancel_number',
-      header: 'Cancel Num',
+      header: 'STORNO NR',
       show: true,
       type: ColumnType.Regular,
       ordenar: true,
