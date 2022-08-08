@@ -24,9 +24,9 @@ export class ContactComponent implements OnInit {
     window.scrollTo(0, 0);
    
   }
+  
   receiveMessage(msg: any) {
     this.selectedTab = msg;
-
-    //alert(msg);
+    console.log(this.selectedTab)
   }
 }

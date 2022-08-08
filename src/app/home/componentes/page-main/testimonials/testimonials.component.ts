@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-testimonials',
   templateUrl: './testimonials.component.html',
-  styleUrls: ['./testimonials.component.scss'],
+  styleUrls: ['./testimonials.component.scss']
 })
 export class TestimonialsComponent implements OnInit {
+
   public testimonialCol1: any = [
     {
       text: [
@@ -265,7 +266,10 @@ export class TestimonialsComponent implements OnInit {
       authorItalic: 'Fa. Spendlinger',
     },
   ];
-  constructor() {}
+  
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
 }

@@ -85,6 +85,6 @@ export class PageMainComponent implements OnInit {
   receiveMessage(msg: any) {
     this.selectedTab = msg;
 
-    //alert(msg);
+    console.log(this.selectedTab)
   }
 }

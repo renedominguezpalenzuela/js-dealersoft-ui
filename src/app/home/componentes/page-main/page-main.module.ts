@@ -26,6 +26,8 @@ import { AcordionComponent } from './componentes/acordion/acordion.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { ContactComponent } from './contact/contact.component';
+import { ImpressumComponent } from './impressum/impressum.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { ContactComponent } from './contact/contact.component';
     LandingFooterComponent,
     AcordionComponent,
     ContactComponent,
+    ImpressumComponent,
+    TestimonialsComponent,
     
   ],
   imports: [

@@ -47,10 +47,10 @@ height: calc(34vw);
   }
   @media (max-width: 489px) {
     .modalformcookie {
-        height: -webkit-calc(34vw * 2.85);
-        height: -moz-calc(34vw * 2.85);
-        bottom:0.5vh;
-        height: calc(34vw * 2.85); 
+        height: -webkit-calc(34vw * 2.39);
+        height: -moz-calc(34vw * 2.39);
+        bottom:1vh;
+        height: calc(34vw * 2.39); 
       width: 65vw !important;
     }
     .boton-form-cookies {

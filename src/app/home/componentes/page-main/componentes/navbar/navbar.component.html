@@ -1,52 +1,5 @@
 <div
-  id="sideBar"
-  *ngIf="openSide"
-  data-aos="fade-left"
-  data-aos-easing="linear"
-  data-aos-duration="500"
-  [ngClass]="{'overflow-y-hidden':openSide}"
-  class="md:hidden flex flex-col w-64 absolute h-screen right-0 z-40 bg-gray-30 pl-6 pt-10 font-bold"
->
-  <div class="z-50 absolute top-4 right-6 text-white" (click)="toggleOpen()">
-    <img src="assets/landing/cancel.png" alt="" class="w-6" />
-  </div>
-  <a
-    [routerLink]="['/']"
-    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
-  >
-    Home
-  </a>
-
-  <a
-  (click)="navigationSection('funktionen')"
-    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
-  >
-    Funktionen
-  </a>
-
-  <a
-  (click)="navigationSection('uber')"
-    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
-  >
-    Über uns
-  </a>
-
-  <a
-    [routerLink]="['/contact']"
-    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
-  >
-    Kontakt
-  </a>
-
-  <a
-    [routerLink]="['/testimonials']"
-    class="py-2 pl-3 pr-4 lg:text-base hover:text-white rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
-  >
-    Kundenstimmen
-  </a>
-</div>
-<div
-  class="flex font-work text-base items-center justify-between lg:px-14 w-full md:px-6 px-4"
+  class="flex bg-white font-work text-base items-center justify-between lg:px-14 w-full md:px-6 px-4 z-50 relative"
 >
   <a [routerLink]="['/']" class="md:w-1/4">
     <img
@@ -61,33 +14,28 @@
   >
     <a
       [routerLink]="['/']"
-      class="{{
-        activeLink == 'home' ? 'font-bold' : 'font-normal'
-      }} py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Home
     </a>
 
     <a
       (click)="navigationSection('funktionen')"
-      class="{{
-        activeLink == 'funktionen' ? 'font-bold' : 'font-normal'
-      }} py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Funktionen
     </a>
 
     <a
       (click)="navigationSection('uber')"
-      class="{{
-        activeLink == 'uber' ? 'font-bold' : 'font-normal'
-      }} py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+      class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Über uns
     </a>
 
     <a
-      [routerLink]="['/contact']"
+      href="/contact"
+      routerLinkActive="font-bold"
       class="py-2 pl-3 pr-4 lg:text-base hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
     >
       Kontakt
@@ -117,12 +65,63 @@
     </a>
   </div>
 
-  <div class="md:hidden flex">
-    <img
-      src="assets/landing/bars.png"
-      alt=""
-      class="w-5"
-      (click)="toggleOpen()"
-    />
+  <div class="md:hidden flex relative navigationBar">
+    <input type="checkbox" [checked]="openSide" class="togglemenu">
+    <div class="hamburguer" (click)="toggleOpen()"></div>
+  </div>
+</div>
+
+
+<div [ngClass]="{'inDown' : openSide == true, 'inUp' : !openSide && !firstTime}" class="pt-1 menu bg-gray-25 font-semibold text-white absolute z-20 w-full h-screen flex flex-col">
+  <div class="flex flex-col divide-y-2 border-white border-t-2 border-b-2">
+    <a
+      [routerLink]="['/']"
+      (click)="offOpenSide()"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Home
+    </a>
+
+    <a
+      (click)="navigationSection('funktionen')"
+      (click)="offOpenSide()"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Funktionen
+    </a>
+
+    <a
+      (click)="navigationSection('uber')"
+      (click)="offOpenSide()"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Über uns
+    </a>
+
+    <a
+      [routerLink]="['/contact']"
+      routerLinkActive="font-bold"
+      (click)="offOpenSide()"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Kontakt
+    </a>
+
+    <a
+      [routerLink]="['/testimonials']"
+      routerLinkActive="font-bold"
+      (click)="offOpenSide()"
+      class="py-2 pl-3 pr-4 text-lg hover:text-gray-10 rounded md:bg-transparent hover:cursor-pointer md:p-0 transition-all ease-linear duration-200"
+    >
+      Kundenstimmen
+    </a>
+  </div>
+
+  <div class="left-3 absolute bottom-[15vh] flex items-center space-x-10">
+    <div class="flex space-x-4 w-full items-center justify-start">
+      <a href="https://www.facebook.com/dealersoft/"><img src="assets/landing/facebook.svg" alt="" class="w-10 "></a>
+      <a href="https://instagram.com/dealersoft.de?igshid=YmMyMTA2M2Y="><img src="assets/landing/instagram.svg" alt="" class="w-9"></a>
+    </div>
+    <a (click)="offOpenSide()" href="/impressum" class="text-white font-semibold text-lg">Impressum</a>
   </div>
 </div>

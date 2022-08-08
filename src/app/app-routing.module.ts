@@ -3,14 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
-import { TestimonialsComponent } from './testimonial/testimonials.component';
 import { Register2Component } from './register2/register2.component';
 
 import { AuthGuard } from '@core/guards';
 import { IsFullRegisteredGuard } from '@core/guards/is-full-registered.guard';
 import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
-import { DatenschutComponent } from './testimonial/components/datenschut/datenschut.component';
-import { ImpressumComponent } from './testimonial/components/impressum/impressum.component';
+
+
 
 
 const routes: Routes = [
@@ -41,12 +40,6 @@ const routes: Routes = [
   {
     path: 'export/reports',
     loadChildren: () => import('./core/pages/reportes/main/main.module').then( (m) => m.MainModule ),
-  },
-  {
-    path: 'testimonials', //home, url sin nada
-    pathMatch: 'full',
-    component: TestimonialsComponent,
-    loadChildren: () =>import('./testimonial/testimonials.module').then((m) => m.TestimonialsModule),
   },
   {
     path: 'register2', //home, url sin nada
