@@ -45,33 +45,55 @@
             <h3 class="lg:text-2xl md:text-xl text-2xl lg:mb-5 md:mb-3 font-extrabold">Kontaktformular</h3>
             <p class="text-center">Bitte fülle das Formular möglichst vollständig aus, wir melden uns umgehend bei dir zurück.</p>
   
-            <form class="mx-auto text-center my-8 w-[90%]">
+            <form class="mx-auto text-center my-8 w-[90%]" (ngSubmit)="submit()" [formGroup]="contactForm">
                 <div class="grid gap-y-6">
                     <div class="form-group">
-                        <input id="vorname" class="form_input" type="text" name="vorname" placeholder=" ">
-                        <label class="form_label" for="vorname">Vorname</label>
+                        <input formControlName="first_name" required id="vorname" class="form_input" type="text" name="vorname" placeholder=" ">
+                        <label class="form_label" for="vorname">Vorname</label>                                   
                         <div class="form_line"></div>
                     </div>
+                    <div *ngIf="hasRequiredError('first_name')">                      
+                      <b>Vorname</b> wird benötigt
+                    </div>
+
                     <div class="form-group">
-                        <input id="nachname" class="form_input" type="text" name="nachname" placeholder=" ">
+                        <input formControlName="last_name"  required id="nachname" class="form_input" type="text" name="nachname" placeholder=" ">
                         <label class="form_label" for="nachname">Nachname</label>
                         <div class="form_line"></div>
                     </div>
+
+                    <div *ngIf="hasRequiredError('last_name')">                      
+                      <b>Nachname</b> wird benötigt
+                    </div>
+
+
                     <div class="form-group">
-                        <input id="email" class="form_input" type="email" name="email" placeholder=" ">
+                        <input  formControlName="email_address" id="email" class="form_input" required type="email" name="email" placeholder=" ">
                         <label class="form_label" for="email">Email</label>
                         <div class="form_line"></div>
                     </div>
+
+                    <div *ngIf="hasRequiredError('email_address')">                                            
+                      <b>Email</b> wird benötigt
+                    </div>
+
+
                     <div class="form-group">
-                        <input id="telefon" class="form_input" type="number" name="telefon" placeholder=" ">
+                        <input  formControlName="telephone" id="telefon" class="form_input" required type="number" name="telefon" placeholder=" ">
                         <label class="form_label" for="telefon">Telefon</label>
                         <div class="form_line"></div>
                     </div>
+
+                    <div *ngIf="hasRequiredError('telephone')">                      
+                      <b>Telefon</b> wird benötigt
+                    </div>
+
                     <div class="form-group flex">
-                        <textarea id="nachricht" class="form_input resize-none" rows="5" type="text" name="Nachricht" placeholder=" "></textarea>
+                        <textarea  formControlName="message" id="nachricht" class="form_input resize-none" rows="5" type="text" name="Nachricht" placeholder=" "></textarea>
                         <label class="form_label" for="nachricht">Nachricht</label>
                         <div class="form_line"></div>
                     </div>
+
                 </div>
                 <div class="mt-6 space-x-4 w-full flex">
                     <div class="w-5 mt-[4px]">

@@ -88,4 +88,10 @@ export class ApiHelperService {
   get resetPasswordURL(): string {
     return `${ this.apiUrl }/auth/reset-password`;
   }
+
+  get sendMailURL(): string {
+    return `${ this.apiUrl }/mail`;
+  }
+  
+
 }
