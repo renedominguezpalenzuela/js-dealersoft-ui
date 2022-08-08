@@ -37,19 +37,18 @@ export class HomeComponent implements OnInit {
 
   onScroll(e:any) {
     
-    if(this.resolution > 1024){
+    if(this.resolution > 992){
       this.offset = window.pageYOffset;
       this.scroll = e.scrollingElement.scrollTop
-      this.el.style.transform = this.el.style.transform ? 'translateY(' + this.offset * 0.5 + 'px)' : null 
-      this.el1.style.transform = this.el1.style.transform ? 'translateY(' + this.offset * 0.59 + 'px)' : null
-      this.el2.style.transform = this.el2.style.transform ? 'translateY(' + this.offset * 0.3 + 'px)'  : null
-      this.el3.style.transform = this.el3.style.transform ? 'translateY(' + this.offset * 0.21 + 'px)' : null  
-
+      this.el.style.transform = this.el.style ? 'translateY(' + this.offset * 0.5 + 'px)' : null 
+      this.el1.style.transform = this.el1.style ? 'translateY(' + this.offset * 0.4 + 'px)' : null
+      this.el2.style.transform = this.el2.style ? 'translateY(' + this.offset * 0.3 + 'px)'  : null
+      this.el3.style.transform = this.el3.style ? 'translateY(' + this.offset * 0.21 + 'px)' : null  
       if(this.getPositionY(this.text_secondB) - this.offset <=100){
-        this.text_secondB.style.transform = this.text_secondB.style.transform ? 'translateY(' + (this.offset - this.getPositionY(this.text_secondB)) * 0.1 + 'px)' :null
+        this.text_secondB.style.transform = this.text_secondB ? 'translateY(' + (this.offset - this.getPositionY(this.text_secondB)) * 0.1 + 'px)' :null
       }
       if(this.getPositionY(this.right_second) - this.offset <=100){
-        this.right_second.style.transform = this.right_second.style.transform ? 'translateY(' + (this.offset - this.getPositionY(this.right_second)) * 0.08 + 'px)' :null
+        this.right_second.style.transform = this.right_second ? 'translateY(' + (this.offset - this.getPositionY(this.right_second)) * 0.01 + 'px)' :null
       }
     }
     
