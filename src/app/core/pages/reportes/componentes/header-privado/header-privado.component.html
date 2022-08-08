@@ -10,7 +10,7 @@
     <div class="col-start-1 row-start-2  flex justify-between items-center header-client-data pt-1 ">
         <div>
 
-            <p>{{car_buy_data?.client?.title}}</p>
+            <p *ngIf="!car_buy_data?.client?.company_name">{{car_buy_data?.client?.title}}</p>
             <p>{{car_buy_data?.client?.first_name}}
                 {{car_buy_data?.client?.last_name}}</p>
         

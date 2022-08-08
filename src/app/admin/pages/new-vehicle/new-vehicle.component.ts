@@ -346,9 +346,9 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
           this.notificationService.riseNotification({ color: 'success', data: 'gespeichert' });
           this.router.navigate([`/admin/vehicle-form/${datos.data.id}`], {queryParams: {tab:2}});
 
-          this.notificationService.riseNotification({ color: 'success', data: 'gespeichert' });
+//          this.notificationService.riseNotification({ color: 'success', data: 'gespeichert' });
                 //this.router.navigate(['/admin/all-vehicles']);    
-                console.log(datos.data.id)
+              //  console.log(datos.data.id)
                 //http://localhost:4200/admin/vehicle-form/122?tab=3
 
           //http://localhost:4200/admin/vehicle-form/122?tab=3

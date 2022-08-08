@@ -10,9 +10,16 @@
     <div class="col-start-1 row-start-2  flex justify-between items-center header-client-data pt-1 ">
         <div>
 
-            <p>{{client?.title}}</p>
+            
+            
+            <p *ngIf="!client?.company_name">{{client?.title}}</p>
             <p>{{client?.first_name}}
                 {{client?.last_name}}</p>
+
+                <p *ngIf="client?.company_name">    
+                    {{client?.company_name}}
+                </p>
+
             <p><span>{{client?.street}}</span>
                 <span class="pl-1">{{client?.house_number}}</span>
             </p>
