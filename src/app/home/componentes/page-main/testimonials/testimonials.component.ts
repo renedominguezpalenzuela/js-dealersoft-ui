@@ -104,12 +104,12 @@ export class TestimonialsComponent implements OnInit {
     {
       text: [
         'Wir nutzen Dealersoft seit ca. 2 Monaten und sind bisher sehr zufrieden.',
-        'Die erstellen von Kaufverträgen und das Einpflegen von Daten etc. ist kinderleicht und erleichtert den Alltag.'
+        'Das Erstellen von Kaufverträgen und das Einpflegen von Daten etc. ist kinderleicht und erleichtert den Alltag.'
      //   'Hallo Frau Uhlig',
      //   'vielen herzlichen Dank für die super Betreuung. Sofort nach Ihrem ersten Anruf fühlte ich mich bei Ihnen bestens aufgehoben. Die Abwicklung war erstklassig und der Kontakt ebenfalls. Ihr Unternehmen und besonders SIE sind wärmstens weiter zu empfehlen.',
 
       ],
-      author: 'Viele liebe Grüße vom Niederrhein in Emmerich',
+      author: 'Viele liebe Grüße',
       authorItalic: 'Gregor F. aus Delmenhorst',
     },
     // {
