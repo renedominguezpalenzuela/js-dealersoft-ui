@@ -33,7 +33,7 @@ import { TrialExpiredGuard } from '@core/guards/trial-expired.guard';
     loadChildren: () => import('./componentes/page-main/page-main.module').then((m) => m.PageMainModule),
   },
   {
-    path: 'testimonials',
+    path: 'kundenstimmen',
     pathMatch: 'full',
     component: TestimonialsComponent,
     loadChildren: () => import('./componentes/page-main/page-main.module').then((m) => m.PageMainModule),
