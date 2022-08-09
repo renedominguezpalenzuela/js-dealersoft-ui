@@ -73,7 +73,7 @@
 
 
 <div [ngClass]="{'inDown' : openSide == true, 'inUp' : !openSide && !firstTime}" class="pt-1 menu bg-gray-25 font-semibold text-white absolute z-20 w-full h-screen flex flex-col">
-  <div class="flex flex-col divide-y-2 border-white border-t-2 border-b-2">
+  <div class="flex flex-col divide-y-2 border-white border-b-2">
     <a
       [routerLink]="['/']"
       (click)="offOpenSide()"
