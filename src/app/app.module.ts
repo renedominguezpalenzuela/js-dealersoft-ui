@@ -14,11 +14,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CreateInvoiceService } from './servicios/create-invoice.service';
 import { CalculosService } from './servicios/calculos.service';
 
-
-
-
-
-
 // import { SaveDom2Pipe } from './save-dom2.pipe';
 
 registerLocaleData(localeEnDe, localeEnDeExtra);
@@ -34,8 +29,7 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    MatTabsModule
-   
+    MatTabsModule,
   ],
   providers: [
     CreateInvoiceService,
@@ -52,9 +46,6 @@ registerLocaleData(localeEnDe, localeEnDeExtra);
     },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     { provide: LOCALE_ID, useValue: 'en-DE' },
-    
-     
-    
   ],
   bootstrap: [AppComponent],
 })

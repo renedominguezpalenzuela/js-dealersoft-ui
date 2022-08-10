@@ -357,5 +357,35 @@ iframe {
 .text-recovery-pass {
   font-size: 1.3rem !important;
   font-family: "Montserrat-ExtraBold" !important;
-// color: white;
+  // color: white;
+}
+
+#second-container {
+  display: none;
+}
+
+#main-container {
+  display: block;
+}
+
+@media (max-width: 996px) and (orientation: landscape) {
+  body {
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+  }
+  #second-container {
+    display: flex;
+    color: white !important;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  #main-container {
+    display: none;
+  }
 }
