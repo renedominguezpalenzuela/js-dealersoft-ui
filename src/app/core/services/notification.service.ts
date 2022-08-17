@@ -17,7 +17,7 @@ export class NotificationService {
       panelClass: ['bg-transparent', 'shadow-none'],
       verticalPosition: 'bottom',
       horizontalPosition: this.deviceService.isDesktop() ? 'end' : 'center',
-      duration: 2000,
+      duration: 5000,
       data,
     });
   }

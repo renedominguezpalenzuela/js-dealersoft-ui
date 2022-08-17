@@ -180,7 +180,7 @@ export class RegisterComponent implements OnInit {
                     this.isLoading = false;
                     this.notificationService.riseNotification({
                       color: 'success',
-                      data: 'Registrierung & Anmeldung erfolgreich',
+                      data: 'Registrierung & Anmeldung erfolgreich. <br> Eine Bestätigungs-E-Mail wurde gesendet. <br> Bitte überprüfen Sie diese, bevor Sie sich anmelden',
                     });
                   });
 

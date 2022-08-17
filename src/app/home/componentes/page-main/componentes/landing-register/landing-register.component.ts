@@ -184,7 +184,7 @@ export class LandingRegisterComponent implements OnInit {
             this.isLoading = false;
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'Registrierung & Anmeldung erfolgreich',
+              data: 'Registrierung & Anmeldung erfolgreich Eine Bestätigungs-E-Mail wurde gesendet. Bitte überprüfen Sie diese, bevor Sie sich anmelden',
             });
 
             sessionStorage.clear();

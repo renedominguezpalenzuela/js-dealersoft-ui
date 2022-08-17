@@ -10,21 +10,32 @@ export class TestimonialsComponent implements OnInit {
   public testimonialCol1: any = [
     {
       text: [
-        'Kompetente und schnelle Beratung.',
-        'Informativ und Innovativ.',
-        'Sehr nettes Service-Team. Immer offen für Anliegen und Fragen.',
-        'Dealersoft ist zu empfehlen!'
+        'Wir nutzen Dealersoft seit ca. 2 Monaten und sind bisher sehr zufrieden.',
+        'Die erstellen von Kaufverträgen und das Einpflegen von Daten etc. ist kinderleicht und erleichtert den Alltag.'
+     //   'Hallo Frau Uhlig',
+     //   'vielen herzlichen Dank für die super Betreuung. Sofort nach Ihrem ersten Anruf fühlte ich mich bei Ihnen bestens aufgehoben. Die Abwicklung war erstklassig und der Kontakt ebenfalls. Ihr Unternehmen und besonders SIE sind wärmstens weiter zu empfehlen.',
 
-        // 'Möchte mich recht herzlich bei Ihrem Unternehmen bedanken. ',
-        // 'Dank der großartigen Mühe von Ihrer kompetenten Frau Uhlig Mitarbeiterin, die ein tolles zwischen Menschliches Feingefühl in Ihrer Stimme und Ihren Worten hat. Sie hat sich so engagiert, weil Sie genau wusste wo mein Problem liegt und Dank Ihrer Berichterstattung per Email, konnte mein Lachen im Gesicht ganz schnell wieder hergestellt, da mein Zahnarzt dadurch schon die Zahnbehandlung abgeschlossen hat, obwohl der Betrag noch nicht auf meinen Konto zu Verfügung stand.',
-        // 'Das zeigt mir selbst, als freundlich netter herzlicher Mensch es gibt genauso tolle Menschen die Ihren job lieben. Sie haben in Frau Uhlig eine ganz tolle Persönlichkeit in Ihrem Unternehmen und ich als zufriedene Kundin, weiß Ihre Mitarbeitern sehr zu schätzen, hoffe Sie tun dies auch.',
-        // 'Werde Ihr Unternehmen weiter empfehlen .',
       ],
-      author: 'Ganz herzliche Grüße',
-     // authorItalic: 'Renate Bothe Gottfried',
-      authorItalic: 'Stefan P. aus Hamburg',
-     
+      author: 'Viele liebe Grüße vom Niederrhein in Emmerich',
+      authorItalic: 'Gregor F. aus Delmenhorst',
     },
+    // {
+    //   text: [
+    //     'Kompetente und schnelle Beratung.',
+    //     'Informativ und Innovativ.',
+    //     'Sehr nettes Service-Team. Immer offen für Anliegen und Fragen.',
+    //     'Dealersoft ist zu empfehlen!'
+
+    //     // 'Möchte mich recht herzlich bei Ihrem Unternehmen bedanken. ',
+    //     // 'Dank der großartigen Mühe von Ihrer kompetenten Frau Uhlig Mitarbeiterin, die ein tolles zwischen Menschliches Feingefühl in Ihrer Stimme und Ihren Worten hat. Sie hat sich so engagiert, weil Sie genau wusste wo mein Problem liegt und Dank Ihrer Berichterstattung per Email, konnte mein Lachen im Gesicht ganz schnell wieder hergestellt, da mein Zahnarzt dadurch schon die Zahnbehandlung abgeschlossen hat, obwohl der Betrag noch nicht auf meinen Konto zu Verfügung stand.',
+    //     // 'Das zeigt mir selbst, als freundlich netter herzlicher Mensch es gibt genauso tolle Menschen die Ihren job lieben. Sie haben in Frau Uhlig eine ganz tolle Persönlichkeit in Ihrem Unternehmen und ich als zufriedene Kundin, weiß Ihre Mitarbeitern sehr zu schätzen, hoffe Sie tun dies auch.',
+    //     // 'Werde Ihr Unternehmen weiter empfehlen .',
+    //   ],
+    //   author: 'Ganz herzliche Grüße',
+    //  // authorItalic: 'Renate Bothe Gottfried',
+    //   authorItalic: 'Stefan P. aus Hamburg',
+     
+    // },
   
     // {
     //   text: [
@@ -101,17 +112,17 @@ export class TestimonialsComponent implements OnInit {
     // },
   ];
   public testimonialCol2: any = [
-    {
-      text: [
-        'Wir nutzen Dealersoft seit ca. 2 Monaten und sind bisher sehr zufrieden.',
-        'Die erstellen von Kaufverträgen und das Einpflegen von Daten etc. ist kinderleicht und erleichtert den Alltag.'
-     //   'Hallo Frau Uhlig',
-     //   'vielen herzlichen Dank für die super Betreuung. Sofort nach Ihrem ersten Anruf fühlte ich mich bei Ihnen bestens aufgehoben. Die Abwicklung war erstklassig und der Kontakt ebenfalls. Ihr Unternehmen und besonders SIE sind wärmstens weiter zu empfehlen.',
+    // {
+    //   text: [
+    //     'Wir nutzen Dealersoft seit ca. 2 Monaten und sind bisher sehr zufrieden.',
+    //     'Die erstellen von Kaufverträgen und das Einpflegen von Daten etc. ist kinderleicht und erleichtert den Alltag.'
+    //  //   'Hallo Frau Uhlig',
+    //  //   'vielen herzlichen Dank für die super Betreuung. Sofort nach Ihrem ersten Anruf fühlte ich mich bei Ihnen bestens aufgehoben. Die Abwicklung war erstklassig und der Kontakt ebenfalls. Ihr Unternehmen und besonders SIE sind wärmstens weiter zu empfehlen.',
 
-      ],
-      author: 'Viele liebe Grüße vom Niederrhein in Emmerich',
-      authorItalic: 'Gregor F. aus Delmenhorst',
-    },
+    //   ],
+    //   author: 'Viele liebe Grüße vom Niederrhein in Emmerich',
+    //   authorItalic: 'Gregor F. aus Delmenhorst',
+    // },
     // {
     //   text: [
     //     'Hallo Frau Uhlig,',
