@@ -1093,7 +1093,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  //Evitar que sean mas de 4 lineas en los comentarios
+  //Evitar que sean mas de 4 lineas en los comentarios1
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -1106,6 +1106,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  //Evitar que sean mas de 4 lineas en los comentarios2
   public keydown2(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -1142,7 +1143,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.carSellForm
         .get('invoice_number')!
         .addValidators(Validators.required);
-      // this.carSellForm.get('bemerkungencheck2page').disabled()
+      
     } else {
       this.carSellForm
         .get('invoice_number')!
