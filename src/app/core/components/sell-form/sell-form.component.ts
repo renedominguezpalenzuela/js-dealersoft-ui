@@ -1177,16 +1177,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
    let  lineas_finales_1 = nuevas_lineas;
 
-    //  //eliminar lineas en blanco
-    //  let lineas_finales_1 = nuevas_lineas.filter(data => data != '');
+   if (pressed_enter) {
+    let ultima_linea = lineas_finales_1[lineas_finales_1.length-1];
+    ultima_linea = ultima_linea + '\n';
+    lineas_finales_1[lineas_finales_1.length-1] = ultima_linea;
 
-    //  if (lineas_finales_1[lineas_finales_1.length-1]) {
-    //      let ultima_linea = lineas_finales_1[lineas_finales_1.length-1];
-    //      ultima_linea = ultima_linea.replace(/[\r\n]/gm, '');
-        
-    //      lineas_finales_1[lineas_finales_1.length-1] = ultima_linea;
-    //  }
-
+ }
      
 
    
