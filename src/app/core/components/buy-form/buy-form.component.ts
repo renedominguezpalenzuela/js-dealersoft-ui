@@ -912,6 +912,9 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  public total_lineas_comentario1: number = 4;   //en realidad solo salen 4?
+  public total_characters_por_linea: number =70;  //70
+
   public keydown(event: any) {
     let cadena_texto = event.target.value;
     const lineas = (cadena_texto.match(/\n/g) || []).length + 1;
@@ -922,6 +925,124 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       return true;
     }
+  }
+
+
+  
+  public keyup(event: any) {
+
+    const fieldName = event.target.attributes.formcontrolname.value;
+ 
+    let cadena_texto = event.target.value;
+    let pressed_enter = false;
+
+    if (event.keyCode == 13) {
+      console.log("ENTER")
+      pressed_enter = true;
+    }
+
+    //const enters = cadena_texto.match(/\n/g) || [];
+    //const total_lineas = enters.length;
+
+    const lineas = cadena_texto.split(/\n/g) || [];
+
+ 
+   
+    let nuevas_lineas = [];
+    let proxima_linea = '';
+
+    lineas.forEach((unaLinea: any) => {
+    
+      if (proxima_linea != '') {
+        unaLinea = proxima_linea + ' ' + unaLinea;
+        proxima_linea = '';
+      }
+
+      if (unaLinea.length <= this.total_characters_por_linea) {
+    
+        if (unaLinea!=='' && unaLinea!==' ' ) {
+           nuevas_lineas.push(unaLinea);
+        }
+      } else {
+
+        const words = unaLinea.split(' ');
+ 
+        let linea_actual = '';
+
+        words.forEach((unaWord: any) => {
+         
+
+          if (linea_actual.length + unaWord.length < this.total_characters_por_linea ) {                   
+            linea_actual === '' ? (linea_actual = unaWord) : (linea_actual = linea_actual + ' ' + unaWord);            
+          } else {                                   
+            if (unaWord!=' ') {
+            //    console.log("SSSS")
+            //    proxima_linea = proxima_linea + '\n';
+            //  } else {
+              proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
+              proxima_linea ='\n'+ proxima_linea ;
+
+             }                    
+          }         
+
+        });      
+
+        if (linea_actual!=='' && linea_actual!==' ') {
+         nuevas_lineas.push(linea_actual);
+         console.log("linea actual" +linea_actual )
+        }
+
+      }
+    });
+
+
+
+    if (proxima_linea !== '' && proxima_linea!==' ') {
+      nuevas_lineas.push(proxima_linea);
+    }
+    
+
+    // console.log("nuevas_lineas")
+    // console.log(nuevas_lineas)
+    // console.log("proxima linea")
+    // console.log(proxima_linea)
+
+   let  lineas_finales_1 = nuevas_lineas;
+
+    //  //eliminar lineas en blanco
+    //  let lineas_finales_1 = nuevas_lineas.filter(data => data != '');
+
+    //  if (lineas_finales_1[lineas_finales_1.length-1]) {
+    //      let ultima_linea = lineas_finales_1[lineas_finales_1.length-1];
+    //      ultima_linea = ultima_linea.replace(/[\r\n]/gm, '');
+        
+    //      lineas_finales_1[lineas_finales_1.length-1] = ultima_linea;
+    //  }
+
+     
+
+   
+
+    switch (fieldName) {
+      case "bemerkunhen":
+        this.carBuyForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
+        break;
+      case "bemerkunhen2":
+        this.carBuyForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
+        break;
+      case "bemerkunhen3":
+        this.carBuyForm.patchValue({bemerkunhen3 : lineas_finales_1.join('\n') });     
+        break;  
+    
+      default:
+        break;
+    }
+
+   
+  
+
+    //console.log(nuevas_lineas.join('\n'));
+    return true;
   }
 
   //  this.actualizarCarIVA_A25(this.carSellForm.value.car, true, false);

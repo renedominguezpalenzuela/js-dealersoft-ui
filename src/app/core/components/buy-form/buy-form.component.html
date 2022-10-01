@@ -211,7 +211,9 @@
           <mat-label class="font-montserrat">Bemerkungen</mat-label>
           <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
            
-            maxlength="240" (keydown)="keydown($event)" class="font-montserrat"></textarea>
+          [maxlength]="total_lineas_comentario1 * total_characters_por_linea -total_lineas_comentario1"
+          (keyup)="keyup($event)"
+           (keydown)="keydown($event)" class="font-montserrat"></textarea>
         </mat-form-field>
 
         <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
