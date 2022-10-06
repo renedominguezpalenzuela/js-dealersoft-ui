@@ -1150,7 +1150,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
               proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
               proxima_linea ='\n'+ proxima_linea ;
 
-             }                    
+             }      
+             if (unaWord.length>this.total_characters_por_linea) {
+              const first_word_part = unaWord.substring(0, this.total_characters_por_linea)  + '\n';
+              const second_word_part = unaWord.substring(this.total_characters_por_linea,unaWord.length - this.total_characters_por_linea)  + '\n';
+
+              proxima_linea = first_word_part + second_word_part;
+
+              console.log("first "+first_word_part);
+              console.log("secon "+second_word_part);
+              console.log("proxi "+proxima_linea);
+
+             }
           }         
 
         });      
