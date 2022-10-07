@@ -209,11 +209,9 @@
 <!-- cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" -->
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label class="font-montserrat">Bemerkungen</mat-label>
-          <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"
-           
+          <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4"          
           [maxlength]="total_lineas_comentario1 * total_characters_por_linea -total_lineas_comentario1"
-          (keyup)="keyup($event)"
-           (keydown)="keydown($event)" class="font-montserrat"></textarea>
+          (keyup)="keyup($event)" (keydown)="keydown($event)" class="font-montserrat"></textarea>           
         </mat-form-field>
 
         <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">

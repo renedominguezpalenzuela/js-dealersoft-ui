@@ -1068,7 +1068,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public total_lineas_comentario1: number = 4;   //en realidad solo salen 4?
   public total_lineas_comentario2: number = 35;
-  public total_characters_por_linea: number =70;  //70
+  public total_characters_por_linea: number =6;  //70
+
 
   //Evitar que sean mas de 4 lineas en los comentarios1
   public keydown(event: any) {
@@ -1099,27 +1100,35 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public keyup(event: any) {
 
+    
     const fieldName = event.target.attributes.formcontrolname.value;
+
+    
  
     let cadena_texto = event.target.value;
     let pressed_enter = false;
+   
 
     if (event.keyCode == 13) {
-      console.log("ENTER")
+    
       pressed_enter = true;
     }
 
     //const enters = cadena_texto.match(/\n/g) || [];
     //const total_lineas = enters.length;
 
-    const lineas = cadena_texto.split(/\n/g) || [];
+    let lineas = cadena_texto.split(/\n/g) || [];
 
- 
+    // if (lineas.length === 0) {
+    //   lineas[0]=cadena_texto;
+    // }
+
    
-    let nuevas_lineas = [];
+    let nuevas_lineas:any = [];
     let proxima_linea = '';
 
     lineas.forEach((unaLinea: any) => {
+
     
       if (proxima_linea != '') {
         unaLinea = proxima_linea + ' ' + unaLinea;
@@ -1143,49 +1152,35 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           if (linea_actual.length + unaWord.length < this.total_characters_por_linea ) {                   
             linea_actual === '' ? (linea_actual = unaWord) : (linea_actual = linea_actual + ' ' + unaWord);            
           } else {                                   
-            if (unaWord!=' ') {
-            //    console.log("SSSS")
-            //    proxima_linea = proxima_linea + '\n';
+         
+            //  if (unaWord.length>this.total_characters_por_linea) {
+
+            
+            //   const first_word_part = unaWord.substring(0, this.total_characters_por_linea )  + '\n';
+            //   const second_word_part = unaWord.substring(this.total_characters_por_linea )  + ' ';
+
+            //   nuevas_lineas.push(first_word_part);           
+            //   linea_actual +=  second_word_part;
             //  } else {
-              proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
-              proxima_linea ='\n'+ proxima_linea ;
-
-             }      
-             if (unaWord.length>this.total_characters_por_linea) {
-              const first_word_part = unaWord.substring(0, this.total_characters_por_linea)  + '\n';
-              const second_word_part = unaWord.substring(this.total_characters_por_linea,unaWord.length - this.total_characters_por_linea)  + '\n';
-
-              proxima_linea = first_word_part + second_word_part;
-
-              console.log("first "+first_word_part);
-              console.log("secon "+second_word_part);
-              console.log("proxi "+proxima_linea);
-
-             }
+               if (unaWord!=' ') {         
+                proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
+                proxima_linea ='\n'+ proxima_linea ;
+  
+               }      
+  
+            // }
           }         
 
         });      
 
         if (linea_actual!=='' && linea_actual!==' ') {
          nuevas_lineas.push(linea_actual);
-         console.log("linea actual" +linea_actual )
+        // console.log("linea actual" +linea_actual )
         }
 
       }
     });
-
-
-
-    if (proxima_linea !== '' && proxima_linea!==' ') {
-      nuevas_lineas.push(proxima_linea);
-    }
-    
-
-    // console.log("nuevas_lineas")
-    // console.log(nuevas_lineas)
-    // console.log("proxima linea")
-    // console.log(proxima_linea)
-
+ 
    let  lineas_finales_1 = nuevas_lineas;
 
    if (pressed_enter) {
@@ -1194,9 +1189,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     lineas_finales_1[lineas_finales_1.length-1] = ultima_linea;
 
  }
-     
 
-   
+ 
 
     switch (fieldName) {
       case "bemerkunhen":
@@ -1205,8 +1199,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       case "bemerkunhen2":
         this.carSellForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
         break;
-      case "bemerkunhen3":
-        this.carSellForm.patchValue({bemerkunhen3 : lineas_finales_1.join('\n') });     
+      case "bemerkunhen2page":
+        
+        this.carSellForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });     
         break;  
     
       default:
