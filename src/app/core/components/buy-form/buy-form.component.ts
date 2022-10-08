@@ -929,120 +929,235 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 
   
-  public keyup(event: any) {
+  // public keyup(event: any) {
 
+  //   const fieldName = event.target.attributes.formcontrolname.value;
+ 
+  //   let cadena_texto = event.target.value;
+  //   let pressed_enter = false;
+
+  //   if (event.keyCode == 13) {
+  //     pressed_enter = true;     
+  //   }
+
+  //   const lineas = cadena_texto.split(/\n/g) || [];
+
+  //   let nuevas_lineas = [];
+  //   let proxima_linea = '';
+
+  //   lineas.forEach((unaLinea: any) => {
+    
+  //     if (proxima_linea != '') {
+  //       unaLinea = proxima_linea + ' ' + unaLinea;
+  //       proxima_linea = '';
+  //     }
+
+  //     if (unaLinea.length <= this.total_characters_por_linea) {
+    
+  //       if (unaLinea!=='' && unaLinea!==' ' ) {
+  //          nuevas_lineas.push(unaLinea);
+  //       }
+  //     } else {
+
+  //       const words = unaLinea.split(' ');
+ 
+  //       let linea_actual = '';
+
+  //       words.forEach((unaWord: any) => {
+
+  //         if (linea_actual.length + unaWord.length < this.total_characters_por_linea ) {                   
+  //           linea_actual === '' ? (linea_actual = unaWord) : (linea_actual = linea_actual + ' ' + unaWord);            
+  //         } else {                                   
+  //           if (unaWord!=' ') {
+  //             proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
+  //             proxima_linea ='\n'+ proxima_linea ;
+  //            }                    
+  //         }         
+
+  //       });      
+
+  //       if (linea_actual!=='' && linea_actual!==' ') {
+  //        nuevas_lineas.push(linea_actual);
+  //       }
+
+  //     }
+  //   });
+
+  //   if (proxima_linea !== '' && proxima_linea!==' ') {
+  //     nuevas_lineas.push(proxima_linea);
+  //   }
+    
+  //  let  lineas_finales_1 = nuevas_lineas;
+
+  //  if (pressed_enter) {
+  //     let ultima_linea = lineas_finales_1[lineas_finales_1.length-1];
+  //     ultima_linea = ultima_linea + '\n';
+  //     lineas_finales_1[lineas_finales_1.length-1] = ultima_linea; 
+  //  }
+
+   
+
+   
+
+  //   switch (fieldName) {
+  //     case "bemerkunhen":
+  //       this.carBuyForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
+  //       break;
+
+  //     case "bemerkunhen2":
+  //       this.carBuyForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
+  //       break;
+
+  //     case "bemerkunhen2page":
+  //       this.carBuyForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });     
+  //       break;  
+    
+  //     default:
+  //       break;
+  //   }
+
+   
+  
+
+  //   //console.log(nuevas_lineas.join('\n'));
+  //   return true;
+  // }
+
+
+  
+
+  public keypress(event: any) {
+
+   
+
+    
     const fieldName = event.target.attributes.formcontrolname.value;
+
+    
  
     let cadena_texto = event.target.value;
     let pressed_enter = false;
-
-    if (event.keyCode == 13) {
-      console.log("ENTER")
-      pressed_enter = true;
-      
-    }
-
    
-    //const enters = cadena_texto.match(/\n/g) || [];
-    //const total_lineas = enters.length;
 
-    const lineas = cadena_texto.split(/\n/g) || [];
 
- 
-   
-    let nuevas_lineas = [];
-    let proxima_linea = '';
+    let lineas = cadena_texto.split(/\n/g) || [];  //si esta vacia le asigna []
+    let total_lineas = lineas.length;
 
-    lineas.forEach((unaLinea: any) => {
     
-      if (proxima_linea != '') {
-        unaLinea = proxima_linea + ' ' + unaLinea;
-        proxima_linea = '';
-      }
-
-      if (unaLinea.length <= this.total_characters_por_linea) {
     
-        if (unaLinea!=='' && unaLinea!==' ' ) {
-           nuevas_lineas.push(unaLinea);
-        }
-      } else {
+    let ultima_linea = lineas[total_lineas-1];
+    let terminar = false;
+    
 
-        const words = unaLinea.split(' ');
- 
-        let linea_actual = '';
+    if (ultima_linea.length >= this.total_characters_por_linea) {
+     
 
-        words.forEach((unaWord: any) => {
+      const words = ultima_linea.split(' ') || [];
+
+      let first_line_part = '';
+      let second_line_part = '';
+
+      let linea_completa = false;
+
+
+      words.forEach((unaWord: any) => {
+        
+        unaWord = unaWord.trimStart();
+
+       
+        
+                
+        if (unaWord.length>=this.total_characters_por_linea - 15) {
+            //  first_line_part = unaWord.substring(0, this.total_characters_por_linea );
+            //  second_line_part = unaWord.substring(this.total_characters_por_linea )  + ' '; 
+            event.preventDefault();
+            terminar = true;
+
+            
+        } else {
+          if (first_line_part.length + unaWord.length <this.total_characters_por_linea) {
+            first_line_part+=' '+unaWord;
+          } else {
+            linea_completa = true;
+          }
+
+          if (linea_completa) {
+            second_line_part+=' '+unaWord;
+          }
          
-
-          if (linea_actual.length + unaWord.length < this.total_characters_por_linea ) {                   
-            linea_actual === '' ? (linea_actual = unaWord) : (linea_actual = linea_actual + ' ' + unaWord);            
-          } else {                                   
-            if (unaWord!=' ') {
-            //    console.log("SSSS")
-            //    proxima_linea = proxima_linea + '\n';
-            //  } else {
-              proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
-              proxima_linea ='\n'+ proxima_linea ;
-
-             }                    
-          }         
-
-        });      
-
-        if (linea_actual!=='' && linea_actual!==' ') {
-         nuevas_lineas.push(linea_actual);
-         console.log("linea actual" +linea_actual )
         }
 
+        
+
+      });
+
+
+
+       total_lineas = lineas.length;
+
+
+    
+      if (total_lineas <= 2 && second_line_part != '' && second_line_part != ' ') {
+        lineas[total_lineas - 1] = this.eliminarEspacio(first_line_part);        
+        lineas.push(this.eliminarEspacio(second_line_part));
+       
       }
-    });
 
 
 
-    if (proxima_linea !== '' && proxima_linea!==' ') {
-      nuevas_lineas.push(proxima_linea);
+      
+
     }
+
+
     
 
-    // console.log("nuevas_lineas")
-    // console.log(nuevas_lineas)
-    // console.log("proxima linea")
-    // console.log(proxima_linea)
+  
+    
 
-   let  lineas_finales_1 = nuevas_lineas;
-
-   if (pressed_enter) {
-      let ultima_linea = lineas_finales_1[lineas_finales_1.length-1];
-      ultima_linea = ultima_linea + '\n';
-      lineas_finales_1[lineas_finales_1.length-1] = ultima_linea;
-
-   }
-
-   
-
-   
 
     switch (fieldName) {
       case "bemerkunhen":
-        this.carBuyForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
+       // this.carSellForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
+       this.carBuyForm.patchValue({bemerkunhen : lineas.join('\n') });     
         break;
       case "bemerkunhen2":
-        this.carBuyForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
+       // this.carSellForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
+        this.carBuyForm.patchValue({bemerkunhen2 : lineas.join('\n') });     
         break;
-      case "bemerkunhen3":
-        this.carBuyForm.patchValue({bemerkunhen3 : lineas_finales_1.join('\n') });     
+      case "bemerkunhen2page":
+        
+       // this.carSellForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });     
+        this.carBuyForm.patchValue({bemerkunhen2page : lineas.join('\n') });     
         break;  
     
       default:
         break;
     }
 
-   
-  
 
-    //console.log(nuevas_lineas.join('\n'));
-    return true;
+    
+
+   
+   
+
+    return !terminar;
   }
+
+   eliminarEspacio(linea:any) {
+
+    let primerCaracter = linea.substring(0,1);
+    let resultado ='';
+    if (linea.length>1 && primerCaracter===' ')  {
+      resultado = linea.trimStart();
+    } else {
+      resultado = linea;
+    }
+
+    return resultado;
+
+  }
+
 
   //  this.actualizarCarIVA_A25(this.carSellForm.value.car, true, false);
   public actualizarCarIVA_A25(carID: any, a25: boolean, iva: boolean) {

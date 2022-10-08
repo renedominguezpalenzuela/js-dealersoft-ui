@@ -1068,7 +1068,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public total_lineas_comentario1: number = 4;   //en realidad solo salen 4?
   public total_lineas_comentario2: number = 35;
-  public total_characters_por_linea: number =6;  //70
+  public total_characters_por_linea: number =70;  //70
 
 
   //Evitar que sean mas de 4 lineas en los comentarios1
@@ -1098,7 +1098,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   
 
 
-  public keyup(event: any) {
+  public keypress(event: any) {
+
+   
 
     
     const fieldName = event.target.attributes.formcontrolname.value;
@@ -1109,110 +1111,129 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     let pressed_enter = false;
    
 
-    if (event.keyCode == 13) {
-    
-      pressed_enter = true;
-    }
 
-    //const enters = cadena_texto.match(/\n/g) || [];
-    //const total_lineas = enters.length;
-
-    let lineas = cadena_texto.split(/\n/g) || [];
-
-    // if (lineas.length === 0) {
-    //   lineas[0]=cadena_texto;
-    // }
-
-   
-    let nuevas_lineas:any = [];
-    let proxima_linea = '';
-
-    lineas.forEach((unaLinea: any) => {
+    let lineas = cadena_texto.split(/\n/g) || [];  //si esta vacia le asigna []
+    let total_lineas = lineas.length;
 
     
-      if (proxima_linea != '') {
-        unaLinea = proxima_linea + ' ' + unaLinea;
-        proxima_linea = '';
-      }
-
-      if (unaLinea.length <= this.total_characters_por_linea) {
     
-        if (unaLinea!=='' && unaLinea!==' ' ) {
-           nuevas_lineas.push(unaLinea);
-        }
-      } else {
+    let ultima_linea = lineas[total_lineas-1];
 
-        const words = unaLinea.split(' ');
- 
-        let linea_actual = '';
+    let terminar = false;
+    
 
-        words.forEach((unaWord: any) => {
-         
+    if (ultima_linea.length >= this.total_characters_por_linea) {
+     
 
-          if (linea_actual.length + unaWord.length < this.total_characters_por_linea ) {                   
-            linea_actual === '' ? (linea_actual = unaWord) : (linea_actual = linea_actual + ' ' + unaWord);            
-          } else {                                   
-         
-            //  if (unaWord.length>this.total_characters_por_linea) {
+      const words = ultima_linea.split(' ') || [];
+
+      let first_line_part = '';
+      let second_line_part = '';
+
+      let linea_completa = false;
+
+    
+
+
+      words.forEach((unaWord: any) => {
+        
+        unaWord = unaWord.trimStart();
+
+       
+        
+                
+        if (unaWord.length>=this.total_characters_por_linea - 15) {
+
+           //  first_line_part = unaWord.substring(0, this.total_characters_por_linea );
+           //  second_line_part = unaWord.substring(this.total_characters_por_linea )  + ' '; 
+           event.preventDefault();
+           terminar = true;
+
+          // return false;
 
             
-            //   const first_word_part = unaWord.substring(0, this.total_characters_por_linea )  + '\n';
-            //   const second_word_part = unaWord.substring(this.total_characters_por_linea )  + ' ';
+        } else {
+          if (first_line_part.length + unaWord.length <this.total_characters_por_linea) {
+            first_line_part+=' '+unaWord;
+          } else {
+            linea_completa = true;
+          }
 
-            //   nuevas_lineas.push(first_word_part);           
-            //   linea_actual +=  second_word_part;
-            //  } else {
-               if (unaWord!=' ') {         
-                proxima_linea === '' ? (proxima_linea = unaWord) : (proxima_linea = proxima_linea + ' ' + unaWord);
-                proxima_linea ='\n'+ proxima_linea ;
-  
-               }      
-  
-            // }
-          }         
-
-        });      
-
-        if (linea_actual!=='' && linea_actual!==' ') {
-         nuevas_lineas.push(linea_actual);
-        // console.log("linea actual" +linea_actual )
+          if (linea_completa) {
+            second_line_part+=' '+unaWord;
+          }
+         
         }
 
+        
+
+      });
+
+
+
+       total_lineas = lineas.length;
+
+
+    
+      if (total_lineas <= 2 && second_line_part != '' && second_line_part != ' ') {
+        lineas[total_lineas - 1] = this.eliminarEspacio(first_line_part);        
+        lineas.push(this.eliminarEspacio(second_line_part+'\n'));
+       
       }
-    });
- 
-   let  lineas_finales_1 = nuevas_lineas;
 
-   if (pressed_enter) {
-    let ultima_linea = lineas_finales_1[lineas_finales_1.length-1];
-    ultima_linea = ultima_linea + '\n';
-    lineas_finales_1[lineas_finales_1.length-1] = ultima_linea;
 
- }
 
- 
+      
+
+    }
+
+
+    
+
+  
+    
+
 
     switch (fieldName) {
       case "bemerkunhen":
-        this.carSellForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
+       // this.carSellForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
+       this.carSellForm.patchValue({bemerkunhen : lineas.join('\n') });     
         break;
       case "bemerkunhen2":
-        this.carSellForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
+       // this.carSellForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
+        this.carSellForm.patchValue({bemerkunhen2 : lineas.join('\n') });     
         break;
       case "bemerkunhen2page":
         
-        this.carSellForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });     
+       // this.carSellForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });     
+        this.carSellForm.patchValue({bemerkunhen2page : lineas.join('\n') });     
         break;  
     
       default:
         break;
     }
 
-   
-  
 
-    //console.log(nuevas_lineas.join('\n'));
-    return true;
+    
+
+   
+   
+
+    return !terminar;
+  }
+
+   eliminarEspacio(linea:any) {
+
+    let primerCaracter = linea.substring(0,1);
+    let resultado ='';
+    if (linea.length>1 && primerCaracter===' ')  {
+      resultado = linea.trimStart();
+    } else {
+      resultado = linea;
+    }
+
+    return resultado;
+
   }
 
   //Evitar que sean mas de 4 lineas en los comentarios2

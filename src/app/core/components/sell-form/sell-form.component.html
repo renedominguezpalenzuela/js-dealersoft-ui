@@ -165,9 +165,13 @@
             <!-- Rechnung -->
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2 lg:row-start-3">
               <mat-label class="font-montserrat">Bemerkungen</mat-label>
+
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen" rows="4" 
-                [maxlength]="total_lineas_comentario1 * total_characters_por_linea - total_lineas_comentario1"
-                (keydown)="keydown($event)"  (keyup)="keyup($event)" class="font-montserrat" ></textarea>
+                [maxlength]="total_lineas_comentario1 * total_characters_por_linea"
+                (keydown)="keydown($event)"  (keypress)="keypress($event)" class="font-montserrat" ></textarea>
+
+
+                
             </mat-form-field>
 
             
@@ -198,9 +202,9 @@
             <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
               <mat-label class="font-montserrat">Bemerkungen</mat-label>
               <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"
-                [maxlength]="total_lineas_comentario1 * total_characters_por_linea - total_lineas_comentario1" (keydown)="keydown($event)"  
-                class="font-montserrat"> </textarea>
-                <!-- (keyup)="keyup($event)"  -->
+                [maxlength]="total_lineas_comentario1 * total_characters_por_linea" (keydown)="keydown($event)"  
+                class="font-montserrat" (keypress)="keypress($event)" > </textarea>
+                  
             </mat-form-field>
           </div>
         </mat-tab>
@@ -266,8 +270,9 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label class="font-montserrat">Bemerkungen für zweite Seite</mat-label>
             <textarea matInput placeholder="Bemerkungen für zweite Seite" formControlName="bemerkunhen2page"
-             rows="4" (keydown)="keydown2($event)" cols="10" [maxlength]="total_lineas_comentario2 * total_characters_por_linea -total_lineas_comentario2"   cdkTextareaAutosize cdkAutosizeMinRows="1"
-             cdkAutosizeMaxRows="20"  class="font-montserrat">
+             rows="4" (keydown)="keydown2($event)"  [maxlength]="total_lineas_comentario2 * total_characters_por_linea"  
+              cdkTextareaAutosize cdkAutosizeMinRows="1"
+             cdkAutosizeMaxRows="20"  class="font-montserrat"   (keypress)="keypress($event)">
 
             </textarea>
 
