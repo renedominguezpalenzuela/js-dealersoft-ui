@@ -34,8 +34,6 @@ const routes: Routes = [
     canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
     canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
 
-  //  canActivate: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
-  //  canActivateChild: [AuthGuard, TrialExpiredGuard, IsFullRegisteredGuard],
   },
   {
     path: 'export/reports',

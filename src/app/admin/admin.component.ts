@@ -179,8 +179,11 @@ export class AdminComponent implements OnInit {
 
   get imgPath(): string {
 
- 
-    const logo_url =  this.logo?.attributes.logo.data.attributes.formats.thumbnail?.url;
+    console.log('GET IMAGE PATH');
+
+    console.log(this.logo?.attributes.logo.data.attributes.url);
+   // const logo_url =  this.logo?.attributes.logo.data.attributes.formats.thumbnail?.url;
+   const logo_url = this.logo?.attributes.logo.data.attributes.formats?.thumbnail?.url ? this.logo?.attributes.logo.data.attributes.formats.thumbnail?.url : this.logo?.attributes.logo.data.attributes.url;
 
 
     if (isDevMode()) {
