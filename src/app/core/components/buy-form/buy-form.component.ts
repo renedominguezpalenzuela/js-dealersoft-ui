@@ -104,7 +104,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     car: [null, [Validators.required]],
     client: [null, [Validators.required]],
     collection: [null, [Validators.required]],
-    payment: [null, [Validators.required, Validators.min(0)]],
+    payment: [null, [Validators.min(0)]],
 
     iva_buy: [{ value: null, disabled: true }, [Validators.min(0)]],
     net_buy: [{ value: null, disabled: false }, [Validators.min(0)]],
