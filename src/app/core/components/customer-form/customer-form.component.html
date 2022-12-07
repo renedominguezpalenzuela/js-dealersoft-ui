@@ -20,13 +20,14 @@
     
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full font-montserrat">
-          <mat-label class="font-montserrat">Titel</mat-label>
+          <mat-label class="font-montserrat">Anrede</mat-label>
           <mat-select  formControlName="title" class="font-montserrat">
             <mat-option value="Herr" class="font-montserrat">Herr</mat-option>
             <mat-option value="Frau" class="font-montserrat">Frau</mat-option>
+            <mat-option value="Divers" class="font-montserrat">Divers</mat-option>
           </mat-select>
           <mat-error *ngIf="hasRequiredError('title')">
-            <b>Titel</b> wird benötigt
+            <b>Anrede</b> wird benötigt
           </mat-error>
         </mat-form-field>
       </div>

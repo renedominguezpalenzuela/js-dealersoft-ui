@@ -115,6 +115,35 @@
      
       <mat-tab-group #tab_invoice mat-align-tabs="start" [(selectedIndex)]="selected_tab" animationDuration="250ms"
         (selectedTabChange)="onTabChange($event)" >
+
+
+        <mat-tab label="Kaufvertrag" class="color-mat-tab">
+          <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+
+            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+              <mat-label class="font-montserrat">KV-Datum</mat-label>
+              <input class="font-montserrat" [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput>
+              <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
+              <mat-datepicker #pickerKvDate></mat-datepicker>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+              <mat-label class="font-montserrat">Abholung</mat-label>
+              <input class="font-montserrat"  formControlName="abholtermin" matInput>                            
+            </mat-form-field>
+
+           <!-- Kaufvertrag -->
+            <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
+              <mat-label class="font-montserrat">Bemerkungen</mat-label>
+              <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"
+                [maxlength]="total_lineas_comentario1 * total_characters_por_linea" (keydown)="keydown($event)"  
+                class="font-montserrat" (keypress)="keypress($event)" > </textarea>
+                  
+            </mat-form-field>
+          </div>
+        </mat-tab>
+        
         <mat-tab label="Rechnung" class="active">
           <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
 
@@ -182,32 +211,8 @@
 
           </div>
         </mat-tab>
-        <mat-tab label="Kaufvertrag" class="color-mat-tab">
-          <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
-
-            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-              <mat-label class="font-montserrat">KV-Datum</mat-label>
-              <input class="font-montserrat" [matDatepicker]="pickerKvDate" formControlName="kv_date" matInput>
-              <mat-datepicker-toggle [for]="pickerKvDate" matSuffix></mat-datepicker-toggle>
-              <mat-datepicker #pickerKvDate></mat-datepicker>
-            </mat-form-field>
 
 
-            <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
-              <mat-label class="font-montserrat">Abholung</mat-label>
-              <input class="font-montserrat"  formControlName="abholtermin" matInput>                            
-            </mat-form-field>
-
-           <!-- Kaufvertrag -->
-            <mat-form-field class="example-full-width" appearance="outline" class="col-span-2">
-              <mat-label class="font-montserrat">Bemerkungen</mat-label>
-              <textarea matInput placeholder="Bemerkungen" formControlName="bemerkunhen2" rows="4"
-                [maxlength]="total_lineas_comentario1 * total_characters_por_linea" (keydown)="keydown($event)"  
-                class="font-montserrat" (keypress)="keypress($event)" > </textarea>
-                  
-            </mat-form-field>
-          </div>
-        </mat-tab>
 
       </mat-tab-group>
   

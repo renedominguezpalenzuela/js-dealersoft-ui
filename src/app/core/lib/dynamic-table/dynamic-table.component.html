@@ -123,7 +123,8 @@
       <th *matHeaderCellDef mat-header-cell></th>
       <td *matCellDef="let row" class="center" mat-cell>
         <button (click)="option(extraOption?.event ?? 'EXTRA_OPTION', row)" mat-icon-button>
-          <mat-icon>{{extraOption?.icon}}</mat-icon>
+          <!-- <mat-icon>{{extraOption?.icon}}</mat-icon> -->
+          <img src = "/assets/edit_icon.svg" class="p-2" alt=">"/>
         </button>
       </td>
     </ng-container>

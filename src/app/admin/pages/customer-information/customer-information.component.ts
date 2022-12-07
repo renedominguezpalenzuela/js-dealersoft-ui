@@ -29,7 +29,7 @@ export class CustomerInformationComponent implements OnInit {
 
     {
       column: 'attributes.title',
-      header: 'Titel',
+      header: 'Anrede',
       show: true,
       type: ColumnType.Regular,
       ordenar: true
