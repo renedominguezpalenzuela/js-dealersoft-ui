@@ -716,8 +716,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //--------------------------------------------------------------------------------
   // Crear tupla en tabla invoices, toma los datos desde el formulario
 
+  // -----  Cambiar TAB ----- 
+
   crearInvoice() {
-    if (this.selected_tab == 0) {
+
+    //si selected tab es rechnung
+    if (this.selected_tab == 1) {
       let precio = 0;
       if (this.carSellForm.get('a25')!.value === true) {
         precio = this.calculos.parseGermanNumber(
@@ -801,16 +805,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe(() => {
         if (showMessage) {
           let texto_mensaje = 'gespeichert';
-          // if (this.selected_tab == 0) {
-          //   texto_mensaje = 'Fahrzeug aus Lagerbestand entfernt';
-          // } else {
-          //   texto_mensaje = 'Kaufvertrag erstellt';
-          // }
-
-          // this.notificationService.riseNotification({
-          //   color: 'success',
-          //   data: texto_mensaje,
-          // });
+        
         }
       });
   }
@@ -862,8 +857,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return '';
   };
 
-  // selected_tab = 0; Rechnung
-  // selected_tab = 1; Kaufvertrag
+  // selected_tab = 0; Kaufvertrag 
+  // selected_tab = 1; Rechnung
   // selected_option_a25 = false;
   // selected_option_MnSt = false;
   // selected_option_Export = false;
@@ -877,17 +872,18 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     let nombre_reporte = 'report.pdf';
     // nombre_reporte = `${name} no.${this.carSellForm.controls['invoice_number'].value} (${moment().format('MM.DD.YYYY')}).pdf`
-
-    if (this.selected_tab == 0) {
+//  ------  CAMBIAR TAG ----------
+    if (this.selected_tab == 1) {
       //invoice
       nombre_reporte = `Rechnung ${this.carSellForm.controls['invoice_number'].value} - ${this.car_data?.attributes.car_identifier}.pdf`;
-    } else if (this.selected_tab == 1) {
+    } else if (this.selected_tab == 0) {
       nombre_reporte = `Kaufvertrag ${this.car_data?.attributes.name} - ${this.car_data?.attributes.car_identifier}.pdf`;
     }
 
     switch (type) {
       case 'privado':
-        if (this.selected_tab == 0) {
+        //  ------  CAMBIAR TAG ----------
+        if (this.selected_tab == 1) {
           if (this.selected_option_a25) {
             tipo = 'reports/rechnung/a25';
           }
@@ -896,8 +892,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             tipo = 'reports/rechnung/iva';
           }
         }
-
-        if (this.selected_tab == 1) {
+//  ------  CAMBIAR TAG ----------
+        if (this.selected_tab == 0) {
           if (this.selected_option_a25) {
             tipo = 'reports/kaufvertrag/a25';
           }
@@ -915,7 +911,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         break;
 
       case 'netto':
-        if (this.selected_tab == 0) {
+        //  ------  CAMBIAR TAG ----------
+        if (this.selected_tab == 1) {
           tipo = 'reports/netto/rechnung/export';
         } else {
           tipo = 'reports/netto/kaufvertrag/export';
@@ -923,7 +920,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         break;
 
       case 'netto-eu':
-        if (this.selected_tab == 0) {
+        //  ------  CAMBIAR TAG ----------
+        if (this.selected_tab == 1) {
           tipo = 'reports/netto-eu/rechnung/export';
         } else {
           tipo = 'reports/netto-eu/kaufvertrag/export';
@@ -1266,8 +1264,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //determinar que tab fue seleccionado
   onTabChange(event: MatTabChangeEvent) {
     this.selected_tab = event.index;
+  
 
-    if (this.selected_tab == 0) {
+    //  ------  CAMBIAR TAG ----------
+    //TODO: REVISAR
+    if (this.selected_tab == 1) {
       // this.isChecked = false;
       this.carSellForm
         .get('invoice_number')!
@@ -1373,16 +1374,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.carSellForm.get('invoice_number')!.value;
 
     //console.log("Invoice number nulo")
-    if (this.selected_tab == 0) {
-      //  if (valorFormularioInvoice_Number === null) {
-      //  this.notificationService.riseNotification({
-      //    color: 'warning',
-      //    data: 'Rechnungsnummer wurde nicht generiert',
-      //  });
-      //  console.log("Invoice number nulo")
-      //return;
-      //}
-    }
+    
 
     //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
     let query = this.requestService.generateQuery({
@@ -1412,14 +1404,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.car_selled_id = Datos_Salva.data.id;
 
-              // let texto_mensaje = '';
-              // if (this.selected_tab == 0) {
-              //   // texto_mensaje = 'Neuwagen eingelagert verkauft';
-              // } else {
-              //   // texto_mensaje = 'Kaufvertrag erstellt';
-              // }
-
-              // texto_mensaje = 'gespeichert';
+            
 
               this.notificationService.riseNotification({
                 color: 'success',
@@ -1449,14 +1434,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
               //Actualizar el carro -- campo selled = true
               this.actualizarCarSelled(this.carSellForm.value.car, false);
 
-              // let texto_mensaje = '';
-              // if (this.selected_tab == 0) {
-              //   //  texto_mensaje = 'Fahrzeug verkauft';
-              // } else {
-              //   //  texto_mensaje = 'Kaufvertrag erstellt';
-              // }
-
-              // texto_mensaje = 'gespeichert';
+            
 
               this.notificationService.riseNotification({
                 color: 'success',
