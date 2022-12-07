@@ -72,6 +72,7 @@ export class LandingLoginComponent implements OnInit {
 
   onSubmit() {
     console.log('Starting loggin...');
+    console.log('Version '+this.globales.version);
     this.globales.tiempo = new Date().getTime();
     if (this.loginForm.valid) {
       this.requestService

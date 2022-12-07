@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
 
     this.renderer.addClass(document.body, 'color_fondo');
     this.version = this.globales.version; 
+   // console.log("Version "+this.version);
 
 
     this.router.events
