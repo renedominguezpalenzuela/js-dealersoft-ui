@@ -390,3 +390,22 @@ iframe {
     display: none;
   }
 }
+
+
+
+// .mat-focus-indicator:hover {
+//   background-color: yellow  !important;
+// }
+
+// .mat-calendar-body-today {
+//   // background-color: yellow  !important;
+// }
+
+.mat-calendar-body-selected {
+  background-color: rgb(114, 126, 154) !important;
+  color: rgb(249, 249, 249) !important;
+}
+
+// .mat-calendar-body-cell-content .mat-focus-indicator {
+//   background-color: rgb(114, 126, 154) !important;
+// }
