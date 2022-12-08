@@ -80,7 +80,7 @@ export class DatosReportesService {
      } else {
       this.car_buy_data = this.car_info.data.attributes.sell;     
      }
-     
+    
      this.httpClient.get<any>(`${this.apiHelperService.logosURL}?filters[user][id][$eq]=${user_id}&populate=logo`).subscribe(
       (dato)=>{
         this.image_url=dato?.data[0].attributes.logo.data.attributes.url;                       

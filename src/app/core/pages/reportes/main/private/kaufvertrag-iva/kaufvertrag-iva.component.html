@@ -18,15 +18,18 @@
     <div class="mt-8 ">
         <app-precio-iva [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-iva>
     </div>
+    
+   
+
+    <div class="flex text-center mt-4 text-details  items-center justify-center ">
+        Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren. 
+    </div>
 
 
-    <p class="flex  mt-4 text-details ">
-        Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren.
-    </p>
 
-    <p class="flex  mt-1 text-details ">
+    <div class="flex  mt-1 text-details text-center  items-center justify-center  ">
         Gerichtsstand ist {{this.datosReportes.me?.city}}
-    </p>
+    </div>
 
 
     <app-firma></app-firma>
