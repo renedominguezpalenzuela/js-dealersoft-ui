@@ -7,7 +7,7 @@
 
      
  
-      <div class=" col-span-2 md:col-span-1 my-3 flex md:justify-center  ">
+      <!-- <div class=" col-span-2 md:col-span-1 my-3 flex md:justify-center  ">
         <input  class="toggle mr-2  md:self-center" id="company" name="company"  formControlName="company" type="checkbox">
         <label class="cursor-pointer   font-montserrat text-gray-500    " for="company">Firmenkunde</label>
       </div>
@@ -15,7 +15,7 @@
       <div class=" col-span-2 md:col-span-1 my-3 flex md:justify-center ">
         <input  class="toggle mr-2  md:self-center" id="private" name="private"  formControlName="private" type="checkbox">
         <label class="cursor-pointer   font-montserrat text-gray-500    " for="company">Privatperson</label>
-      </div>
+      </div> -->
 
     
       <div class="col-span-2 md:col-span-1">
@@ -76,50 +76,13 @@
         </mat-form-field>
       </div>
 
-      <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full font-montserrat">
-          <mat-label>Telefonnummer</mat-label>
-          <input  formControlName="phone" matInput>
-          
-        </mat-form-field>
-      </div>
-      <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full font-montserrat">
-          <mat-label>Fax</mat-label>
-          <input formControlName="fax" matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full font-montserrat">
-          <mat-label>Steuernummer</mat-label>
-          <!-- <input [required]="isRequired()" formControlName="tax_number" matInput> -->
-          <input formControlName="tax_number" matInput> 
-          <!-- <mat-error *ngIf="hasRequiredError('tax_number')">
-            <b>Steuernummer</b> wird benötigt
-          </mat-error> -->
-        </mat-form-field>
-      </div>
-      <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full font-montserrat">
-          <mat-label>E-Mail</mat-label>
-          <input formControlName="email" matInput type="email">
-          <mat-error *ngIf="hasEmailError('email')">
-            <b>E-Mail</b> ist ungültig
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-span-2 md:col-span-1">
-        <mat-form-field appearance="outline" class="w-full font-montserrat">
-          <mat-label>Website</mat-label>
-          <input formControlName="website" matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-span-2 md:col-span-1">
+      <div class="col-span-2">
         <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Straße</mat-label>
           <input formControlName="street" matInput>
         </mat-form-field>
       </div>
+
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Hausnummer</mat-label>
@@ -132,6 +95,7 @@
           <input formControlName="postal_code" matInput type="number">
         </mat-form-field>
       </div>
+
       <div class="col-span-2 md:col-span-1">
         <mat-form-field appearance="outline" class="w-full font-montserrat">
           <mat-label>Stadt</mat-label>
@@ -151,6 +115,60 @@
           <input formControlName="aditional_address" matInput>
         </mat-form-field>
       </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label>Telefonnummer</mat-label>
+          <input  formControlName="phone" matInput>
+          
+        </mat-form-field>
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label>E-Mail</mat-label>
+          <input formControlName="email" matInput type="email">
+          <mat-error *ngIf="hasEmailError('email')">
+            <b>E-Mail</b> ist ungültig
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    
+ 
+    
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label>Website</mat-label>
+          <input formControlName="website" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label>Fax</mat-label>
+          <input formControlName="fax" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="col-span-2">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label>Steuernummer</mat-label>
+          <!-- <input [required]="isRequired()" formControlName="tax_number" matInput> -->
+          <input formControlName="tax_number" matInput> 
+          <!-- <mat-error *ngIf="hasRequiredError('tax_number')">
+            <b>Steuernummer</b> wird benötigt
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-span-2 md:col-span-1">
+        <mat-form-field appearance="outline" class="w-full font-montserrat">
+          <mat-label>Straße</mat-label>
+          <input formControlName="street" matInput>
+        </mat-form-field>
+      </div> -->
+      
+
     </div>
   </div>
   <mat-divider></mat-divider>
