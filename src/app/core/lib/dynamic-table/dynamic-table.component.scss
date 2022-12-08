@@ -33,3 +33,11 @@ th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:
 table, th, td {
   border-right: 1px solid rgb(254, 140, 255);
 }
+
+table tr:nth-child(odd) td{
+  background-color: #ffffff;
+}
+table tr:nth-child(even) td{
+  background-color: #efe8e8;
+}
+
