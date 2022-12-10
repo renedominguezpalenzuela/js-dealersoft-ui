@@ -213,7 +213,7 @@ export class Register2Component implements OnInit {
                     this.isLoading = false;
                     this.notificationService.riseNotification({
                       color: 'success',
-                      data: 'gespeichert',
+                      data: 'Bericht generiert',
                     });
                    // console.log("sss")
                    
@@ -227,7 +227,7 @@ export class Register2Component implements OnInit {
             this.isLoading = false;
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'gespeichert',
+              data: 'Bericht generiert',
             });
             //window.location.reload();
           }

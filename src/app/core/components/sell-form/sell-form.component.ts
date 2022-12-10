@@ -778,7 +778,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         //Creada nueva invoice
         this.notificationService.riseNotification({
           color: 'success',
-          data: 'Neue Rechnung gespeichert',
+          data: 'Neue Rechnung  generiert',
         });
       });
     }
@@ -804,7 +804,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       })
       .subscribe(() => {
         if (showMessage) {
-          let texto_mensaje = 'gespeichert';
+          let texto_mensaje = 'Bericht generiert';
         
         }
       });
@@ -937,7 +937,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     if (tipo == '/') {
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'Report not defined yet',
+        data: 'Bericht noch nicht festgelegt',
       });
       return;
     }
@@ -1408,7 +1408,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'gespeichert',
+                data: 'Bericht generiert',
               });
 
               if (crear_invoice) {
@@ -1438,7 +1438,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'gespeichert',
+                data: 'Bericht generiert',
               });
 
               if (crear_invoice) {

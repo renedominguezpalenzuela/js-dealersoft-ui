@@ -300,7 +300,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
         .subscribe((datos) => {
           this.notificationService.riseNotification({
             color: 'success',
-            data: 'Neue Rechnung gespeichert',
+            data: 'Neue Rechnung generiert',
           });
           this.router.navigate(['/admin/list-invoices']);
         });
@@ -352,7 +352,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
           const subscription = (res: any) => {
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'Neukunde gespeichert',
+              data: 'Neukunde Bericht generiert',
             });
             this.clientsOptions.push(res.data);
             //this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;

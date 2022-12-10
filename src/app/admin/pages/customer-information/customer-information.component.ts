@@ -238,7 +238,7 @@ export class CustomerInformationComponent implements OnInit {
     const subscription = () => {
       this.notificationService.riseNotification({
         color: 'success',
-        data: 'Neukunde gespeichert',
+        data: 'Neukunde Bericht generiert',
       });
       this.loadPaginatedData(this.currentPage);
     };

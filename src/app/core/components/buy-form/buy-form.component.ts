@@ -557,7 +557,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             //New customer saved
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'Neukunde gespeichert',
+              data: 'Neukunde Bericht generiert',
             });
             this.clientsOptions.push(res.data);
             //this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
@@ -678,7 +678,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
               //Salvando por primera vez el auto
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'gespeichert',
+                data: 'Bericht generiert',
               });
             });
         } else {
@@ -710,7 +710,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'gespeichert',
+                data: 'Bericht generiert',
               });
             });
         }
