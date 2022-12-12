@@ -265,9 +265,9 @@
 
          <!-- <div *ngIf="selected_tab==1"> Rechnung-->
       <div class="grid grid-cols-2 w-full md:w-1/3 mt-5 ">
-        <!-- [disabled]="!boton_salvar_disabled" -->
+        <!-- -->
     
-        <button (click)="generateBill()" class="btn bg-[#8591AA] border-[#8591AA] w-40"   *ngIf="selected_tab==1" type="button"  >
+        <button (click)="generateBill()" class="btn bg-[#8591AA] border-[#8591AA] w-40"   *ngIf="selected_tab==1" type="button" [disabled]="!boton_salvar_disabled"  >
           <span class="tracking-wide font-montserrat">Herunterladen</span>
         </button>
 
