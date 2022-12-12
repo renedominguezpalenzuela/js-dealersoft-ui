@@ -716,10 +716,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //--------------------------------------------------------------------------------
   // Crear tupla en tabla invoices, toma los datos desde el formulario
 
-  // -----  Cambiar TAB ----- 
+  // -----  Cambiar TAB -----
 
   crearInvoice() {
-
     //si selected tab es rechnung
     if (this.selected_tab == 1) {
       let precio = 0;
@@ -805,7 +804,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe(() => {
         if (showMessage) {
           let texto_mensaje = 'Bericht generiert';
-        
         }
       });
   }
@@ -857,7 +855,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     return '';
   };
 
-  // selected_tab = 0; Kaufvertrag 
+  // selected_tab = 0; Kaufvertrag
   // selected_tab = 1; Rechnung
   // selected_option_a25 = false;
   // selected_option_MnSt = false;
@@ -872,7 +870,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     let nombre_reporte = 'report.pdf';
     // nombre_reporte = `${name} no.${this.carSellForm.controls['invoice_number'].value} (${moment().format('MM.DD.YYYY')}).pdf`
-//  ------  CAMBIAR TAG ----------
+    //  ------  CAMBIAR TAG ----------
     if (this.selected_tab == 1) {
       //invoice
       nombre_reporte = `Rechnung ${this.carSellForm.controls['invoice_number'].value} - ${this.car_data?.attributes.car_identifier}.pdf`;
@@ -892,7 +890,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             tipo = 'reports/rechnung/iva';
           }
         }
-//  ------  CAMBIAR TAG ----------
+        //  ------  CAMBIAR TAG ----------
         if (this.selected_tab == 0) {
           if (this.selected_option_a25) {
             tipo = 'reports/kaufvertrag/a25';
@@ -1064,10 +1062,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  public total_lineas_comentario1: number = 4;   //en realidad solo salen 4?
+  public total_lineas_comentario1: number = 4; //en realidad solo salen 4?
   public total_lineas_comentario2: number = 35;
-  public total_characters_por_linea: number =70;  //70
-
+  public total_characters_por_linea: number = 70; //70
 
   //Evitar que sean mas de 4 lineas en los comentarios1
   public keydown(event: any) {
@@ -1079,7 +1076,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     let texto_valido = false;
 
-    if (total_lineas >= this.total_lineas_comentario1  && event.keyCode == 13) {
+    if (total_lineas >= this.total_lineas_comentario1 && event.keyCode == 13) {
       texto_valido = false;
     } else {
       texto_valido = true;
@@ -1093,36 +1090,20 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  
-
-
   public keypress(event: any) {
-
-   
-
-    
     const fieldName = event.target.attributes.formcontrolname.value;
 
-    
- 
     let cadena_texto = event.target.value;
     let pressed_enter = false;
-   
 
-
-    let lineas = cadena_texto.split(/\n/g) || [];  //si esta vacia le asigna []
+    let lineas = cadena_texto.split(/\n/g) || []; //si esta vacia le asigna []
     let total_lineas = lineas.length;
 
-    
-    
-    let ultima_linea = lineas[total_lineas-1];
+    let ultima_linea = lineas[total_lineas - 1];
 
     let terminar = false;
-    
 
     if (ultima_linea.length >= this.total_characters_por_linea) {
-     
-
       const words = ultima_linea.split(' ') || [];
 
       let first_line_part = '';
@@ -1130,108 +1111,75 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       let linea_completa = false;
 
-    
-
-
       words.forEach((unaWord: any) => {
-        
         unaWord = unaWord.trimStart();
 
-       
-        
-                
-        if (unaWord.length>=this.total_characters_por_linea - 15) {
-
-           //  first_line_part = unaWord.substring(0, this.total_characters_por_linea );
-           //  second_line_part = unaWord.substring(this.total_characters_por_linea )  + ' '; 
-           event.preventDefault();
-           terminar = true;
+        if (unaWord.length >= this.total_characters_por_linea - 15) {
+          //  first_line_part = unaWord.substring(0, this.total_characters_por_linea );
+          //  second_line_part = unaWord.substring(this.total_characters_por_linea )  + ' ';
+          event.preventDefault();
+          terminar = true;
 
           // return false;
-
-            
         } else {
-          if (first_line_part.length + unaWord.length <this.total_characters_por_linea) {
-            first_line_part+=' '+unaWord;
+          if (
+            first_line_part.length + unaWord.length <
+            this.total_characters_por_linea
+          ) {
+            first_line_part += ' ' + unaWord;
           } else {
             linea_completa = true;
           }
 
           if (linea_completa) {
-            second_line_part+=' '+unaWord;
+            second_line_part += ' ' + unaWord;
           }
-         
         }
-
-        
-
       });
 
+      total_lineas = lineas.length;
 
-
-       total_lineas = lineas.length;
-
-
-    
-      if (total_lineas <= 2 && second_line_part != '' && second_line_part != ' ') {
-        lineas[total_lineas - 1] = this.eliminarEspacio(first_line_part);        
-        lineas.push(this.eliminarEspacio(second_line_part+'\n'));
-       
+      if (
+        total_lineas <= 2 &&
+        second_line_part != '' &&
+        second_line_part != ' '
+      ) {
+        lineas[total_lineas - 1] = this.eliminarEspacio(first_line_part);
+        lineas.push(this.eliminarEspacio(second_line_part + '\n'));
       }
-
-
-
-      
-
     }
 
-
-    
-
-  
-    
-
-
     switch (fieldName) {
-      case "bemerkunhen":
-       // this.carSellForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });     
-       this.carSellForm.patchValue({bemerkunhen : lineas.join('\n') });     
+      case 'bemerkunhen':
+        // this.carSellForm.patchValue({bemerkunhen : lineas_finales_1.join('\n') });
+        this.carSellForm.patchValue({ bemerkunhen: lineas.join('\n') });
         break;
-      case "bemerkunhen2":
-       // this.carSellForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });     
-        this.carSellForm.patchValue({bemerkunhen2 : lineas.join('\n') });     
+      case 'bemerkunhen2':
+        // this.carSellForm.patchValue({bemerkunhen2 : lineas_finales_1.join('\n') });
+        this.carSellForm.patchValue({ bemerkunhen2: lineas.join('\n') });
         break;
-      case "bemerkunhen2page":
-        
-       // this.carSellForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });     
-        this.carSellForm.patchValue({bemerkunhen2page : lineas.join('\n') });     
-        break;  
-    
+      case 'bemerkunhen2page':
+        // this.carSellForm.patchValue({bemerkunhen2page : lineas_finales_1.join('\n') });
+        this.carSellForm.patchValue({ bemerkunhen2page: lineas.join('\n') });
+        break;
+
       default:
         break;
     }
 
-
-    
-
-   
-   
-
     return !terminar;
   }
 
-   eliminarEspacio(linea:any) {
-
-    let primerCaracter = linea.substring(0,1);
-    let resultado ='';
-    if (linea.length>1 && primerCaracter===' ')  {
+  eliminarEspacio(linea: any) {
+    let primerCaracter = linea.substring(0, 1);
+    let resultado = '';
+    if (linea.length > 1 && primerCaracter === ' ') {
       resultado = linea.trimStart();
     } else {
       resultado = linea;
     }
 
     return resultado;
-
   }
 
   //Evitar que sean mas de 4 lineas en los comentarios2
@@ -1264,7 +1212,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //determinar que tab fue seleccionado
   onTabChange(event: MatTabChangeEvent) {
     this.selected_tab = event.index;
-  
 
     //  ------  CAMBIAR TAG ----------
     //TODO: REVISAR
@@ -1374,7 +1321,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.carSellForm.get('invoice_number')!.value;
 
     //console.log("Invoice number nulo")
-    
 
     //------ 1)  Busco si ya existe el carro  en cars-sell-data -------------------------
     let query = this.requestService.generateQuery({
@@ -1404,8 +1350,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.car_selled_id = Datos_Salva.data.id;
 
-            
-
               this.notificationService.riseNotification({
                 color: 'success',
                 data: 'Bericht generiert',
@@ -1433,8 +1377,6 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
             .subscribe(() => {
               //Actualizar el carro -- campo selled = true
               this.actualizarCarSelled(this.carSellForm.value.car, false);
-
-            
 
               this.notificationService.riseNotification({
                 color: 'success',
@@ -1537,6 +1479,8 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   public logo: any;
   public me: any;
 
+
+
   public loadPaginatedData_TEST = (id: any) => {
     forkJoin([
       this.httpClient.get<any>(
@@ -1573,5 +1517,73 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           // if (this.logo?.attributes.logo.data.attributes.url)   this.showLogo = true;
         });
     });
+  };
+
+  // Creando el reporte para la factura, bill invoice
+  public generateBill = () => {
+    console.log('Generando bill');
+
+    let tipo = '/';
+
+      //invoice normal
+      if (this.selected_option_a25) {  
+        tipo = 'reports/bill/a25';
+      } else {
+        
+        tipo = 'reports/bill/iva';
+      }
+
+
+  
+    let invoice_number = this.carSellForm.get('invoice_number')!.value;
+
+
+
+    this.requestService
+    .Get(
+      this.apiHelperService.invoicesURL,
+      this.requestService.generateQuery({
+        populate: ['*'],
+        filters: [
+          {
+            field: '[invoice_number]',
+            operator: FilterOperator.$eq,
+            value: <string>invoice_number,
+            option: FilterDeepOption.$and,
+          },
+        ],
+      })
+    )
+    .subscribe((res) => {
+      const data = res?.data[0]?.attributes;
+      const invoice_id = res?.data[0]?.id;
+  
+
+    this.requestService
+    .downloadPDF(this.apiHelperService.pdfURL, {
+      // type: ExportType.vehicle,
+      type: tipo,
+      id: invoice_id, //no es un car
+    })
+    .subscribe((res) => {
+
+   
+
+      let nombre=  `Rechnung_${invoice_number}_(${moment().format('YYYY-MM-DD')}).pdf`;
+
+
+      saveAs(  new Blob([res], { type: 'application/pdf' }),    nombre );
+
+
+      
+    });
+    });
+
+
+
+
+
+      
+
   };
 }
