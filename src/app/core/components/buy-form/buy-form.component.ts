@@ -111,6 +111,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
     gross_buy: [{ value: null, disabled: false }, [Validators.min(0)]],
 
     buy_date: [null, [Validators.required]],
+    pickupdate: [null, [Validators.required]],
     a25: [false, [Validators.required]], //Check Box
     iva: [true, [Validators.required]], //Check Box
     bemerkunhen: [null],

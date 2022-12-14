@@ -62,7 +62,7 @@
           **   Abholung  (Antes Sammlung)                             
           **************************************************************************************************************** 
         -->
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+        <mat-form-field appearance="outline" class="col-span-2 ">
           <mat-label class="font-montserrat">Abholung</mat-label>
           <input formControlName="collection" matInput required class="font-montserrat">
           <mat-error *ngIf="hasRequiredError('collection')">
@@ -88,6 +88,24 @@
           <mat-datepicker #pickerBuyDate></mat-datepicker>
         </mat-form-field>
 
+        
+        <!-- 
+          **************************************************************************************************************** 
+          **   Abholdatum  --- Pickup Date                            
+          **************************************************************************************************************** 
+        -->
+        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          <mat-label class="font-montserrat">Abholdatum</mat-label>
+          <input [matDatepicker]="pickupdate" formControlName="pickupdate" matInput  required class="font-montserrat">
+          <mat-error *ngIf="hasRequiredError('pickupdate')">
+            <b>Abholdatum</b> wird benötigt
+          </mat-error>
+          <mat-datepicker-toggle [for]="pickupdate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #pickupdate></mat-datepicker>
+        </mat-form-field>
+
+
+        
 
         <!-- 
           **************************************************************************************************************** 
