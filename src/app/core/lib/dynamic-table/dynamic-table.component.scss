@@ -29,9 +29,10 @@
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
   padding-left: 0px!important;
 }
-
+// border-right: 1px solid rgb(254, 140, 255);
 table, th, td {
-  border-right: 1px solid rgb(254, 140, 255);
+  
+    border-right: 1px solid #efe8e8;
 }
 
 table tr:nth-child(odd) td{
