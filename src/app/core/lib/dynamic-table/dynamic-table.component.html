@@ -121,10 +121,11 @@
 
     <ng-container *ngIf="showExtraOption" matColumnDef="extraOption">
       <th *matHeaderCellDef mat-header-cell></th>
-      <td *matCellDef="let row" class="center" mat-cell>
-        <button (click)="option(extraOption?.event ?? 'EXTRA_OPTION', row)" mat-icon-button>
-          <!-- <mat-icon>{{extraOption?.icon}}</mat-icon> -->
-          <img src = "/assets/edit_icon.svg" class="p-2" alt=">"/>
+      <td *matCellDef="let row" class=" center" mat-cell>
+         <!-- <mat-icon>{{extraOption?.icon}}</mat-icon>  -->
+        <button class="border-2" (click)="option(extraOption?.event ?? 'EXTRA_OPTION', row)" mat-icon-button >
+     
+          <img src = "/assets/edit_icon.svg" class="mx-2 p-2 mt-1   " alt="">  
         </button>
       </td>
     </ng-container>
