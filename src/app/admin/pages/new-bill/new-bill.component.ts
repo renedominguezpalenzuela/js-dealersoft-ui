@@ -309,7 +309,7 @@ export class NewBillComponent implements OnInit, AfterViewInit, OnChanges {
 
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'fehlende Angaben',
+        data: 'Fehlende Angaben',
       });
     }
   }

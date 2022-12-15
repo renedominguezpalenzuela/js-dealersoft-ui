@@ -215,7 +215,7 @@ export class LandingRegisterComponent implements OnInit {
 
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'fehlende Angaben',
+        data: 'Fehlende Angaben',
       });
     }
   }

@@ -199,7 +199,7 @@ export class RegisterComponent implements OnInit {
 
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'fehlende Angaben',
+        data: 'Fehlende Angaben',
       });
 
 
