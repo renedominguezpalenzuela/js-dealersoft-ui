@@ -358,6 +358,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       this.authUser = user;
     });
 
+    
     this.carSellForm.get('a25')!.valueChanges.subscribe((change: boolean) => {
       if (this.actualizando_radio_buttons) return;
       if (this.boton_salvar_disabled) return;
@@ -369,14 +370,19 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.activarA25();
       } else {
         this.actualizando_radio_buttons = true;
-        //AQUI
-        if (this.puede_solo_a25) {
-          this.carSellForm.patchValue({ export: false, iva: true });
+        
+        // if (this.puede_solo_a25) {
+        //   console.log("DDD");
+        //   this.carSellForm.patchValue({ export: false, iva: false,  a25:true});
+        //   this.activarA25();
+         
           
-        } else {
-          //this.carSellForm.patchValue({ export: true, iva: false });
-        }
-        this.activarIVA();
+        // } else  if(this.puede_solo_iva){
+        //   this.carSellForm.patchValue({ export: false, iva: true });
+        //   console.log("XXX");
+        //   this.activarIVA();
+        // }
+       
       }
 
       this.actualizando_radio_buttons = false;
@@ -393,20 +399,24 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.activarIVA();
       } else {
         this.actualizando_radio_buttons = true;
-        this.carSellForm.patchValue({ export: true, a25: false });
-        this.activarExport();
-        if (this.puede_solo_iva) {
-          this.carSellForm.patchValue({ export: true, iva: false });
-        } else {
-          this.carSellForm.patchValue({ export: true, a25: false });
-        }
+        
+        
+        // if (this.puede_solo_iva) {
+        //   console.log("01")
+        //   //this.carSellForm.patchValue({ export: true, iva: false });
+        //   //this.activarExport();       
+        // } else   if (this.puede_solo_a25){
+        //   console.log("02")
+        //  // this.activarIVA();
+        //  //this.carSellForm.patchValue({ export: false, a25: true });
+    
+        // }
       }
 
       this.actualizando_radio_buttons = false;
     });
 
-    this.carSellForm
-      .get('export')!.valueChanges.subscribe((change: boolean) => {
+    this.carSellForm.get('export')!.valueChanges.subscribe((change: boolean) => {
         if (this.boton_salvar_disabled) return;
         if (this.actualizando_radio_buttons) return;
         if (this.primeraVez) return;
@@ -415,9 +425,9 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           this.carSellForm.patchValue({ a25: false, iva: false });
           this.activarExport();
         } else {
-          this.actualizando_radio_buttons = true;
-          this.carSellForm.patchValue({ a25: false, iva: true });
-          this.activarIVA();
+          // this.actualizando_radio_buttons = true;
+          // this.carSellForm.patchValue({ a25: false, iva: true });
+          // this.activarIVA();
         }
 
         this.actualizando_radio_buttons = false;
