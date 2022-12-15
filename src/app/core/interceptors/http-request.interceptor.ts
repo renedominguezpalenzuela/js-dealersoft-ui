@@ -39,7 +39,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           } else {
             errors = err.message;
           }
-          this.notificationService.riseNotification({ color: 'warning', data: errors });
+         
+//ERRORES: respuestas del servidor
+          if (errors[0]==="This attribute must be unique") {
+          this.notificationService.riseNotification({ color: 'warning', data: 'Diese Eingabe muss einmalig sein' });
+          } else {
+            this.notificationService.riseNotification({ color: 'warning',data: errors });
+          }
 
           if (err.status === 403) {
             this.authService.updateUser = null;

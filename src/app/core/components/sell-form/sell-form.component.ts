@@ -789,7 +789,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
       })
       .subscribe(() => {
         if (showMessage) {
-          let texto_mensaje = 'Bericht generiert';
+          let texto_mensaje = 'Änderung gespeichert';
         }
       });
   }
@@ -1303,7 +1303,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Bericht generiert',
+                data: 'Fahrzeug gespeichert',
               });
 
               if (crear_invoice) {
@@ -1331,7 +1331,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Bericht generiert',
+                data: 'Änderung gespeichert',
               });
 
               if (crear_invoice) {

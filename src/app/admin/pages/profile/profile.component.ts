@@ -346,7 +346,7 @@ export class ProfileComponent implements OnInit {
                     this.isLoading = false;
                     this.notificationService.riseNotification({
                       color: 'success',
-                      data: 'Bericht generiert',
+                      data: 'Änderung gespeichert',
                     });
                     window.location.reload();
                   });
@@ -356,7 +356,7 @@ export class ProfileComponent implements OnInit {
             this.isLoading = false;
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'Bericht generiert',
+              data: 'Änderung gespeichert',
             });
             //window.location.reload();
           }

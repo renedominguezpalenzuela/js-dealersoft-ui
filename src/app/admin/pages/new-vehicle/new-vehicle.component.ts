@@ -313,7 +313,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
                     //Fahrzeug erfolgreich aktualisiert
                     this.notificationService.riseNotification({
                       color: 'success',
-                      data: 'Bericht generiert'
+                      data: 'Fahrzeug gespeichert'
                     });
                   });
                 });
@@ -333,7 +333,7 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
                 //
                 this.notificationService.riseNotification({
                   color: 'success',
-                  data: 'Bericht generiert'
+                  data: 'Fahrzeug gespeichert'
                 });
               });
             });
@@ -343,15 +343,10 @@ export class NewVehicleComponent implements OnInit, OnChanges , AfterViewInit{
         //Stored new car
         //Neuwagen eingelagert
         const subscription = (datos:any) => {
-          this.notificationService.riseNotification({ color: 'success', data: 'Bericht generiert' });
+          this.notificationService.riseNotification({ color: 'success', data: 'Fahrzeug gespeichert' });
           this.router.navigate([`/admin/vehicle-form/${datos.data.id}`], {queryParams: {tab:2}});
 
-//          this.notificationService.riseNotification({ color: 'success', data: 'Bericht generiert' });
-                //this.router.navigate(['/admin/all-vehicles']);    
-              //  console.log(datos.data.id)
-                //http://localhost:4200/admin/vehicle-form/122?tab=3
 
-          //http://localhost:4200/admin/vehicle-form/122?tab=3
           
         }
 

@@ -679,7 +679,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
               //Salvando por primera vez el auto
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Bericht generiert',
+                data: 'Fahrzeug gespeichert',
               });
             });
         } else {
@@ -711,7 +711,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Bericht generiert',
+                data: 'Änderung gespeichert',
               });
             });
         }
