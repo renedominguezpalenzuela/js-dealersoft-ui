@@ -1525,7 +1525,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     })
     .subscribe((res) => {
 
-   
+      this.notificationService.riseNotification({
+        color: 'warning',
+        data: this.texto_reporte,
+      });
 
       let nombre=  `Rechnung_${invoice_number}_(${moment().format('YYYY-MM-DD')}).pdf`;
 
