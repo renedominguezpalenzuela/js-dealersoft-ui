@@ -1268,7 +1268,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'Fehlende Angaben!!!!',
+        data: 'Fehlende Angaben',
       });
 
       return;
@@ -1392,7 +1392,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
     if (!this.carSellForm.valid) {
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'Fehlende Angaben!!!!',
+        data: 'Fehlende Angaben',
       });
 
       return;

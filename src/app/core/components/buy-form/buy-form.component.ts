@@ -609,7 +609,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
       //Error en datos
       this.notificationService.riseNotification({
         color: 'warning',
-        data: 'Fehlende Angaben!!!!',
+        data: 'Fehlende Angaben',
       });
 
       return;
