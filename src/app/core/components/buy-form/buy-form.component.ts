@@ -91,6 +91,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   vGross_buy: number = 0.0;
   a25_activo = true;
 
+  boton_salvar:boolean = true; //si es true se esta salvando, si es false se esta creando reporte
+  texto_salva:string = "Gespeichert";
+  texto_reporte:string = "Bericht generiert";
+
   private readonly jwt: string;
 
   //variable recibida desde el componente padre que contiene los datos provenientes del API
@@ -539,6 +543,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
   //*************************************************************************************************
   public submit() {
     //Solo salvar, no imprimir
+    this.boton_salvar = true;
 
     this.salvarEImprimir(false);
   }
@@ -558,7 +563,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
             //New customer saved
             this.notificationService.riseNotification({
               color: 'success',
-              data: 'Neukunde Bericht generiert',
+              data: 'Neukunde gespeichert',
             });
             this.clientsOptions.push(res.data);
             //this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
@@ -679,7 +684,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
               //Salvando por primera vez el auto
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Fahrzeug gespeichert',
+                data: this.boton_salvar ? this.texto_salva : this.texto_reporte,
               });
             });
         } else {
@@ -711,7 +716,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Änderung gespeichert',
+                data: this.boton_salvar ? this.texto_salva : this.texto_reporte,
               });
             });
         }
@@ -789,6 +794,7 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public generatePdf() {
     //this.loadPaginatedData_TEST(94);
+    this.boton_salvar = false;
 
     if (!this.boton_salvar_disabled) {
       this.salvarEImprimir(true);

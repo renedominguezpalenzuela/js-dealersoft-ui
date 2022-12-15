@@ -89,6 +89,10 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   focus_gross_sell = false;
   focus_iva = false;
 
+  boton_salvar:boolean = true; //si es true se esta salvando, si es false se esta creando reporte
+  texto_salva:string = "Gespeichert";
+  texto_reporte:string = "Bericht generiert";
+
   total_decimales = 2;
 
   // last_invoice_number: number = 220000;
@@ -772,6 +776,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   //  Boton Guardar
   //*************************************************************************************************
   public submit() {
+    this.boton_salvar = true;
     this.salvarEImprimir(false, ExportType.none, false);
   }
 
@@ -918,6 +923,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
         break;
     }
 
+    //no existe reporte definido
     if (tipo == '/') {
       this.notificationService.riseNotification({
         color: 'warning',
@@ -939,6 +945,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public generatePdf(type: ExportType) {
+    this.boton_salvar = false;
     if (!this.boton_salvar_disabled) {
       this.salvarEImprimir(true, type, false);
     } else {
@@ -1303,7 +1310,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Fahrzeug gespeichert',
+                data: this.boton_salvar ? this.texto_salva : this.texto_reporte, 
               });
 
               if (crear_invoice) {
@@ -1331,7 +1338,7 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
 
               this.notificationService.riseNotification({
                 color: 'success',
-                data: 'Änderung gespeichert',
+                data: this.boton_salvar ? this.texto_salva : this.texto_reporte,
               });
 
               if (crear_invoice) {
