@@ -165,18 +165,30 @@ iframe {
   font-family: "HelveticaLTStd-Bold";
   src: local("HelveticaLTStd-Bold"),
     url("/assets/fonts/HelveticaLTStd-Bold.otf") format("opentype");
-}
+}*/
 
 @font-face {
   font-family: "Helvetica";
   src: local("Helvetica"), url("/assets/fonts/Helvetica.ttf") format("truetype");
 }
 
+
+
 @font-face {
   font-family: "Helvetica-Bold";
   src: local("Helvetica-Bold"),
     url("/assets/fonts/Helvetica-Bold.ttf") format("truetype");
-}*/
+}
+
+.helvetica {
+  font-family: "Helvetica"!important;
+  
+}
+
+.helvetica-bold {
+  font-family: "Helvetica-Bold"!important;
+}
+
 
 /* Degradado */
 .fondo {
@@ -409,3 +421,20 @@ iframe {
 // .mat-calendar-body-cell-content .mat-focus-indicator {
 //   background-color: rgb(114, 126, 154) !important;
 // }
+
+.header-user-data-report {
+  font-size: 13px;
+  font-family: "Helvetica" !important;
+  
+
+ 
+
+}
+
+
+.header-client-data-report {
+  font-size: 13px;
+  font-family: "Helvetica" !important;
+  line-height: 1.1rem;
+
+}
