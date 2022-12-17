@@ -8,7 +8,7 @@
         <!-- Contrato fecha -->
         <app-contrato-fecha [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-contrato-fecha>
 
-        <p class="flex  mt-4 text-details">
+        <p class="flex  mt-4 text-details-report">
             Unter Anerkennung allgemeiner Geschäftsbedingungen verkauft die {{this.datosReportes.me?.company_name}} folgendes Fahrzeug: 
         </p>
 
@@ -21,7 +21,7 @@
             <app-precio-netto [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-netto>
         </div>
        
-        <p class="flex text-center mt-4 text-details">
+        <p class="flex text-center mt-4 text-details-report">
             Der Verkäufer weist auf die anhängenden allgemeinen Geschäftsbedingungen hin. Der Käufer hat von ihrem Inhalt Kenntnis genommen und ist mit ihrer Geltung einverstanden. Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren und er erkennt an, dass der Kaufgegenstand am Liefertag keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist. Das Fahrzeug wird unter Ausschluss jeglicher Gewährleistung verkauft. Gerichtsstand ist {{this.datosReportes.me?.city}}
         </p>
         

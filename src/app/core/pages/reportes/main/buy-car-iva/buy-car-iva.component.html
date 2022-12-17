@@ -11,7 +11,7 @@
         
         <app-contrato-fecha-compra  [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" ></app-contrato-fecha-compra >
 
-        <p class="flex  mt-4 text-details">
+        <p class="flex  mt-4 text-details-report">
             Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{this.datosReportes.me?.company_name}} folgendes Fahrzeug:            
         </p>
 
@@ -26,13 +26,11 @@
             <app-precio-compra-iva [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-compra-iva>
         </div>
        
-        <p class=" mt-4 text-details">
+        <p class=" mt-4 text-details-report">
             Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren. Gerichtsstand ist {{this.datosReportes.me?.city}}              
         </p>
 
-        <!-- <p class=" text-center  text-details">
-            
-        </p> -->
+      
         
         <app-firma></app-firma>
 

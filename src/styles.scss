@@ -423,18 +423,74 @@ iframe {
 // }
 
 .header-user-data-report {
-  font-size: 13px;
+  font-size: 14px;
   font-family: "Helvetica" !important;
-  
+  font-weight: 500;
+}
 
- 
+.header-client-data-report {
+  font-size: 14px;
+  font-family: "Helvetica" !important;
+  line-height: 1.1rem;
+  font-weight: 500;
+}
 
+.fecha-bold-report {
+  font-size: 18px;
+  font-family: "Helvetica" !important;
+  font-weight: 500;
+}
+
+.fecha-report {
+  font-size: 12px;
+  font-family: "Helvetica" !important;
+  font-weight: 500;
+}
+
+.text-details-report {
+  font-size: 12px !important; /* 14px */
+  line-height: 1.1rem!important;
+  font-family: "Helvetica" !important;
+  font-weight: 500;
+}
+
+.text-car-details-bold-report {
+  font-size: 14px !important; /* 14px */
+  line-height: 1.2rem !important;
+  font-family: "Helvetica-Bold" !important;
+}
+
+.text-car-details-report {
+  font-size: 14px !important; /* 14px */
+  line-height: 1.2rem !important;
+  font-family: "Helvetica" !important;
 }
 
 
-.header-client-data-report {
-  font-size: 13px;
-  font-family: "Helvetica" !important;
-  line-height: 1.1rem;
 
+.text-details-firma-report {
+  font-size: 16px!important; /* 14px */
+  line-height: 1.9rem !important;
+  font-family: "Helvetica" !important;
+}
+
+
+
+.text-footer-report {
+  font-size: 0.65rem !important; /* 14px */
+  line-height: 0.7rem !important;
+  font-family: "Helvetica" !important;
+}
+
+
+.text-price-report {
+  font-size: 0.8rem !important; /* 14px */
+  line-height: 1.1rem !important;
+  font-family: "Helvetica" !important;
+}
+
+.text-price-bold-report {
+  font-size: 0.85rem !important; /* 14px */
+  line-height: 1.1rem !important;
+  font-family: "Helvetica-Bold" !important;
 }

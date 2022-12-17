@@ -1,10 +1,6 @@
 <div *ngIf="car_buy_data?.bemerkungencheck2page" id="second_page" 
 class="new-page ">
 
- 
-    <!-- <div *ngIf="empresa" >
-            <app-header-privado [car_buy_data]="car_buy_data" [me]="me" [imgPath]="imgPath"></app-header-privado>
-        </div>  -->
 
 
     <div *ngIf="empresa; else particular">
@@ -22,11 +18,11 @@ class="new-page ">
 
         <app-car-details-supermin  [car_info]="car_info"></app-car-details-supermin>
 
-        <table class="mt-5 mb-8 text-details" style="text-align: left">
+        <table class="mt-5 mb-8 text-details-report" style="text-align: left">
             <tr class="">
-                <th class="pr-4 text-details-bold  flex 	item-start">Bemerkungen:</th>
+                <th class="pr-4 text-details-bold-report  flex 	item-start">Bemerkungen:</th>
                 <td>
-                    <p class="break-normal preserve-line-break w-97  text-details ">{{car_buy_data?.bemerkunhen2page}}</p>
+                    <p class="break-normal preserve-line-break w-97  text-details-report ">{{car_buy_data?.bemerkunhen2page}}</p>
                 </td>
             </tr>
         </table>

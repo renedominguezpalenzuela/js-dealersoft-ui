@@ -11,7 +11,7 @@
     <app-fecha-bill [invoice_date]="datosReportes.invoice_date" [invoice_number]="datosReportes.invoice_number" [user_city]="datosReportes.user_city">
     </app-fecha-bill>
 
-    <p class="flex text-center mt-4 text-details  ">
+    <p class="flex text-center mt-4 text-details-report  ">
         Wir berechnen Ihnen hiermit gemäß Absprache folgende(n) Artikel
 
     </p>
@@ -33,8 +33,8 @@
     <div class="mt-10 ">
         <table class="" style="text-align: left">
             <tr>
-                <span class="pr-2 text-details-bold ">Lieferdatum: </span>
-                <span class="text-details">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
+                <span class="pr-2 text-details-bold-report ">Lieferdatum: </span>
+                <span class="text-details-report">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
             </tr>
 
         </table>

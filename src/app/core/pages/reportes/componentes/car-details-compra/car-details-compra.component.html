@@ -1,104 +1,104 @@
 <div class="grid  grid-cols-[20%_80%]  gap-y-0 gap-x-4 mt-1 mb-8 w-full text-car-details">
 
-  <div class="text-car-details-bold col-start-1 row-start-1  ">
+  <div class="text-car-details-bold-report col-start-1 row-start-1  ">
     Fahrzeug:
   </div>
 
-  <div class="text-car-details-bold col-start-2 row-start-1 ">
+  <div class="text-car-details-bold-report col-start-2 row-start-1 ">
     {{car_info?.data?.attributes?.name}}
   </div>
 
-  <div class="text-car-details-bold col-start-1 row-start-2  ">
+  <div class="text-car-details-bold-report col-start-1 row-start-2  ">
     FIN:
   </div>
 
-  <div class="text-car-details-bold col-start-2 row-start-2 ">
+  <div class="text-car-details-bold-report col-start-2 row-start-2 ">
     {{car_info?.data?.attributes?.car_identifier}}
   </div>
 
 
 
-  <div class=" col-start-1 row-start-3  text-car-details">
+  <div class=" col-start-1 row-start-3  text-car-details-report">
     Erstzulassung:
   </div>
 
-  <div class=" col-start-2 row-start-3  text-car-details">
+  <div class=" col-start-2 row-start-3  text-car-details-report">
     {{car_info?.data?.attributes?.first_register_date | date:'dd.MM.yyyy'}}
   </div>
 
 
-  <div class=" col-start-1 row-start-4  text-car-details">
+  <div class=" col-start-1 row-start-4  text-car-details-report">
     Leistung KW:
   </div>
 
-  <div class=" col-start-2 row-start-4  text-car-details">
+  <div class=" col-start-2 row-start-4  text-car-details-report">
     {{car_info?.data?.attributes?.kilowatt}}
   </div>
 
 
 
-  <div class=" col-start-1 row-start-5  text-car-details">
+  <div class=" col-start-1 row-start-5  text-car-details-report">
     Kilometerstand:
   </div>
 
-  <div class=" col-start-2 row-start-5  text-car-details">
+  <div class=" col-start-2 row-start-5  text-car-details-report">
     {{car_info?.data?.attributes?.kilometres}}
   </div>
 
 
-  <div class=" col-start-1 row-start-6  text-car-details">
+  <div class=" col-start-1 row-start-6  text-car-details-report">
     Aufbau:
   </div>
 
-  <div class=" col-start-2 row-start-6  text-car-details">
+  <div class=" col-start-2 row-start-6  text-car-details-report">
     {{car_info?.data?.attributes?.build_variant}}
   </div>
 
 
-  <div class=" col-start-1 row-start-7  text-car-details">
+  <div class=" col-start-1 row-start-7  text-car-details-report">
     Farbe:
   </div>
 
-  <div class=" col-start-2 row-start-7  text-car-details">
+  <div class=" col-start-2 row-start-7  text-car-details-report">
     {{car_info?.data?.attributes?.color}}
   </div>
 
 
-  <div class=" col-start-1 row-start-8  text-car-details">
+  <div class=" col-start-1 row-start-8  text-car-details-report">
     Vorbesitzer:
   </div>
 
-  <div class=" col-start-2 row-start-8  text-car-details">
+  <div class=" col-start-2 row-start-8  text-car-details-report">
     {{car_info?.data?.attributes?.last_owner }}
   </div>
 
 
-  <div class=" col-start-1 row-start-8  text-car-details">
+  <div class=" col-start-1 row-start-8  text-car-details-report">
     Ausstattung: 
   </div>
 
   <div class=" col-start-2 row-start-8 flex w-full">
-    <!-- <span class="w-2/5  text-car-details"> {{car_info?.data?.attributes?.comments[0] }} </span>
-    <span class="w-2/5  text-car-details "> {{car_info?.data?.attributes?.comments[1] }} </span> -->
+    <!-- <span class="w-2/5  text-car-details-report"> {{car_info?.data?.attributes?.comments[0] }} </span>
+    <span class="w-2/5  text-car-details-report "> {{car_info?.data?.attributes?.comments[1] }} </span> -->
 
-    <span class="w-[49%]   text-car-details"> {{car_info?.data?.attributes?.comments[0] }} </span>
-    <span class="w-[49%]  text-car-details "> {{car_info?.data?.attributes?.comments[1] }} </span>
+    <span class="w-[49%]   text-car-details-report"> {{car_info?.data?.attributes?.comments[0] }} </span>
+    <span class="w-[49%]  text-car-details-report "> {{car_info?.data?.attributes?.comments[1] }} </span>
 
   </div>
 
 
   <div class=" col-start-2 row-start-9 flex w-full">
-    <span class="w-[49%]  text-car-details "> {{car_info?.data?.attributes?.comments[2] }} </span>
-    <span class="w-[49%]   text-car-details"> {{car_info?.data?.attributes?.comments[3] }} </span>
+    <span class="w-[49%]  text-car-details-report "> {{car_info?.data?.attributes?.comments[2] }} </span>
+    <span class="w-[49%]   text-car-details-report"> {{car_info?.data?.attributes?.comments[3] }} </span>
 
-    <!-- <span class="w-2/5  text-car-details "> {{car_info?.data?.attributes?.comments[2] }} </span>
-    <span class="w-2/5   text-car-details"> {{car_info?.data?.attributes?.comments[3] }} </span> -->
+    <!-- <span class="w-2/5  text-car-details-report "> {{car_info?.data?.attributes?.comments[2] }} </span>
+    <span class="w-2/5   text-car-details-report"> {{car_info?.data?.attributes?.comments[3] }} </span> -->
   </div>
 
 
 
 
-  <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-1 row-start-10  text-car-details">
+  <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-1 row-start-10  text-car-details-report">
     Bemerkungen:
   </div>
 
@@ -109,48 +109,48 @@
 
   <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-2 row-start-10 ">
 
-    <p class="break-normal preserve-line-break w-97  text-car-details ">{{car_buy_data?.bemerkunhen}}</p>
+    <p class="break-normal preserve-line-break w-97  text-car-details-report ">{{car_buy_data?.bemerkunhen}}</p>
 
   </div>
 
 
-  <div class=" col-start-1 row-start-11  text-car-details">
+  <div class=" col-start-1 row-start-11  text-car-details-report">
     Ankaufsdatum:
   </div>
 
-  <div class=" col-start-2 row-start-11  text-car-details">
+  <div class=" col-start-2 row-start-11  text-car-details-report">
     {{car_buy_data?.buy_date | date:'dd.MM.yyyy' }}
   </div>
 
   
 
-  <div class=" col-start-1 row-start-11  text-car-details">
+  <div class=" col-start-1 row-start-11  text-car-details-report">
     Abholdatum:
   </div>
 
-  <div class=" col-start-2 row-start-11  text-car-details">
+  <div class=" col-start-2 row-start-11  text-car-details-report">
     {{car_buy_data?.pickupdate | date:'dd.MM.yyyy' }}
   </div>
 
 
 
 
-  <div class=" col-start-1 row-start-11  text-car-details">
+  <div class=" col-start-1 row-start-11  text-car-details-report">
     Abholung:
   </div>
 
-  <div class=" col-start-2 row-start-11  text-car-details">
+  <div class=" col-start-2 row-start-11  text-car-details-report">
     {{car_buy_data?.collection  }}
   </div>
 
 
 
 
-  <div class=" col-start-1 row-start-12  text-car-details">
+  <div class=" col-start-1 row-start-12  text-car-details-report">
     Zahlungsart:
   </div>
 
-  <div class=" col-start-2 row-start-12  text-car-details ">
+  <div class=" col-start-2 row-start-12  text-car-details-report ">
     {{car_buy_data?.payment }}
   </div>
 

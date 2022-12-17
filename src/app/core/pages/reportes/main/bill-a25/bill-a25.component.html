@@ -3,9 +3,6 @@
 
  <app-header-bill [client]="this.datosReportes.client"  [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-bill> 
 
- <!-- <app-header-privado [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-privado> -->
-
-
 <div class="pt-3 px-20 ">
 
    
@@ -13,7 +10,7 @@
     [user_city]="datosReportes.user_city">
     </app-fecha-bill>
 
-     <p class="flex text-center mt-4 text-details  ">
+     <p class="flex text-center mt-4 text-details-report  ">
         Wir berechnen Ihnen hiermit gemäß Absprache folgende(n) Artikel
     </p>
 
@@ -31,13 +28,13 @@
     <div class="mt-10 ">
         <table class="" style="text-align: left">
             <tr>
-                <span class="pr-2 text-details-bold ">Lieferdatum: </span>
-                <span class="text-details">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
+                <span class="pr-2 text-details-bold-report ">Lieferdatum: </span>
+                <span class="text-details-report">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
             </tr>
 
             <tr>
-                <div class="text-details">Der Verkauf erfolgt nach §25a</div>
-                <div class="text-details">Gebrauchtware / Sonderregelung</div>
+                <div class="text-details-report">Der Verkauf erfolgt nach §25a</div>
+                <div class="text-details-report">Gebrauchtware / Sonderregelung</div>
             </tr>
         </table>
     </div> 

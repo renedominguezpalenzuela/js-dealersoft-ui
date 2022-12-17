@@ -13,7 +13,7 @@
     [user_city]="datosReportes.user_city"  [reference_invoice_number]="datosReportes.reference_invoice_number">
     </app-fecha-bill-cancel>
 
-     <p class="flex text-center mt-4 text-details  ">
+     <p class="flex text-center mt-4 text-details-report ">
         Wir berechnen Ihnen hiermit gemäß Absprache folgende(n) Artikel
     </p>
 
@@ -31,13 +31,13 @@
     <div class="mt-10 ">
         <table class="" style="text-align: left">
             <tr>
-                <span class="pr-2 text-details-bold ">Lieferdatum: </span>
-                <span class="text-details">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
+                <span class="pr-2 text-details-bold-report ">Lieferdatum: </span>
+                <span class="text-details-report">{{this.datosReportes.bill_info?.delivery_date | date:'dd.MM.yyyy'}}</span>
             </tr>
 
             <tr>
-                <div class="text-details">Der Verkauf erfolgt nach §25a</div>
-                <div class="text-details">Gebrauchtware / Sonderregelung</div>
+                <div class="text-details-report">Der Verkauf erfolgt nach §25a</div>
+                <div class="text-details-report">Gebrauchtware / Sonderregelung</div>
             </tr>
         </table>
     </div> 
