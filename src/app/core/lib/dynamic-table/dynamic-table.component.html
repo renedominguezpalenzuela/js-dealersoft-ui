@@ -119,6 +119,17 @@
       </td>
     </ng-container>
 
+    <!-- <ng-container *ngIf="showExtraOption" matColumnDef="extraOption">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let row" class=" center" mat-cell>
+
+        <button class="" (click)="option(extraOption?.event ?? 'EXTRA_OPTION', row)" mat-icon-button >
+     
+          <img src = "/assets/edit_icon.svg" class="ml-3    " alt="">  
+        </button>
+      </td>
+    </ng-container> -->
+
     <ng-container *ngIf="showExtraOption" matColumnDef="extraOption">
       <th *matHeaderCellDef mat-header-cell></th>
       <td *matCellDef="let row" class=" center" mat-cell>

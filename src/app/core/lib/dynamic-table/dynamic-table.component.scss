@@ -45,3 +45,8 @@ table tr:nth-child(even) td{
    background-color: #E8E9EB;
 }
 
+
+/* mat-row, mat-header-row, mat-footer-row, th.mat-header-cell,*/
+ td.mat-cell, td.mat-footer-cell {
+  border-bottom-color: rgba(10, 21, 219, 0)!important;
+}
