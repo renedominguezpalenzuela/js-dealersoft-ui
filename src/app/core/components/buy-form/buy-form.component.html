@@ -161,7 +161,8 @@
           **   Netto in €                     
           **************************************************************************************************************** 
       -->
-      <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3">
+      <!-- <div class="grid grid-cols-2 gap-x-8 gap-y-2 w-full xl:w-9/12 my-3"> -->
+      <div class="flex flex-col xl:flex-row justify-start gap-x-8 w-full xl:w-9/12 my-3">
 
         <!-- 
           **************************************************************************************************************** 
@@ -169,7 +170,8 @@
           **************************************************************************************************************** 
       -->
 
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+        <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1"> -->
+          <mat-form-field appearance="outline">
           <mat-label class="font-montserrat">Netto in €</mat-label>
           <input formControlName="net_buy" matInput min="0"  type="currency"  lang="de-DE" name="net_buy" (focus)="onFocusEvent($event)"
           (focusout)="focusOutFunction($event)" class="font-montserrat" >
@@ -185,7 +187,8 @@
           **************************************************************************************************************** 
       -->
        <!-- ng-model='vGross_buy' -->
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+        <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1"> -->
+          <mat-form-field appearance="outline">
           <mat-label class="font-montserrat">Brutto in €</mat-label>
           <input formControlName="gross_buy" matInput min="0" type="currency"  lang="de-DE" name="gross_buy"
          
@@ -201,7 +204,8 @@
           **   Mehrwertsteuer in €                     
           **************************************************************************************************************** 
       -->
-        <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+        <!-- <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1"> -->
+          <mat-form-field appearance="outline">
           <mat-label class="font-montserrat">Mehrwertsteuer in €</mat-label>
           <input formControlName="iva_buy" matInput min="0" type="currency"  lang="de-DE" name="iva_buy" (focus)="onFocusEvent($event)" (focusout)="focusOutFunction($event)" class="font-montserrat" >
 
