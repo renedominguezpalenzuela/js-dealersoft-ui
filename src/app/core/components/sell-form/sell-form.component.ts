@@ -880,6 +880,11 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           if (this.selected_option_MnSt) {
             tipo = 'reports/rechnung/iva';
           }
+
+          
+          if (this.selected_option_Export) {
+            tipo = 'reports/kaufvertrag/export';
+          }
         }
         //  ------  CAMBIAR TAG ----------
         if (this.selected_tab == 0) {
@@ -890,6 +895,12 @@ export class SellFormComponent implements OnInit, OnChanges, AfterViewInit {
           if (this.selected_option_MnSt) {
             tipo = 'reports/kaufvertrag/iva';
           }
+
+          if (this.selected_option_Export) {
+            tipo = 'reports/kaufvertrag/export';
+          }
+
+
         }
 
         break;

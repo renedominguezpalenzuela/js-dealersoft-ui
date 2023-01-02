@@ -32,6 +32,7 @@ import { BillIvaComponent } from './bill-iva/bill-iva.component';
 
 import { BillCancelA25Component } from './bill-cancel-a25/bill-cancel-a25.component';
 import { BillCancelIvaComponent } from './bill-cancel-iva/bill-cancel-iva.component';
+import { KaufvertragExportComponent } from './private/kaufvertrag-export/kaufvertrag-export.component';
 
 
 
@@ -52,6 +53,9 @@ const routes: Routes = [
   { path: 'kaufvertrag/iva/:jwt', component: KaufvertragIvaComponent },
   { path: 'rechnung/a25/:jwt', component: RechnungA25Component },
   { path: 'rechnung/iva/:jwt', component: RechnungIvaComponent },
+
+  { path: 'kaufvertrag/export/:jwt', component: KaufvertragExportComponent },
+ 
 
   //netto
    { path: 'netto/rechnung/export/:jwt', component: NettoRechnungExportComponent },
@@ -110,6 +114,7 @@ const routes: Routes = [
     
          BillCancelA25Component,
          BillCancelIvaComponent,
+         KaufvertragExportComponent,
 
  
 

@@ -1,0 +1,49 @@
+
+  <app-header-empresa [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-header-empresa>
+
+
+
+  <div class="pt-3 px-20">
+  
+  
+    <!-- Contrato fecha -->
+    <app-contrato-fecha [car_buy_data]="this.datosReportes.car_buy_data" [me]="this.datosReportes.me"></app-contrato-fecha>
+  
+    <p class="flex justify-start mt-4 text-details-report mb-4">
+      Unter Anerkennung allgemeiner Geschäftsbedingungen kauft die {{this.datosReportes.me?.company_name}} folgendes Fahrzeug:
+    </p>
+  
+    <!-- CAR Details -->
+  
+    <app-car-details [car_buy_data]="this.datosReportes.car_buy_data" [car_info]="this.datosReportes.car_info"></app-car-details>
+  
+  
+  
+    <!-- Precio neto -->
+    
+    <app-precio-netto [car_buy_data]="this.datosReportes.car_buy_data"></app-precio-netto>
+  
+  
+    <div class="text-details-report flex justify-center mt-4">
+      Das Fahrzeug wurde vom Käufer ausgiebig besichtigt und Probe gefahren.
+  
+    </div>
+  
+    <div class="text-details-report flex justify-center ">
+  
+      Gerichtsstand ist {{this.datosReportes.me?.city}}.
+    </div>
+  
+    <!-- Firma -->
+    <app-firma></app-firma>
+  
+  
+  </div>
+  
+  
+  
+  <app-footer-empresa [car_buy_data]="this.datosReportes.car_buy_data"  [me]="this.datosReportes.me"></app-footer-empresa>
+  
+  
+  
+  <app-second-page [empresa]="true" [car_buy_data]="this.datosReportes.car_buy_data"  [car_info]="this.datosReportes.car_info" [me]="this.datosReportes.me" [imgPath]="this.datosReportes.imgPath"></app-second-page>
