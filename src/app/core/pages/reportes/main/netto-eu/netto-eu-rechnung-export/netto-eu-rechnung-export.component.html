@@ -14,14 +14,14 @@
         sichtbare und unsichtbare Mängel. Desweiteren können Nachlackierungen nicht ausgeschlossen werden!
     </p>
 
-    <p class="flex text-center mt-4 text-details-bold-report mx-2">
+    <p class="flex text-center mt-4 fecha-report-bold-medium mx-2">
         Der Unterzeichnende bestätigt, dass sich hierbei um ein Geschäft unter Voll-Kaufleuten handelt und somit nicht unter das EU-Gewährleistungsgesetz fällt!
     </p>
 
 
 
 
-    <div class="mt-20 ">
+    <div class="mt-10 ">
         <app-car-details-min [car_info]="this.datosReportes.car_info" [car_buy_data]="this.datosReportes.car_buy_data"></app-car-details-min>
     </div>
 
@@ -38,8 +38,8 @@
 
 
     <div class="mt-10">
-        <span class="pr-4 text-details-bold-report">Lieferdatum: </span>
-        <span class="text-details-report">{{this.datosReportes.car_buy_data?.lieferung | date:'dd.MM.yyyy'}}</span>
+        <span class="pr-4 fecha-report-bold-medium">Lieferdatum: </span>
+        <span class="fecha-report-medium">{{this.datosReportes.car_buy_data?.lieferung | date:'dd.MM.yyyy'}}</span>
     </div>
 
 

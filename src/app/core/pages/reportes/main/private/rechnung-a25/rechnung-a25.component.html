@@ -8,12 +8,12 @@
 
     <p class="flex text-center mt-4 text-details-report  ">
         Der Käufer kauft in Übereinstimmung mit den allgemeinen Geschäftsbedingungen das nachstehende, gebrauchte Fahrzeug, wie ausgiebig besichtigt, unter Ausschluß jeglicher Gewährleistung im Hinblick auf sichtbare und unsichtbare Mängel. Desweiteren werden Nachlackierungen nicht ausgeschlossen. </p>
-    <p class="flex text-center mt-4  text-details-bold-report">
+    <p class="flex text-center mt-4  fecha-report-bold-medium">
         Es handelt sich hierbei um ein Geschäft unter Voll-Kaufleuten und fällt somit nicht unter das EU-Gewährleistungsgesetz!
     </p>
 
 
-    <div class="mt-20 ">
+    <div class="mt-10 ">
         <app-car-details-min [car_info]="this.datosReportes.car_info" [car_buy_data]="this.datosReportes.car_buy_data"></app-car-details-min>
     </div>
 
@@ -31,8 +31,8 @@
 
     <div class="mt-10 ">
         <table class="" style="text-align: left">
-            <tr class="text-car-details">
-                <th class="pr-4 text-car-details-bold ">Lieferdatum: </th>
+            <tr class="fecha-report-medium">
+                <th class="pr-4 fecha-report-bold-medium ">Lieferdatum: </th>
                 <td>{{this.datosReportes.car_buy_data?.lieferung | date:'dd.MM.yyyy'}}</td>
             </tr>
         </table>

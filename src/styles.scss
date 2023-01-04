@@ -447,11 +447,35 @@ iframe {
   font-weight: 500;
 }
 
-.text-details-report {
-  font-size: 12px !important; /* 14px */
-  line-height: 1.1rem!important;
+.fecha-report-bold-medium {
+  font-size: 12px;
+  font-family: "Helvetica" !important;
+  font-weight: 700;
+}
+
+
+.fecha-report-medium {
+  font-size: 12px;
   font-family: "Helvetica" !important;
   font-weight: 500;
+}
+
+/*
+font-size: 12px !important; 
+line-height: 1.1rem!important;
+*/ 
+.text-details-report {
+  font-size: 10px !important; /* 14px */
+  line-height: 0.8rem!important;
+  font-family: "Helvetica" !important;
+  font-weight: 500;
+}
+
+.text-details-bold-report {
+  font-size: 10px !important; /* 14px */
+  line-height: 0.8rem!important;
+  font-family: "Helvetica" !important;
+  font-weight: 700;
 }
 
 .text-car-details-bold-report {

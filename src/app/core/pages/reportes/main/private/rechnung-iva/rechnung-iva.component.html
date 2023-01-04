@@ -12,16 +12,16 @@
         keine Mängel aufweist und in einem technisch und optisch einwandfreiem Zustand geliefert worden ist.
     </p>
 
-    <p class=" text-center mt-4 text-sm-nospace text-details-bold-report mx-12">
-        -Verschleiß unterliegt nicht der Gewährleistungspflicht-
+    <p class=" text-center mt-4  text-details-bold-report mx-12">
+        -Verschleiß unterliegt nicht der Gewährleistungspflicht- XXX
     </p>
 
-    <p class=" text-center mt-2 text-sm-nospace text-details-report mx-4">
+    <p class=" text-center mt-2  text-details-report mx-4">
         Gerichtsstand ist {{this.datosReportes.me?.city}}
     </p>
 
 
-    <div class="mt-20 ">
+    <div class="mt-10 ">
         <app-car-details-min [car_info]="this.datosReportes.car_info" [car_buy_data]="this.datosReportes.car_buy_data"></app-car-details-min>
     </div>
 
@@ -40,8 +40,8 @@
 
         <table class="" style="text-align: left">
 
-            <tr class="text-car-details">
-                <th class="pr-4 text-car-bold ">Lieferdatum: </th>
+            <tr class="fecha-report-medium">
+                <th class="pr-4 fecha-report-bold-medium ">Lieferdatum: </th>
                 <td>{{this.datosReportes.car_buy_data?.lieferung | date:'dd.MM.yyyy'}}</td>
             </tr>
         </table>
