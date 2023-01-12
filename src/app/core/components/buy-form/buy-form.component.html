@@ -39,12 +39,19 @@
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
             <mat-option *ngFor="let option of filteredOptions" [value]="option.id" class="font-montserrat">
               
+              <!--
+                mostrar lista de compannia o de usuarios 
               <ng-container *ngIf="option.attributes?.company_name">
                 {{option.attributes?.company_name}}
               </ng-container>
+
+
               <ng-container *ngIf="!option.attributes?.company_name">
                 {{option.attributes?.first_name}} {{option.attributes?.last_name}}
               </ng-container>    
+            -->
+
+            {{option.attributes?.first_name}} {{option.attributes?.last_name}}
               
             </mat-option>
           </mat-autocomplete>

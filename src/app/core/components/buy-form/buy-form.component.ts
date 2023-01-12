@@ -566,11 +566,11 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
               data: 'Neukunde gespeichert',
             });
             this.clientsOptions.push(res.data);
-            //this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
-            this.autoComplete!.nativeElement.value = res.data.attributes
+            this.autoComplete!.nativeElement.value = `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
+            /*this.autoComplete!.nativeElement.value = res.data.attributes
               .company_name
               ? res.data.attributes.company_name
-              : `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;
+              : `${res.data.attributes.first_name} ${res.data.attributes.last_name}`;*/
 
             this.carBuyForm.patchValue({ client: res.data.id });
           };
@@ -588,10 +588,10 @@ export class BuyFormComponent implements OnInit, OnChanges, AfterViewInit {
         this.filteredOptions.find((elm) => elm.id === id)
       );
       if (customer)
-        //return `${customer.attributes.first_name} ${customer.attributes.last_name}`;
-        return customer.attributes.company_name
+        return `${customer.attributes.first_name} ${customer.attributes.last_name}`;
+       /* return customer.attributes.company_name
           ? customer.attributes.company_name
-          : `${customer.attributes.first_name} ${customer.attributes.last_name}`;
+          : `${customer.attributes.first_name} ${customer.attributes.last_name}`;*/
       else return '';
     }
     return '';

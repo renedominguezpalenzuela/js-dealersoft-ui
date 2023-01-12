@@ -53,8 +53,8 @@ export class CustomerFormComponent implements OnInit {
 
   public actualizando_radio_buttons: boolean = false;
 
-  public required_empresa: boolean = true;
-  public required_privado: boolean = false;
+  public required_empresa: boolean = false;
+  public required_privado: boolean = true;
 
   public customerForm = this.formBuilder.group({
     title: [null],
@@ -74,8 +74,8 @@ export class CustomerFormComponent implements OnInit {
     country: [null],
     aditional_address: [null],
     user: [null],    
-    company: [true ], //Check Box
-    private: [false] //Check Box
+    company: [false ], //Check Box
+    private: [true] //Check Box
   });
 
   constructor(
@@ -103,8 +103,8 @@ export class CustomerFormComponent implements OnInit {
 
   mostrarEmpresa() {
 
-     this.required_empresa=true;
-    this.required_privado=false;
+   //  this.required_empresa=true;
+   // this.required_privado=false;
     // this.mostrarCompanyName=true;
 
   
