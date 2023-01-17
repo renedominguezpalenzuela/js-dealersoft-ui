@@ -22,6 +22,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-span-2 lg:col-span-1">
+          
           <mat-label class="font-montserrat">Kunde</mat-label>
           <input class="font-montserrat" #autoComplete [matAutocomplete]="auto" formControlName="client" matInput required type="text">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" autoActiveFirstOption>
