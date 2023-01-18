@@ -18,6 +18,9 @@
         <form (ngSubmit)="register()" [formGroup]="registerForm" class="flex flex-col justify-center items-center">
           <div class="grid grid-cols-2 gap-x-5 w-full md:w-[90%]">
         
+
+
+            <!-- Imagen Logo -->
             <div class="col-span-2 flex flex-col justify-center items-center mb-3">
               <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file">
             
@@ -45,7 +48,7 @@
 
     
             <!-- Vorname: first name -->
-            <div class="relative mt-3 col-span-2 sm:col-span-1 ">
+            <!-- <div class="relative mt-3 col-span-2 sm:col-span-1 ">
               <input matInput 
                 class="{{hasError2('first_name') ? 'input-error' : 'input-primary'}} rounded-full  input pl-12 w-full"
                 formControlName="first_name" placeholder="Vorname"  type="text">
@@ -55,7 +58,26 @@
               <span *ngIf="hasRequiredError2('first_name')" class="label-text-alt text-red-400 pl-2">
                 <b>Vorname</b> wird benötigt
               </span>
-            </div>  
+            </div>   -->
+
+            <div class="relative mt-3 col-span-2 sm:col-span-1 ">
+            <mat-form-field appearance="outline" class="w-full ">
+              <mat-label class="font-montserrat pl-3 ml-4">Vorname</mat-label>
+              <input formControlName="first_name" matInput required class="  w-full p-10"  type="text">
+              <div class="absolute left-0 top-3 flex items-center">
+                <img alt="name_img" class="" src="assets/user--v1.png" />
+              </div>
+              <mat-error *ngIf="hasRequiredError2('first_name')">
+                <b>Abholung</b> wird benötigt
+              </mat-error>
+            </mat-form-field>
+            </div>
+
+           
+    
+
+
+
 
             
             <!-- Nachname: Last Name -->
