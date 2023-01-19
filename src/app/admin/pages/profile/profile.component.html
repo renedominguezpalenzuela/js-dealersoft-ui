@@ -1,61 +1,61 @@
 <div class="card bg-white">
-    <div class="card-body">
+  <div class="card-body">
 
-        <div class="divider font-bold font-montserrat">Sicherheit und Login</div>
-
-      
-        
-        <div class="flex justify-start items-center space-x-3 mt-4">
-          <button class="btn bg-[#8591AA] border-[#8591AA] w-40" (click)="changePasswordScreen()"  >
-            <span class="tracking-wide font-montserrat">Passwort ändern</span>
-          </button>
-        </div>
+    <div class="divider font-bold font-montserrat">Sicherheit und Login</div>
 
 
-        
-        <div class="divider font-bold font-montserrat">Benutzerdaten</div>
 
-        <form (ngSubmit)="register()" [formGroup]="registerForm" class="flex flex-col justify-center items-center">
-          <div class="grid grid-cols-2 gap-x-5 gap-y-0 w-full md:w-[90%] ">
-        
+    <div class="flex justify-start items-center space-x-3 mt-4">
+      <button class="btn bg-[#8591AA] border-[#8591AA] w-40" (click)="changePasswordScreen()">
+        <span class="tracking-wide font-montserrat">Passwort ändern</span>
+      </button>
+    </div>
 
 
-            
-            <!---------------------------------------------------------------------
+
+    <div class="divider font-bold font-montserrat">Benutzerdaten</div>
+
+    <form (ngSubmit)="register()" [formGroup]="registerForm" class="flex flex-col justify-center items-center">
+      <div class="grid grid-cols-2 gap-x-5 gap-y-0 w-full md:w-[90%] ">
+
+
+
+
+        <!---------------------------------------------------------------------
             -------------------- Imagen Logo  ------------------------------
             ----------------------------------------------------------------------->
 
-            <div class="col-span-2 flex flex-col justify-center items-center mb-3">
-              <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file">
-            
-        
-        
-              <div class="avatar mt-2 ">
-                <div class="w-24 h-24 mask mask-squircle ring ring-gray">
-                  <img *ngIf="showLogo else defaultImg" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom">
-                  <ng-template #defaultImg>
-                    <img alt="user-profile-picture" src="assets/user-male-circle-reg.png" />
-                  </ng-template>
-                </div>
-              </div>
-              <div class="flex flex-col max-w-xs mt-2">
-                <label class="btn btn-sm btn-ghost border-2 border-gray-400 animate-none text-gray-500" for="logo">
-                  FIRMENLOGO HOCHLADEN
-                </label>
-              </div>
-        
-              <span *ngIf="ImageError" class="label-text-alt text-red-400 pl-2 mt-1">
-                Bitte Firmenlogo Hochladen
-              </span> 
-        
-            </div>
+        <div class="col-span-2 flex flex-col justify-center items-center mb-3">
+          <input (change)="previewLogo($event)" autofocus class="hidden" id="logo" type="file">
 
-    
-            <!---------------------------------------------------------------------
+
+
+          <div class="avatar mt-2 ">
+            <div class="w-24 h-24 mask mask-squircle ring ring-gray">
+              <img *ngIf="showLogo else defaultImg" [alt]="logoImg?.name" [src]="logoImgSrc | saveDom">
+              <ng-template #defaultImg>
+                <img alt="user-profile-picture" src="assets/user-male-circle-reg.png" />
+              </ng-template>
+            </div>
+          </div>
+          <div class="flex flex-col max-w-xs mt-2">
+            <label class="btn btn-sm btn-ghost border-2 border-gray-400 animate-none text-gray-500" for="logo">
+              FIRMENLOGO HOCHLADEN
+            </label>
+          </div>
+
+          <span *ngIf="ImageError" class="label-text-alt text-red-400 pl-2 mt-1">
+            Bitte Firmenlogo Hochladen
+          </span>
+
+        </div>
+
+
+        <!---------------------------------------------------------------------
             -------------------- Vorname: first name ------------------------------
             ----------------------------------------------------------------------->
 
-            <!-- <div class="relative mt-3 col-span-2 sm:col-span-1 ">
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1 ">
               <input matInput 
                 class="{{hasError2('first_name') ? 'input-error' : 'input-primary'}} rounded-full  input pl-12 w-full"
                 formControlName="first_name" placeholder="Vorname"  type="text">
@@ -67,30 +67,30 @@
               </span>
             </div>   -->
 
-            <div class="relative mt-3 col-span-2 sm:col-span-1 ">
-            <mat-form-field appearance="outline" class="w-full ">
-              <mat-label class="font-montserrat pl-3 ml-4">Vorname</mat-label>
-              <input formControlName="first_name" matInput required class="  w-full "  type="text">
-              <div class="absolute left-0 top-3 flex items-center">
-                <img alt="name_img" class="" src="assets/user--v1.png" />
-              </div>
-              <mat-error *ngIf="hasRequiredError2('first_name')">
-                <b>Vorname</b> wird benötigt
-              </mat-error>
-            </mat-form-field>
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Vorname</mat-label>
+            <input formControlName="first_name" matInput required class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/user--v1.png" />
             </div>
+            <mat-error class="mb-5" *ngIf="hasRequiredError2('first_name')">
+              <b>Vorname</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-           
-    
 
 
 
 
-            <!---------------------------------------------------------------------
+
+
+        <!---------------------------------------------------------------------
             --------------------Nachname: Last Name ------------------------------
             ----------------------------------------------------------------------->
-          
-            <!-- <div class="relative mt-3 col-span-2 sm:col-span-1 ">
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1 ">
               <input matInput
                 class="{{hasError2('last_name') ? 'input-error' : 'input-primary'}}  rounded-full  input pl-12 w-full"
                 formControlName="last_name" placeholder="Nachname"  type="text">
@@ -102,25 +102,25 @@
               </span>
             </div>  -->
 
-            <div class="relative mt-3 col-span-2 sm:col-span-1 ">
-              <mat-form-field appearance="outline" class="w-full ">
-                <mat-label class="font-montserrat pl-3 ml-4">Nachname</mat-label>
-                <input formControlName="last_name" matInput required class="  w-full "  type="text">
-                <div class="absolute left-0 top-3 flex items-center">
-                  <img alt="name_img" class="" src="assets/user--v1.png" />
-                </div>
-                <mat-error *ngIf="hasRequiredError2('last_name')">
-                  <b>Nachname</b> wird benötigt
-                </mat-error>
-              </mat-form-field>
-              </div>
-  
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Nachname</mat-label>
+            <input formControlName="last_name" matInput required class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/user--v1.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('last_name')">
+              <b>Nachname</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-   
-            <!---------------------------------------------------------------------
+
+
+        <!---------------------------------------------------------------------
             --------------------Company name ------------------------------
             ----------------------------------------------------------------------->
-      <!-- <div class="relative mt-3 col-span-2 " >
+        <!-- <div class="relative mt-3 col-span-2 " >
         <input matInput autocomplete="company_name" class="{{hasError2('company_name') ? 'input-error' : 'input-primary'}}
         input pl-12 w-full rounded-full " formControlName="company_name" placeholder="Firmenname" 
           type="text" required>
@@ -130,39 +130,59 @@
         <span *ngIf="hasRequiredError2('company_name')" class="label-text-alt text-red-400 pl-2">
           <b>Firma</b> wird benötigt
         </span>
-      </div> -->
+        </div> -->
 
-      <div class="relative mt-1 col-span-2  ">
-        <mat-form-field appearance="outline" class="w-full ">
-          <mat-label class="font-montserrat pl-3 ml-4">Nachname</mat-label>
-          <input formControlName="company_name" matInput required class="  w-full p-10"  type="text">
-          <div class="absolute left-0 top-3 flex items-center">
-            <img alt="name_img" class="" src="assets/user--v1.png" />
+        <div class="relative top_margen col-span-2  ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Nachname</mat-label>
+            <input formControlName="company_name" matInput class="  w-full p-10" type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/user--v1.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('company_name')">
+              <b>Nachname</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!-----------------------------------------------------------------------
+          --------------------Nutzername: Nombre de usuario ---------------------
+          ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
+            <input
+              class="{{hasError2('username') ? 'input-error' : 'input-primary'}} input  pl-12 w-full rounded-full "
+              formControlName="username" placeholder="Nutzername" required type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img class="ml-4"  src="assets/user.png">
+            </div>
+            <span *ngIf="hasRequiredError2('username')" class="label-text-alt text-red-400 pl-2">
+              <b>Nutzername</b> wird benötigt
+            </span>
           </div>
-          <mat-error *ngIf="hasRequiredError2('company_name')">
-            <b>Nachname</b> wird benötigt
-          </mat-error>
-        </mat-form-field>
+          -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Nutzername</mat-label>
+            <input formControlName="username" matInput required class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/user.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('username')">
+              <b>Nutzername</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
         </div>
 
 
-      
-    
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input
-          class="{{hasError2('username') ? 'input-error' : 'input-primary'}} input  pl-12 w-full rounded-full "
-          formControlName="username" placeholder="Nutzername" required type="text">
-        <div class="absolute left-0 top-3 flex items-center">
-          <img class="ml-4"  src="assets/user.png">
-        </div>
-        <span *ngIf="hasRequiredError2('username')" class="label-text-alt text-red-400 pl-2">
-          <b>Nutzername</b> wird benötigt
-        </span>
-      </div>
-  
-  
-  
-      <div class="relative mt-3 col-span-2 sm:col-span-1 ">
+
+
+        <!-----------------------------------------------------------------------
+          --------------------E-Mail --------------------------------------------
+          ----------------------------------------------------------------------->
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1 ">
         <input
           class="{{hasError2('email') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="email" placeholder="E-Mail" required type="email">
@@ -175,12 +195,27 @@
         <span *ngIf="hasEmailError2('email')" class="label-text-alt text-red-400 pl-2">
           <b>E-Mail</b> ist ungültig
         </span>
-      </div>
-  
-  
+        </div> -->
 
-      
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">email</mat-label>
+            <input formControlName="email" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/email.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('email')">
+              <b>email</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!-----------------------------------------------------------------------
+          --------------------Mitarbeiterzahl: Total empleados ---------------------
+        ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('employees_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full"
           formControlName="employees_number" placeholder="Mitarbeiterzahl" required type="number">
@@ -191,21 +226,61 @@
         <span *ngIf="hasRequiredError2('employees_number')" class="label-text-alt text-red-400 pl-2">
           <b>Mitarbeiterzahl</b> wird benötigt
         </span>
-      </div>
-  
-  
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input
-          class="{{hasError2('street') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full"
-          formControlName="street" placeholder="Straße" required type="text">
-        <div class="absolute left-0 top-3 flex items-center">
-          <img alt="crossroad" class="ml-4" src="assets/crossroad.png" />
+         </div>
+        -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Mitarbeiterzahl</mat-label>
+            <input formControlName="employees_number" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/person.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('employees_number')">
+              <b>Mitarbeiterzahl</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
         </div>
-        <span *ngIf="hasRequiredError2('street')" class="label-text-alt text-red-400 pl-2">
-          <b>Straße</b> wird benötigt
-        </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+
+
+        <!-----------------------------------------------------------------------
+          --------------------Straße: Calle ---------------------
+          ----------------------------------------------------------------------->
+        <!--   
+        <div class="relative mt-3 col-span-2 sm:col-span-1">
+          <input
+            class="{{hasError2('street') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full"
+            formControlName="street" placeholder="Straße" required type="text">
+          <div class="absolute left-0 top-3 flex items-center">
+            <img alt="crossroad" class="ml-4" src="assets/crossroad.png" />
+          </div>
+          <span *ngIf="hasRequiredError2('street')" class="label-text-alt text-red-400 pl-2">
+            <b>Straße</b> wird benötigt
+          </span>
+        </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Straße</mat-label>
+            <input formControlName="street" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/crossroad.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('street')">
+              <b>Straße</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+
+        <!-----------------------------------------------------------------------
+        --------------------Hausnummer: numero de la casa ---------------------
+        ----------------------------------------------------------------------->
+
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('house_number') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="house_number" placeholder="Hausnummer" required type="text">
@@ -216,8 +291,28 @@
         <span *ngIf="hasRequiredError2('house_number')" class="label-text-alt text-red-400 pl-2">
           <b>Hausnummer</b> wird benötigt
         </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+          </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Hausnummer</mat-label>
+            <input formControlName="house_number" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/external-house-ui-dreamstale-lineal-dreamstale.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('house_number')">
+              <b>Hausnummer</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+
+        <!-----------------------------------------------------------------------
+        --------------------Nutzername: Ciudad ---------------------
+        ----------------------------------------------------------------------->
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('city') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="city" placeholder="Stadt" required type="text">
@@ -228,10 +323,26 @@
         <span *ngIf="hasRequiredError2('city')" class="label-text-alt text-red-400 pl-2">
           <b>Stadt</b> wird benötigt
         </span>
-      </div>
-  
+        </div> -->
 
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Stadt</mat-label>
+            <input formControlName="city" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/city-buildings.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('city')">
+              <b>Stadt</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!-----------------------------------------------------------------------
+        --------------------Postleitzahl: postal_code ---------------------
+        ----------------------------------------------------------------------->
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('postal_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="postal_code" placeholder="Postleitzahl" required type="text">
@@ -241,19 +352,60 @@
         <span *ngIf="hasRequiredError2('postal_code')" class="label-text-alt text-red-400 pl-2">
           <b>Postleitzahl</b> wird benötigt
         </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input
-          class="{{hasError2('phone') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
-          formControlName="phone" placeholder="Telefon" required type="text">
-        <div class="absolute left-0 top-3 flex items-center">
-          <img alt="apple-phone" class="ml-4" src="assets/apple-phone.png" />
+        </div> -->
+
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Postleitzahl</mat-label>
+            <input formControlName="postal_code" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/postcode.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('postal_code')">
+              <b>Postleitzahl</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
         </div>
-        <span *ngIf="hasRequiredError2('phone')" class="label-text-alt text-red-400 pl-2">
-          <b>Telefon</b> wird benötigt
-        </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+
+
+        <!-----------------------------------------------------------------------
+        --------------------Telefon: Ciudad ---------------------
+        ----------------------------------------------------------------------->
+        <!-- 
+        <div class="relative mt-3 col-span-2 sm:col-span-1">
+          <input
+            class="{{hasError2('phone') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
+            formControlName="phone" placeholder="Telefon" required type="text">
+          <div class="absolute left-0 top-3 flex items-center">
+            <img alt="apple-phone" class="ml-4" src="assets/apple-phone.png" />
+          </div>
+          <span *ngIf="hasRequiredError2('phone')" class="label-text-alt text-red-400 pl-2">
+            <b>Telefon</b> wird benötigt
+          </span>
+        </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Telefon</mat-label>
+            <input formControlName="phone" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/apple-phone.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('phone')">
+              <b>Telefon</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+
+        <!-----------------------------------------------------------------------
+        --------------------website:  ---------------------
+        ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('website') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="website" placeholder="Website" required type="text">
@@ -263,19 +415,59 @@
         <span *ngIf="hasRequiredError2('website')" class="label-text-alt text-red-400 pl-2">
           <b>Website</b> wird benötigt
         </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input
-          class="{{hasError2('steuer_nr') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
-          formControlName="steuer_nr" placeholder="Steuer Nr." required type="text">
-        <div class="absolute left-0 top-3 flex items-center">
-          <img alt="tax" class="ml-4" src="assets/tax.png" />
+       </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Website</mat-label>
+            <input formControlName="website" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/domain.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('website')">
+              <b>Website</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
         </div>
-        <span *ngIf="hasRequiredError2('steuer_nr')" class="label-text-alt text-red-400 pl-2">
-          <b>Steuer Nr.</b> wird benötigt
-        </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+
+        <!-----------------------------------------------------------------------
+        --------------------steuer_nr: TAX number ---------------------
+        ----------------------------------------------------------------------->
+
+
+          <!-- 
+        <div class="relative mt-3 col-span-2 sm:col-span-1">
+          <input
+            class="{{hasError2('steuer_nr') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
+            formControlName="steuer_nr" placeholder="Steuer Nr." required type="text">
+          <div class="absolute left-0 top-3 flex items-center">
+            <img alt="tax" class="ml-4" src="assets/tax.png" />
+          </div>
+          <span *ngIf="hasRequiredError2('steuer_nr')" class="label-text-alt text-red-400 pl-2">
+            <b>Steuer Nr.</b> wird benötigt
+          </span>
+        </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Steuer Nr.</mat-label>
+            <input formControlName="steuer_nr" matInput class="  w-full " required type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/tax.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('steuer_nr')">
+              <b>Steuer Nr.</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <!-----------------------------------------------------------------------
+        --------------------ust_Idnr:  ---------------------
+        ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('ust_Idnr') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="ust_Idnr" placeholder="USt. ID" required type="text">
@@ -286,8 +478,26 @@
         <span *ngIf="hasRequiredError2('ust_Idnr')" class="label-text-alt text-red-400 pl-2">
           <b>USt. ID</b> wird benötigt
         </span>
-      </div>
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+        </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">USt. ID</mat-label>
+            <input formControlName="ust_Idnr" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/identification-documents.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('ust_Idnr')">
+              <b>USt. ID</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!-----------------------------------------------------------------------
+        --------------------geschaftsfuhrer: SEO ---------------------
+        ----------------------------------------------------------------------->
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('geschaftsfuhrer') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="geschaftsfuhrer" placeholder="Geschäftsführer" required type="text">
@@ -297,10 +507,27 @@
         <span *ngIf="hasRequiredError2('geschaftsfuhrer')" class="label-text-alt text-red-400 pl-2">
           <b>Ansprechpartner</b> wird benötigt
         </span>
-      </div>
-  
-  
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+       </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Geschäftsführer</mat-label>
+            <input formControlName="geschaftsfuhrer" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/manager.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('geschaftsfuhrer')">
+              <b>Geschäftsführer</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!-----------------------------------------------------------------------
+        --------------------iban:  ---------------------
+        ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="iban" placeholder="IBAN" required type="text">
@@ -310,9 +537,28 @@
         <span *ngIf="hasRequiredError2('iban')" class="label-text-alt text-red-400 pl-2">
           <b>IBAN</b> wird benötigt
         </span>
-      </div>
-  
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+        </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">IBAN</mat-label>
+            <input formControlName="iban" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/cancel-4-digits.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('iban')">
+              <b>IBAN</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!-----------------------------------------------------------------------
+        --------------------bank_name:  ---------------------
+        ----------------------------------------------------------------------->
+
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('bank_name') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="bank_name" placeholder="Name der Bank" required type="text">
@@ -322,9 +568,27 @@
         <span *ngIf="hasRequiredError2('bank_name')" class="label-text-alt text-red-400 pl-2">
           <b>Name der Bank</b> wird benötigt
         </span>
-      </div>
-  
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+        </div>
+        -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">Name der Bank</mat-label>
+            <input formControlName="bank_name" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/cancel-4-digits.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('bank_name')">
+              <b>Name der Bank</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-----------------------------------------------------------------------
+        --------------------bic_swift_code ---------------------
+        ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('bic_swift_code') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="bic_swift_code" placeholder="BIC/SWIFT-Code" required type="text">
@@ -335,14 +599,27 @@
         <span *ngIf="hasRequiredError2('bic_swift_code')" class="label-text-alt text-red-400 pl-2">
           <b>BIC/SWIFT-Code</b> wird benötigt
         </span>
-      </div>
-  
-       
-      
-  
-  
-  
-      <div class="relative mt-3 col-span-2 sm:col-span-1">
+       </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">BIC/SWIFT-Code</mat-label>
+            <input formControlName="bic_swift_code" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/swift-payment-system.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('bic_swift_code')">
+              <b>BIC/SWIFT-Code</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+
+        <!-----------------------------------------------------------------------
+        --------------------Nutzername: Ciudad ---------------------
+        ----------------------------------------------------------------------->
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input
           class="{{hasError2('hrb_walsrode') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
           formControlName="hrb_walsrode" placeholder="HRB Nummer" required type="text">
@@ -352,47 +629,36 @@
         <span *ngIf="hasRequiredError2('hrb_walsrode')" class="label-text-alt text-red-400 pl-2">
           <b>HRB Nummer</b> wird benötigt
         </span>
-      </div>
-    </div>
-            
-            
+          </div>
+        </div> -->
 
-            <div class="col-span-2 flex justify-center items-center mt-6">
-              <button class="btn w-40 bg-[#8591AA] border-[#8591AA] px-4  rounded-full" type="submit">
-                <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>
-                <span class="tracking-wide">ANMELDEN</span>
-              </button>
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">HRB Nummer</mat-label>
+            <input formControlName="hrb_walsrode" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/hashtag-2.png" />
             </div>
-            <!-- GRiD -->
-       
+            <mat-error *ngIf="hasRequiredError2('hrb_walsrode')">
+              <b>HRB Nummer</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
 
 
+        <!-- Boton -->
+        <div class="col-span-2 flex justify-center items-center mt-6">
+          <button class="btn w-40 bg-[#8591AA] border-[#8591AA] px-4  rounded-full" type="submit">
+            <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>
+            <span class="tracking-wide">ANMELDEN</span>
+          </button>
+        </div>
+        <!-- GRiD -->
 
-        </form>
+
+      </div>
+
+    </form>
 
 
-    </div>
-
-
-
-<!-- 
-<form (ngSubmit)="register()" [formGroup]="registerForm" class="flex flex-col justify-center items-center">
-  
-    <div class="grid grid-cols-2 gap-x-2 w-full md:w-[80%]">
-  
-
-  
-      
-    
-     
-  
-  
-      
-  
-    <div class="col-span-2 flex justify-center items-center mt-6">
-      <button class="btn w-40 bg-[#3A4157] px-4  rounded-full" type="submit">
-        <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>
-        <span class="tracking-wide">ANMELDEN</span>
-      </button>
-    </div>
-  </form> -->
+  </div>

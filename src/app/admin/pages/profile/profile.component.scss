@@ -9,3 +9,7 @@ input.mat-input-element {
  .mat-input-element { 
     vertical-align: top;
  }
+
+ .top_margen {
+    @apply mt-0 h-[13vh]; 
+ }
