@@ -37,7 +37,7 @@
         <div *ngIf="isAuth" class="flex items-center  rounded-full border-2" >
 
           <img *ngIf="showLogo else defaultImg" [src]="imgPath | saveDom" alt="user_img" class="rounded-full ml-3 mr-3 py-1"
-          style="height:40px;width:40px;"/>
+          style="height:auto;width:auto;max-height:50px;max-width: 50px;"/>
           <ng-template #defaultImg>
             <img alt="user_img_default" src="assets/user-male-circle.png"/>
           </ng-template>
