@@ -199,13 +199,13 @@
 
         <div class="relative top_margen col-span-2 sm:col-span-1 ">
           <mat-form-field appearance="outline" class="w-full ">
-            <mat-label class="font-montserrat pl-3 ml-4">email</mat-label>
+            <mat-label class="font-montserrat pl-3 ml-4">E-Mail</mat-label>
             <input formControlName="email" matInput class="  w-full " type="text">
             <div class="absolute left-0 top-3 flex items-center">
               <img alt="name_img" class="" src="assets/email.png" />
             </div>
             <mat-error *ngIf="hasRequiredError2('email')">
-              <b>email</b> wird benötigt
+              <b>E-Mail</b> wird benötigt
             </mat-error>
           </mat-form-field>
         </div>
@@ -523,34 +523,7 @@
         </div>
 
 
-        <!-----------------------------------------------------------------------
-        --------------------iban:  ---------------------
-        ----------------------------------------------------------------------->
-
-        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
-        <input
-          class="{{hasError2('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
-          formControlName="iban" placeholder="IBAN" required type="text">
-        <div class="absolute left-0 top-3 flex items-center">
-          <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
-        </div>
-        <span *ngIf="hasRequiredError2('iban')" class="label-text-alt text-red-400 pl-2">
-          <b>IBAN</b> wird benötigt
-        </span>
-        </div> -->
-
-        <div class="relative top_margen col-span-2 sm:col-span-1 ">
-          <mat-form-field appearance="outline" class="w-full ">
-            <mat-label class="font-montserrat pl-3 ml-4">IBAN</mat-label>
-            <input formControlName="iban" matInput class="  w-full " type="text">
-            <div class="absolute left-0 top-3 flex items-center">
-              <img alt="name_img" class="" src="assets/cancel-4-digits.png" />
-            </div>
-            <mat-error *ngIf="hasRequiredError2('iban')">
-              <b>IBAN</b> wird benötigt
-            </mat-error>
-          </mat-form-field>
-        </div>
+      
 
 
         <!-----------------------------------------------------------------------
@@ -584,6 +557,36 @@
           </mat-form-field>
         </div>
 
+          <!-----------------------------------------------------------------------
+        --------------------iban:  ---------------------
+        ----------------------------------------------------------------------->
+
+        <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
+        <input
+          class="{{hasError2('iban') ? 'input-error' : 'input-primary'}} input pl-12 w-full rounded-full "
+          formControlName="iban" placeholder="IBAN" required type="text">
+        <div class="absolute left-0 top-3 flex items-center">
+          <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
+        </div>
+        <span *ngIf="hasRequiredError2('iban')" class="label-text-alt text-red-400 pl-2">
+          <b>IBAN</b> wird benötigt
+        </span>
+        </div> -->
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full ">
+            <mat-label class="font-montserrat pl-3 ml-4">IBAN</mat-label>
+            <input formControlName="iban" matInput class="  w-full " type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/cancel-4-digits.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('iban')">
+              <b>IBAN</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
         <!-----------------------------------------------------------------------
         --------------------bic_swift_code ---------------------
         ----------------------------------------------------------------------->
@@ -614,10 +617,32 @@
           </mat-form-field>
         </div>
 
+       <!-- Empty Field -->
+       <div class="relative top_margen col-span-2 sm:col-span-1 ">
+       </div>
+
+
+       <!-----------------------------------------------------------------------
+        --------------------HRB Ort ---------------------
+        ----------------------------------------------------------------------->
+       
+
+        <div class="relative top_margen col-span-2 sm:col-span-1 ">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label class="font-montserrat pl-3 ml-4">HRB Ort</mat-label>
+            <input formControlName="hrb_ort" matInput class="w-full" type="text">
+            <div class="absolute left-0 top-3 flex items-center">
+              <img alt="name_img" class="" src="assets/city-buildings.png" />
+            </div>
+            <mat-error *ngIf="hasRequiredError2('hrb_ort')">
+              <b>HRB Ort</b> wird benötigt
+            </mat-error>
+          </mat-form-field>
+        </div>
 
 
         <!-----------------------------------------------------------------------
-        --------------------Nutzername: Ciudad ---------------------
+        --------------------HRB Nummer ---------------------
         ----------------------------------------------------------------------->
         <!-- <div class="relative mt-3 col-span-2 sm:col-span-1">
         <input

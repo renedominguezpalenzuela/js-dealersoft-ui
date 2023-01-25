@@ -226,18 +226,7 @@
       </span>
     </div>
 
-    <div class="relative mt-3 col-span-2 sm:col-span-1">
-      <input class="{{
-          hasError('iban') ? 'input-error' : 'input-primary'
-        }} input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="iban" placeholder="IBAN" required
-        type="text" />
-      <div class="absolute left-0 top-3 flex items-center">
-        <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
-      </div>
-      <span *ngIf="hasRequiredError('iban')" class="label-text-alt text-red-400 pl-2">
-        <b>IBAN</b> wird benötigt
-      </span>
-    </div>
+ 
 
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input class="{{
@@ -254,6 +243,19 @@
 
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input class="{{
+          hasError('iban') ? 'input-error' : 'input-primary'
+        }} input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="iban" placeholder="IBAN" required
+        type="text" />
+      <div class="absolute left-0 top-3 flex items-center">
+        <img alt="cancel-4-digits" class="ml-4" src="assets/cancel-4-digits.png" />
+      </div>
+      <span *ngIf="hasRequiredError('iban')" class="label-text-alt text-red-400 pl-2">
+        <b>IBAN</b> wird benötigt
+      </span>
+    </div>
+
+    <div class="relative mt-3 col-span-2 sm:col-span-1">
+      <input class="{{
           hasError('bic_swift_code') ? 'input-error' : 'input-primary'
         }} input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="bic_swift_code"
         placeholder="BIC/SWIFT-Code" required type="text" />
@@ -264,6 +266,22 @@
         <b>BIC/SWIFT-Code</b> wird benötigt
       </span>
     </div>
+
+      <!-- Empty Field -->
+      <div class="relative mt-3 col-span-2 sm:col-span-1 ">
+      </div>
+
+    <div class="relative mt-3 col-span-2 sm:col-span-1">
+      <input class="{{hasError('hrb_ort') ? 'input-error' : 'input-primary' }} input pl-12 w-full rounded-full bg-[#1E253E] mycolor" formControlName="hrb_ort"
+        placeholder="HRB Ort" required type="text" />
+      <div class="absolute left-0 top-3 flex items-center">
+        <img alt="hashtag-2" class="ml-4" src="assets/city-buildings.png" />
+      </div>
+      <span *ngIf="hasRequiredError('hrb_ort')" class="label-text-alt text-red-400 pl-2">
+        <b>HRB Ort</b> wird benötigt
+      </span>
+    </div>
+
 
     <div class="relative mt-3 col-span-2 sm:col-span-1">
       <input class="{{

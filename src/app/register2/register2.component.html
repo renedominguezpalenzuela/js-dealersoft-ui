@@ -148,6 +148,17 @@
 
           <div class="relative mt-1 col-span-2 sm:col-span-1">
             <input
+              class="{{hasError('hrb_ort') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  "
+              formControlName="hrb_ort" placeholder="HRB Ort" required type="text" />
+            <span *ngIf="hasRequiredError('hrb_ort')" class="label-text-alt text-red-400 pl-2">
+
+              <b>HRB Ort</b> wird benötigt
+            </span>
+          </div>
+
+
+          <div class="relative mt-1 col-span-2 sm:col-span-1">
+            <input
               class="{{hasError('hrb_walsrode') ? 'input-error' : 'input-primary'}} input lg:pl-4 w-full rounded-lg  "
               formControlName="hrb_walsrode" placeholder="HRB Nummer" required type="text" />
             <span *ngIf="hasRequiredError('hrb_walsrode')" class="label-text-alt text-red-400 pl-2">
@@ -202,11 +213,11 @@
               <span class="border border-[#505050] h-5 w-5 rounded-sm relative">
                 <div id="tick-mark" *ngIf="AGB"></div>
               </span>
-              <span class="text-[#6D6D6D] md:text-base text-[12px]">Ich stimme den AGBs zu.</span>
+              <span class="text-[#6D6D6D] md:text-base text-[12px]">Ich stimme den AGBs zu. </span>
             </div>
           </div>
 
-          <div class="flex w-full justify-end lg:my-6 my-4 col-span-2">
+          <div class="flex w-full justify-center lg:my-6 my-4 col-span-2">
 
             <button class="btn border-transparent border w-32 bg-blue-10 rounded-lg max-h-[2.6rem]" type="submit">
               <mat-spinner *ngIf="isLoading" class="mr-2 " diameter="18"></mat-spinner>

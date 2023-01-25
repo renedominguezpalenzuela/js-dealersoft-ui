@@ -45,6 +45,7 @@ export class Register2Component implements OnInit {
     iban: [null, [Validators.required]],
     bic_swift_code: [null, [Validators.required]],
     hrb_walsrode: [null, [Validators.required]],
+    hrb_ort: [null, [Validators.required] ],
     bank_name: [null, [Validators.required]],
     
     //username: [null, [Validators.required]],

@@ -102,7 +102,6 @@ export class ProfileComponent implements OnInit {
     house_number: [null],
     city: [null],
     postal_code: [null],
-
     phone: [null],
     website: [null],
     steuer_nr: [null],
@@ -111,6 +110,7 @@ export class ProfileComponent implements OnInit {
     iban: [null],
     bic_swift_code: [null],
     hrb_walsrode: [null],
+    hrb_ort: [null],
     bank_name: [null],
     username: [null],
   });
@@ -307,8 +307,6 @@ export class ProfileComponent implements OnInit {
 
   public register() {
   
-    console.log(this.userID);
-
     if (!this.isAuth) {
       console.log('User not authorized');
       return;
@@ -316,33 +314,19 @@ export class ProfileComponent implements OnInit {
 
     const newUser = { ...this.registerForm.value };
 
- 
-
-
-    if (
-      this.registerForm.valid &&
-      
-      !this.isLoading
-    ) {
+    if (this.registerForm.valid && !this.isLoading ) {
       this.isLoading = true;
       
-      this.requestService.Put(this.apiHelperService.meURL, newUser)
-        .subscribe((respuesta) => {
-
-        
+      this.requestService.Put(this.apiHelperService.meURL, newUser).subscribe((respuesta) => {
+          console.log(respuesta);
           this.isLoading = false;
-         const form = new FormData();
-         form.append('files', <File>this.logoImg);
-
+          const form = new FormData();
+          form.append('files', <File>this.logoImg);
           if (this.logoImg instanceof File) {
-          this.requestService
-            .POSTUpload(this.apiHelperService.uploadFilesURL, form)
-            .subscribe((events) => {
+          this.requestService.POSTUpload(this.apiHelperService.uploadFilesURL, form).subscribe((events) => {
               if (events.type === HttpEventType.Response) {
                 const data = { logo: events.body[0].id, user: this.userID };
-                this.requestService
-                  .Post(this.apiHelperService.logosURL, data)
-                  .subscribe(() => {
+                this.requestService.Post(this.apiHelperService.logosURL, data).subscribe(() => {
                     this.isLoading = false;
                     this.notificationService.riseNotification({
                       color: 'success',
@@ -373,7 +357,5 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-
-  // }
+ 
 }
