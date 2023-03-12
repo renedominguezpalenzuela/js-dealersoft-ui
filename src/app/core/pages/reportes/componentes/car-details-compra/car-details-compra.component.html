@@ -98,20 +98,6 @@
 
 
 
-  <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-1 row-start-10  text-car-details-report py-2">
-    Bemerkungen:
-  </div>
-
-
-
-
-
-
-  <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-2 row-start-10  py-2">
-
-    <p class="break-normal preserve-line-break w-97  text-car-details-report ">{{car_buy_data?.bemerkunhen}}</p>
-
-  </div>
 
 <!--
   <div class=" col-start-1 row-start-11  text-car-details-report">
@@ -152,6 +138,23 @@
 
   <div class=" col-start-2 row-start-12  text-car-details-report ">
     {{car_buy_data?.payment }}
+  </div>
+
+
+  
+  <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-1 row-start-10  text-car-details-report py-2">
+    Bemerkungen:
+  </div>
+
+
+
+
+
+
+  <div *ngIf="car_buy_data?.bemerkunhen" class=" col-start-2 row-start-10  py-2">
+
+    <p class="break-normal preserve-line-break w-97  text-car-details-report ">{{car_buy_data?.bemerkunhen}}</p>
+
   </div>
 
 

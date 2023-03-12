@@ -98,6 +98,27 @@
 
 
 
+
+  <div class=" col-start-1 row-start-11  text-car-details-report">
+    Abholung:
+  </div>
+
+  <div class=" col-start-2 row-start-11  text-car-details-report">
+    {{car_buy_data?.abholtermin  }}
+  </div>
+
+
+
+  <div class=" col-start-1 row-start-12  text-car-details-report">
+    Zahlungsart:
+  </div>
+
+  <div class=" col-start-2 row-start-12  text-car-details-report ">
+    {{car_buy_data?.zahlunsart }}
+  </div>
+
+
+  
   <div  *ngIf="car_buy_data?.bemerkunhen || car_buy_data?.bemerkunhen2" class=" col-start-1 row-start-10  text-car-details-report py-2">
     Bemerkungen:
   </div>
@@ -120,24 +141,6 @@
     </ng-template>
   </div>
 
-
-  <div class=" col-start-1 row-start-11  text-car-details-report">
-    Abholung:
-  </div>
-
-  <div class=" col-start-2 row-start-11  text-car-details-report">
-    {{car_buy_data?.abholtermin  }}
-  </div>
-
-
-
-  <div class=" col-start-1 row-start-12  text-car-details-report">
-    Zahlungsart:
-  </div>
-
-  <div class=" col-start-2 row-start-12  text-car-details-report ">
-    {{car_buy_data?.zahlunsart }}
-  </div>
 
 
 
