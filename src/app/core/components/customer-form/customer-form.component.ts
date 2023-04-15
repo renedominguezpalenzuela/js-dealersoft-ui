@@ -220,7 +220,93 @@ export class CustomerFormComponent implements OnInit {
      
         this.actualizando_radio_buttons = false;
       });
+
+
+      this.customerForm.get('title')!.valueChanges.subscribe((change: boolean) => {
+        if (this.actualizando_radio_buttons) return;
+
+        this.actualizando_radio_buttons = true;
+
+        const tipo_cliente = this.customerForm.get('title')!.value;
+        this.cambiar_campo_empresa(tipo_cliente);       
+     
+        this.actualizando_radio_buttons = false;
+      });
+
+
+      const tipo_cliente = this.customerForm.get('title')!.value;
+
+      this.cambiar_campo_empresa(tipo_cliente);
+
+    
+
   }
+
+
+  cambiar_campo_empresa = (tipo_cliente: string) => {
+    if (tipo_cliente=='Firma') { 
+
+      this.customerForm.patchValue({ company: true });
+      this.customerForm.patchValue({ private: false });
+
+      this.customerForm.get('company_name')!.enable();
+      this.customerForm.get('company_name')!.setValue(null);
+       this.customerForm.get('company_name')!.markAsUntouched();
+       this.customerForm.get('company_name')!.markAsPristine();
+    this.customerForm.get('company_name')!.addValidators(Validators.required);
+
+    this.customerForm.get('first_name')!.removeValidators(Validators.required); 
+    this.customerForm.get('last_name')!.removeValidators(Validators.required);
+
+      this.required_empresa=true;
+      this.required_privado=false;
+
+    
+
+
+
+    
+
+     /*  this.customerForm.get('company_name')!.setValue(null);
+       this.customerForm.get('company_name')!.markAsUntouched();
+       this.customerForm.get('company_name')!.markAsPristine();
+      this.customerForm.patchValue({ private: false });
+
+      this.customerForm.get('company_name')!.addValidators(Validators.required);*/
+  
+      
+      console.log("empresaaa");
+    } else {
+      this.customerForm.patchValue({ company: false });  
+      this.customerForm.patchValue({ private: true });  
+      
+      
+      this.required_empresa=false;
+      this.required_privado=true;
+
+      /* this.customerForm.get('company_name')!.setValue(null);
+       this.customerForm.get('company_name')!.markAsUntouched();
+       this.customerForm.get('company_name')!.markAsPristine();*/
+      
+      this.customerForm.get('company_name')!.removeValidators(Validators.required);
+
+      this.customerForm.get('first_name')!.setValue(null);
+      this.customerForm.get('first_name')!.markAsUntouched();
+      this.customerForm.get('first_name')!.markAsPristine();
+
+      this.customerForm.get('first_name')!.addValidators(Validators.required); 
+
+      this.customerForm.get('last_name')!.setValue(null);
+      this.customerForm.get('last_name')!.markAsUntouched();
+      this.customerForm.get('last_name')!.markAsPristine();
+
+      this.customerForm.get('last_name')!.addValidators(Validators.required);
+
+      console.log("clienteeee");
+    }
+  }
+
+ 
 
   public close = () => this.dialogRef.close(false);
 
@@ -252,7 +338,7 @@ export class CustomerFormComponent implements OnInit {
       this.dialogRef.close({ body: this.customerForm.value });
     } else {    
       this.markAsTouchedAllControls();   
-      console.log(this.findInvalidControls())   
+      //console.log(this.findInvalidControls())   
     
     }
   }

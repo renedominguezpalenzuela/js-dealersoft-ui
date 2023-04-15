@@ -25,6 +25,7 @@
             <mat-option value="Herr" class="font-montserrat">Herr</mat-option>
             <mat-option value="Frau" class="font-montserrat">Frau</mat-option>
             <mat-option value="Divers" class="font-montserrat">Divers</mat-option>
+            <mat-option value="Firma" class="font-montserrat">Firma</mat-option>
           </mat-select>
           <mat-error *ngIf="hasRequiredError('title')">
             <b>Anrede</b> wird benötigt
@@ -67,7 +68,7 @@
 
       <div class="col-span-2"  >
         <mat-form-field appearance="outline" class="w-full font-montserrat" >
-          <mat-label>Firmenname </mat-label>
+          <mat-label>Firmenname dd</mat-label>
           <input formControlName="company_name" matInput [required]="required_empresa">
           <mat-error *ngIf="hasRequiredError('company_name')">
             <b>Firmenname</b> wird benötigt
