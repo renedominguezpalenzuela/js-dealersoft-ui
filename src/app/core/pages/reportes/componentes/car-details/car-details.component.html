@@ -120,7 +120,7 @@
 
   
   <div  *ngIf="car_buy_data?.bemerkunhen || car_buy_data?.bemerkunhen2" class=" col-start-1 row-start-10  text-car-details-report py-2">
-    Bemerkungen:
+    Bemerkungen: 
   </div>
 
 
@@ -128,7 +128,7 @@
 
   
 
-  <div *ngIf="car_buy_data?.bemerkunhen || car_buy_data?.bemerkunhen2" class=" col-start-2 row-start-10 py-2">
+  <div *ngIf="car_buy_data?.bemerkunhen || car_buy_data?.bemerkunhen2" class="   col-start-2 row-start-10 py-2">
     <div *ngIf="kaufvertrag; else rechnung">
       <p class="break-normal preserve-line-break w-97  text-car-details-report ">{{car_buy_data?.bemerkunhen2}}</p>
     </div>
@@ -136,7 +136,8 @@
 
 
     <ng-template #rechnung>
-      <p class="break-normal preserve-line-break w-97  text-car-details-report ">{{car_buy_data?.bemerkunhen}}</p>
+      
+      <p class="break-normal preserve-line-break w-97   text-car-details-report ">{{car_buy_data?.bemerkunhen}}</p>
 
     </ng-template>
   </div>
